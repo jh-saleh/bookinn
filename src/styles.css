@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0px;
+    margin: 0px;
+    height: 100dvh;
+    width: 100dvh;
+}
+
+body * {
+    padding: 0px;
+    margin: 0px;
+}
+
+:root {
+    /*colors*/
+    --crimson-900: #20070C;
+    --crimson-800: #400E17;
+    --crimson-700: #801C2E;
+    --crimson-600: #A0233A;
+    --crimson-500: #C02A45;
+    --crimson-400: #E03151;
+    --crimson-300: #FF385C;
+
+    /*element colors*/
+    --background: var(--crimson-500);
+    --text-color: white;
+    --bold-text-color: var(--crimson-800);
+
+    /*size*/
+    --b-bar-size: 200px;
+
+    /*font*/
+    font-family: 'Lexend';
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

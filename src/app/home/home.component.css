@@ -1,0 +1,141 @@
+.b {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+}
+
+.b-bar {
+    width: 40px;
+    height: var(--b-bar-size);
+    background: var(--text-color);
+}
+
+.b-small-circle {
+    width: calc(var(--b-bar-size) * (2/5) * (1/2));
+    height: calc(var(--b-bar-size) * (2/5));
+    background: var(--text-color);
+    border-top-right-radius: calc(var(--b-bar-size) * (2/5) + 10px);
+    border-bottom-right-radius: calc(var(--b-bar-size) * (2/5) + 10px);
+}
+
+.b-big-circle {
+    width: calc(var(--b-bar-size) * (3/5) * (1/2));
+    height: calc(var(--b-bar-size) * (3/5));
+    border-top-right-radius: calc(var(--b-bar-size) * (3/5) + 10px);
+    border-bottom-right-radius: calc(var(--b-bar-size) * (3/5) + 10px);
+    background: var(--text-color);
+}
+
+.b-big-circle::before {
+    border-top-right-radius: 100%;
+}
+
+.b-big-circle::after {
+    border-bottom-right-radius: 100%;
+}
+
+.ookinn {
+    user-select: none;
+}
+
+.ookinn>span {
+    font-size: 140px;
+    line-height: 20px;
+    color: var(--text-color);
+}
+
+.bookinn {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    place-items: end;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.section1 {
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+.section2 {
+    background-color: rgb(146, 81, 72);
+}
+
+.section3 {
+    background-color: rgb(72, 146, 97);
+}
+
+.pitch,
+.author {
+    position: absolute;
+    opacity: 0;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    background-color: var(--background);
+    z-index: 1;
+}
+
+.pitch>h1 {
+    font-weight: bold;
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.pitch>p {
+    font-size: x-small;
+    width: 50%;
+}
+
+.author>h1 {
+    font-size: xx-large;
+    color: var(--bold-text-color);
+}
+
+.home-button,
+.portfolio-button {
+    border: 1px var(--text-color) solid;
+    border-radius: 5px;
+    background-color: var(--background);
+    color: var(--text-color);
+    padding: 10px 20px;
+}
+
+.home-button {
+    position: fixed;
+    bottom: 10dvh;
+}
+
+.portfolio-button {
+    margin-top: 40px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.rain {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100dvw;
+    height: 100dvh;
+    place-items: center;
+    gap: 30px;
+}
+
+.rain>div {
+    display: flex;
+    gap: 10dvw;
+}
+
+.rain>div>span {
+    height: 100px;
+    width: 2px;
+    content: '';
+    background-color: white;
+    display: inline-block;
+    transform: rotateZ(45deg);
+}
