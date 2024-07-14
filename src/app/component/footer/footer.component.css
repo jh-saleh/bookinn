@@ -1,0 +1,16 @@
+.footer {
+    padding: 20px 10px;
+    background-color: var(--crimson-600);
+    display: flex;
+    gap: 15px;
+    color: white;
+}
+
+.footer>a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer>a:hover {
+    text-decoration: underline;
+}

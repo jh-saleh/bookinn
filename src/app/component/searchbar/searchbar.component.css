@@ -1,0 +1,75 @@
+.searchbar {
+    padding: 10px 10px 10px 30px;
+    display: flex;
+    width: max-content;
+    place-items: center;
+    gap: 15px;
+    height: 50px;
+    background-color: white;
+    border-radius: 150px;
+    align-content: space-evenly;
+}
+
+.divider {
+    width: 2px;
+    height: calc(100% - 5px);
+    background-color: var(--black-100);
+}
+
+.location,
+.checkin,
+.checkout,
+.guests {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    cursor: pointer;
+}
+
+.location>label,
+.checkin>label,
+.checkout>label,
+.guests>label {
+    font-size: small;
+    cursor: pointer;
+}
+
+.location>input {
+    border: none;
+    font-size: large;
+    outline: none;
+}
+
+.location>input::placeholder {
+    border: none;
+    font-size: medium;
+    color: var(--black-400);
+}
+
+.checkin>div,
+.checkout>div,
+.guests>div {
+    border: none;
+    font-size: medium;
+    color: var(--black-300);
+}
+
+.search {
+    background-color: var(--crimson-500);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    user-select: none;
+    font-size: medium;
+}
+
+.search:hover {
+    width: 120px;
+}

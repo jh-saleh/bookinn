@@ -20,6 +20,18 @@ body * {
     --crimson-400: #E03151;
     --crimson-300: #FF385C;
 
+    --black-900: #000000;
+    --black-800: #101010;
+    --black-700: #202020;
+    --black-600: #404040;
+    --black-500: #606060;
+    --black-400: #808080;
+    --black-300: #C0C0C0;
+    --black-200: #C0C0C0;
+    --black-100: #E0E0E0;
+    --black-50: #F0F0F0;
+
+
     /*element colors*/
     --background: var(--crimson-500);
     --text-color: white;
@@ -27,6 +39,7 @@ body * {
 
     /*size*/
     --b-bar-size: 200px;
+    --b-bar-size-logo: 50px;
 
     /*font*/
     font-family: 'Lexend';

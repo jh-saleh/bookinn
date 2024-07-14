@@ -1,0 +1,11 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0px;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+    background-color: var(--crimson-500);
+    width: 100dvw;
+    z-index: 1;
+}

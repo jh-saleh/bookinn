@@ -1,3 +1,4 @@
+<!--
 <section class="section1">
     <div class="bookinn">
         <span class="b">
@@ -91,6 +92,15 @@
     </div>
     <button class="home-button">Scroll to see more</button>
 </section>
+-->
 <section class="section2">
-
+    <app-navbar>
+    </app-navbar>
+    <div class="home-body">
+        @for (inn of inns; track $index) {
+        <app-card [city]="inn.city" [state]="inn.state" [name]="inn.name" [pricePerNight]="inn.pricePerNight"
+            [ratings]="inn.ratings"></app-card>
+        }
+    </div>
+    <app-footer></app-footer>
 </section>

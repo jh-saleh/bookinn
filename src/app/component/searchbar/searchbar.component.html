@@ -1,0 +1,31 @@
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<div class="searchbar">
+    <div class="location" (click)="focusLocationInput(refLocationInput)">
+        <label>Where</label>
+        <input #refLocationInput placeholder="Search destinations" />
+    </div>
+    <div class="divider"></div>
+    <div class="checkin">
+        <label>Check in</label>
+        <div>Add dates</div>
+    </div>
+    <div class="divider"></div>
+    <div class="checkout">
+        <label>Check out</label>
+        <div>Add dates</div>
+    </div>
+    <div class="divider"></div>
+    <div class="guests">
+        <label>Who</label>
+        <div>Add guests</div>
+    </div>
+    <button class="search" (mouseenter)="showLabel()" (mouseleave)="hideLabel()">
+        <span class="material-symbols-outlined">
+            search
+        </span>
+        @if (displayLabel) {
+        {{searchLabel}}
+        }
+    </button>
+</div>

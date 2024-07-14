@@ -2,21 +2,27 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
+import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { InnService } from '../../service/inn/inn.service';
+import { Inn } from '../../model/inn.model';
+import { CardComponent } from "../../component/card/card.component";
+import { FooterComponent } from "../../component/footer/footer.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent, CardComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit {
   readonly portfolioURL: string = environment.portfolioURL;
   readonly droplets: number = 50;
+  inns!: Inn[];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, innService: InnService) {
+    this.inns = innService.getHomePageInns();
   }
 
   ngAfterViewInit(): void {
@@ -30,10 +36,6 @@ export class HomeComponent implements AfterViewInit {
           pin: true,
           start: "center center",
           end: "+=1100%",
-          markers: {
-            startColor: "white",
-            endColor: "white"
-          }
         }
       });
       tl1.fromTo(".bookinn",

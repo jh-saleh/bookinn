@@ -50,8 +50,6 @@
 }
 
 section {
-    display: grid;
-    place-items: center;
     height: 100dvh;
     width: 100dvw;
 }
@@ -59,10 +57,13 @@ section {
 .section1 {
     background-color: var(--background);
     color: var(--text-color);
+    display: grid;
+    place-items: center;
 }
 
 .section2 {
-    background-color: rgb(146, 81, 72);
+    background-color: var(--background);
+    height: auto;
 }
 
 .section3 {
@@ -89,6 +90,10 @@ section {
 .pitch>p {
     font-size: x-small;
     width: 50%;
+}
+
+.author {
+    padding: 20px;
 }
 
 .author>h1 {
@@ -138,4 +143,15 @@ section {
     background-color: white;
     display: inline-block;
     transform: rotateZ(45deg);
+}
+
+.home-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow-y: auto;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: var(--crimson-500);
 }

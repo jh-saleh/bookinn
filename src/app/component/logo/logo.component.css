@@ -1,0 +1,47 @@
+.b-logo {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+}
+
+.b-bar-logo {
+    width: 20px;
+    height: var(--b-bar-size-logo);
+    background: var(--text-color);
+}
+
+.b-small-circle-logo {
+    width: calc(var(--b-bar-size-logo) * (2/5) * (1/2));
+    height: calc(var(--b-bar-size-logo) * (2/5));
+    background: var(--text-color);
+    border-top-right-radius: calc(var(--b-bar-size-logo) * (2/5) + 10px);
+    border-bottom-right-radius: calc(var(--b-bar-size-logo) * (2/5) + 10px);
+}
+
+.b-big-circle-logo {
+    width: calc(var(--b-bar-size-logo) * (3/5) * (1/2));
+    height: calc(var(--b-bar-size-logo) * (3/5));
+    border-top-right-radius: calc(var(--b-bar-size-logo) * (3/5) + 10px);
+    border-bottom-right-radius: calc(var(--b-bar-size-logo) * (3/5) + 10px);
+    background: var(--text-color);
+}
+
+.b-big-circle-logo::before {
+    border-top-right-radius: 100%;
+}
+
+.b-big-circle-logo::after {
+    border-bottom-right-radius: 100%;
+}
+
+.ookinn-logo {
+    user-select: none;
+    font-size: 45px;
+    line-height: 40px;
+    color: white;
+}
+
+.bookinn-logo {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    place-items: end;
+}
