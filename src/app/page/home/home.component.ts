@@ -1,24 +1,29 @@
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { environment } from '../../../environments/environment';
-import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { InnService } from '../../service/inn/inn.service';
-import { Inn } from '../../model/inn.model';
 import { CardComponent } from "../../component/card/card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
+import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { Inn } from '../../model/inn.model';
+import { InnService } from '../../service/inn/inn.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, CardComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, CardComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit {
   readonly portfolioURL: string = environment.portfolioURL;
   readonly droplets: number = 50;
+  sectionAnimation = {
+    "section1": true,
+    "hide": false
+  };
   inns!: Inn[];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, innService: InnService) {
@@ -27,6 +32,7 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollToPlugin);
     if (isPlatformBrowser(this.platformId)) {
       let tl1 = gsap.timeline({
         paused: true,
@@ -34,8 +40,11 @@ export class HomeComponent implements AfterViewInit {
           trigger: ".section1",
           scrub: true,
           pin: true,
-          start: "center center",
+          start: "top top",
           end: "+=1100%",
+          onLeave: (self) => {
+            gsap.to(window, { scrollTo: "#section2" });
+          }
         }
       });
       tl1.fromTo(".bookinn",

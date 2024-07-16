@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SearchbarComponent } from "../searchbar/searchbar.component";
-import { LogoComponent } from "../logo/logo.component";
 import { AccountComponent } from "../account/account.component";
+import { LogoComponent } from "../logo/logo.component";
+import { SearchbarComponent } from "../searchbar/searchbar.component";
 
 @Component({
   selector: 'app-navbar',

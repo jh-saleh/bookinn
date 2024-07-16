@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
