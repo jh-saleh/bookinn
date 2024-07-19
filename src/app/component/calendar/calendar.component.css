@@ -1,0 +1,90 @@
+.calendar {
+    user-select: none;
+    cursor: default;
+    padding: 20px;
+}
+
+.month-header-wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+.first-month-header {
+    display: grid;
+    grid-template-columns: min-content auto;
+    place-items: center;
+}
+
+.second-month-header {
+    display: grid;
+    grid-template-columns: auto min-content;
+    place-items: center;
+}
+
+.month-body-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 40px;
+    padding-top: 15px;
+}
+
+.month-body {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    gap: 15px;
+}
+
+.previous-month,
+.next-month {
+    display: grid;
+    place-items: center;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+}
+
+.previous-month:hover,
+.next-month:hover {
+    background-color: var(--background-box-hover);
+    border-radius: 50%;
+}
+
+.week,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    gap: 5px;
+    width: 100%;
+    place-items: center;
+}
+
+.day,
+.empty-day,
+.disabled-day {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+}
+
+.day {
+    cursor: pointer;
+}
+
+.empty-day {
+    cursor: default;
+}
+
+.disabled-day {
+    text-decoration: line-through;
+    color: var(--black-500);
+}
+
+.day:hover {
+    background-color: var(--background-box-hover);
+    outline: 1px black solid;
+}

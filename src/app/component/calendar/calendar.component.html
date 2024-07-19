@@ -1,0 +1,77 @@
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+
+<ng-template #daysOfTheMonthTemplate let-daysOfTheMonth="daysOfTheMonth" let-validDays="validDays">
+    <div class="days">
+        @for (nb of daysOfTheMonth; track $index) {
+        @if(nb > 0){
+        @if(validDays[nb-1]){
+        <span class="disabled-day">
+            {{nb}}
+        </span>
+        }@else {
+        <span class="day">
+            {{nb}}
+        </span>
+        }
+        } @else {
+        <span class="empty-day"></span>
+        }
+        }
+    </div>
+</ng-template>
+
+<ng-template #weekTemplate>
+    <div class="week">
+        @for (day of week; track $index) {
+        <span>
+            {{day}}
+        </span>
+        }
+    </div>
+</ng-template>
+
+<app-modal [isModalOpen]="isCalendarOpen" [classPosition]="{top: 0, left: 540}" (closeModal)="closeCalendar()"
+    (openModal)="openCalendar()">
+    <section class="calendar">
+        <div class="month">
+            <div class="month-header-wrapper">
+                <div class="first-month-header">
+                    <button class="previous-month" (click)="previousMonth()">
+                        <span class="material-symbols-outlined">
+                            chevron_left
+                        </span>
+                    </button>
+                    <div class="month-label">
+                        {{firstMonth}} {{firstYear}}
+                    </div>
+                </div>
+                <div class="second-month-header">
+                    <div class="month-label">
+                        {{secondMonth}} {{secondYear}}
+                    </div>
+                    <button class="next-month" (click)="nextMonth()">
+                        <span class="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="month-body-wrapper">
+                <div class="month-body">
+                    <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth, validDays: validDaysOfTheFirstMonth}"></ng-container>
+                </div>
+                <div class="month-body">
+                    <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth, validDays: validDaysOfTheSecondMonth}"></ng-container>
+                </div>
+            </div>
+        </div>
+    </section>
+</app-modal>

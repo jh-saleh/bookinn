@@ -2,11 +2,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CalendarComponent } from "../calendar/calendar.component";
 
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [],
+  imports: [CalendarComponent],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
@@ -222,5 +223,9 @@ export class SearchbarComponent implements AfterViewInit {
 
   focusLocationInput(refLocationInput: HTMLInputElement) {
     refLocationInput.focus();
+  }
+
+  openCalendar() {
+
   }
 }
