@@ -3,11 +3,22 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<button class="account">
-    <span class="material-symbols-outlined">
-        menu
+<button class="account" (click)="openAccountModal()">
+    <span #accountRef>
+        <span class="material-symbols-outlined">
+            menu
+        </span>
+        <span class="material-symbols-outlined">
+            account_circle
+        </span>
     </span>
-    <span class="material-symbols-outlined">
-        account_circle
-    </span>
+    <app-modal [isModalOpen]="isAccountModalOpen" (closeModal)="closeAccountModal()" (openModal)="openAccountModal()"
+        [classPosition]="buttonPosition">
+        <div class="account-modal">
+            <a>Sign in</a>
+            <a>Sign up</a>
+            <div class="divider-modal"></div>
+            <a [href]="portfolioURL" target="_blank">Visit my portfolio !</a>
+        </div>
+    </app-modal>
 </button>

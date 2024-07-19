@@ -3,6 +3,7 @@ body {
     margin: 0px;
     height: 100dvh;
     width: 100dvh;
+    background-color: var(--crimson-500);
 }
 
 body * {
@@ -36,10 +37,15 @@ body * {
     --background: var(--crimson-500);
     --text-color: white;
     --bold-text-color: var(--crimson-800);
+    --background-box-hover: #f5f5f5;
 
     /*size*/
     --b-bar-size: 200px;
     --b-bar-size-logo: 50px;
+    --box-border-radius: 15px;
+
+    /*shadow*/
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 
     /*font*/
     font-family: 'Lexend';

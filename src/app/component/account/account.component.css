@@ -1,8 +1,12 @@
 .account {
+    border: none;
+    background-color: transparent;
+}
+
+.account>span {
     background-color: white;
     height: 50px;
     width: 90px;
-    border: none;
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -10,14 +14,39 @@
     align-items: center;
 }
 
-.account>span {
+.account>span>span {
     color: var(--black-400);
 }
 
-.account>span:first-child {
+.account>span>span:first-child {
     scale: 0.9;
 }
 
-.account>span:nth-child(2) {
+.account>span>span:nth-child(2) {
     scale: 1.4;
+}
+
+.account-modal {
+    padding: 10px 0px;
+}
+
+.account-modal>a {
+    text-decoration: none;
+    color: var(--black-900);
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+    font-size: medium;
+    padding: 14px 10px;
+}
+
+.account-modal>a:hover {
+    background-color: var(--background-box-hover);
+}
+
+.divider-modal {
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--black-100);
 }

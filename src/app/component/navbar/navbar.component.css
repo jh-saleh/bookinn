@@ -1,10 +1,14 @@
-nav {
+.navbar-wrapper {
+    position: fixed;
+    align-items: start;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    background-color: var(--background);
+}
+
+.navbar {
+    padding: 10px 30px 10px 30px;
     display: flex;
     justify-content: space-between;
-    padding: 0px 50px 10px 50px;
-    align-items: center;
-    position: sticky;
-    top: 0px;
-    background-color: var(--crimson-500);
-    z-index: 1;
 }
