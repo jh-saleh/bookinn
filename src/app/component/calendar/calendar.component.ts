@@ -23,6 +23,9 @@ export class CalendarComponent implements OnInit {
   daysOfTheSecondMonth!: number[];
   validDaysOfTheFirstMonth!: boolean[];
   validDaysOfTheSecondMonth!: boolean[];
+  maxYear: number = 3;
+  disablePreviousMonthButton: boolean = false;
+  disableNextMonthButton: boolean = false;
 
   readonly week: string[] = Object.values(DaysShortHand);
 
@@ -36,6 +39,7 @@ export class CalendarComponent implements OnInit {
     this.secondMonth = secondMonth;
     this.secondYear = secondYear;
     this.updateDaysOfTheCalendar();
+    this.updateAccessToMonthsButton();
   }
 
   fillEmptyDaySlot(day: Days): number {
@@ -74,9 +78,14 @@ export class CalendarComponent implements OnInit {
 
   updateDaysOfTheCalendar() {
     this.daysOfTheFirstMonth = this.getDaysOfTheMonthAndYear(this.firstYear, this.firstMonth);
-    this.validDaysOfTheFirstMonth = this.daysOfTheFirstMonth.map((day) => this.isOlderThanCurrentDate(day, this.firstMonth, this.firstYear));
+    this.validDaysOfTheFirstMonth = this.daysOfTheFirstMonth.filter((day) => day !== 0).map((day) => this.isOlderThanCurrentDate(day, this.firstMonth, this.firstYear));
     this.daysOfTheSecondMonth = this.getDaysOfTheMonthAndYear(this.secondYear, this.secondMonth);
-    this.validDaysOfTheSecondMonth = this.daysOfTheSecondMonth.map((day) => this.isOlderThanCurrentDate(day, this.secondMonth, this.secondYear));
+    this.validDaysOfTheSecondMonth = this.daysOfTheSecondMonth.filter((day) => day !== 0).map((day) => this.isOlderThanCurrentDate(day, this.secondMonth, this.secondYear));
+  }
+
+  updateAccessToMonthsButton() {
+    this.disablePreviousMonthButton = this.shouldDisablePreviousMonthButton();
+    this.disableNextMonthButton = this.shouldDisableNextMonthButton();
   }
 
   closeCalendar() {
@@ -85,6 +94,10 @@ export class CalendarComponent implements OnInit {
 
   openCalendar() {
 
+  }
+
+  shouldDisableNextMonthButton(): boolean {
+    return this.currentYear + this.maxYear === this.secondYear && this.currentMonth === this.firstMonth;
   }
 
   nextMonth() {
@@ -97,6 +110,11 @@ export class CalendarComponent implements OnInit {
       this.firstYear = this.firstYear + 1;
     }
     this.updateDaysOfTheCalendar();
+    this.updateAccessToMonthsButton();
+  }
+
+  shouldDisablePreviousMonthButton(): boolean {
+    return this.currentYear === this.firstYear && this.currentMonth === this.firstMonth;
   }
 
   previousMonth() {
@@ -109,5 +127,6 @@ export class CalendarComponent implements OnInit {
       this.secondYear = this.secondYear - 1;
     }
     this.updateDaysOfTheCalendar();
+    this.updateAccessToMonthsButton();
   }
 }

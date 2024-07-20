@@ -52,6 +52,12 @@
     border-radius: 50%;
 }
 
+.previous-month:disabled,
+.next-month:disabled {
+    cursor: default;
+    visibility: hidden;
+}
+
 .week,
 .days {
     display: grid;

@@ -40,7 +40,7 @@
         <div class="month">
             <div class="month-header-wrapper">
                 <div class="first-month-header">
-                    <button class="previous-month" (click)="previousMonth()">
+                    <button [disabled]="disablePreviousMonthButton" class="previous-month" (click)="previousMonth()">
                         <span class="material-symbols-outlined">
                             chevron_left
                         </span>
@@ -53,7 +53,7 @@
                     <div class="month-label">
                         {{secondMonth}} {{secondYear}}
                     </div>
-                    <button class="next-month" (click)="nextMonth()">
+                    <button [disabled]="disableNextMonthButton" class="next-month" (click)="nextMonth()">
                         <span class="material-symbols-outlined">
                             chevron_right
                         </span>
