@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Days, DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getDayName, getNbOfDaysFromMonth, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
+import { DaysShortHand, Month, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
+import { CalendarDate, CalendarDatesService, CalendarDay } from '../../service/calendar-dates/calendar-dates.service';
 import { ModalComponent } from "../modal/modal.component";
 
 @Component({
@@ -18,16 +19,21 @@ export class CalendarComponent implements OnInit {
   firstYear!: number;
   secondYear!: number;
   firstMonth!: Month;
-  daysOfTheFirstMonth!: number[];
+  daysOfTheFirstMonth!: CalendarDay[];
   secondMonth!: Month;
-  daysOfTheSecondMonth!: number[];
-  validDaysOfTheFirstMonth!: boolean[];
-  validDaysOfTheSecondMonth!: boolean[];
-  maxYear: number = 3;
+  daysOfTheSecondMonth!: CalendarDay[];
+  maxYear!: number;
   disablePreviousMonthButton: boolean = false;
   disableNextMonthButton: boolean = false;
+  selectedDate!: CalendarDate;
+  clickPointer: number | undefined;
+  daysSelected: number[] = [];
 
   readonly week: string[] = Object.values(DaysShortHand);
+
+  constructor(private calendarDatesService: CalendarDatesService) {
+
+  }
 
   ngOnInit(): void {
     const { currentDay, firstMonth, firstYear, secondMonth, secondYear } = getCurrentCalendarDate();
@@ -38,54 +44,27 @@ export class CalendarComponent implements OnInit {
     this.firstYear = firstYear;
     this.secondMonth = secondMonth;
     this.secondYear = secondYear;
+    this.maxYear = this.calendarDatesService.getMaxYear();
     this.updateDaysOfTheCalendar();
     this.updateAccessToMonthsButton();
   }
 
-  fillEmptyDaySlot(day: Days): number {
-    switch (day) {
-      case Days.Sunday: return 0;
-      case Days.Monday: return 1;
-      case Days.Tuesday: return 2;
-      case Days.Wednesday: return 3;
-      case Days.Thursday: return 4;
-      case Days.Friday: return 5;
-      case Days.Saturday: return 6;
-    }
-  }
-
-  getDaysOfTheMonthAndYear(year: number, month: Month): number[] {
-    const daysNameOfStartFirstMonth = getDayName(year, convertMonthToNumber(month), 1);
-    const nbEmptyDaysFilledForFirstMonth = this.fillEmptyDaySlot(daysNameOfStartFirstMonth);
-    let emptyDaysFilledForFirstMonth = Array.from({ length: nbEmptyDaysFilledForFirstMonth }, () => 0);
-    const nbOfDaysForFirstMonth = getNbOfDaysFromMonth(month, year);
-    const daysOfTheFirstMonth = Array.from({ length: nbOfDaysForFirstMonth }, (_v, i) => i + 1);
-    return emptyDaysFilledForFirstMonth.concat(daysOfTheFirstMonth);
-  }
-
-  isOlderThanCurrentDate(day: number, month: Month, year: number): boolean {
-    if (year < this.currentYear) {
-      return true;
-    }
-    if (year === this.currentYear && convertMonthToNumber(month) < convertMonthToNumber(this.currentMonth)) {
-      return true;
-    }
-    if (year === this.currentYear && convertMonthToNumber(month) === convertMonthToNumber(this.currentMonth) && day < this.currentDay) {
-      return true;
-    }
-    return false;
-  }
-
   updateDaysOfTheCalendar() {
-    this.daysOfTheFirstMonth = this.getDaysOfTheMonthAndYear(this.firstYear, this.firstMonth);
-    this.validDaysOfTheFirstMonth = this.daysOfTheFirstMonth.filter((day) => day !== 0).map((day) => this.isOlderThanCurrentDate(day, this.firstMonth, this.firstYear));
-    this.daysOfTheSecondMonth = this.getDaysOfTheMonthAndYear(this.secondYear, this.secondMonth);
-    this.validDaysOfTheSecondMonth = this.daysOfTheSecondMonth.filter((day) => day !== 0).map((day) => this.isOlderThanCurrentDate(day, this.secondMonth, this.secondYear));
+    this.daysOfTheFirstMonth = this.calendarDatesService.getDaysOfTheMonth(this.firstYear, this.firstMonth);
+    this.daysOfTheSecondMonth = this.calendarDatesService.getDaysOfTheMonth(this.secondYear, this.secondMonth);
   }
 
   updateAccessToMonthsButton() {
     this.disablePreviousMonthButton = this.shouldDisablePreviousMonthButton();
     this.disableNextMonthButton = this.shouldDisableNextMonthButton();
+  }
+
+  shouldDisableNextMonthButton(): boolean {
+    return this.currentYear + this.maxYear === this.secondYear && this.secondMonth === this.currentMonth;
+  }
+
+  shouldDisablePreviousMonthButton(): boolean {
+    return this.currentYear === this.firstYear && this.currentMonth === this.firstMonth;
   }
 
   closeCalendar() {
@@ -94,10 +73,6 @@ export class CalendarComponent implements OnInit {
 
   openCalendar() {
 
-  }
-
-  shouldDisableNextMonthButton(): boolean {
-    return this.currentYear + this.maxYear === this.secondYear && this.currentMonth === this.firstMonth;
   }
 
   nextMonth() {
@@ -113,10 +88,6 @@ export class CalendarComponent implements OnInit {
     this.updateAccessToMonthsButton();
   }
 
-  shouldDisablePreviousMonthButton(): boolean {
-    return this.currentYear === this.firstYear && this.currentMonth === this.firstMonth;
-  }
-
   previousMonth() {
     this.secondMonth = this.firstMonth;
     this.firstMonth = getPreviousMonth(this.firstMonth);
@@ -128,5 +99,27 @@ export class CalendarComponent implements OnInit {
     }
     this.updateDaysOfTheCalendar();
     this.updateAccessToMonthsButton();
+  }
+
+  selectDate(position: number) {
+    if (this.clickPointer === undefined) {
+      this.clickPointer = 0;
+    }
+    if (position === this.daysSelected[0] || position === this.daysSelected[1]) {
+      return;
+    }
+    if (position > this.daysSelected[0]) {
+      this.clickPointer = 1;
+    }
+    if (position < this.daysSelected[0]) {
+      this.clickPointer = 0;
+    }
+    this.daysSelected[this.clickPointer] = position;
+    console.log(this.daysSelected);
+  }
+
+  resetSelectedDates() {
+    this.clickPointer = undefined;
+    this.daysSelected = [];
   }
 }

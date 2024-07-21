@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../../component/card/card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
@@ -12,10 +12,12 @@ import { InnService } from '../../service/inn/inn.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   inns!: Inn[];
 
-  constructor(innService: InnService) {
-    this.inns = innService.getHomePageInns();
+  constructor(private innService: InnService) { }
+
+  ngOnInit(): void {
+    this.inns = this.innService.getHomePageInns();
   }
 }

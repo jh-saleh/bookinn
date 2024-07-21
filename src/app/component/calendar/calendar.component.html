@@ -4,17 +4,24 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 
-<ng-template #daysOfTheMonthTemplate let-daysOfTheMonth="daysOfTheMonth" let-validDays="validDays">
+<ng-template #daysOfTheMonthTemplate let-daysOfTheMonth="daysOfTheMonth">
     <div class="days">
-        @for (nb of daysOfTheMonth; track $index) {
-        @if(nb > 0){
-        @if(validDays[nb-1]){
+        @for (value of daysOfTheMonth; track $index) {
+        @if(value.dayOfTheMonth > 0){
+        @if(value.unavailable){
         <span class="disabled-day">
-            {{nb}}
+            {{value.dayOfTheMonth}}
         </span>
         }@else {
-        <span class="day">
-            {{nb}}
+        <span [class.start-path-day]="daysSelected[0] === value.position && daysSelected[0] < daysSelected[1]"
+            [class.end-path-day]="daysSelected[1] === value.position && daysSelected[0] < daysSelected[1]"
+            [class.path-day]="daysSelected[0] < value.position && value.position < daysSelected[1]">
+            <span class="day"
+                [class.selected-day]="daysSelected[0] === value.position || daysSelected[1] === value.position"
+                [class.day-hover]="daysSelected[0] !== value.position && daysSelected[1] !== value.position"
+                (click)="selectDate(value.position)">
+                {{value.dayOfTheMonth}}
+            </span>
         </span>
         }
         } @else {
@@ -38,40 +45,40 @@
     (openModal)="openCalendar()">
     <section class="calendar">
         <div class="month">
-            <div class="month-header-wrapper">
-                <div class="first-month-header">
-                    <button [disabled]="disablePreviousMonthButton" class="previous-month" (click)="previousMonth()">
-                        <span class="material-symbols-outlined">
-                            chevron_left
-                        </span>
-                    </button>
-                    <div class="month-label">
-                        {{firstMonth}} {{firstYear}}
-                    </div>
-                </div>
-                <div class="second-month-header">
-                    <div class="month-label">
-                        {{secondMonth}} {{secondYear}}
-                    </div>
-                    <button [disabled]="disableNextMonthButton" class="next-month" (click)="nextMonth()">
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
-                    </button>
+            <div class="first-month-header">
+                <button [disabled]="disablePreviousMonthButton" class="previous-month" (click)="previousMonth()">
+                    <span class="material-symbols-outlined">
+                        chevron_left
+                    </span>
+                </button>
+                <div class="month-label">
+                    {{firstMonth}} {{firstYear}}
                 </div>
             </div>
-            <div class="month-body-wrapper">
-                <div class="month-body">
-                    <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
-                    <ng-container
-                        *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth, validDays: validDaysOfTheFirstMonth}"></ng-container>
+            <div class="second-month-header">
+                <div class="month-label">
+                    {{secondMonth}} {{secondYear}}
                 </div>
-                <div class="month-body">
-                    <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
-                    <ng-container
-                        *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth, validDays: validDaysOfTheSecondMonth}"></ng-container>
-                </div>
+                <button [disabled]="disableNextMonthButton" class="next-month" (click)="nextMonth()">
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>
+            </div>
+            <div class="month-body">
+                <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+                <ng-container
+                    *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth}"></ng-container>
+            </div>
+            <div class="month-body">
+                <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+                <ng-container
+                    *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth}"></ng-container>
             </div>
         </div>
+        <button class="reset-selected-dates" [disabled]="!daysSelected[0] && !daysSelected[1]"
+            (click)="resetSelectedDates()">
+            Clear dates
+        </button>
     </section>
 </app-modal>

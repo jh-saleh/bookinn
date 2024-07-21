@@ -6,9 +6,10 @@ body {
     background-color: var(--crimson-500);
 }
 
-body * {
+* {
     padding: 0px;
     margin: 0px;
+    scrollbar-width: none;
 }
 
 :root {
@@ -52,4 +53,8 @@ body * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    ::-webkit-scrollbar-track {
+        width: 0px;
+    }
 }

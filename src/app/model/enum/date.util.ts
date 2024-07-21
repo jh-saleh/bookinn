@@ -52,6 +52,9 @@ export const getNextMonth = (month: Month): Month => {
 }
 
 export const getPreviousMonth = (month: Month): Month => {
+    if (Month.December === month) {
+        return Month.November;
+    }
     return convertNumberToMonth((convertMonthToNumber(month) - 1) % 12);
 }
 

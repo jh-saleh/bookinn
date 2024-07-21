@@ -2,24 +2,30 @@
     user-select: none;
     cursor: default;
     padding: 20px;
+    display: grid;
+    grid-template-rows: auto min-content;
+    gap: 20px;
 }
 
-.month-header-wrapper {
+.month {
     display: grid;
     grid-template-columns: auto auto;
     gap: 20px;
 }
 
-.first-month-header {
+.first-month-header,
+.second-month-header {
     display: grid;
-    grid-template-columns: min-content auto;
+    width: 100%;
     place-items: center;
 }
 
+.first-month-header {
+    grid-template-columns: min-content auto;
+}
+
 .second-month-header {
-    display: grid;
     grid-template-columns: auto min-content;
-    place-items: center;
 }
 
 .month-body-wrapper {
@@ -54,15 +60,15 @@
 
 .previous-month:disabled,
 .next-month:disabled {
-    cursor: default;
-    visibility: hidden;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .week,
 .days {
     display: grid;
     grid-template-columns: repeat(7, auto);
-    gap: 5px;
+    row-gap: 5px;
     width: 100%;
     place-items: center;
 }
@@ -81,6 +87,11 @@
     cursor: pointer;
 }
 
+.day-hover:hover {
+    background-color: var(--background-box-hover);
+    outline: 1px black solid;
+}
+
 .empty-day {
     cursor: default;
 }
@@ -90,7 +101,39 @@
     color: var(--black-500);
 }
 
-.day:hover {
+.selected-day {
+    background-color: var(--black-900);
+    color: var(--black-100);
+}
+
+.path-day,
+.start-path-day,
+.end-path-day {
     background-color: var(--background-box-hover);
-    outline: 1px black solid;
+}
+
+.start-path-day {
+    border-top-left-radius: 100%;
+    border-bottom-left-radius: 100%;
+}
+
+.end-path-day {
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+}
+
+.reset-selected-dates {
+    font-size: small;
+    text-decoration: underline;
+    background-color: white;
+    border: none;
+    color: var(--black-900);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: max-content;
+}
+
+.reset-selected-dates:hover {
+    background-color: var(--background-box-hover);
 }
