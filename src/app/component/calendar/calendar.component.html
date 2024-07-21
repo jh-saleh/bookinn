@@ -41,44 +41,42 @@
     </div>
 </ng-template>
 
-<app-modal [isModalOpen]="isCalendarOpen" [classPosition]="{top: 0, left: 540}" (closeModal)="closeCalendar()"
-    (openModal)="openCalendar()">
-    <section class="calendar">
-        <div class="month">
-            <div class="first-month-header">
-                <button [disabled]="disablePreviousMonthButton" class="previous-month" (click)="previousMonth()">
-                    <span class="material-symbols-outlined">
-                        chevron_left
-                    </span>
-                </button>
-                <div class="month-label">
-                    {{firstMonth}} {{firstYear}}
-                </div>
-            </div>
-            <div class="second-month-header">
-                <div class="month-label">
-                    {{secondMonth}} {{secondYear}}
-                </div>
-                <button [disabled]="disableNextMonthButton" class="next-month" (click)="nextMonth()">
-                    <span class="material-symbols-outlined">
-                        chevron_right
-                    </span>
-                </button>
-            </div>
-            <div class="month-body">
-                <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
-                <ng-container
-                    *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth}"></ng-container>
-            </div>
-            <div class="month-body">
-                <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
-                <ng-container
-                    *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth}"></ng-container>
+
+<section class="calendar">
+    <div class="month">
+        <div class="first-month-header">
+            <button [disabled]="disablePreviousMonthButton" class="previous-month" (click)="previousMonth()">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+            </button>
+            <div class="month-label">
+                {{firstMonth}} {{firstYear}}
             </div>
         </div>
-        <button class="reset-selected-dates" [disabled]="!daysSelected[0] && !daysSelected[1]"
-            (click)="resetSelectedDates()">
-            Clear dates
-        </button>
-    </section>
-</app-modal>
+        <div class="second-month-header">
+            <div class="month-label">
+                {{secondMonth}} {{secondYear}}
+            </div>
+            <button [disabled]="disableNextMonthButton" class="next-month" (click)="nextMonth()">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+        </div>
+        <div class="month-body">
+            <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+            <ng-container
+                *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth}"></ng-container>
+        </div>
+        <div class="month-body">
+            <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
+            <ng-container
+                *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth}"></ng-container>
+        </div>
+    </div>
+    <button class="reset-selected-dates" [disabled]="!daysSelected[0] && !daysSelected[1]"
+        (click)="resetSelectedDates()">
+        Clear dates
+    </button>
+</section>

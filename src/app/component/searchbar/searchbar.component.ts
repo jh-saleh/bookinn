@@ -1,13 +1,16 @@
-import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Position } from '../../model/position/position.model';
+import { CalendarDate } from '../../service/calendar-dates/calendar-dates.service';
 import { CalendarComponent } from "../calendar/calendar.component";
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CalendarComponent],
+  imports: [CalendarComponent, ModalComponent, CommonModule],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
@@ -17,6 +20,11 @@ export class SearchbarComponent implements AfterViewInit {
   services: string[] = ["Inns", "Carriages", "Monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
   selectedService: number = 0;
+  isCalendarOpen: boolean = false;
+  calendarPosition: Position = { top: 0, left: 0 };
+  startingDate: CalendarDate | undefined;
+  endingDate: CalendarDate | undefined;
+  @ViewChild("searchBarRef") searchBarRef: ElementRef<HTMLDivElement> | undefined;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 
@@ -48,7 +56,12 @@ export class SearchbarComponent implements AfterViewInit {
             //gsap.to(window, { scrollTo: "#section2" });
           },
           onUpdate: ({ progress }) => {
-            0 < progress ? servicesWrapperAnim.reverse() : servicesWrapperAnim.play();
+            if (0 < progress) {
+              this.isCalendarOpen = false;
+              servicesWrapperAnim.reverse();
+            } else {
+              servicesWrapperAnim.play();
+            }
           }
         }
       });
@@ -98,7 +111,7 @@ export class SearchbarComponent implements AfterViewInit {
           }
         });
 
-      const checkinDivAnim = gsap.fromTo('.checkin>div', {
+      const checkinDivAnim = gsap.fromTo('.checkin-date', {
         opacity: 1,
         width: "80px",
       }, {
@@ -110,7 +123,7 @@ export class SearchbarComponent implements AfterViewInit {
         duration: 0.2,
       }).progress(0);
 
-      tl.fromTo(".checkin>div",
+      tl.fromTo(".checkin-date",
         {},
         {
           scrollTrigger: {
@@ -124,7 +137,7 @@ export class SearchbarComponent implements AfterViewInit {
           },
         });
 
-      const checkoutDivAnim = gsap.fromTo('.checkout>div', {
+      const checkoutDivAnim = gsap.fromTo('.checkout-date', {
         opacity: 1,
         width: "80px",
       }, {
@@ -136,7 +149,7 @@ export class SearchbarComponent implements AfterViewInit {
         duration: 0.2,
       }).progress(0);
 
-      tl.fromTo(".checkout>div",
+      tl.fromTo(".checkout-date",
         {
         },
         {
@@ -225,7 +238,27 @@ export class SearchbarComponent implements AfterViewInit {
     refLocationInput.focus();
   }
 
-  openCalendar() {
+  updateCalendarModalPosition() {
+    if (this.searchBarRef) {
+      const { top, height, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      this.calendarPosition = { top: top + height + 10, left: left + 45 };
+    }
+  }
 
+  closeCalendar() {
+    this.isCalendarOpen = false;
+  }
+
+  openCalendar() {
+    this.updateCalendarModalPosition();
+    this.isCalendarOpen = true;
+  }
+
+  setStartingDate(date: CalendarDate | undefined) {
+    this.startingDate = date;
+  }
+
+  setEndingDate(date: CalendarDate | undefined) {
+    this.endingDate = date;
   }
 }

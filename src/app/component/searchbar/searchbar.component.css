@@ -46,12 +46,21 @@
     color: var(--black-400);
 }
 
-.checkin>div,
-.checkout>div,
+.checkin-date,
+.checkout-date,
 .guests>div {
     border: none;
     font-size: medium;
+}
+
+.checkin-empty-date,
+.checkout-empty-date {
     color: var(--black-300);
+}
+
+.checkin-filled-date,
+.checkout-filled-date {
+    color: var(--black-900);
 }
 
 .search {

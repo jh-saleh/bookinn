@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { DaysShortHand, Month, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
 import { CalendarDate, CalendarDatesService, CalendarDay } from '../../service/calendar-dates/calendar-dates.service';
 import { ModalComponent } from "../modal/modal.component";
 
@@ -12,7 +12,6 @@ import { ModalComponent } from "../modal/modal.component";
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent implements OnInit {
-  isCalendarOpen: boolean = true;
   currentDay!: number;
   currentMonth!: Month;
   currentYear!: number;
@@ -28,6 +27,8 @@ export class CalendarComponent implements OnInit {
   selectedDate!: CalendarDate;
   clickPointer: number | undefined;
   daysSelected: number[] = [];
+  @Output() startingDate = new EventEmitter<CalendarDate | undefined>();
+  @Output() endingDate = new EventEmitter<CalendarDate | undefined>();
 
   readonly week: string[] = Object.values(DaysShortHand);
 
@@ -65,14 +66,6 @@ export class CalendarComponent implements OnInit {
 
   shouldDisablePreviousMonthButton(): boolean {
     return this.currentYear === this.firstYear && this.currentMonth === this.firstMonth;
-  }
-
-  closeCalendar() {
-
-  }
-
-  openCalendar() {
-
   }
 
   nextMonth() {
@@ -115,11 +108,30 @@ export class CalendarComponent implements OnInit {
       this.clickPointer = 0;
     }
     this.daysSelected[this.clickPointer] = position;
-    console.log(this.daysSelected);
+    if (this.clickPointer === 0) {
+      this.sendStartingDate();
+    }
+    if (this.clickPointer === 1) {
+      this.sendEndingDate();
+    }
   }
 
   resetSelectedDates() {
     this.clickPointer = undefined;
     this.daysSelected = [];
+    this.startingDate.emit(undefined);
+    this.endingDate.emit(undefined);
+  }
+
+  sendStartingDate() {
+    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth), 1);
+    date.setDate(date.getDate() + this.daysSelected[0] + 1);
+    this.startingDate.emit({ year: date.getFullYear(), month: date.getMonth(), day: date.getUTCDate() });
+  }
+
+  sendEndingDate() {
+    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth), 1);
+    date.setDate(date.getDate() + this.daysSelected[1] + 1);
+    this.endingDate.emit({ year: date.getFullYear(), month: date.getMonth(), day: date.getUTCDate() });
   }
 }

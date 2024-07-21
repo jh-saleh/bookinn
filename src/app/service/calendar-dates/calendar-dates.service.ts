@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Days, Month, convertMonthToNumber, getDayName } from '../../model/enum/date.util';
 
 export interface CalendarDate {
-  currentDay: number;
-  firstMonth: number;
-  firstYear: number;
+  day: number;
+  month: number;
+  year: number;
 }
 
 export interface CalendarDay {
@@ -23,18 +23,16 @@ export class CalendarDatesService {
   private currentDay!: number;
   private currentMonth!: number;
   private currentYear!: number;
-  private firstDay!: number;
   private firstMonth!: number;
   private firstYear!: number;
 
   constructor() {
-    const { currentDay, firstMonth, firstYear } = this.getCurrentCalendarDate();
-    this.currentDay = currentDay;
-    this.currentMonth = firstMonth;
-    this.currentYear = firstYear;
-    this.firstDay = currentDay;
-    this.firstMonth = firstMonth;
-    this.firstYear = firstYear;
+    const { day, month, year } = this.getCurrentCalendarDate();
+    this.currentDay = day;
+    this.currentMonth = month;
+    this.currentYear = year;
+    this.firstMonth = month;
+    this.firstYear = year;
     this.init();
   }
 
@@ -45,9 +43,9 @@ export class CalendarDatesService {
     const currentYear = currentDate.getFullYear();
 
     return {
-      currentDay,
-      firstMonth: currentMonth,
-      firstYear: currentYear,
+      day: currentDay,
+      month: currentMonth,
+      year: currentYear,
     };
   }
 
@@ -126,6 +124,5 @@ export class CalendarDatesService {
     this.days[`${this.firstYear}-${this.firstMonth}`]
       = this.generateDaysOfTheMonth(this.firstYear, this.firstMonth);
     this.nextMonth();
-    //console.log(this.days);
   }
 }

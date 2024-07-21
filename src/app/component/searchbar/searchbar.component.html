@@ -1,7 +1,7 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<div class="searchbar-wrapper">
+<div #searchBarRef class="searchbar-wrapper">
     <div class="services-wrapper">
         <div class="services">
             @for (service of services; track $index) {
@@ -20,12 +20,26 @@
         <div class="divider"></div>
         <div class="checkin" (click)="openCalendar()">
             <label>Check in</label>
-            <div>Add dates</div>
+            <div class="checkin-date" [class.checkin-empty-date]="!startingDate"
+                [class.checkin-filled-date]="startingDate">
+                @if(!startingDate){
+                Add dates
+                } @else {
+                {{startingDate.month+'-'+startingDate.day+'-'+startingDate.year| date: "MMM dd"}}
+                }
+            </div>
         </div>
         <div class="divider"></div>
-        <div class="checkout">
+        <div class="checkout" (click)="openCalendar()">
             <label>Check out</label>
-            <div>Add dates</div>
+            <div class="checkout-date" [class.checkout-empty-date]="!endingDate"
+                [class.checkout-filled-date]="endingDate">
+                @if(!endingDate){
+                Add dates
+                } @else {
+                {{endingDate.month+'-'+endingDate.day+'-'+endingDate.year| date: "MMM dd"}}
+                }
+            </div>
         </div>
         <div class="divider"></div>
         <div class="guests">
@@ -42,6 +56,7 @@
         </button>
     </div>
 </div>
-<app-calendar>
-
-</app-calendar>
+<app-modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
+    (openModal)="openCalendar()">
+    <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)"></app-calendar>
+</app-modal>
