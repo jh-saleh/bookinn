@@ -9,14 +9,14 @@
         @for (value of daysOfTheMonth; track $index) {
         @if(value.dayOfTheMonth > 0){
         @if(value.unavailable){
-        <span class="disabled-day">
+        <span [ngClass]="dayWrapper" class="disabled-day">
             {{value.dayOfTheMonth}}
         </span>
         }@else {
         <span [class.start-path-day]="daysSelected[0] === value.position && daysSelected[0] < daysSelected[1]"
             [class.end-path-day]="daysSelected[1] === value.position && daysSelected[0] < daysSelected[1]"
             [class.path-day]="daysSelected[0] < value.position && value.position < daysSelected[1]">
-            <span class="day"
+            <span [ngClass]="dayWrapper" class="day"
                 [class.selected-day]="daysSelected[0] === value.position || daysSelected[1] === value.position"
                 [class.day-hover]="daysSelected[0] !== value.position && daysSelected[1] !== value.position"
                 (click)="selectDate(value.position)">

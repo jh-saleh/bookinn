@@ -1,7 +1,5 @@
 @if(isModalOpen){
-<div class="modal-wrapper" (pointerdown)="modalWrapperHandler()">
-    <div class="modal" [ngClass]="classPosition" (pointerdown)="modalHandler($event)">
-        <ng-content></ng-content>
-    </div>
+<div #modalRef class="modal" [ngClass]="classPosition">
+    <ng-content></ng-content>
 </div>
 }

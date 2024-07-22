@@ -58,5 +58,8 @@
 </div>
 <app-modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
     (openModal)="openCalendar()">
-    <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)"></app-calendar>
+    <div [ngClass]="calendarWrapperClass">
+        <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)"
+            [mode]="'modal'"></app-calendar>
+    </div>
 </app-modal>

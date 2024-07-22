@@ -1,5 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Position } from '../../model/position/position.model';
@@ -25,6 +26,7 @@ export class SearchbarComponent implements AfterViewInit {
   startingDate: CalendarDate | undefined;
   endingDate: CalendarDate | undefined;
   @ViewChild("searchBarRef") searchBarRef: ElementRef<HTMLDivElement> | undefined;
+  calendarWrapperClass: string = css``;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 
@@ -240,8 +242,14 @@ export class SearchbarComponent implements AfterViewInit {
 
   updateCalendarModalPosition() {
     if (this.searchBarRef) {
-      const { top, height, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
-      this.calendarPosition = { top: top + height + 10, left: left + 45 };
+      const { top, height, width, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      this.calendarPosition = { top: top + height + 10, left: left };
+      this.calendarWrapperClass = css`
+        width: ${width}px;
+        padding: 12px 0px;
+        display: grid;
+        justify-items: center;
+      `;
     }
   }
 

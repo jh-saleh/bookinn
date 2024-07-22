@@ -5,6 +5,7 @@
     display: grid;
     grid-template-rows: auto min-content;
     gap: 20px;
+    width: min-content;
 }
 
 .month {
@@ -76,8 +77,6 @@
 .day,
 .empty-day,
 .disabled-day {
-    width: 35px;
-    height: 35px;
     display: grid;
     place-items: center;
     border-radius: 50%;

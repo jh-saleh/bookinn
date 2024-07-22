@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { css } from '@emotion/css';
 import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
 import { CalendarDate, CalendarDatesService, CalendarDay } from '../../service/calendar-dates/calendar-dates.service';
 import { ModalComponent } from "../modal/modal.component";
@@ -29,6 +30,18 @@ export class CalendarComponent implements OnInit {
   daysSelected: number[] = [];
   @Output() startingDate = new EventEmitter<CalendarDate | undefined>();
   @Output() endingDate = new EventEmitter<CalendarDate | undefined>();
+  dayWrapper: string = css`
+    width: ${this.mode === 'modal' ? 45 : 35}px;
+    height: ${this.mode === 'modal' ? 45 : 35}px;
+  `;
+  private _mode: 'normal' | 'modal' = 'modal';
+  @Input({ required: true }) set mode(value: 'normal' | 'modal') {
+    this._mode = value;
+    this.dayWrapper = css`
+        width: ${this._mode === 'modal' ? 45 : 35}px;
+        height: ${this._mode === 'modal' ? 45 : 35}px;
+    `;
+  }
 
   readonly week: string[] = Object.values(DaysShortHand);
 
