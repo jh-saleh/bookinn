@@ -1,6 +1,5 @@
 .calendar {
     user-select: none;
-    cursor: default;
     padding: 20px;
     display: grid;
     grid-template-rows: auto min-content;

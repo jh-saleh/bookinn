@@ -6,12 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Position } from '../../model/position/position.model';
 import { CalendarDate } from '../../service/calendar-dates/calendar-dates.service';
 import { CalendarComponent } from "../calendar/calendar.component";
+import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CalendarComponent, ModalComponent, CommonModule],
+  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
@@ -27,6 +28,10 @@ export class SearchbarComponent implements AfterViewInit {
   endingDate: CalendarDate | undefined;
   @ViewChild("searchBarRef") searchBarRef: ElementRef<HTMLDivElement> | undefined;
   calendarWrapperClass: string = css``;
+  isGuestsOpen: boolean = false;
+  guestsPosition: Position = { top: 0, left: 0 };
+  guests: Guests | undefined;
+  totalNbOfGuests: number = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 
@@ -60,6 +65,7 @@ export class SearchbarComponent implements AfterViewInit {
           onUpdate: ({ progress }) => {
             if (0 < progress) {
               this.isCalendarOpen = false;
+              this.isGuestsOpen = false;
               servicesWrapperAnim.reverse();
             } else {
               servicesWrapperAnim.play();
@@ -166,10 +172,12 @@ export class SearchbarComponent implements AfterViewInit {
           }
         });
 
-      const guestAnim = gsap.fromTo('.guests>div', {
+      const guestAnim = gsap.fromTo('.nb-of-guests', {
         opacity: 1,
+        display: "block",
       }, {
         opacity: 0,
+        display: "none",
         width: "0px",
         height: "0px",
         visibility: "hidden",
@@ -177,12 +185,9 @@ export class SearchbarComponent implements AfterViewInit {
         duration: 0.2,
       }).progress(0);
 
-      tl.fromTo(".guests>div",
+      tl.fromTo(".nb-of-guests",
+        {},
         {
-          display: "block",
-        },
-        {
-          display: "none",
           scrollTrigger: {
             scrub: true,
             trigger: ".services-wrapper",
@@ -268,5 +273,31 @@ export class SearchbarComponent implements AfterViewInit {
 
   setEndingDate(date: CalendarDate | undefined) {
     this.endingDate = date;
+  }
+
+  updateGuestsModalPosition() {
+    if (this.searchBarRef) {
+      const { top, height, right, } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      this.guestsPosition = { top: top + height + 10, right: window.innerWidth - right };
+    }
+  }
+
+  closeGuests() {
+    this.isGuestsOpen = false;
+  }
+
+  openGuests() {
+    this.updateGuestsModalPosition();
+    this.isGuestsOpen = true;
+  }
+
+  getGuests(guests: Guests) {
+    this.guests = { ...guests };
+    if (this.guests) {
+      this.totalNbOfGuests = 0;
+      for (let guest in this.guests) {
+        this.totalNbOfGuests += this.guests[guest as GuestType].nb
+      }
+    }
   }
 }

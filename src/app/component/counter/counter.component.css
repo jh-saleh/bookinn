@@ -1,0 +1,36 @@
+.counter {
+    display: grid;
+    grid-template-columns: min-content 35px min-content;
+    color: var(--black-900);
+    place-items: center;
+    user-select: none;
+}
+
+.counter-button {
+    background-color: white;
+    border: 1px var(--black-400) solid;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.counter-button:hover {
+    border: 1px var(--black-900) solid;
+}
+
+.counter-button:hover>span {
+    color: var(--black-900);
+}
+
+.counter-button>span {
+    color: var(--black-400);
+    transform: scale(0.75);
+}
+
+.counter-button:disabled {
+    cursor: not-allowed;
+    border: 1px var(--black-200) solid;
+}

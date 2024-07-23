@@ -42,9 +42,20 @@
             </div>
         </div>
         <div class="divider"></div>
-        <div class="guests">
+        <div class="guests" (click)="openGuests()">
             <label>Who</label>
-            <div>Add guests</div>
+            <div class="nb-of-guests" [class.no-guests]="!totalNbOfGuests" [class.some-guests]="totalNbOfGuests">
+                @if (totalNbOfGuests > 0) {
+                {{totalNbOfGuests}}
+                @if (totalNbOfGuests === 1) {
+                guest
+                }@else {
+                guests
+                }
+                } @else {
+                Add guests
+                }
+            </div>
         </div>
         <button class="search" (mouseenter)="showLabel()" (mouseleave)="hideLabel()">
             <span class="material-symbols-outlined">
@@ -62,4 +73,8 @@
         <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)"
             [mode]="'modal'"></app-calendar>
     </div>
+</app-modal>
+<app-modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
+    (openModal)="openGuests()">
+    <app-guests (getGuests)="getGuests($event)"></app-guests>
 </app-modal>

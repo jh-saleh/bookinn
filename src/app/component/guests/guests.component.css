@@ -1,0 +1,32 @@
+.guests {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    color: var(--black-900);
+    height: min-content;
+    width: max-content;
+    border-radius: var(--box-border-radius);
+}
+
+.guests-line {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 15px;
+}
+
+.guests-labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.guests-labels>h1 {
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.guests-labels>div {
+    font-size: small;
+    color: var(--black-400);
+    max-width: 12rem;
+}
