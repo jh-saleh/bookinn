@@ -4,7 +4,7 @@
     <div class="home-body">
         @for (inn of inns; track $index) {
         <app-card [city]="inn.city" [state]="inn.state" [name]="inn.name" [pricePerNight]="inn.pricePerNight"
-            [ratings]="inn.ratings"></app-card>
+            [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></app-card>
         }
     </div>
     <app-footer></app-footer>

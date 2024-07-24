@@ -4,4 +4,5 @@ export class Inn {
     city!: string;
     pricePerNight!: number;
     ratings!: number;
+    imgsUrls!: string[];
 }

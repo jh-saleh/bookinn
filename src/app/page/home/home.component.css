@@ -6,7 +6,7 @@
 .home-body {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     overflow-x: auto;
     justify-content: center;
     padding-top: 160px;

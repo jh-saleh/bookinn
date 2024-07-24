@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { InnService } from '../../IoC/service/inn.service';
 import { CardComponent } from "../../component/card/card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { Inn } from '../../model/inn/inn.model';
-import { InnService } from '../../service/inn/inn.service';
 
 @Component({
   selector: 'app-home',

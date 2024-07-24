@@ -2,7 +2,25 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <div class="card">
     <div class="card-header">
-
+        @if(canUsePreviousImageButton){
+        <button class="previous-image" (click)="goToPreviousImage()">
+            <span class="material-symbols-outlined">
+                chevron_left
+            </span>
+        </button>
+        }
+        <div class="slider">
+            @for(url of imgsUrls; track $index){
+            <img class="slide" [ngClass]="translateClass" [src]="url" alt="a bedroom picture" />
+            }
+        </div>
+        @if(canUseNextImageButton){
+        <button class="next-image" (click)="goToNextImage()">
+            <span class="material-symbols-outlined">
+                chevron_right
+            </span>
+        </button>
+        }
     </div>
     <div class="card-body">
         <div class="location-ratings">

@@ -7,8 +7,59 @@
 .card-header {
     min-height: 300px;
     min-width: 300px;
-    background-color: white;
+    background-color: transparent;
     border-radius: var(--box-border-radius);
+    position: relative;
+}
+
+.slider {
+    border-radius: var(--box-border-radius);
+    position: relative;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    overflow-x: hidden;
+}
+
+.slide {
+    border-radius: var(--box-border-radius);
+    height: 300px;
+    width: 300px;
+}
+
+.card-header:hover>.previous-image,
+.card-header:hover>.next-image {
+    opacity: 0.80;
+}
+
+.previous-image,
+.next-image {
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transition: 0.3s opacity;
+}
+
+.previous-image {
+    left: 10px;
+}
+
+.next-image {
+    right: 10px;
+}
+
+.previous-image:hover,
+.next-image:hover {
+    scale: 1.05;
 }
 
 .card-body {

@@ -3,8 +3,8 @@ import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } 
 import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CalendarDate } from '../../IoC/service/calendar-dates.service';
 import { Position } from '../../model/position/position.model';
-import { CalendarDate } from '../../service/calendar-dates/calendar-dates.service';
 import { CalendarComponent } from "../calendar/calendar.component";
 import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
 import { ModalComponent } from '../modal/modal.component';
