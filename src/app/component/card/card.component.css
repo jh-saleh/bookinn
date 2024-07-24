@@ -19,10 +19,10 @@
     width: 300px;
     display: flex;
     overflow-x: hidden;
+    border: 3px white solid;
 }
 
 .slide {
-    border-radius: var(--box-border-radius);
     height: 300px;
     width: 300px;
 }
