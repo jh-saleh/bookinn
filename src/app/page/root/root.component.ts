@@ -1,6 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
-import { Router } from '@angular/router';
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,7 +19,7 @@ export class RootComponent implements AfterViewInit {
   readonly portfolioURL: string = environment.portfolioURL;
   readonly droplets: number = 50;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngAfterViewInit(): void {
@@ -38,7 +37,7 @@ export class RootComponent implements AfterViewInit {
           onLeave: () => {
             gsap.to(window, { scrollTo: "#section2" });
             setTimeout(() => {
-              this.router.navigate(['/home']);
+              window.location.href = "/home";
             }, 1000);
           }
         }

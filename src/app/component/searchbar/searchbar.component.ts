@@ -32,10 +32,13 @@ export class SearchbarComponent implements AfterViewInit {
   guestsPosition: Position = { top: 0, left: 0 };
   guests: Guests | undefined;
   totalNbOfGuests: number = 0;
+  statusOfSearchBar: boolean = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 
   }
+
+  animations: Record<string, gsap.core.Tween> = {};
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
@@ -44,13 +47,24 @@ export class SearchbarComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       let tl = gsap.timeline();
 
-      const servicesWrapperAnim = gsap.from('.services-wrapper', {
+      this.animations["services-wrapper"] = gsap.fromTo('.services-wrapper', {
+        opacity: 1,
+        yPercent: 0,
+      }, {
         opacity: 0,
-        yPercent: -100,
+        yPercent: -250,
         height: "0px",
+        width: "0px",
+        visibility: "hidden",
         paused: true,
-        duration: 0.2,
-      }).progress(1);
+        duration: 0.3,
+        onComplete: () => {
+          this.statusOfSearchBar = false;
+        },
+        onReverseComplete: () => {
+          this.statusOfSearchBar = true;
+        }
+      }).progress(0);
 
       tl.fromTo(".services-wrapper", {}, {
         scrollTrigger: {
@@ -59,26 +73,25 @@ export class SearchbarComponent implements AfterViewInit {
           trigger: ".services-wrapper",
           start: "top top",
           end: "max",
-          onLeaveBack: (self) => {
-            //gsap.to(window, { scrollTo: "#section2" });
-          },
           onUpdate: ({ progress }) => {
-            if (0 < progress) {
+            if (progress === 0) {
+              this.animations["services-wrapper"].reverse();
+            } else {
               this.isCalendarOpen = false;
               this.isGuestsOpen = false;
-              servicesWrapperAnim.reverse();
-            } else {
-              servicesWrapperAnim.play();
+              this.animations["services-wrapper"].play();
             }
           }
         }
       });
 
-      const searchbarAnim = gsap.from('.searchbar', {
-        paused: true,
-        duration: 0.2,
+      this.animations["searchbar"] = gsap.fromTo('.searchbar', {
+        padding: "10px 10px 10px 30px",
+      }, {
         padding: "0px 0px 0px 20px",
-      }).progress(1);
+        paused: true,
+        duration: 0.3,
+      }).progress(0);
 
       tl.fromTo(".searchbar", {
       }, {
@@ -88,22 +101,23 @@ export class SearchbarComponent implements AfterViewInit {
           trigger: ".services-wrapper",
           start: "top top",
           end: "max",
-          onLeaveBack: (self) => {
-            //gsap.to(window, { scrollTo: "#section2" });
-          },
           onUpdate: ({ progress }) => {
-            0 < progress ? searchbarAnim.reverse() : searchbarAnim.play();
+            0 < progress ? this.animations["searchbar"].play() : this.animations["searchbar"].reverse();
           }
         }
       });
 
-      const locationInputAnim = gsap.from('.location>input', {
-        paused: true,
-        duration: 0.2,
+      this.animations["location>input"] = gsap.fromTo('.location>input', {
+        opacity: 1,
+        width: "250px",
+        height: "20px",
+      }, {
         opacity: 0,
         width: "0px",
-        height: "0px"
-      }).progress(1);
+        height: "0px",
+        paused: true,
+        duration: 0.3,
+      }).progress(0);
 
       tl.fromTo(".location>input",
         {},
@@ -114,12 +128,12 @@ export class SearchbarComponent implements AfterViewInit {
             start: "top top",
             end: "max",
             onUpdate: ({ progress }) => {
-              0 < progress ? locationInputAnim.reverse() : locationInputAnim.play();
+              0 < progress ? this.animations["location>input"].play() : this.animations["location>input"].reverse();
             }
           }
         });
 
-      const checkinDivAnim = gsap.fromTo('.checkin-date', {
+      this.animations["checkin-date"] = gsap.fromTo('.checkin-date', {
         opacity: 1,
         width: "80px",
       }, {
@@ -128,7 +142,7 @@ export class SearchbarComponent implements AfterViewInit {
         height: "0px",
         visibility: "hidden",
         paused: true,
-        duration: 0.2,
+        duration: 0.3,
       }).progress(0);
 
       tl.fromTo(".checkin-date",
@@ -140,12 +154,12 @@ export class SearchbarComponent implements AfterViewInit {
             start: "top top",
             end: "max",
             onUpdate: ({ progress }) => {
-              0 < progress ? checkinDivAnim.play() : checkinDivAnim.reverse();
+              0 < progress ? this.animations["checkin-date"].play() : this.animations["checkin-date"].reverse();
             }
           },
         });
 
-      const checkoutDivAnim = gsap.fromTo('.checkout-date', {
+      this.animations["checkout-date"] = gsap.fromTo('.checkout-date', {
         opacity: 1,
         width: "80px",
       }, {
@@ -154,7 +168,7 @@ export class SearchbarComponent implements AfterViewInit {
         height: "0px",
         visibility: "hidden",
         paused: true,
-        duration: 0.2,
+        duration: 0.3,
       }).progress(0);
 
       tl.fromTo(".checkout-date",
@@ -167,26 +181,25 @@ export class SearchbarComponent implements AfterViewInit {
             start: "top top",
             end: "max",
             onUpdate: ({ progress }) => {
-              0 < progress ? checkoutDivAnim.play() : checkoutDivAnim.reverse();
+              0 < progress ? this.animations["checkout-date"].play() : this.animations["checkout-date"].reverse();
             }
           }
         });
 
-      const guestAnim = gsap.fromTo('.nb-of-guests', {
+      this.animations["nb-of-guests"] = gsap.fromTo('.nb-of-guests', {
         opacity: 1,
-        display: "block",
+        minWidth: "5.5rem",
       }, {
         opacity: 0,
-        display: "none",
+        minWidth: "0px",
         width: "0px",
         height: "0px",
         visibility: "hidden",
         paused: true,
-        duration: 0.2,
+        duration: 0.3,
       }).progress(0);
 
-      tl.fromTo(".nb-of-guests",
-        {},
+      tl.fromTo(".nb-of-guests", {},
         {
           scrollTrigger: {
             scrub: true,
@@ -194,36 +207,51 @@ export class SearchbarComponent implements AfterViewInit {
             start: "top top",
             end: "max",
             onUpdate: ({ progress }) => {
-              0 < progress ? guestAnim.play() : guestAnim.reverse();
+              0 < progress ? this.animations["nb-of-guests"].play() : this.animations["nb-of-guests"].reverse();
             }
           }
         });
 
-      tl.fromTo(".divider",
+      this.animations["divider"] = gsap.fromTo(".divider", {
+        height: "calc(100% - 5px)",
+      }, {
+        height: "calc(70% - 5px)",
+        paused: true,
+        duration: 0.3
+      }).progress(0);
+
+      tl.fromTo(".divider", {},
         {
-          height: "calc(100% - 5px)",
-        },
-        {
-          height: "calc(70% - 5px)",
           scrollTrigger: {
             scrub: true,
             trigger: ".services-wrapper",
             start: "top top",
-            end: "+=1%",
+            end: "max",
+            onUpdate: ({ progress }) => {
+              0 < progress ? this.animations["divider"].play() : this.animations["divider"].reverse();
+            }
           }
         });
 
-      tl.fromTo(".search",
-        {
-          scale: 1,
-        },
+      this.animations["search"] = gsap.fromTo(".search", {
+        scale: 1,
+      },
         {
           scale: 0.8,
+          duration: 0.3,
+          paused: true,
+        }).progress(0);
+
+      tl.fromTo(".search", {},
+        {
           scrollTrigger: {
             scrub: true,
             trigger: ".services-wrapper",
             start: "top top",
-            end: "+=1%",
+            end: "max",
+            onUpdate: ({ progress }) => {
+              0 < progress ? this.animations["search"].play() : this.animations["search"].reverse();
+            }
           }
         });
     }
@@ -242,7 +270,10 @@ export class SearchbarComponent implements AfterViewInit {
   }
 
   focusLocationInput(refLocationInput: HTMLInputElement) {
+    this.openSearchBar();
+    const locationSearch: string = refLocationInput.value;
     refLocationInput.focus();
+    refLocationInput.setSelectionRange(locationSearch.length, locationSearch.length);
   }
 
   updateCalendarModalPosition() {
@@ -263,8 +294,18 @@ export class SearchbarComponent implements AfterViewInit {
   }
 
   openCalendar() {
-    this.updateCalendarModalPosition();
-    this.isCalendarOpen = true;
+    const openCalendarHandler = () => {
+      this.updateCalendarModalPosition();
+      this.isCalendarOpen = true;
+    }
+    if (this.statusOfSearchBar) {
+      openCalendarHandler();
+    } else {
+      this.openSearchBar();
+      setTimeout(() => {
+        openCalendarHandler();
+      }, 300);
+    }
   }
 
   setStartingDate(date: CalendarDate | undefined) {
@@ -287,8 +328,18 @@ export class SearchbarComponent implements AfterViewInit {
   }
 
   openGuests() {
-    this.updateGuestsModalPosition();
-    this.isGuestsOpen = true;
+    const openGuestsHandler = () => {
+      this.updateGuestsModalPosition();
+      this.isGuestsOpen = true;
+    }
+    if (this.statusOfSearchBar) {
+      openGuestsHandler();
+    } else {
+      this.openSearchBar();
+      setTimeout(() => {
+        openGuestsHandler();
+      }, 300);
+    }
   }
 
   getGuests(guests: Guests) {
@@ -299,5 +350,19 @@ export class SearchbarComponent implements AfterViewInit {
         this.totalNbOfGuests += this.guests[guest as GuestType].nb
       }
     }
+  }
+
+  openSearchBar() {
+    for (let animation in this.animations) {
+      this.animations[animation].reverse();
+    }
+    this.statusOfSearchBar = true;
+  }
+
+  closeSearchBar() {
+    for (let animation in this.animations) {
+      this.animations[animation].play();
+    }
+    this.statusOfSearchBar = false;
   }
 }
