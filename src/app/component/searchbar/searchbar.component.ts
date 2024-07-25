@@ -18,7 +18,6 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class SearchbarComponent implements AfterViewInit {
   readonly searchLabel = "Search";
-  displayLabel: boolean = false;
   services: string[] = ["Inns", "Carriages", "Monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
   selectedService: number = 0;
@@ -48,14 +47,10 @@ export class SearchbarComponent implements AfterViewInit {
       let tl = gsap.timeline();
 
       this.animations["services-wrapper"] = gsap.fromTo('.services-wrapper', {
-        opacity: 1,
-        yPercent: 0,
+        y: "0px",
       }, {
-        opacity: 0,
-        yPercent: -250,
+        y: "-100px",
         height: "0px",
-        width: "0px",
-        visibility: "hidden",
         paused: true,
         duration: 0.3,
         onComplete: () => {
@@ -259,14 +254,6 @@ export class SearchbarComponent implements AfterViewInit {
 
   selectService(index: number) {
     this.selectedService = index;
-  }
-
-  showLabel() {
-    this.displayLabel = true;
-  }
-
-  hideLabel() {
-    this.displayLabel = false;
   }
 
   focusLocationInput(refLocationInput: HTMLInputElement) {

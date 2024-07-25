@@ -85,17 +85,13 @@
     font-size: medium;
 }
 
-.search:hover {
-    width: 105px;
-}
-
 .services-wrapper {
     display: flex;
     justify-content: center;
 }
 
 .services {
-    padding: 20px;
+    padding: 15px;
     display: flex;
     gap: 1px;
     justify-items: center;
