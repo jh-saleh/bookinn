@@ -48,12 +48,22 @@
                 <div class="room-divider"></div>
                 <div>
                     <h2 class="room-sub-title">
-                        X nights in {{inn.city}},{{inn.state}}
+                        @if(nbDays){
+                        {{nbDays}} nights in {{inn.city}},{{inn.state}}
+                        } @else {
+                        Select check-in date
+                        }
                     </h2>
                     <h3 class="room-sub-sub-title">
-                        Date Check In - Date Check Out
+                        @if(nbDays){
+                        {{startingDate?.month+'-'+startingDate?.day+'-'+startingDate?.year | date: "MMM dd, yyyy"}} -
+                        {{endingDate?.month+'-'+endingDate?.day+'-'+endingDate?.year | date: "MMM dd, yyyy"}}
+                        } @else {
+                        Add your travel dates for exact pricing
+                        }
                     </h3>
-                    <app-calendar [mode]="'normal'" [theme]="'red'"></app-calendar>
+                    <app-calendar [mode]="'normal'" [theme]="'red'" (startingDate)="getStartingDate($event)"
+                        (endingDate)="getEndingDate($event)"></app-calendar>
                 </div>
             </section>
         </div>

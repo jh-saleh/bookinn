@@ -7,10 +7,9 @@
             {{value.dayOfTheMonth}}
         </span>
         }@else {
-        <span
-            [ngClass]="daysSelected[0] === value.position && daysSelected[0] < daysSelected[1] ? startPathDayClass : null"
-            [ngClass]="daysSelected[1] === value.position && daysSelected[0] < daysSelected[1] ? endPathDayClass : null"
-            [ngClass]="daysSelected[0] < value.position && value.position < daysSelected[1] ? pathDayClass : null">
+        <span [ngClass]="[daysSelected[0] === value.position && daysSelected[0] < daysSelected[1] ? startPathDayClass : '', 
+            daysSelected[1] === value.position && daysSelected[0] < daysSelected[1] ? endPathDayClass : '',
+            daysSelected[0] < value.position && value.position < daysSelected[1] ? pathDayClass : '']">
             <span
                 [ngClass]="[dayWrapper, colorClass, daysSelected[0] !== value.position && daysSelected[1] !== value.position ? hoverBgClass : '']"
                 class="day"

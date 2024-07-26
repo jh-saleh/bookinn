@@ -106,6 +106,13 @@ export class CalendarDatesService {
     return this.maxYear;
   }
 
+  getNbOfDaysBetweenDates(startDate: CalendarDate, endDate: CalendarDate): number {
+    const date1 = new Date(startDate.year, startDate.month, startDate.day);
+    const date2 = new Date(endDate.year, endDate.month, endDate.day);
+    const millisecondsInOneDay = 1000 * 60 * 60 * 24;
+    return Math.floor((date2.getTime() - date1.getTime()) / millisecondsInOneDay);
+  }
+
   private nextMonth() {
     this.firstMonth = (this.firstMonth % 12) + 1;
     if (this.firstMonth === 1) {

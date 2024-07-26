@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
 import { StaysService } from '../../IoC/service/inn.service';
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
@@ -10,7 +12,8 @@ import { Amenity, AmenityType, Stay, amenitiesLink, extractAmenities } from '../
 @Component({
   selector: 'app-room',
   standalone: true,
-  imports: [NavbarComponent, CalendarComponent, FooterComponent, ImagesViewerComponent],
+  imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent, ImagesViewerComponent],
+  providers: [CalendarDatesService],
   templateUrl: './room.component.html',
   styleUrl: './room.component.css'
 })
@@ -20,8 +23,11 @@ export class RoomComponent implements OnInit {
   amenities!: Partial<Record<AmenityType, Amenity[]>>;
   amenitiesSummary: { amenity: Amenity, icon: string }[] = [];
   totalNbOfAmenities!: number;
+  startingDate: CalendarDate | undefined;
+  endingDate: CalendarDate | undefined;
+  nbDays: number | undefined;
 
-  constructor(private route: ActivatedRoute, private staysService: StaysService) {
+  constructor(private route: ActivatedRoute, private staysService: StaysService, private calendarDateService: CalendarDatesService) {
 
   }
 
@@ -41,7 +47,24 @@ export class RoomComponent implements OnInit {
         output.push({ amenity: amenity[0], icon: amenitiesLink[amenity[0]].icon });
       }
     }
-
     return output;
+  }
+
+  getStartingDate(date: CalendarDate | undefined) {
+    this.startingDate = date;
+    if (this.startingDate && this.endingDate) {
+      this.nbDays = this.calendarDateService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
+    } else {
+      this.nbDays = undefined;
+    }
+  }
+
+  getEndingDate(date: CalendarDate | undefined) {
+    this.endingDate = date;
+    if (this.startingDate && this.endingDate) {
+      this.nbDays = this.calendarDateService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
+    } else {
+      this.nbDays = undefined;
+    }
   }
 }
