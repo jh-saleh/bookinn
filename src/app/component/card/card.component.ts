@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { css } from '@emotion/css';
+import { CityName, KingdomName } from '../../model/land/land.model';
 
 @Component({
   selector: 'app-card',
@@ -11,8 +12,8 @@ import { css } from '@emotion/css';
 })
 export class CardComponent implements OnInit {
   @Input({ required: true }) name!: string;
-  @Input({ required: true }) state!: string;
-  @Input({ required: true }) city!: string;
+  @Input({ required: true }) kingdom!: KingdomName;
+  @Input({ required: true }) city!: CityName;
   @Input({ required: true }) pricePerNight!: number;
   @Input({ required: true }) ratings!: number;
   @Input({ required: true }) imgsUrls!: string[];

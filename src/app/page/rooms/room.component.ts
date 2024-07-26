@@ -8,7 +8,8 @@ import { FooterComponent } from "../../component/footer/footer.component";
 import { FullviewModalComponent } from "../../component/fullview-modal/fullview-modal.component";
 import { ImagesViewerComponent } from "../../component/images-viewer/images-viewer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { AmenityType, AminityLink, Stay, extractAmenities } from '../../model/inn/stay.model';
+import { AmenityType, AminityLink, extractAmenities } from '../../model/inn/amenity.model';
+import { Stay } from '../../model/inn/stay.model';
 
 @Component({
   selector: 'app-room',
