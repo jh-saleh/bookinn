@@ -291,7 +291,7 @@ export class SearchbarComponent implements AfterViewInit {
       this.openSearchBar();
       setTimeout(() => {
         openCalendarHandler();
-      }, 300);
+      }, 500);
     }
   }
 
@@ -325,7 +325,7 @@ export class SearchbarComponent implements AfterViewInit {
       this.openSearchBar();
       setTimeout(() => {
         openGuestsHandler();
-      }, 300);
+      }, 500);
     }
   }
 

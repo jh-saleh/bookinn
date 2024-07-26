@@ -1,0 +1,10 @@
+<section id="images-viewer">
+    <div [ngClass]="imagesViewerWrapperClass">
+        <img [src]="firstUrl">
+        <div [ngClass]="imagesViewerClass">
+            @for (url of urls; track $index) {
+            <img [src]="url">
+            }
+        </div>
+    </div>
+</section>

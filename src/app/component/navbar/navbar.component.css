@@ -11,4 +11,5 @@
     padding: 10px 30px 10px 30px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px white solid;
 }

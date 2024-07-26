@@ -1,11 +1,13 @@
-<div id="home">
+<section id="home">
     <app-navbar>
     </app-navbar>
     <div class="home-body">
         @for (inn of inns; track $index) {
-        <app-card [city]="inn.city" [state]="inn.state" [name]="inn.name" [pricePerNight]="inn.pricePerNight"
-            [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></app-card>
+        <a [routerLink]="['/room', inn.id]">
+            <app-card [city]="inn.city" [state]="inn.state" [name]="inn.name" [pricePerNight]="inn.pricePerNight"
+                [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></app-card>
+        </a>
         }
     </div>
     <app-footer></app-footer>
-</div>
+</section>

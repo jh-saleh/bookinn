@@ -4,6 +4,7 @@
     display: flex;
     gap: 15px;
     color: white;
+    width: 100dvw;
 }
 
 .footer>a {

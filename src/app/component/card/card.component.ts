@@ -44,7 +44,9 @@ export class CardComponent implements OnInit {
   `;
   }
 
-  goToPreviousImage() {
+  goToPreviousImage(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
     if (this.imageIndex > this.minIndex) {
       this.imageIndex--;
       this.updateTranslateClass();
@@ -52,7 +54,9 @@ export class CardComponent implements OnInit {
     }
   }
 
-  goToNextImage() {
+  goToNextImage(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
     if (this.imageIndex < this.maxIndex) {
       this.imageIndex++;
       this.updateTranslateClass();

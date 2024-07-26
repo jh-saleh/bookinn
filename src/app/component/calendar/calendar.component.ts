@@ -43,6 +43,54 @@ export class CalendarComponent implements OnInit {
     `;
   }
 
+  bgColorClass: string = "";
+  colorClass: string = "";
+  disabledColorClass: string = "";
+  hoverBgClass: string = "";
+  pathDayClass: string = "";
+  startPathDayClass: string = "";
+  endPathDayClass: string = "";
+  resetSelectedDatesButtonColor: string = "";
+  private _theme: 'white' | 'red' = 'white';
+  @Input({ required: true }) set theme(value: 'white' | 'red') {
+    this._theme = value;
+    const isThemeWhite = this._theme === "white";
+    this.bgColorClass = css`
+      background-color: ${isThemeWhite ? "white" : "var(--background)"};
+    `;
+    this.colorClass = css`
+      color: ${isThemeWhite ? "black" : "white"};
+      `;
+    this.disabledColorClass = css`
+      color: ${isThemeWhite ? "var(--black-500)" : "var(--black-300)"};
+    `;
+    this.hoverBgClass = css`
+    :hover{
+      background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
+      outline: 1px ${isThemeWhite ? "black" : "white"} solid;
+    }
+    `;
+    this.pathDayClass = css`
+      background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
+    `;
+    this.startPathDayClass = css`
+      background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
+      border-top-left-radius: 100%;
+      border-bottom-left-radius: 100%;
+    `;
+    this.endPathDayClass = css`
+      background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
+      border-top-right-radius: 100%;
+      border-bottom-right-radius: 100%;
+    `;
+    this.resetSelectedDatesButtonColor = css`
+      color: ${isThemeWhite ? "var(--black-900)" : "white"};
+      :hover{
+        background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
+      }
+    `;
+  }
+
   readonly week: string[] = Object.values(DaysShortHand);
 
   constructor(private calendarDatesService: CalendarDatesService) {
