@@ -11,6 +11,10 @@ export class Stay {
     ratings!: number;
     imgsUrls!: string[];
     lodging!: Lodging;
-    about!: string;
+    about!: {
+        context: string;
+        theSpace: string;
+        note?: string;
+    };
     amenities?: Partial<Record<Amenity, boolean>>;
 }

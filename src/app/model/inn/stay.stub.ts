@@ -16,7 +16,11 @@ export const stays: Stay[] = [
             nbBeds: 2,
             nbBaths: 1,
         },
-        about: "Step back in time and experience the grandeur of medieval living in our majestic castle bedroom, nestled within the formidable black stone walls of Ironcliff's historic castle. This unique accommodation offers a perfect blend of ancient charm and modern comfort, ideal for history enthusiasts and adventurers alike.",
+        about: {
+            context: "Step back in time and experience the grandeur of medieval living in our majestic castle bedroom, nestled within the formidable black stone walls of Ironcliff's historic castle. This unique accommodation offers a perfect blend of ancient charm and modern comfort, ideal for history enthusiasts and adventurers alike.",
+            theSpace: "This bedroom is part of a beautifully repurposed castle, featuring soaring ceilings, stone walls, and grand arched windows that offer breathtaking views of the surrounding mountains. The king-sized bed, draped in luxurious linens, ensures a regal night's sleep. The private bath is equipped with modern fixtures, including a rain shower and a deep soaking tub carved from stone, perfect for unwinding after a day of exploring.",
+            note: "Mind the dragon guarding the entrance. He is a bit cranky."
+        },
         amenities: {
             "Bath outdoors": true,
             "Hot water": true,
@@ -42,7 +46,7 @@ export const stays: Stay[] = [
         city: CityName.Frostgate,
         kingdom: KingdomName.Orlond,
         ratings: 4,
-        name: "Cozy Castle Retreat",
+        name: "Cozy Winter Retreat",
         pricePerNight: 25,
         imgsUrls: ["inns/snow/1.jpeg", "inns/snow/2.jpeg", "inns/snow/3.jpeg", "inns/snow/4.jpeg", "inns/snow/5.jpeg"],
         lodging: {
@@ -51,7 +55,10 @@ export const stays: Stay[] = [
             nbBeds: 3,
             nbBaths: 2,
         },
-        about: "Escape to a winter wonderland and experience the cozy comfort of our castle retreat, nestled within the frosty embrace of Frostgate’s historic black stone castle. This unique accommodation blends the timeless elegance of medieval architecture with modern amenities, providing a perfect haven for winter enthusiasts and history buffs alike.",
+        about: {
+            context: "Welcome to our cozy winter retreat in the heart of Frostgate! Nestled in the snowy wonderland of this charming mountain city, our heartwarming inn offers the perfect escape for those seeking comfort and warmth amidst the winter chill. Experience the welcoming ambiance of a traditional inn with modern amenities and a touch of local charm.",
+            theSpace: "This inviting bedroom is designed to be a warm and cozy haven against the snowy backdrop of Frostgate. The room features a queen-sized bed with soft, fluffy linens and a selection of warm blankets to ensure a snug night’s sleep. Large windows provide beautiful views of the snow-covered landscape, adding to the room’s serene atmosphere. The private bath includes modern fixtures, a shower-tub combo, and plush towels for your comfort.",
+        },
         amenities: {
             "Hot water": true,
             "Host greets you": true,
@@ -79,6 +86,10 @@ export const stays: Stay[] = [
             nbBeds: 1,
             nbBaths: 0,
         },
-        about: "Discover an extraordinary underground retreat in Krynholm historic mine, where modern comfort meets the rugged charm of deep subterranean life. Our unique bedroom, carved from the depths of a working iron mine, offers a one-of-a-kind experience for adventurers and history enthusiasts alike."
+        about: {
+            context: "Discover an extraordinary underground retreat in Krynholm historic mine, where modern comfort meets the rugged charm of deep subterranean life. Our unique bedroom, carved from the depths of a working iron mine, offers a one-of-a-kind experience for adventurers and history enthusiasts alike.",
+            theSpace: "This distinctive bedroom is set within the depths of Ironcliff’s ancient mine, featuring exposed rock walls and an authentic underground ambiance. The queen-sized bed is outfitted with plush linens and warm blankets, ensuring a cozy stay despite the mine’s cool environment. The private bath is equipped with contemporary amenities, including a rain shower and a deep soaking tub, perfect for relaxing after a day exploring the underground passages.",
+            note: "Mind the gap."
+        }
     }
 ];

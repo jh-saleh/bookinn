@@ -20,6 +20,14 @@
     color: white;
 }
 
+.room-about {
+    color: white;
+}
+
+.room-about>div {
+    padding: 20px 0px;
+}
+
 .room-title,
 .room-sub-title,
 .room-sub-sub-title {
