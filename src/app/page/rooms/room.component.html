@@ -1,3 +1,15 @@
+<ng-template #amenityItem let-item="item" let-notIncluded="notIncluded">
+    <div class="room-amenity">
+        <span class="material-symbols-outlined">
+            {{item.icon}}
+        </span>
+        <span [class.amenity-not-included]="notIncluded">
+            {{item.amenity}}
+        </span>
+    </div>
+    <div class="modal-divider"></div>
+</ng-template>
+
 <section id="room">
     <app-navbar></app-navbar>
     <div class="room-body-wrapper">
@@ -39,7 +51,7 @@
                             }
                         </div>
                         @if(totalNbOfAmenities>5){
-                        <button class="room-button">
+                        <button class="room-button" (click)="openAmenitiesModal()">
                             Show all {{totalNbOfAmenities}} amenities
                         </button>
                         }
@@ -70,3 +82,81 @@
     </div>
     <app-footer></app-footer>
 </section>
+
+<app-fullview-modal [isModalOpen]="isAmenitiesModalOpen" (closeModal)="closeAmenitiesModal()"
+    (openModal)="openAmenitiesModal()">
+    <div class="amenities-modal">
+        <button (click)="closeAmenitiesModal()">
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </button>
+        <h1>
+            Amenities
+        </h1>
+        @if (amenities.Bathroom) {
+        <h2>
+            Bathroom
+        </h2>
+        @for (item of amenities.Bathroom; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if (amenities.Bedroom) {
+        <h2>
+            Bedroom
+        </h2>
+        @for (item of amenities.Bedroom; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if (amenities.Entertainment) {
+        <h2>
+            Entertainment
+        </h2>
+        @for (item of amenities.Bedroom; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if (amenities.HeatingAndCooling) {
+        <h2>
+            Heating and cooling
+        </h2>
+        @for (item of amenities.HeatingAndCooling; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if (amenities.Dining) {
+        <h2>
+            Dining
+        </h2>
+        @for (item of amenities.Dining; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if(amenities.Services){
+        <h2>
+            Services
+        </h2>
+        @for (item of amenities.Services; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if(amenities.PrivacyAndSafety){
+        <h2>
+            Privacy and safety
+        </h2>
+        @for (item of amenities.PrivacyAndSafety; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item}"></ng-container>
+        }
+        }
+        @if(amenities.NotIncluded){
+        <h2>
+            Not included
+        </h2>
+        @for (item of amenities.NotIncluded; track $index) {
+        <ng-container *ngTemplateOutlet="amenityItem; context:{item: item, notIncluded: true}"></ng-container>
+        }
+        }
+    </div>
+</app-fullview-modal>

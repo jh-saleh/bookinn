@@ -11,7 +11,7 @@ export enum Amenity {
     Kitchen = "Kitchen",
     Dishes = "Dishes",
     Silverware = "Silverware",
-    HostGreetsYou = "Host greets You",
+    HostGreetsYou = "Host greets you",
     Tavern = "Tavern",
     Waiter = "Waiter",
     LockOnBedroomDoor = "Lock on bedroom door",
@@ -22,11 +22,11 @@ export enum AmenityType {
     Bathroom = "Bathroom",
     Bedroom = "Bedroom",
     Entertainment = "Entertainment",
-    HeatingAndCooling = "Heating and cooling",
+    HeatingAndCooling = "HeatingAndCooling",
     Dining = "Dining",
     Services = "Services",
-    PrivacyAndSafety = "Privacy and safety",
-    NotIncluded = "Not included"
+    PrivacyAndSafety = "PrivacyAndSafety",
+    NotIncluded = "NotIncluded"
 }
 
 export const amenitiesLink: Record<Amenity, { type: AmenityType, icon: string }> = {
@@ -49,24 +49,29 @@ export const amenitiesLink: Record<Amenity, { type: AmenityType, icon: string }>
     [Amenity.Guards]: { type: AmenityType.PrivacyAndSafety, icon: "shield" }
 }
 
-export const extractAmenities = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, Amenity[]>> => {
-    let output: Partial<Record<AmenityType, Amenity[]>> = {};
+export interface AminityLink {
+    amenity: Amenity;
+    icon: string;
+}
+
+export const extractAmenities = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, AminityLink[]>> => {
+    let output: Partial<Record<AmenityType, AminityLink[]>> = {};
     for (const amenity in amenities) {
         const castAmenity: Amenity = amenity as Amenity;
         if ((amenities[castAmenity]) !== undefined) {
             if (!amenities[castAmenity]) {
                 const amenityType = AmenityType.NotIncluded;
                 if (output.hasOwnProperty(amenityType)) {
-                    output[amenityType]?.push(castAmenity);
+                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon });
                 } else {
-                    output[amenityType] = [castAmenity]
+                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon }]
                 }
             } else {
                 const amenityType = amenitiesLink[castAmenity].type;
                 if (output.hasOwnProperty(amenityType)) {
-                    output[amenityType]?.push(castAmenity);
+                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon });
                 } else {
-                    output[amenityType] = [castAmenity]
+                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon }]
                 }
             }
         }

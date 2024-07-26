@@ -47,6 +47,11 @@
     color: white;
     font-size: medium;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.room-button:active {
+    transform: scale(0.95);
 }
 
 .room-amenities-items-summary {
@@ -62,4 +67,44 @@
     grid-template-columns: min-content max-content;
     gap: 10px;
     align-items: center;
+}
+
+.amenities-modal {
+    padding: 20px;
+    width: 40dvw;
+}
+
+.amenities-modal>h1 {
+    padding: 30px 0px;
+    font-size: x-large;
+}
+
+.amenities-modal>h2 {
+    padding: 20px 0px;
+    font-size: large;
+}
+
+.amenities-modal>button {
+    border: none;
+    color: black;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.amenities-modal>button:hover {
+    background-color: var(--background-box-hover);
+}
+
+.modal-divider {
+    display: grid;
+    border-top: 1px var(--black-300) solid;
+    height: 1px;
+    margin: 30px 0px;
+}
+
+.amenity-not-included {
+    text-decoration: line-through;
 }

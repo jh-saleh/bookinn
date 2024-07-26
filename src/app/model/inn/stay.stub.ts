@@ -18,7 +18,7 @@ export const stays: Stay[] = [
         amenities: {
             "Bath outdoors": true,
             "Hot water": true,
-            "Host greets You": true,
+            "Host greets you": true,
             "Lock on bedroom door": true,
             "Magic air conditioning": true,
             Bards: true,
@@ -51,7 +51,7 @@ export const stays: Stay[] = [
         },
         amenities: {
             "Hot water": true,
-            "Host greets You": true,
+            "Host greets you": true,
             "Lock on bedroom door": false,
             Bards: false,
             Dishes: true,
