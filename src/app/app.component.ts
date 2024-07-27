@@ -1,14 +1,33 @@
-import { Component } from '@angular/core';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from './state/app.state';
+import { selectIsHTMLBodyLocked } from './state/htmlBody/htmlBody.selectors';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  isHTMLBodyLocked$!: Observable<boolean>;
 
+  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
 
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isHTMLBodyLocked$ = this.store.select(selectIsHTMLBodyLocked);
+      this.isHTMLBodyLocked$.subscribe((state) => {
+        if (state) {
+          this.document.body.style.overflow = 'hidden';
+        } else {
+          this.document.body.style.overflow = 'auto';
+        }
+      });
+    }
+  }
 }
