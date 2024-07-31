@@ -16,8 +16,12 @@
                 <div>
                     CHECK IN
                 </div>
-                <div>
-                    XXX
+                <div [class.bill-check-in-empty-date]="!startingDate">
+                    @if (startingDate) {
+                    {{startingDate.month+'-'+startingDate.day+'-'+startingDate.year | date: "MMM dd, yyyy"}}
+                    }@else {
+                    Add date
+                    }
                 </div>
             </span>
             <span class="bill-dates-divider"></span>
@@ -25,8 +29,12 @@
                 <div>
                     CHECK OUT
                 </div>
-                <div>
-                    XXX
+                <div [class.bill-check-out-empty-date]="!endingDate">
+                    @if(endingDate){
+                    {{endingDate.month+'-'+endingDate.day+'-'+endingDate.year | date: "MMM dd, yyyy"}}
+                    } @else {
+                    Add date
+                    }
                 </div>
             </span>
         </div>

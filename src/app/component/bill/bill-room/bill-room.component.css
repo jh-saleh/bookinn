@@ -35,6 +35,11 @@
     }
 }
 
+.bill-check-in-empty-date,
+.bill-check-out-empty-date {
+    color: var(--black-300)
+}
+
 .bill-guests-wrapper {
     position: relative;
 }
