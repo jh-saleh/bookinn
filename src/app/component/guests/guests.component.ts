@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CounterComponent } from "../counter/counter.component";
 
 export type GuestType = "adult" | "child" | "infant" | "pet"
@@ -37,9 +37,20 @@ export class GuestsComponent {
     }
   }
   @Output() getGuests = new EventEmitter<Guests>();
+  @Input() maximumNbOfGuests: number | undefined;
+  blockIncreaseGuestsAction: boolean = false;
+
+  getTotalNbOfGuests(): number {
+    return Object.values(this.guests).map((value) => value.nb).reduce((previousValue, currentValue) => previousValue + currentValue);
+  }
 
   sendGuests(guest: GuestType, counter: number) {
     this.guests[guest].nb = counter;
+    if (this.maximumNbOfGuests && this.maximumNbOfGuests === this.getTotalNbOfGuests()) {
+      this.blockIncreaseGuestsAction = true;
+    } else {
+      this.blockIncreaseGuestsAction = false;
+    }
     this.getGuests.emit(this.guests);
   }
 }

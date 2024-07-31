@@ -1,0 +1,104 @@
+.bill {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-border-radius);
+    width: inherit;
+    position: sticky;
+    top: 150px;
+    padding: 30px;
+    display: grid;
+    gap: 10px;
+    width: 350px;
+}
+
+.bill-base-price {
+    font-size: x-large;
+}
+
+.bill-selection {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    border: 1px var(--black-300) solid;
+    border-radius: var(--box-border-radius);
+}
+
+.bill-check-in-selected,
+.bill-check-out-selected,
+.bill-guest-selected {
+    padding: 7px;
+    cursor: pointer;
+    user-select: none;
+
+    :first-child {
+        font-size: small;
+        font-weight: bold;
+    }
+}
+
+.bill-guests-wrapper {
+    position: relative;
+}
+
+.bill-guests {
+    border-top: 1px var(--black-300) solid;
+}
+
+.bill-dates {
+    display: grid;
+    grid-template-columns: auto 1px auto;
+}
+
+.bill-dates-divider {
+    width: 1px;
+    height: 100%;
+    background-color: var(--black-300);
+}
+
+button {
+    padding: 12px 15px;
+    border: none;
+    border-radius: var(--button-border-radius);
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--crimson-400);
+    color: white;
+    font-size: medium;
+    transition: 0.2s all;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.bill-summary-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bill-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bill-divider {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px var(--black-100) solid;
+}
+
+.price-detail,
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-detail>*:first-child {
+    text-decoration: underline;
+}
+
+p {
+    width: 100%;
+    text-align: center;
+}

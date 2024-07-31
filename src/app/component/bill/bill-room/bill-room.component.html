@@ -1,0 +1,102 @@
+<section class="bill">
+    <div class="bill-base-price">
+        @if(startingDate && endingDate){
+        @if(nbOfGuests > 0){
+        <b>${{pricePerNight}}</b> night
+        } @else {
+        Add guests
+        }
+        } @else {
+        Add dates for prices
+        }
+    </div>
+    <div class="bill-selection">
+        <div class="bill-dates">
+            <span class="bill-check-in-selected">
+                <div>
+                    CHECK IN
+                </div>
+                <div>
+                    XXX
+                </div>
+            </span>
+            <span class="bill-dates-divider"></span>
+            <span class="bill-check-out-selected">
+                <div>
+                    CHECK OUT
+                </div>
+                <div>
+                    XXX
+                </div>
+            </span>
+        </div>
+        <div #billGuestsSelection class="bill-guests-wrapper">
+            <div class="bill-guests" (click)="openGuestsModal()">
+                <div class="bill-guest-selected">
+                    <div>
+                        GUESTS
+                    </div>
+                    <div>
+                        {{nbOfGuests}} guest
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="!isGuestsModalOpen" [ngClass]="guestsModalWrapper">
+                <app-guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getNbOfGuests($event)"></app-guests>
+            </div>
+        </div>
+    </div>
+    <button class="bill-button">
+        @if(startingDate && endingDate && nbOfGuests > 0){
+        Reserve
+        }@else {
+        Check availability
+        }
+    </button>
+    @if(startingDate && endingDate && nbOfGuests > 0){
+    <p><i>You won't be charged yet.</i></p>
+    <div class="bill-summary-wrapper">
+        <div class="bill-summary">
+            <div class="price-detail">
+                <span>
+                    ${{pricePerNight}}x{{nbOfNights}}
+                </span>
+                <span>
+                    ${{completeBillWithoutCharges}}
+                </span>
+            </div>
+            @if(cleaningFee){
+            <div class="price-detail">
+                <span>
+                    Cleaning fee
+                </span>
+                <span>
+                    ${{cleaningFee}}
+                </span>
+            </div>
+            }
+            <div class="price-detail">
+                <span>
+                    BookInn fee
+                </span>
+                <span>
+                    ${{bookInnFee | number: '1.0-0'}}
+                </span>
+            </div>
+            <div class="price-detail">
+                <span>
+                    Taxes
+                </span>
+                <span>
+                    ${{VAT | number: '1.0-0'}}
+                </span>
+            </div>
+        </div>
+        <div class="bill-divider"></div>
+        <div class="bill-total">
+            <span><b>Total</b></span>
+            <span><b>$ {{completeBill}}</b></span>
+        </div>
+    </div>
+    }
+</section>

@@ -1,12 +1,10 @@
 .guests {
     display: flex;
     flex-direction: column;
-    padding: 20px;
     background-color: white;
     color: var(--black-900);
     height: min-content;
-    width: max-content;
-    border-radius: var(--box-border-radius);
+    width: 100%;
 }
 
 .guests-line {

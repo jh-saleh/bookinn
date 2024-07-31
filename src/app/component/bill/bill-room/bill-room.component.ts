@@ -1,0 +1,111 @@
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { css } from '@emotion/css';
+import { CalendarDate } from '../../../IoC/service/calendar-dates.service';
+import { Position } from '../../../model/position/position.model';
+import { Guests, GuestsComponent } from "../../guests/guests.component";
+import { ModalComponent } from "../../modal/modal.component";
+
+@Component({
+  selector: 'app-bill-room',
+  standalone: true,
+  imports: [CommonModule, ModalComponent, GuestsComponent],
+  templateUrl: './bill-room.component.html',
+  styleUrl: './bill-room.component.css'
+})
+export class BillRoomComponent implements OnChanges {
+  @Input({ required: true }) startingDate: CalendarDate | undefined;
+  @Input({ required: true }) endingDate: CalendarDate | undefined;
+  @Input({ required: true }) basePricePerNight: number | undefined;
+  pricePerNight: number | undefined;
+  @Input({ required: true }) maximumNbOfGuests: number = 1;
+  @Input() guests: Guests = {
+    adult: {
+      nb: 0,
+      maximum: 4,
+      minimum: 0,
+    },
+    child: {
+      nb: 0,
+      maximum: 4,
+    },
+    infant: {
+      nb: 0,
+      maximum: 2
+    },
+    pet: {
+      nb: 0,
+      maximum: 2
+    }
+  }
+  nbOfGuests: number = 0;
+  @Input({ required: true }) nbOfNights: number | undefined;
+  completeBillWithoutCharges: number | undefined;
+  @Input() cleaningFee: number | undefined;
+  bookInnRate: number = 0.05;
+  bookInnFee: number = 0;
+  VATRate = 0.2;
+  VAT: number = 0;
+  completeBill: number = 0;
+  @ViewChild("billGuestsSelection") billGuestsSelectionRef: ElementRef<HTMLDivElement> | undefined;
+  isGuestsModalOpen: boolean = false;
+  guestsPosition: Position = { top: 0, left: 0 };
+  guestsModalWrapper: string = "";
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { nbOfNights } = changes;
+    if (nbOfNights) {
+      this.updateBillPrices(nbOfNights.currentValue, this.nbOfGuests);
+    }
+  }
+
+  updateBillPrices(nbOfNights: number | undefined, nbOfGuests: number) {
+    if (this.basePricePerNight && nbOfNights) {
+      if (this.maximumNbOfGuests > 1) {
+        this.pricePerNight = Math.ceil(this.basePricePerNight * (1 + ((nbOfGuests - 1) / (this.maximumNbOfGuests - 1))));
+      } else {
+        this.pricePerNight = this.basePricePerNight;
+      }
+
+      this.completeBillWithoutCharges = Math.ceil(this.pricePerNight * nbOfNights + (this.cleaningFee ?? 0));
+      this.bookInnFee = Math.ceil(this.completeBillWithoutCharges * this.bookInnRate);
+      this.VAT = Math.ceil(this.VATRate * (this.completeBillWithoutCharges + this.bookInnFee));
+      this.completeBill = this.completeBillWithoutCharges + this.bookInnFee + this.VAT;
+    }
+  }
+
+  openGuestsModal() {
+    if (this.billGuestsSelectionRef) {
+      const { height, width } = this.billGuestsSelectionRef.nativeElement.getBoundingClientRect();
+      const padding = 20;
+      this.guestsModalWrapper = css`
+        z-index: 1;
+        position: absolute;
+        top: ${height + 5}px;
+        left: 0px;
+        width: ${width - padding * 2}px;
+        box-shadow: var(--box-shadow);
+        padding: ${padding}px;
+        background-color: white;
+        border-radius: var(--box-border-radius);
+      `;
+      this.isGuestsModalOpen = true;
+    }
+  }
+
+  getNbOfGuests(guests: Guests) {
+    this.guests = guests;
+    let output: number = 0;
+    for (let guest of Object.values(guests)) {
+      output += guest.nb;
+    }
+    this.nbOfGuests = output;
+    this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
+  }
+
+  @HostListener('document:click', ['$event.target']) onClick(target: Node | null) {
+    if (this.billGuestsSelectionRef && !this.billGuestsSelectionRef.nativeElement.contains(target) && this.isGuestsModalOpen) {
+      this.isGuestsModalOpen = false;
+    }
+  }
+}

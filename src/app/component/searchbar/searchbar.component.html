@@ -70,5 +70,7 @@
 </app-modal>
 <app-modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
     (openModal)="openGuests()">
-    <app-guests (getGuests)="getGuests($event)"></app-guests>
+    <div [ngClass]="guestsWrapperClass">
+        <app-guests (getGuests)="getGuests($event)"></app-guests>
+    </div>
 </app-modal>

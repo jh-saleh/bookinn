@@ -28,6 +28,7 @@ export class SearchbarComponent implements AfterViewInit {
   @ViewChild("searchBarRef") searchBarRef: ElementRef<HTMLDivElement> | undefined;
   calendarWrapperClass: string = css``;
   isGuestsOpen: boolean = false;
+  guestsWrapperClass: string = css``;
   guestsPosition: Position = { top: 0, left: 0 };
   guests: Guests | undefined;
   totalNbOfGuests: number = 0;
@@ -307,6 +308,9 @@ export class SearchbarComponent implements AfterViewInit {
     if (this.searchBarRef) {
       const { top, height, right, } = this.searchBarRef.nativeElement.getBoundingClientRect();
       this.guestsPosition = { top: top + height + 10, right: window.innerWidth - right };
+      this.guestsWrapperClass = css`
+        padding: 20px;
+      `;
     }
   }
 

@@ -9,7 +9,8 @@
             </div>
         </span>
         <app-counter (sendCounter)="sendGuests('adult', $event)" [maximum]="guests['adult'].maximum"
-            [minimum]="this.guests['adult'].minimum ?? 0"></app-counter>
+            [minimum]="this.guests['adult'].minimum ?? 0"
+            [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
             <h1>
                 Children
@@ -18,8 +19,8 @@
                 Ages 2 - 17
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('child', $event)" [maximum]="guests['child'].maximum"
-            [minimum]="0"></app-counter>
+        <app-counter (sendCounter)="sendGuests('child', $event)" [maximum]="guests['child'].maximum" [minimum]="0"
+            [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
             <h1>
                 Infants
@@ -28,8 +29,8 @@
                 Under 2
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('infant', $event)" [maximum]="guests['infant'].maximum"
-            [minimum]="0"></app-counter>
+        <app-counter (sendCounter)="sendGuests('infant', $event)" [maximum]="guests['infant'].maximum" [minimum]="0"
+            [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
             <h1>
                 Pets
@@ -38,7 +39,7 @@
                 Emotional support pet dragons are prohibited.
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('pet', $event)" [maximum]=" guests['pet'].maximum"
-            [minimum]="0"></app-counter>
+        <app-counter (sendCounter)="sendGuests('pet', $event)" [maximum]=" guests['pet'].maximum" [minimum]="0"
+            [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
     </div>
 </section>

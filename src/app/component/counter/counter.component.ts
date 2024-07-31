@@ -13,6 +13,7 @@ export class CounterComponent {
   counter = 0;
   @Input({ required: true }) maximum: number = 16;
   @Input({ required: true }) minimum: number = 0;
+  @Input() blockIncreaseAction: boolean = false;
   @Output() sendCounter = new EventEmitter<number>();
 
   increase() {

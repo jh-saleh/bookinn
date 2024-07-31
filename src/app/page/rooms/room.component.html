@@ -22,87 +22,95 @@
                     <app-images-viewer [imgsUrls]="inn.imgsUrls"></app-images-viewer>
                 </div>
             </section>
-            <section>
-                <div class="room-summary">
-                    <div>
+            <div class="room-information">
+                <section>
+                    <div class="room-summary">
+                        <div>
+                            <h2 class="room-sub-title">
+                                Inn's bedroom in {{inn.city}}, {{inn.kingdom}}
+                            </h2>
+                        </div>
+                        <div class="room-properties">
+                            {{inn.lodging.maxNumberOfGuests}} guests · {{inn.lodging.nbBedrooms}} bedroom ·
+                            {{inn.lodging.nbBeds}} bed · {{inn.lodging.nbBaths}} baths
+                        </div>
+                    </div>
+                    <div class="room-divider"></div>
+                    <div class="room-about">
                         <h2 class="room-sub-title">
-                            Inn's bedroom in {{inn.city}}, {{inn.kingdom}}
+                            About this place
                         </h2>
+                        <div>
+                            {{inn.about.context}}
+                        </div>
+                        <h2 class="room-sub-title">
+                            The place
+                        </h2>
+                        <div>
+                            {{inn.about.theSpace}}
+                        </div>
+                        @if(inn.about.note){
+                        <h2 class="room-sub-title">
+                            Note
+                        </h2>
+                        <div>
+                            {{inn.about.note}}
+                        </div>
+                        }
                     </div>
-                    <div class="room-properties">
-                        {{inn.lodging.maxNumberOfGuests}} guests · {{inn.lodging.nbBedrooms}} bedroom ·
-                        {{inn.lodging.nbBeds}} bed · {{inn.lodging.nbBaths}} baths
-                    </div>
-                </div>
-                <div class="room-divider"></div>
-                <div class="room-about">
-                    <h2 class="room-sub-title">
-                        About this place
-                    </h2>
-                    <div>
-                        {{inn.about.context}}
-                    </div>
-                    <h2 class="room-sub-title">
-                        The place
-                    </h2>
-                    <div>
-                        {{inn.about.theSpace}}
-                    </div>
-                    @if(inn.about.note){
-                    <h2 class="room-sub-title">
-                        Note
-                    </h2>
-                    <div>
-                        {{inn.about.note}}
-                    </div>
-                    }
-                </div>
-                <div class="room-divider"></div>
-                @if(inn.amenities){
-                <div class="room-amenities">
-                    <h2 class="room-sub-title">
-                        Amenities
-                    </h2>
-                    <div class="room-amenities-items">
-                        <div class="room-amenities-items-summary">
-                            @for (item of amenitiesSummary; track $index) {
-                            <div class="room-amenity">
-                                <span class="material-symbols-outlined">
-                                    {{item.icon}}
-                                </span>
-                                {{item.amenity}}
+                    <div class="room-divider"></div>
+                    @if(inn.amenities){
+                    <div class="room-amenities">
+                        <h2 class="room-sub-title">
+                            Amenities
+                        </h2>
+                        <div class="room-amenities-items">
+                            <div class="room-amenities-items-summary">
+                                @for (item of amenitiesSummary; track $index) {
+                                <div class="room-amenity">
+                                    <span class="material-symbols-outlined">
+                                        {{item.icon}}
+                                    </span>
+                                    {{item.amenity}}
+                                </div>
+                                }
                             </div>
+                            @if(totalNbOfAmenities>5){
+                            <button class="room-button" (click)="openAmenitiesModal()">
+                                Show all {{totalNbOfAmenities}} amenities
+                            </button>
                             }
                         </div>
-                        @if(totalNbOfAmenities>5){
-                        <button class="room-button" (click)="openAmenitiesModal()">
-                            Show all {{totalNbOfAmenities}} amenities
-                        </button>
-                        }
                     </div>
-                </div>
-                <div class="room-divider"></div>
-                }
-                <div>
-                    <h2 class="room-sub-title">
-                        @if(nbDays){
-                        {{nbDays}} nights in {{inn.city}},{{inn.kingdom}}
-                        } @else {
-                        Select check-in date
-                        }
-                    </h2>
-                    <h3 class="room-sub-sub-title">
-                        @if(nbDays){
-                        {{startingDate?.month+'-'+startingDate?.day+'-'+startingDate?.year | date: "MMM dd, yyyy"}} -
-                        {{endingDate?.month+'-'+endingDate?.day+'-'+endingDate?.year | date: "MMM dd, yyyy"}}
-                        } @else {
-                        Add your travel dates for exact pricing
-                        }
-                    </h3>
-                    <app-calendar [mode]="'normal'" [theme]="'red'" (startingDate)="getStartingDate($event)"
-                        (endingDate)="getEndingDate($event)"></app-calendar>
-                </div>
-            </section>
+                    <div class="room-divider"></div>
+                    }
+                    <div>
+                        <h2 class="room-sub-title">
+                            @if(nbDays){
+                            {{nbDays}} nights in {{inn.city}},{{inn.kingdom}}
+                            } @else {
+                            Select check-in date
+                            }
+                        </h2>
+                        <h3 class="room-sub-sub-title">
+                            @if(nbDays){
+                            {{startingDate?.month+'-'+startingDate?.day+'-'+startingDate?.year | date: "MMM dd, yyyy"}}
+                            -
+                            {{endingDate?.month+'-'+endingDate?.day+'-'+endingDate?.year | date: "MMM dd, yyyy"}}
+                            } @else {
+                            Add your travel dates for exact pricing
+                            }
+                        </h3>
+                        <app-calendar [mode]="'modal'" [theme]="'red'" (startingDate)="getStartingDate($event)"
+                            (endingDate)="getEndingDate($event)"></app-calendar>
+                    </div>
+                </section>
+                <section class="bill-on-rails">
+                    <app-bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
+                        [startingDate]="startingDate" [endingDate]="endingDate"
+                        [maximumNbOfGuests]="inn.lodging.maxNumberOfGuests"></app-bill-room>
+                </section>
+            </div>
         </div>
     </div>
     <app-footer></app-footer>

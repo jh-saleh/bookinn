@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
 import { StaysService } from '../../IoC/service/inn.service';
+import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { FullviewModalComponent } from "../../component/fullview-modal/fullview-modal.component";
@@ -14,7 +15,7 @@ import { Stay } from '../../model/inn/stay.model';
 @Component({
   selector: 'app-room',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent, ImagesViewerComponent, FullviewModalComponent],
+  imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent, ImagesViewerComponent, FullviewModalComponent, BillRoomComponent],
   providers: [CalendarDatesService],
   templateUrl: './room.component.html',
   styleUrl: './room.component.css'
