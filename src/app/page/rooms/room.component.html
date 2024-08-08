@@ -4,7 +4,7 @@
             {{item.icon}}
         </span>
         <span [class.amenity-not-included]="notIncluded">
-            {{item.amenity}}
+            {{item.amenity | camelToSentence}}
         </span>
     </div>
     <div class="modal-divider"></div>
@@ -31,8 +31,10 @@
                             </h2>
                         </div>
                         <div class="room-properties">
-                            {{inn.lodging.maxNumberOfGuests}} guests · {{inn.lodging.nbBedrooms}} bedroom ·
-                            {{inn.lodging.nbBeds}} bed · {{inn.lodging.nbBaths}} baths
+                            {{inn.maxNumberOfGuests}} {{inn.maxNumberOfGuests | pluralize: 'guest'}} ·
+                            {{inn.lodging.nbBedrooms}} {{inn.lodging.nbBedrooms | pluralize: 'bedroom'}} ·
+                            {{inn.lodging.nbBeds}} {{inn.lodging.nbBeds | pluralize: 'bed'}} ·
+                            {{inn.lodging.nbBaths}} {{inn.lodging.nbBaths | pluralize: 'bath'}}
                         </div>
                     </div>
                     <div class="room-divider"></div>
@@ -94,9 +96,9 @@
                         </h2>
                         <h3 class="room-sub-sub-title">
                             @if(nbDays){
-                            {{startingDate?.month+'-'+startingDate?.day+'-'+startingDate?.year | date: "MMM dd, yyyy"}}
+                            {{startingDate | calendarDateFormat: "MMM dd, yyyy"}}
                             -
-                            {{endingDate?.month+'-'+endingDate?.day+'-'+endingDate?.year | date: "MMM dd, yyyy"}}
+                            {{endingDate | calendarDateFormat: "MMM dd, yyyy"}}
                             } @else {
                             Add your travel dates for exact pricing
                             }
@@ -108,22 +110,20 @@
                 <section class="bill-on-rails">
                     <app-bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
                         [startingDate]="startingDate" [endingDate]="endingDate"
-                        [maximumNbOfGuests]="inn.lodging.maxNumberOfGuests"></app-bill-room>
+                        [maximumNbOfGuests]="inn.maxNumberOfGuests"></app-bill-room>
                 </section>
             </div>
+            <div class="room-divider"></div>
+            <guidebook-room [guidebook]="inn.guidebook" [maxNumberOfGuests]="inn.maxNumberOfGuests"
+                [startingDate]="startingDate" [endingDate]="endingDate"></guidebook-room>
         </div>
     </div>
     <app-footer></app-footer>
 </section>
 
-<app-fullview-modal [isModalOpen]="isAmenitiesModalOpen" (closeModal)="closeAmenitiesModal()"
+<full-view-modal [isModalOpen]="isAmenitiesModalOpen" (closeModal)="closeAmenitiesModal()"
     (openModal)="openAmenitiesModal()">
-    <div class="amenities-modal">
-        <button (click)="closeAmenitiesModal()">
-            <span class="material-symbols-outlined">
-                close
-            </span>
-        </button>
+    <div class="full-view-modal-body">
         <h1>
             Amenities
         </h1>
@@ -192,4 +192,4 @@
         }
         }
     </div>
-</app-fullview-modal>
+</full-view-modal>

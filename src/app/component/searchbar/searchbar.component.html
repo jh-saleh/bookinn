@@ -44,11 +44,7 @@
             <div class="nb-of-guests" [class.no-guests]="!totalNbOfGuests" [class.some-guests]="totalNbOfGuests">
                 @if (totalNbOfGuests > 0) {
                 {{totalNbOfGuests}}
-                @if (totalNbOfGuests === 1) {
-                guest
-                }@else {
-                guests
-                }
+                {{totalNbOfGuests | pluralize: 'guest'}}
                 } @else {
                 Add guests
                 }
@@ -61,16 +57,16 @@
         </button>
     </div>
 </div>
-<app-modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
+<modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
     (openModal)="openCalendar()">
     <div [ngClass]="calendarWrapperClass">
         <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)" [mode]="'modal'"
             [theme]="'white'"></app-calendar>
     </div>
-</app-modal>
-<app-modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
+</modal>
+<modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
     (openModal)="openGuests()">
     <div [ngClass]="guestsWrapperClass">
         <app-guests (getGuests)="getGuests($event)"></app-guests>
     </div>
-</app-modal>
+</modal>

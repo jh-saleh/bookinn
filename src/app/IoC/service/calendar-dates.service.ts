@@ -98,21 +98,6 @@ export class CalendarDatesService {
       (_v, i) => { return { position: this.positionIndex++, dayOfTheMonth: i + 1, unavailable: this.isOlderThanCurrentDate(i + 1, month, year) } })];
   }
 
-  getDaysOfTheMonth(year: number, month: Month): CalendarDay[] {
-    return this.days[`${year}-${convertMonthToNumber(month)}`];
-  }
-
-  getMaxYear(): number {
-    return this.maxYear;
-  }
-
-  getNbOfDaysBetweenDates(startDate: CalendarDate, endDate: CalendarDate): number {
-    const date1 = new Date(startDate.year, startDate.month, startDate.day);
-    const date2 = new Date(endDate.year, endDate.month, endDate.day);
-    const millisecondsInOneDay = 1000 * 60 * 60 * 24;
-    return Math.floor((date2.getTime() - date1.getTime()) / millisecondsInOneDay);
-  }
-
   private nextMonth() {
     this.firstMonth = (this.firstMonth % 12) + 1;
     if (this.firstMonth === 1) {
@@ -131,5 +116,62 @@ export class CalendarDatesService {
     this.days[`${this.firstYear}-${this.firstMonth}`]
       = this.generateDaysOfTheMonth(this.firstYear, this.firstMonth);
     this.nextMonth();
+  }
+
+  getDaysOfTheMonth(year: number, month: Month): CalendarDay[] {
+    return this.days[`${year}-${convertMonthToNumber(month)}`];
+  }
+
+  getMaxYear(): number {
+    return this.maxYear;
+  }
+
+  getNbOfDaysBetweenDates(startDate: CalendarDate, endDate: CalendarDate): number {
+    const date1 = this.convertCalendarDateToDay(startDate);
+    const date2 = this.convertCalendarDateToDay(endDate);
+    const millisecondsInOneDay = 1000 * 60 * 60 * 24;
+    return Math.floor((date2.getTime() - date1.getTime()) / millisecondsInOneDay);
+  }
+
+  isStrictlyBeforeDate(otherCalendarDate: CalendarDate, pointOfReferenceCalendarDate: CalendarDate): boolean {
+    const date1 = this.convertCalendarDateToDay(otherCalendarDate);
+    const date2 = this.convertCalendarDateToDay(pointOfReferenceCalendarDate);
+    return date1.getTime() < date2.getTime();
+  }
+
+  isBeforeDate(otherCalendarDate: CalendarDate, pointOfReferenceCalendarDate: CalendarDate): boolean {
+    const date1 = this.convertCalendarDateToDay(otherCalendarDate);
+    const date2 = this.convertCalendarDateToDay(pointOfReferenceCalendarDate);
+    return date1.getTime() <= date2.getTime();
+  }
+
+  isStrictlyAfterDate(otherCalendarDate: CalendarDate, pointOfReferenceCalendarDate: CalendarDate): boolean {
+    const date1 = this.convertCalendarDateToDay(otherCalendarDate);
+    const date2 = this.convertCalendarDateToDay(pointOfReferenceCalendarDate);
+    return date2.getTime() < date1.getTime();
+  }
+
+  isAfterDate(otherCalendarDate: CalendarDate, pointOfReferenceCalendarDate: CalendarDate): boolean {
+    const date1 = this.convertCalendarDateToDay(otherCalendarDate);
+    const date2 = this.convertCalendarDateToDay(pointOfReferenceCalendarDate);
+    return date2.getTime() <= date1.getTime();
+  }
+
+  convertCalendarDateToDay(calendarDate: CalendarDate): Date {
+    return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day);
+  }
+
+  convertDayToCalendarDate(day: Date): CalendarDate {
+    return {
+      year: day.getFullYear(),
+      month: day.getMonth() + 1,
+      day: day.getDate()
+    }
+  }
+
+  substractDaysFromDate(calendarDate: CalendarDate, days: number): CalendarDate {
+    const date: Date = this.convertCalendarDateToDay(calendarDate);
+    date.setDate(date.getDate() - days);
+    return this.convertDayToCalendarDate(date);
   }
 }

@@ -3,13 +3,14 @@ import { Component, ElementRef, HostListener, Input, OnChanges, SimpleChanges, V
 import { css } from '@emotion/css';
 import { CalendarDate } from '../../../IoC/service/calendar-dates.service';
 import { Position } from '../../../model/position/position.model';
+import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { Guests, GuestsComponent } from "../../guests/guests.component";
-import { ModalComponent } from "../../modal/modal.component";
+import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
   selector: 'app-bill-room',
   standalone: true,
-  imports: [CommonModule, ModalComponent, GuestsComponent],
+  imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe],
   templateUrl: './bill-room.component.html',
   styleUrl: './bill-room.component.css'
 })

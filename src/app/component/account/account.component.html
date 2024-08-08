@@ -7,7 +7,7 @@
             account_circle
         </span>
     </span>
-    <app-modal [isModalOpen]="isAccountModalOpen" (closeModal)="closeAccountModal()" (openModal)="openAccountModal()"
+    <modal [isModalOpen]="isAccountModalOpen" (closeModal)="closeAccountModal()" (openModal)="openAccountModal()"
         [classPosition]="buttonPosition">
         <div class="account-modal">
             <a>Sign in</a>
@@ -15,5 +15,5 @@
             <div class="divider-modal"></div>
             <a [href]="portfolioURL" target="_blank">Visit my portfolio !</a>
         </div>
-    </app-modal>
+    </modal>
 </button>

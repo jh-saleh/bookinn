@@ -1,0 +1,71 @@
+@keyframes full-view-modal-wrapper-keyframes {
+    0% {
+        background-color: transparent;
+    }
+
+    100% {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.full-view-modal-wrapper {
+    position: fixed;
+    z-index: 99;
+    top: 0px;
+    left: 0px;
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    place-items: center;
+    color: black;
+    animation: full-view-modal-wrapper-keyframes 150ms linear forwards;
+}
+
+@keyframes full-view-modal-keyframes {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.full-view-modal {
+    position: relative;
+    background-color: white;
+    padding: 0px var(--fullview-modal-padding) var(--fullview-modal-padding) var(--fullview-modal-padding);
+    border-radius: var(--box-border-radius);
+    width: var(--fullview-modal-width);
+    border: 1px var(--black-300) solid;
+    box-shadow: var(--box-shadow);
+    max-height: 80dvh;
+    overflow-y: auto;
+    height: min-content;
+    animation: full-view-modal-keyframes 100ms ease-in forwards;
+}
+
+.full-view-modal-header {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: white;
+    padding-top: var(--fullview-modal-padding);
+}
+
+.full-view-modal-header>button {
+    border: none;
+    color: black;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.full-view-modal-header>button:hover {
+    background-color: var(--background-box-hover);
+}

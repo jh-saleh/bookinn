@@ -1,0 +1,231 @@
+<ng-template #showMoreButton let-openModal="openModal" let-disableOnClickFunction="disableOnClickFunction">
+    <button class="guidebook-button" (click)="openModal(disableOnClickFunction)">
+        <span>
+            Show more
+        </span>
+        <span class="material-symbols-outlined">
+            chevron_right
+        </span>
+    </button>
+</ng-template>
+
+<ng-template #information let-information="information" let-icon="icon" let-included="included"
+    let-validationLabel="validationLabel">
+    <div class="guidebook-item">
+        <span class="material-symbols-outlined">
+            {{icon}}
+        </span>
+        <span>
+            {{information | negation:included:validationLabel | camelToSentence }}
+        </span>
+    </div>
+    <div class="modal-divider"></div>
+</ng-template>
+
+<ng-template #cancellationInformation let-date="date" let-policy="policy">
+    <div class="guidebook-cancellation-item">
+        <div class="guidebook-time">
+            <div>
+                {{date | calendarDateFormat: 'MMM dd, yyyy'}}
+            </div>
+            <div>
+                {{guidebook.houserules.time.interval?.checkIn?.lowerBoundary}}
+            </div>
+        </div>
+        <p class="guidebook-cancellation-policy">
+            {{policy}}
+        </p>
+    </div>
+</ng-template>
+
+<section class="room-guidebook">
+    <h2 class="guidebook-title">
+        Things to know
+    </h2>
+    <div class="things-to-know">
+        <div class="house-rules">
+            <h2 class="guidebook-sub-title">
+                House rules
+            </h2>
+            @if (isTimeCheck) {
+            @if(checkInHours){
+            <div>
+                Check-in {{checkInHours}}
+            </div>
+            }
+            @if(checkOutHours){
+            <div>
+                Checkout {{checkOutHours}}
+            </div>
+            }
+            } @else {
+            <div>
+
+                Flexible check-in
+            </div>
+            }
+            <div>
+                {{maxNumberOfGuests}} {{maxNumberOfGuests | pluralize: 'guest'}} maximum
+            </div>
+            <ng-content *ngTemplateOutlet="showMoreButton; context: {openModal: openHouseRulesModal}"></ng-content>
+        </div>
+        <div class="safety-property">
+            <h2 class="guidebook-sub-title">
+                Safety & property
+            </h2>
+            @for (safetyRule of safetyRules | slice:0:3; track $index) {
+            <div>
+                {{safetyRule.enum| negation:safetyRule.included:'installed' | camelToSentence }}
+            </div>
+            }
+            <ng-content *ngTemplateOutlet="showMoreButton; context: {openModal: openSafetyPropertyModal}"></ng-content>
+        </div>
+        <div class="cancellation-policy">
+            <h2 class="guidebook-sub-title">
+                Cancellation policy
+            </h2>
+            @if(!startingDate && !endingDate){
+            <div>
+                Add your trip dates to get the cancellation details for this stay.
+            </div>
+            } @else {
+            <div>
+                @if(guidebook.cancellationPolicy.fullRefund){
+                Free cancellation before {{fullRefundDate | calendarDateFormat: 'MMM dd, yyyy'}}.
+                }
+                @if(guidebook.cancellationPolicy.partialRefund){
+                Cancel before {{partialRefundDate | calendarDateFormat: 'MMM dd, yyyy'}} for a partial refund.
+                }
+            </div>
+            <div>
+                Review this Host's full policy for details.
+            </div>
+            }
+            <ng-content
+                *ngTemplateOutlet="showMoreButton; context:{openModal: openCancellationPolicyModal, disableOnClickFunction: !startingDate && !endingDate}"></ng-content>
+        </div>
+    </div>
+</section>
+
+<full-view-modal [isModalOpen]="isHouseRulesModalOpen" (openModal)="openHouseRulesModal()"
+    (closeModal)="closeHouseRulesModal()">
+    <div class="full-view-modal-body">
+        <section>
+            <h1>
+                House rules
+            </h1>
+            <p>
+                You'll be staying in someone's home, so please treat it with care and respect.
+            </p>
+        </section>
+        <h2>
+            Checking in and out
+        </h2>
+        @if (isTimeCheck) {
+        @if(checkInHours){
+        <div class="guidebook-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Check-in {{checkInHours}}
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        @if(checkOutHours){
+        <div class="guidebook-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Checkout {{checkOutHours}}
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        } @else {
+        <div class="guidebook-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Flexible check-in
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        <h2>
+            During your stay
+        </h2>
+        <div class="guidebook-item">
+            <span class="material-symbols-outlined">
+                groups
+            </span>
+            <span>
+                {{maxNumberOfGuests}} {{maxNumberOfGuests | pluralize: 'guest'}} maximum
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        @for (stayRule of stayRules; track $index) {
+        <ng-container
+            *ngTemplateOutlet="information; context:{information: stayRule.enum , icon: stayRule.icon, included: stayRule.included, validationLabel: 'allowed'}"></ng-container>
+        }
+        <h2>
+            Before you leave
+        </h2>
+        @for (leaveRule of leaveRules; track $index) {
+        <ng-container
+            *ngTemplateOutlet="information; context:{information: leaveRule.enum , icon: leaveRule.icon}"></ng-container>
+        }
+    </div>
+</full-view-modal>
+<full-view-modal [isModalOpen]="isSafetyPropertyModalOpen" (openModal)="openSafetyPropertyModal()"
+    (closeModal)="closeSafetyPropertyModal()">
+    <div class="full-view-modal-body">
+        <section>
+            <h1>
+                Safety & property
+            </h1>
+            <p>
+                Avoid surprises by looking over these important details about your Host's property.
+            </p>
+        </section>
+        <h2>
+            Safety devices
+        </h2>
+        @for (safetyRule of safetyRules; track $index) {
+        <ng-container
+            *ngTemplateOutlet="information; context:{information: safetyRule.enum , icon: safetyRule.icon, included: safetyRule.included, validationLabel: 'installed'}"></ng-container>
+        }
+    </div>
+</full-view-modal>
+<full-view-modal [isModalOpen]="isCancellationPolicyModalOpen" (openModal)="openCancellationPolicyModal()"
+    (closeModal)="closeCancellationPolicyModal()">
+    <div class="full-view-modal-body">
+        <section>
+            <h1>
+                Cancellation policy
+            </h1>
+            <p>
+                Make sure you’re comfortable with this Host’s policy.
+            </p>
+        </section>
+        <h2>
+            Cancel by
+        </h2>
+        @if(guidebook.cancellationPolicy.fullRefund){
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: fullRefundDate, policy: 'Full refund: Get back 100% of what you paid.'}"></ng-template>
+        <div class="modal-divider"></div>
+        }
+        @if(guidebook.cancellationPolicy.partialRefund){
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: partialRefundDate, policy: 'Partial refund: Get back 50% of every night. No refund of the service fee.'}"></ng-template>
+        <div class="modal-divider"></div>
+        }
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: noRefundDate, policy: 'No refund.'}"></ng-template>
+        <div class="modal-divider"></div>
+    </div>
+</full-view-modal>

@@ -1,4 +1,5 @@
 import { CityName, KingdomName } from "../land/land.model";
+import { CheckType, LeaveRule } from "./guidebook.model";
 import { Stay } from "./stay.model";
 
 export const stays: Stay[] = [
@@ -10,8 +11,8 @@ export const stays: Stay[] = [
         name: "Majestic Castle Bedroom",
         pricePerNight: 21,
         imgsUrls: ["inns/black_castle/1.jpeg", "inns/black_castle/2.jpeg", "inns/black_castle/3.jpeg", "inns/black_castle/4.jpeg", "inns/black_castle/5.jpeg"],
+        maxNumberOfGuests: 2,
         lodging: {
-            maxNumberOfGuests: 2,
             nbBedrooms: 1,
             nbBeds: 2,
             nbBaths: 1,
@@ -22,23 +23,60 @@ export const stays: Stay[] = [
             note: "Mind the dragon guarding the entrance. He is a bit cranky."
         },
         amenities: {
-            "Bath outdoors": true,
-            "Hot water": true,
-            "Host greets you": true,
-            "Lock on bedroom door": true,
-            "Magic air conditioning": true,
-            Bards: true,
-            Dishes: true,
-            Essentials: true,
-            Fireplace: true,
-            Guards: true,
-            Hangers: true,
-            Iron: true,
-            Kitchen: true,
-            Librairies: true,
-            Silverware: true,
-            Tavern: true,
-            Waiter: true,
+            bathOutdoors: true,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: true,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: true,
+            silverware: true,
+            tavern: true,
+            waiter: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "6:00 PM",
+                            upperBoundary: "9:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 5,
+                noRefund: 3
+            }
         }
     },
     {
@@ -49,8 +87,8 @@ export const stays: Stay[] = [
         name: "Cozy Winter Retreat",
         pricePerNight: 25,
         imgsUrls: ["inns/snow/1.jpeg", "inns/snow/2.jpeg", "inns/snow/3.jpeg", "inns/snow/4.jpeg", "inns/snow/5.jpeg"],
+        maxNumberOfGuests: 5,
         lodging: {
-            maxNumberOfGuests: 5,
             nbBedrooms: 3,
             nbBeds: 3,
             nbBaths: 2,
@@ -60,16 +98,40 @@ export const stays: Stay[] = [
             theSpace: "This inviting bedroom is designed to be a warm and cozy haven against the snowy backdrop of Frostgate. The room features a queen-sized bed with soft, fluffy linens and a selection of warm blankets to ensure a snug night’s sleep. Large windows provide beautiful views of the snow-covered landscape, adding to the room’s serene atmosphere. The private bath includes modern fixtures, a shower-tub combo, and plush towels for your comfort.",
         },
         amenities: {
-            "Hot water": true,
-            "Host greets you": true,
-            "Lock on bedroom door": false,
-            Bards: false,
-            Dishes: true,
-            Essentials: true,
-            Fireplace: true,
-            Guards: true,
-            Hangers: false,
-            Silverware: true,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: true,
+            hangers: false,
+            silverware: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 30,
+                partialRefund: 15,
+                noRefund: 5
+            }
         }
     },
     {
@@ -80,8 +142,8 @@ export const stays: Stay[] = [
         name: "Subterranean Haven",
         pricePerNight: 36,
         imgsUrls: ["inns/stone/1.jpeg", "inns/stone/2.jpeg", "inns/stone/3.jpeg"],
+        maxNumberOfGuests: 10,
         lodging: {
-            maxNumberOfGuests: 10,
             nbBedrooms: 1,
             nbBeds: 1,
             nbBaths: 0,
@@ -90,6 +152,34 @@ export const stays: Stay[] = [
             context: "Discover an extraordinary underground retreat in Krynholm historic mine, where modern comfort meets the rugged charm of deep subterranean life. Our unique bedroom, carved from the depths of a working iron mine, offers a one-of-a-kind experience for adventurers and history enthusiasts alike.",
             theSpace: "This distinctive bedroom is set within the depths of Ironcliff’s ancient mine, featuring exposed rock walls and an authentic underground ambiance. The queen-sized bed is outfitted with plush linens and warm blankets, ensuring a cozy stay despite the mine’s cool environment. The private bath is equipped with contemporary amenities, including a rain shower and a deep soaking tub, perfect for relaxing after a day exploring the underground passages.",
             note: "Mind the gap."
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "12:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "12:00 PM"
+                        }
+                    }
+                },
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: false,
+            },
+            cancellationPolicy: {
+                noRefund: 15
+            }
         }
     }
 ];

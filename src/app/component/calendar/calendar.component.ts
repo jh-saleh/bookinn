@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { css } from '@emotion/css';
 import { CalendarDate, CalendarDatesService, CalendarDay } from '../../IoC/service/calendar-dates.service';
 import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
-import { ModalComponent } from "../modal/modal.component";
+import { ModalComponent } from "../windows/modal/modal.component";
 
 @Component({
   selector: 'app-calendar',
@@ -185,14 +185,14 @@ export class CalendarComponent implements OnInit {
   }
 
   sendStartingDate() {
-    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth), 1);
-    date.setDate(date.getDate() + this.daysSelected[0] + 1);
-    this.startingDate.emit({ year: date.getFullYear(), month: date.getMonth(), day: date.getUTCDate() });
+    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth) - 1, 1);
+    date.setDate(date.getDate() + this.daysSelected[0]);
+    this.startingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
   }
 
   sendEndingDate() {
-    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth), 1);
-    date.setDate(date.getDate() + this.daysSelected[1] + 1);
-    this.endingDate.emit({ year: date.getFullYear(), month: date.getMonth(), day: date.getUTCDate() });
+    const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth) - 1, 1);
+    date.setDate(date.getDate() + this.daysSelected[1]);
+    this.endingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
   }
 }

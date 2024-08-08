@@ -1,0 +1,16 @@
+@if(isModalOpen){
+<div class="full-view-modal-wrapper" (click)="closeModalIfClickedOutSide()">
+    <div class="full-view-modal" (click)="preventCloseModalHandler($event)">
+        <div class="full-view-modal-header">
+            <button class="full-view-modal-button" (click)="closeModalHandler()">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        </div>
+        <div>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
+}

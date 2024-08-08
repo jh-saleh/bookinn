@@ -45,6 +45,8 @@ body {
     --b-bar-size-logo: 50px;
     --box-border-radius: 15px;
     --button-border-radius: 10px;
+    --fullview-modal-width: 40dvw;
+    --fullview-modal-padding: 20px;
 
     /*shadow*/
     --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
@@ -58,4 +60,38 @@ body {
     ::-webkit-scrollbar-track {
         width: 0px;
     }
+}
+
+/*Modal components*/
+.full-view-modal-body>section {
+    padding: 10px 0px 25px 0px;
+}
+
+.full-view-modal-body>h1 {
+    padding: 30px 0px;
+    font-size: x-large;
+}
+
+.full-view-modal-body>*>h1 {
+    padding: 15px 0px;
+    font-size: x-large;
+}
+
+.full-view-modal-body>h2 {
+    padding: 20px 0px;
+    font-size: large;
+}
+
+.full-view-modal-body>button {
+    border: none;
+    color: black;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.full-view-modal-body>button:hover {
+    background-color: var(--background-box-hover);
 }

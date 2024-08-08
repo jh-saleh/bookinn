@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Position } from '../../model/position/position.model';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../windows/modal/modal.component';
 
 @Component({
   selector: 'app-account',

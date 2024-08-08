@@ -1,21 +1,21 @@
 export enum Amenity {
-    Hotwater = "Hot water",
-    BathOutdoors = "Bath outdoors",
-    Hangers = "Hangers",
-    Essentials = "Essentials",
-    Iron = "Iron",
-    Bards = "Bards",
-    Librairies = "Librairies",
-    Fireplace = "Fireplace",
-    MagicAirConditioning = "Magic air conditioning",
-    Kitchen = "Kitchen",
-    Dishes = "Dishes",
-    Silverware = "Silverware",
-    HostGreetsYou = "Host greets you",
-    Tavern = "Tavern",
-    Waiter = "Waiter",
-    LockOnBedroomDoor = "Lock on bedroom door",
-    Guards = "Guards"
+    Hotwater = "hotWater",
+    BathOutdoors = "bathOutdoors",
+    Hangers = "hangers",
+    Essentials = "essentials",
+    Iron = "iron",
+    Bards = "bards",
+    Librairies = "librairies",
+    Fireplace = "fireplace",
+    MagicAirConditioning = "magicAirConditioning",
+    Kitchen = "kitchen",
+    Dishes = "dishes",
+    Silverware = "silverware",
+    HostGreetsYou = "hostGreetsYou",
+    Tavern = "tavern",
+    Waiter = "waiter",
+    LockOnBedroomDoor = "lockOnBedroomDoor",
+    Guards = "guards"
 }
 
 export enum AmenityType {
@@ -29,7 +29,7 @@ export enum AmenityType {
     NotIncluded = "NotIncluded"
 }
 
-export const amenitiesLink: Record<Amenity, { type: AmenityType, icon: string }> = {
+export const amenitiesTable: Record<Amenity, { type: AmenityType, icon: string }> = {
     [Amenity.Hotwater]: { type: AmenityType.Bathroom, icon: "heat" },
     [Amenity.BathOutdoors]: { type: AmenityType.Bathroom, icon: "bath_outdoor" },
     [Amenity.Hangers]: { type: AmenityType.Bedroom, icon: "checkroom" },
@@ -49,29 +49,29 @@ export const amenitiesLink: Record<Amenity, { type: AmenityType, icon: string }>
     [Amenity.Guards]: { type: AmenityType.PrivacyAndSafety, icon: "shield" }
 }
 
-export interface AminityLink {
+export interface AminityRow {
     amenity: Amenity;
     icon: string;
 }
 
-export const extractAmenities = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, AminityLink[]>> => {
-    let output: Partial<Record<AmenityType, AminityLink[]>> = {};
+export const extractAmenities = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, AminityRow[]>> => {
+    let output: Partial<Record<AmenityType, AminityRow[]>> = {};
     for (const amenity in amenities) {
         const castAmenity: Amenity = amenity as Amenity;
         if ((amenities[castAmenity]) !== undefined) {
             if (!amenities[castAmenity]) {
                 const amenityType = AmenityType.NotIncluded;
                 if (output.hasOwnProperty(amenityType)) {
-                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon });
+                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesTable[castAmenity].icon });
                 } else {
-                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon }]
+                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesTable[castAmenity].icon }]
                 }
             } else {
-                const amenityType = amenitiesLink[castAmenity].type;
+                const amenityType = amenitiesTable[castAmenity].type;
                 if (output.hasOwnProperty(amenityType)) {
-                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon });
+                    output[amenityType]?.push({ amenity: castAmenity, icon: amenitiesTable[castAmenity].icon });
                 } else {
-                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesLink[castAmenity].icon }]
+                    output[amenityType] = [{ amenity: castAmenity, icon: amenitiesTable[castAmenity].icon }]
                 }
             }
         }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FullviewModalComponent } from './fullview-modal.component';
+import { GuidebookRoomComponent } from './guidebook-room.component';
 
-describe('FullviewModalComponent', () => {
-  let component: FullviewModalComponent;
-  let fixture: ComponentFixture<FullviewModalComponent>;
+describe('GuidebookRoomComponent', () => {
+  let component: GuidebookRoomComponent;
+  let fixture: ComponentFixture<GuidebookRoomComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FullviewModalComponent]
+      imports: [GuidebookRoomComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FullviewModalComponent);
+    fixture = TestBed.createComponent(GuidebookRoomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
