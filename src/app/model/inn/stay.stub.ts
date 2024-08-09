@@ -5,6 +5,7 @@ import { Stay } from "./stay.model";
 export const stays: Stay[] = [
     {
         id: "4df2b632-44ab-49a5-8d08-fd8e85af8efb",
+        hostId: "cf64d4d5-d122-49c7-8025-0c2a6c0edbd2",
         city: CityName.Ironcliff,
         kingdom: KingdomName.Orlond,
         ratings: 1.2,
@@ -81,6 +82,7 @@ export const stays: Stay[] = [
     },
     {
         id: "7191838b-f93b-4dad-a66f-2b8892fab112",
+        hostId: "cf64d4d5-d122-49c7-8025-0c2a6c0edbd2",
         city: CityName.Frostgate,
         kingdom: KingdomName.Orlond,
         ratings: 4,
@@ -136,6 +138,7 @@ export const stays: Stay[] = [
     },
     {
         id: "c3743e0a-4687-4415-85c3-b613fa052daa",
+        hostId: "7da91f15-7500-4c75-bcaf-df7e4229fcaa",
         city: CityName.Krynholm,
         kingdom: KingdomName.Orlond,
         ratings: 4.6,

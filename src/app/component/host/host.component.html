@@ -1,0 +1,40 @@
+<section class="host-section">
+    <h2 class="host-title">
+        Meet your Host
+    </h2>
+    <div class="host-body">
+        <div class="host-card">
+            <img [src]="host.imgSrc" alt="host-photo" />
+            <h1>
+                {{host.firstname}} {{host.lastname}}
+            </h1>
+            <div>
+                Started hosting in {{host.firstYearOfHosting}}
+            </div>
+        </div>
+        <div class="host-detail-wrapper">
+            <div class="host-detail">
+                <h3>Host details</h3>
+                <div>Response rate: {{host.efficiency.rate}}%</div>
+                @if(isEfficiencyWithinHours){
+                @if(host.efficiency.time.amount < 5){<div>Responds within a few hours.
+            </div>
+            } @else {
+            <div>Responds within {{host.efficiency.time.amount}} hours.</div>
+            }
+            }@else {
+            <div>Responds within a {{host.efficiency.time.amount}} day period.</div>
+            }
+        </div>
+        <div class="main-divider"></div>
+        <div class="host-warning">
+            <span class="material-symbols-outlined host-detail-icon">
+                warning
+            </span>
+            <span>
+                To protect your payment, never transfer money or communicate outside of the BookInn website or app.
+            </span>
+        </div>
+    </div>
+    </div>
+</section>

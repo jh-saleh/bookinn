@@ -25,8 +25,8 @@ export class ImagesViewerComponent {
       this.imagesViewerWrapperClass = css`
       height: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 29dvw);
-      gap: 1dvw;
+      grid-template-columns: repeat(2, 29.5dvw);
+      gap: 0.5dvw;
       > img {
         width: 100%;
         border-top-left-radius: var(--box-border-radius);
@@ -38,9 +38,10 @@ export class ImagesViewerComponent {
       this.imagesViewerClass = css`
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 14dvw);
-      gap: 1dvw;
+      grid-template-columns: repeat(2, 14.75dvw);
+      gap: 0.5dvw;
       img {
+        height: 14.5dvw;
         width: 100%;
         object-fit: cover;
         object-position: center;

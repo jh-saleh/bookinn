@@ -95,3 +95,11 @@ body {
 .full-view-modal-body>button:hover {
     background-color: var(--background-box-hover);
 }
+
+.main-divider {
+    display: grid;
+    width: 100%;
+    border-bottom: 1px white solid;
+    height: 1px;
+    margin: 5px 0px;
+}

@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 .b-logo {
     display: grid;
     grid-template-columns: repeat(2, min-content);

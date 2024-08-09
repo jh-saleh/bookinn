@@ -5,6 +5,7 @@ import { Lodging } from "./lodging.model";
 
 export class Stay {
     id!: string;
+    hostId!: string;
     name!: string;
     kingdom!: KingdomName;
     city!: CityName;
