@@ -54,7 +54,11 @@ export interface AminityRow {
     icon: string;
 }
 
-export const extractAmenities = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, AminityRow[]>> => {
+export interface AminitySummaryRow extends AminityRow {
+    included: boolean;
+}
+
+export const extractAmenitiesData = (amenities: Partial<Record<Amenity, boolean>>): Partial<Record<AmenityType, AminityRow[]>> => {
     let output: Partial<Record<AmenityType, AminityRow[]>> = {};
     for (const amenity in amenities) {
         const castAmenity: Amenity = amenity as Amenity;

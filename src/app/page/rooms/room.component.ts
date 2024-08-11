@@ -12,11 +12,12 @@ import { HostComponent } from "../../component/host/host.component";
 import { ImagesViewerComponent } from "../../component/images-viewer/images-viewer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
-import { AmenityType, AminityRow, extractAmenities } from '../../model/inn/amenity.model';
+import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/inn/amenity.model';
 import { Host } from '../../model/inn/host.model';
 import { Stay } from '../../model/inn/stay.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
+import { NegationPipe } from '../../pipe/negation.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 
 @Component({
@@ -24,7 +25,7 @@ import { PluralizePipe } from '../../pipe/pluralize.pipe';
   standalone: true,
   imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
-    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostComponent],
+    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostComponent, NegationPipe],
   providers: [CalendarDatesService],
   templateUrl: './room.component.html',
   styleUrl: './room.component.css'
@@ -34,7 +35,7 @@ export class RoomComponent implements OnInit {
   inn!: Stay;
   host!: Host;
   amenities!: Partial<Record<AmenityType, AminityRow[]>>;
-  amenitiesSummary: AminityRow[] = [];
+  amenitiesSummary: AminitySummaryRow[] = [];
   totalNbOfAmenities!: number;
   startingDate: CalendarDate | undefined;
   endingDate: CalendarDate | undefined;
@@ -49,17 +50,17 @@ export class RoomComponent implements OnInit {
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.inn = this.staysService.getStay(this.roomId ?? "");
     this.host = this.hostService.getHost(this.inn.hostId);
-    this.amenities = extractAmenities(this.inn.amenities ?? {});
+    this.amenities = extractAmenitiesData(this.inn.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();
     this.totalNbOfAmenities = Object.keys(this.inn.amenities ?? {}).length;
   }
 
-  extractAmenitiesSummary(): AminityRow[] {
-    const output: AminityRow[] = [];
+  extractAmenitiesSummary(): AminitySummaryRow[] {
+    const output: AminitySummaryRow[] = [];
     for (const amenityType in AmenityType) {
       const amenity = this.amenities[amenityType as AmenityType];
       if (amenity !== undefined) {
-        output.push({ amenity: amenity[0].amenity, icon: amenity[0].icon });
+        output.push({ ...amenity[0], included: (amenityType as AmenityType) !== AmenityType.NotIncluded });
       }
     }
     return output;

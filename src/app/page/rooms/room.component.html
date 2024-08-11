@@ -73,7 +73,7 @@
                                     <span class="material-symbols-outlined">
                                         {{item.icon}}
                                     </span>
-                                    {{item.amenity | camelToSentence}}
+                                    {{item.amenity | negation:item.included | camelToSentence}}
                                 </div>
                                 }
                             </div>
