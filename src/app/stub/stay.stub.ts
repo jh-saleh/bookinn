@@ -285,5 +285,70 @@ export const stays: Stay[] = [
                 noRefund: 15
             }
         }
+    },
+    {
+        id: "217140f7-afa7-4ee0-8876-e9f95921babe",
+        hostId: "8ae3c716-18c6-448d-a237-0ccd101d869c",
+        city: CityName.Shadowfen,
+        kingdom: KingdomName.Orlond,
+        ratings: 4.3,
+        name: "Willow's Edge Inn",
+        pricePerNight: 33,
+        imgsUrls: ["inns/swamp/1.jpeg", "inns/swamp/2.jpeg", "inns/swamp/3.jpeg", "inns/swamp/4.jpeg", "inns/swamp/5.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Escape to the tranquil village of Shadowfen, a hidden gem nestled deep within a lush, mystical swamp. Known for its ethereal beauty and serene landscapes, Shadowfen offers a unique getaway where nature and tranquility reign supreme. The Willow’s Edge Inn is your perfect retreat for immersing yourself in the enchanting marshland, surrounded by whispering willows and reflective waters.",
+            theSpace: "Welcome to your marshland haven at The Willow’s Edge Inn. Our inn features a beautifully appointed room that blends rustic charm with modern comfort. The space is adorned with rich wooden furnishings, soft, earthy tones, and charming details that echo the natural beauty of the swamp.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            fireplace: true,
+            magicAirConditioning: true,
+            waiter: false,
+            tavern: true
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "11:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.LockUp,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 20,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
     }
 ];

@@ -69,5 +69,28 @@ export const hosts: Host[] = [
             },
             rate: 52,
         }
+    },
+    {
+        id: "8ae3c716-18c6-448d-a237-0ccd101d869c",
+        firstname: "Thorne",
+        lastname: "Willowbend",
+        firstYearOfHosting: 1600,
+        imgSrc: "./hosts/wizard/3.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "217140f7-afa7-4ee0-8876-e9f95921babe",
+        ],
+        shortDescription: `Welcome, dear guest! I’m Morgana Blackthorn, your enchanting host at The Willow’s Edge Inn, 
+        tucked away in the mystical village of Shadowfen. As a seasoned witch with a deep affinity for the arcane arts, 
+        I am delighted to offer you a stay infused with the magic and serenity of our unique swamp environment.`,
+        efficiency: {
+            time: {
+                type: "days",
+                amount: 25,
+            },
+            rate: 5,
+        }
     }
 ];

@@ -38,7 +38,8 @@ enum Biome {
     River,
     Tundra,
     Marsh,
-    DesertOasis
+    DesertOasis,
+    Island
 }
 
 export enum CityName {
@@ -107,12 +108,12 @@ export const world: World = [
             },
             {
                 name: CityName.Mirros,
-                biome: Biome.Coastal,
+                biome: Biome.Desert,
                 economy: [Economy.Fishing, Economy.Shipbuilding]
             },
             {
                 name: CityName.Drakenshore,
-                biome: Biome.Swamp,
+                biome: Biome.Island,
                 economy: [Economy.Alchemy, Economy.HerbalRemedies]
             },
             {
@@ -122,7 +123,7 @@ export const world: World = [
             },
             {
                 name: CityName.Briarholm,
-                biome: Biome.Forest,
+                biome: Biome.Island,
                 economy: [Economy.Hunting, Economy.FurTrade]
             },
             {
