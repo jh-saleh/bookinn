@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { css } from '@emotion/css';
 import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
@@ -13,21 +13,31 @@ import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
   templateUrl: './date-input.component.html',
   styleUrl: './date-input.component.css'
 })
-export class DateInputComponent implements OnInit {
+export class DateInputComponent implements AfterViewInit, OnInit {
   @Input({ required: true }) label!: string;
   _date: CalendarDate | undefined;
   @Input({ required: true }) set date(value: CalendarDate | undefined) {
     this._date = value;
     this.inputValue = this.calendarDateFormatPipe.transform(this._date, "MM/dd/yyyy") ?? '';
+    this.isValidDate = true;
   };
   get date(): CalendarDate | undefined {
     return this._date;
   }
   @Input() set borderRadius(value: "left" | "right" | undefined) {
+    const leftBorder = css`
+      border-left: 1px var(--black-300) solid;
+    `;
+    const rightBorder = css`
+      border-right: 1px var(--black-300) solid;
+    `;
     if (value) {
       this.borderRadiusClass = css`
       border-top-${value}-radius: var(--box-border-radius);
       border-bottom-${value}-radius: var(--box-border-radius);
+      border-top: 1px var(--black-300) solid;
+      border-bottom: 1px var(--black-300) solid;
+      ${value === "left" ? leftBorder : rightBorder}
     `;
     }
   };
@@ -38,15 +48,22 @@ export class DateInputComponent implements OnInit {
   placeHolderLabel: "Add dates" | "MM/DD/YYYY" = "Add dates";
   inputValue: string = '';
   isValidDate: boolean = true;
-  isRequired: boolean = false;
+  @Input() minDate: CalendarDate | undefined;
+  @Input() maxDate: CalendarDate | undefined;
 
   constructor(private calendarDateFormatPipe: CalendarDateFormatPipe, private calendarDateService: CalendarDatesService) {
 
   }
 
+  ngAfterViewInit(): void {
+    if (this.focusOnInit) {
+      this.inputRef?.nativeElement.focus();
+    }
+  }
+
   ngOnInit(): void {
     if (this.focusOnInit) {
-      this.focusInput();
+      this.onFocusHandler();
     }
   }
 
@@ -66,7 +83,7 @@ export class DateInputComponent implements OnInit {
   onBlurHandler() {
     this.resetPlaceholderLabel();
     this.evaluateDate();
-    if (this.isValidDate && !this.isRequired) {
+    if (this.inputValue && this.isValidDate) {
       this.sendDate.emit(this.calendarDateService.convertStringToCalendarDate(this.inputValue));
     }
   }
@@ -96,11 +113,16 @@ export class DateInputComponent implements OnInit {
 
   evaluateDate() {
     if (this.inputValue) {
-      this.isRequired = false;
-      this.isValidDate = this.validateDate(this.inputValue) && this.calendarDateService.isDateInsideCalendar(this.calendarDateService.convertStringToCalendarDate(this.inputValue));
+      if (this.validateDate(this.inputValue)) {
+        const inputCalendarDate = this.calendarDateService.convertStringToCalendarDate(this.inputValue);
+        this.isValidDate = this.calendarDateService.isDateInsideCalendar(inputCalendarDate)
+          && (!this.minDate || (this.minDate && this.calendarDateService.isStrictlyAfterDate(inputCalendarDate, this.minDate)))
+          && (!this.maxDate || (this.maxDate && this.calendarDateService.isStrictlyBeforeDate(inputCalendarDate, this.maxDate)));
+      } else {
+        this.isValidDate = false;
+      }
     } else {
       this.isValidDate = true;
-      this.isRequired = true;
     }
   }
 }

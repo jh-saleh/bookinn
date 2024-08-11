@@ -13,7 +13,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
 export class AccountComponent {
   isAccountModalOpen: boolean = false;
   buttonPosition: Position = { top: 0, left: 0 };
-  @ViewChild("accountRef") accountRef: ElementRef<HTMLButtonElement> | undefined;
+  @ViewChild("accountRef") accountRef: ElementRef<HTMLSpanElement> | undefined;
   readonly portfolioURL: string = environment.portfolioURL;
 
   closeAccountModal(): void {
