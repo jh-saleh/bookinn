@@ -92,5 +92,28 @@ export const hosts: Host[] = [
             },
             rate: 5,
         }
+    },
+    {
+        id: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
+        firstname: "Eliza",
+        lastname: "Meadowbrook",
+        firstYearOfHosting: 2001,
+        imgSrc: "./hosts/generic/forest1.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "f8ef70af-d80f-46f2-9253-27d58a7d9b4b",
+            "10562195-0896-4966-843c-da049b723c01",
+            "2fb49e55-5275-4531-9e41-c77c0c467aa9"
+        ],
+        shortDescription: `Greetings, traveler! I’m Eliza Meadowbrook, your host at The Golden Fields Inn in the charming village of Goldhaven. As a lifelong resident of this picturesque countryside, I’m thrilled to welcome you to our serene haven amidst the rolling wheat fields and vibrant animal farms.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 1,
+            },
+            rate: 95,
+        }
     }
 ];

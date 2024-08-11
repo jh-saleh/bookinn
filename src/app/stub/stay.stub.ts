@@ -350,5 +350,203 @@ export const stays: Stay[] = [
                 noRefund: 5
             }
         }
+    },
+    {
+        id: "f8ef70af-d80f-46f2-9253-27d58a7d9b4b",
+        hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
+        city: CityName.Goldhaven,
+        kingdom: KingdomName.Orlond,
+        ratings: 5.0,
+        name: "Golden Fields Inn",
+        pricePerNight: 610,
+        imgsUrls: ["inns/wheat/1.jpeg", "inns/wheat/2.jpeg", "inns/wheat/3.jpeg", "inns/wheat/4.jpeg", "inns/wheat/5.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 4,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to The Golden Fields Inn, your idyllic escape nestled in the picturesque village of Goldhaven. Situated in the heart of a sprawling plain dotted with golden wheat fields and vibrant animal farms, Goldhaven offers a serene and bucolic retreat away from the hustle and bustle of city life. Immerse yourself in the natural beauty and agricultural charm of this enchanting village, where rolling fields and pastoral landscapes create a truly tranquil environment.",
+            theSpace: "Your room at The Golden Fields Inn is a cozy haven designed to reflect the rustic elegance of Goldhaven’s countryside. The room features a comfortable king-sized bed adorned with soft linens, a charming wooden wardrobe, and a cozy armchair perfect for relaxing with a good book. The large windows offer stunning views of the expansive wheat fields and the gentle sweep of the plains, providing a serene backdrop to your stay.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            fireplace: false,
+            waiter: true,
+            tavern: true,
+            hotWater: true,
+            iron: true,
+            silverware: true,
+            bards: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: false,
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 5,
+                noRefund: 1
+            }
+        }
+    },
+    {
+        id: "10562195-0896-4966-843c-da049b723c01",
+        hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
+        city: CityName.Goldhaven,
+        kingdom: KingdomName.Orlond,
+        ratings: 4.7,
+        name: "Harvest Homestead Inn",
+        pricePerNight: 823,
+        imgsUrls: ["inns/wheat/5.jpeg", "inns/wheat/6.jpeg", "inns/wheat/7.jpeg"],
+        maxNumberOfGuests: 6,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 6,
+            nbBaths: 3,
+        },
+        about: {
+            context: "Welcome to The Harvest Homestead Inn, your perfect retreat in the idyllic village of Goldhaven. Located in the heart of a vast plain where golden wheat fields stretch as far as the eye can see, and vibrant animal farms create a picturesque rural landscape, Goldhaven offers a serene escape into the countryside. Enjoy the tranquility of open spaces and the charm of traditional farming life as you relax in our welcoming inn.",
+            theSpace: "Your room at The Harvest Homestead Inn is designed to capture the rustic elegance of Goldhaven’s countryside. The room features a plush queen-sized bed adorned with soft, country-style linens, a handcrafted wooden dresser, and a cozy reading nook with a comfy armchair. Large windows offer breathtaking views of the expansive wheat fields and lush pastures, allowing you to soak in the natural beauty of the plains.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            fireplace: false,
+            waiter: true,
+            tavern: true,
+            hotWater: true,
+            iron: true,
+            silverware: true,
+            bards: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: false,
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 5,
+                noRefund: 1
+            }
+        }
+    },
+    {
+        id: "2fb49e55-5275-4531-9e41-c77c0c467aa9",
+        hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
+        city: CityName.Goldhaven,
+        kingdom: KingdomName.Orlond,
+        ratings: 4.5,
+        name: "Wheatfield Inn",
+        pricePerNight: 635,
+        imgsUrls: ["inns/wheat/2.jpeg", "inns/wheat/4.jpeg", "inns/wheat/6.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 4,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to The Wheatfield Inn, your serene escape in the picturesque village of Goldhaven. Nestled in the heart of a sprawling plain dotted with golden wheat fields and vibrant animal farms, Goldhaven is the perfect destination for those seeking tranquility and a taste of rural life. Experience the charm of wide-open spaces, where rolling fields and pastoral landscapes provide a peaceful retreat from the everyday hustle.",
+            theSpace: "At The Wheatfield Inn, we offer a cozy and inviting atmosphere that captures the essence of countryside living. Your room is designed with rustic elegance, featuring a comfortable king-sized bed with soft, farm-inspired linens, a vintage wooden armoire, and a small seating area perfect for relaxing after a day of exploration.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            fireplace: false,
+            waiter: true,
+            tavern: true,
+            hotWater: true,
+            iron: true,
+            silverware: true,
+            bards: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: false,
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 5,
+                noRefund: 1
+            }
+        }
     }
 ];
