@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Stay } from '../../model/inn/stay.model';
-import { stays } from '../../model/inn/stay.stub';
+import { stays } from '../../stub/stay.stub';
 
 @Injectable({
   providedIn: 'root'

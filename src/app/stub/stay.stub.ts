@@ -1,6 +1,6 @@
-import { CityName, KingdomName } from "../land/land.model";
-import { CheckType, LeaveRule } from "./guidebook.model";
-import { Stay } from "./stay.model";
+import { CheckType, LeaveRule } from "../model/inn/guidebook.model";
+import { Stay } from "../model/inn/stay.model";
+import { CityName, KingdomName } from "../model/land/land.model";
 
 export const stays: Stay[] = [
     {
@@ -174,6 +174,107 @@ export const stays: Stay[] = [
                     pets: true,
                     smoking: false,
                     parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: false,
+            },
+            cancellationPolicy: {
+                noRefund: 15
+            }
+        }
+    },
+    {
+        id: "f20873fc-1a4a-4625-857b-4c847fa7752c",
+        hostId: "998171ce-a502-4bc2-89d8-7d700e4bf6c3",
+        city: CityName.Brightwater,
+        kingdom: KingdomName.Orlond,
+        ratings: 2.8,
+        name: "Seafarer's Inn",
+        pricePerNight: 9,
+        imgsUrls: ["inns/sea/1.jpeg", "inns/sea/2.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg", "inns/sea/5.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to The Seafarer's Inn, a charming retreat nestled in the bustling port city of Brightwater. Known for its vibrant markets, rich history, and stunning ocean views, Brightwater is a city where the sea meets the land in perfect harmony. Whether you’re here to explore the lively harbor, savor fresh seafood, or simply relax by the water, The Seafarer’s Inn offers an ideal base for your adventures.",
+            theSpace: "Your room at The Seafarer’s Inn is a cozy and inviting space designed to reflect the maritime charm of Brightwater. The room features a comfortable queen-sized bed with crisp linens, a writing desk positioned by a large window overlooking the busy harbor, and an en-suite bathroom equipped with all the essentials, including complimentary toiletries. The décor combines nautical elements with warm, earthy tones, creating a serene ambiance that will make you feel right at home. The window offers a breathtaking view of the harbor, where you can watch ships sail in and out, seagulls glide across the sky, and the sun set over the water.Guests are also welcome to enjoy the inn’s common areas, including a cozy lounge with a small library filled with seafaring tales, and a peaceful garden courtyard where you can unwind after a day of explorin",
+            note: "Please don't feed the bull frogs.",
+        },
+        amenities: {
+            bathOutdoors: true,
+            essentials: true,
+            lockOnBedroomDoor: true,
+            guards: false,
+            hostGreetsYou: true,
+            waiter: false,
+            fireplace: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                noRefund: 2
+            }
+        }
+    },
+    {
+        id: "eab8c84e-1811-4c9b-95e8-606bf9d25eda",
+        hostId: "998171ce-a502-4bc2-89d8-7d700e4bf6c3",
+        city: CityName.Brightwater,
+        kingdom: KingdomName.Orlond,
+        ratings: 2.1,
+        name: "Coastal Haven",
+        pricePerNight: 13,
+        imgsUrls: ["inns/sea/3.jpeg", "inns/sea/4.jpeg", "inns/sea/5.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 0,
+        },
+        about: {
+            context: "Welcome to The Coastal Haven Inn, a delightful retreat nestled in the serene outskirts of Brightwater. Just a short stroll from the bustling harbor, our inn offers a tranquil escape surrounded by lush gardens and scenic views. Brightwater’s vibrant port city atmosphere is just a heartbeat away, but at The Coastal Haven, you’ll find a peaceful sanctuary where you can unwind and recharge.",
+            theSpace: "Step into your private garden suite, designed to be your home away from home. This spacious suite features a luxurious king-sized bed with plush linens, a cozy sitting area for reading or relaxation, and a well-appointed kitchenette perfect for preparing light meals. The suite’s large windows offer panoramic views of the meticulously maintained gardens, where you can enjoy the beauty of nature right from your room. The en-suite bathroom includes a rain shower, fluffy towels, and premium toiletries to enhance your comfort.For those warm, sunny days, a private terrace allows you to savor your morning coffee or evening drink while overlooking the serene garden. Guests also have access to our lovely communal spaces, including a charming garden gazebo and a tranquil pond area.",
+        },
+        amenities: {
+            bathOutdoors: false,
+            essentials: true,
+            lockOnBedroomDoor: true,
+            guards: false,
+            hostGreetsYou: false,
+            waiter: false,
+            fireplace: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                ],
+                stay: {
+                    pets: true,
+                    smoking: true,
                 }
             },
             safety: {

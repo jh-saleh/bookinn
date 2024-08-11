@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Host } from '../../model/inn/host.model';
-import { hosts } from '../../model/inn/host.stub';
+import { hosts } from '../../stub/host.stub';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { Host } from "./host.model";
+import { Host } from "../model/inn/host.model";
 
 export const hosts: Host[] = [
     {
@@ -45,4 +45,29 @@ export const hosts: Host[] = [
             rate: 10,
         }
     },
+    {
+        id: "998171ce-a502-4bc2-89d8-7d700e4bf6c3",
+        firstname: "Liyrax",
+        lastname: "Marinthal",
+        firstYearOfHosting: 1986,
+        imgSrc: "./hosts/aquareth/1.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "f20873fc-1a4a-4625-857b-4c847fa7752c",
+            "eab8c84e-1811-4c9b-95e8-606bf9d25eda"
+        ],
+        shortDescription: `Greetings! I am Liyrax, your host at The Seafarer's Inn, located in the heart of Brightwater.
+        I have lived in Brightwater all my life, and I am passionate about sharing the hidden treasures of this vibrant port city 
+        with my guests. Whether it is directing you to the best seafood restaurants, guiding you to secret spots along the coastline, 
+        or sharing tales of the sea, I am here to ensure your stay is memorable.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 15,
+            },
+            rate: 52,
+        }
+    }
 ];
