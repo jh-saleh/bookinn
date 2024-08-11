@@ -2,7 +2,7 @@
     position: fixed;
     align-items: start;
     top: 0px;
-    z-index: 2;
+    z-index: 999;
     width: 100%;
     background-color: var(--background);
 }

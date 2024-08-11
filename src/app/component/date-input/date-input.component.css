@@ -1,0 +1,35 @@
+.date-input {
+    padding: 7px;
+    cursor: pointer;
+    user-select: none;
+
+    :first-child {
+        font-size: small;
+        font-weight: bold;
+    }
+
+    background-color: white;
+}
+
+.date-input:focus-within {
+    border-radius: var(--button-border-radius);
+    outline: 2px black solid;
+    position: relative;
+    z-index: 1;
+}
+
+.date-input>input {
+    outline: none;
+    border: none;
+    width: 130px;
+}
+
+.empty-date {
+    color: var(--black-300)
+}
+
+.date-input-error-msg {
+    padding: 10px;
+    font-size: small;
+    color: var(--error-color);
+}

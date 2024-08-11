@@ -13,6 +13,11 @@ export interface CalendarDay {
   unavailable?: boolean;
 }
 
+interface CalendarInterval {
+  minCalendarDate: CalendarDate;
+  maxCalendarDate: CalendarDate;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +52,21 @@ export class CalendarDatesService {
       month: currentMonth,
       year: currentYear,
     };
+  }
+
+  private getCalendarDateInterval(): CalendarInterval {
+    return {
+      minCalendarDate: {
+        day: this.currentDay,
+        month: this.currentMonth,
+        year: this.currentYear
+      },
+      maxCalendarDate: {
+        day: this.getNbOfDaysFromMonth(this.currentMonth, this.currentYear + this.maxYear),
+        month: this.currentMonth,
+        year: this.currentYear + this.maxYear
+      }
+    }
   }
 
   private fillEmptyDaySlot(day: Days): number {
@@ -169,9 +189,35 @@ export class CalendarDatesService {
     }
   }
 
+  convertStringToCalendarDate(dateString: string): CalendarDate {
+    const [month, day, year] = dateString.split('/').map(Number);
+
+    return {
+      year: year,
+      month: month,
+      day: day
+    };
+  }
+
   substractDaysFromDate(calendarDate: CalendarDate, days: number): CalendarDate {
     const date: Date = this.convertCalendarDateToDay(calendarDate);
     date.setDate(date.getDate() - days);
     return this.convertDayToCalendarDate(date);
+  }
+
+  isDateInsideCalendar(calendarDate: CalendarDate): boolean {
+    if (calendarDate) {
+      const { minCalendarDate, maxCalendarDate } = this.getCalendarDateInterval();
+      return this.isAfterDate(calendarDate, minCalendarDate) && this.isBeforeDate(calendarDate, maxCalendarDate);
+    }
+    return false;
+  }
+
+  getCalendarDatePosition(calendarDate: CalendarDate): number {
+    const { minCalendarDate, maxCalendarDate } = this.getCalendarDateInterval();
+    if (this.isStrictlyBeforeDate(calendarDate, minCalendarDate) || this.isStrictlyAfterDate(calendarDate, maxCalendarDate)) {
+      throw Error("The calendar date is outside of the scope of the calendar.");
+    }
+    return this.getNbOfDaysBetweenDates(minCalendarDate, calendarDate) + this.currentDay - 1;
   }
 }

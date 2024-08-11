@@ -54,7 +54,6 @@ export class GuidebookRoomComponent {
   _startingDate: CalendarDate | undefined;
   @Input({ required: true }) set startingDate(date: CalendarDate | undefined) {
     this._startingDate = date;
-    console.log("startingDate", date);
     if (date) {
       if (this.guidebook.cancellationPolicy.fullRefund) {
         this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(date, this.guidebook.cancellationPolicy.fullRefund);

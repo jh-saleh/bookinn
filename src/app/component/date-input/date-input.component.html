@@ -1,0 +1,18 @@
+<section class="date-input" [ngClass]="borderRadiusClass" (click)="focusInput()">
+    <div>
+        {{label}}
+    </div>
+    <input #inputRef [class.empty-date]="!date && inputValue.length === 0"
+        [value]="date | calendarDateFormat: 'MM/dd/yyyy'" [placeholder]="placeHolderLabel" (focus)="onFocusHandler()"
+        (blur)="onBlurHandler()" [(ngModel)]="inputValue" (input)="evaluateDate()" />
+</section>
+@if(isRequired){
+<div class="date-input-error-msg">
+    The field is required.
+</div>
+}
+@if (!isValidDate) {
+<div class="date-input-error-msg">
+    This date is unavailable.
+</div>
+}

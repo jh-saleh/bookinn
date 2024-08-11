@@ -11,14 +11,14 @@
         }
     </div>
     <div class="bill-selection">
-        <div class="bill-dates">
+        <div #calendarSelectionRef class="bill-dates" (click)="openCalendar()">
             <span class="bill-check-in-selected">
                 <div>
                     CHECK IN
                 </div>
                 <div [class.bill-check-in-empty-date]="!startingDate">
                     @if (startingDate) {
-                    {{startingDate.month+'-'+startingDate.day+'-'+startingDate.year | date: "MMM dd, yyyy"}}
+                    {{startingDate | calendarDateFormat: "MMM dd, yyyy"}}
                     }@else {
                     Add date
                     }
@@ -31,12 +31,40 @@
                 </div>
                 <div [class.bill-check-out-empty-date]="!endingDate">
                     @if(endingDate){
-                    {{endingDate.month+'-'+endingDate.day+'-'+endingDate.year | date: "MMM dd, yyyy"}}
+                    {{endingDate | calendarDateFormat: "MMM dd, yyyy"}}
                     } @else {
                     Add date
                     }
                 </div>
             </span>
+            @if(isCalendarOpen){
+            <div class="bill-calendar">
+                <div class="bill-calendar-header">
+                    <div class="bill-summary-selected-dates">
+                        @if (!startingDate || !endingDate) {
+                        <h1>
+                            Select dates
+                        </h1>
+                        } @else {
+                        <h1>
+                            {{nbOfNights}} {{nbOfNights | pluralize: 'night'}}
+                        </h1>
+                        <div>{{startingDate | calendarDateFormat: "MMM dd, yyyy"}} - {{endingDate | calendarDateFormat:
+                            "MMM dd, yyyy"}}</div>
+                        }
+                    </div>
+                    <div class="bill-date-selection">
+                        <date-input [focusOnInit]="true" [borderRadius]="'left'" [label]="'CHECK IN'"
+                            [date]="startingDate" (sendDate)="getStartingDate($event)"></date-input>
+                        <date-input [borderRadius]="'right'" [label]="'CHECK OUT'" [date]="endingDate"
+                            (sendDate)="getEndingDate($event)"></date-input>
+                    </div>
+                </div>
+                <calendar [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'"
+                    (sendEndingDate)="getEndingDate($event)" (sendStartingDate)="getStartingDate($event)"
+                    [theme]="'white'"></calendar>
+            </div>
+            }
         </div>
         <div #billGuestsSelection class="bill-guests-wrapper">
             <div class="bill-guests" (click)="openGuestsModal()">

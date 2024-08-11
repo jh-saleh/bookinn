@@ -6,7 +6,7 @@ import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, get
 import { ModalComponent } from "../windows/modal/modal.component";
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'calendar',
   standalone: true,
   imports: [ModalComponent, CommonModule],
   templateUrl: './calendar.component.html',
@@ -28,8 +28,9 @@ export class CalendarComponent implements OnInit {
   selectedDate!: CalendarDate;
   clickPointer: number | undefined;
   daysSelected: number[] = [];
-  @Output() startingDate = new EventEmitter<CalendarDate | undefined>();
-  @Output() endingDate = new EventEmitter<CalendarDate | undefined>();
+  readonly week: string[] = Object.values(DaysShortHand);
+  @Output() sendStartingDate = new EventEmitter<CalendarDate | undefined>();
+  @Output() sendEndingDate = new EventEmitter<CalendarDate | undefined>();
   dayWrapper: string = css`
     width: ${this.mode === 'modal' ? 45 : 35}px;
     height: ${this.mode === 'modal' ? 45 : 35}px;
@@ -42,7 +43,6 @@ export class CalendarComponent implements OnInit {
         height: ${this._mode === 'modal' ? 45 : 35}px;
     `;
   }
-
   bgColorClass: string = "";
   colorClass: string = "";
   disabledColorClass: string = "";
@@ -68,6 +68,8 @@ export class CalendarComponent implements OnInit {
     :hover{
       background-color: ${isThemeWhite ? "var(--background-box-hover)" : "var(--crimson-400)"};
       outline: 1px ${isThemeWhite ? "black" : "white"} solid;
+      position: relative;
+      z-index: 1;
     }
     `;
     this.pathDayClass = css`
@@ -90,8 +92,26 @@ export class CalendarComponent implements OnInit {
       }
     `;
   }
+  @Input() set initStartingDate(date: CalendarDate | undefined) {
+    if (date && this.calendarDatesService.isDateInsideCalendar(date)) {
+      const position = this.calendarDatesService.getCalendarDatePosition(date);
+      this.selectDate(position, 0);
+    }
 
-  readonly week: string[] = Object.values(DaysShortHand);
+    if (date === undefined) {
+      this.resetSelectedDatesWithoutEmittingToParent();
+    }
+  }
+  @Input() set initEndingDate(date: CalendarDate | undefined) {
+    if (date && this.calendarDatesService.isDateInsideCalendar(date)) {
+      const position = this.calendarDatesService.getCalendarDatePosition(date);
+      this.selectDate(position, 1);
+    }
+
+    if (date === undefined) {
+      this.resetSelectedDatesWithoutEmittingToParent();
+    }
+  }
 
   constructor(private calendarDatesService: CalendarDatesService) {
 
@@ -155,7 +175,7 @@ export class CalendarComponent implements OnInit {
     this.updateAccessToMonthsButton();
   }
 
-  selectDate(position: number) {
+  selectDateOnClickHandler(position: number) {
     if (this.clickPointer === undefined) {
       this.clickPointer = 0;
     }
@@ -170,29 +190,38 @@ export class CalendarComponent implements OnInit {
     }
     this.daysSelected[this.clickPointer] = position;
     if (this.clickPointer === 0) {
-      this.sendStartingDate();
+      this.sendStartingDateHandler();
     }
     if (this.clickPointer === 1) {
-      this.sendEndingDate();
+      this.sendEndingDateHandler();
     }
+  }
+
+  selectDate(position: number, clickPointer: 0 | 1) {
+    this.daysSelected[clickPointer] = position;
   }
 
   resetSelectedDates() {
     this.clickPointer = undefined;
     this.daysSelected = [];
-    this.startingDate.emit(undefined);
-    this.endingDate.emit(undefined);
+    this.sendStartingDate.emit(undefined);
+    this.sendEndingDate.emit(undefined);
   }
 
-  sendStartingDate() {
+  resetSelectedDatesWithoutEmittingToParent() {
+    this.clickPointer = undefined;
+    this.daysSelected = [];
+  }
+
+  sendStartingDateHandler() {
     const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth) - 1, 1);
     date.setDate(date.getDate() + this.daysSelected[0]);
-    this.startingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
+    this.sendStartingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
   }
 
-  sendEndingDate() {
+  sendEndingDateHandler() {
     const date = new Date(this.currentYear, convertMonthToNumber(this.currentMonth) - 1, 1);
     date.setDate(date.getDate() + this.daysSelected[1]);
-    this.endingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
+    this.sendEndingDate.emit(this.calendarDatesService.convertDayToCalendarDate(date));
   }
 }

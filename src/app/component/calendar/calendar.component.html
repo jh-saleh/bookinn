@@ -14,7 +14,7 @@
                 [ngClass]="[dayWrapper, colorClass, daysSelected[0] !== value.position && daysSelected[1] !== value.position ? hoverBgClass : '']"
                 class="day"
                 [class.selected-day]="daysSelected[0] === value.position || daysSelected[1] === value.position"
-                (click)="selectDate(value.position)">
+                (click)="selectDateOnClickHandler(value.position)">
                 {{value.dayOfTheMonth}}
             </span>
         </span>

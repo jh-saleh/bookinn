@@ -1,22 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { css } from '@emotion/css';
 import { CalendarDate } from '../../../IoC/service/calendar-dates.service';
 import { Position } from '../../../model/position/position.model';
+import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
+import { CalendarComponent } from "../../calendar/calendar.component";
+import { DateInputComponent } from "../../date-input/date-input.component";
 import { Guests, GuestsComponent } from "../../guests/guests.component";
 import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
   selector: 'app-bill-room',
   standalone: true,
-  imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe],
+  imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
   templateUrl: './bill-room.component.html',
   styleUrl: './bill-room.component.css'
 })
 export class BillRoomComponent implements OnChanges {
   @Input({ required: true }) startingDate: CalendarDate | undefined;
   @Input({ required: true }) endingDate: CalendarDate | undefined;
+  @Output() sendStartingDate = new EventEmitter<CalendarDate | undefined>();
+  @Output() sendEndingDate = new EventEmitter<CalendarDate | undefined>();
   @Input({ required: true }) basePricePerNight: number | undefined;
   pricePerNight: number | undefined;
   @Input({ required: true }) maximumNbOfGuests: number = 1;
@@ -49,9 +54,11 @@ export class BillRoomComponent implements OnChanges {
   VAT: number = 0;
   completeBill: number = 0;
   @ViewChild("billGuestsSelection") billGuestsSelectionRef: ElementRef<HTMLDivElement> | undefined;
+  @ViewChild("calendarSelectionRef") calendarSelectionRef: ElementRef<HTMLDivElement> | undefined;
   isGuestsModalOpen: boolean = false;
   guestsPosition: Position = { top: 0, left: 0 };
   guestsModalWrapper: string = "";
+  isCalendarOpen: boolean = false;
 
   ngOnChanges(changes: SimpleChanges): void {
     const { nbOfNights } = changes;
@@ -108,5 +115,22 @@ export class BillRoomComponent implements OnChanges {
     if (this.billGuestsSelectionRef && !this.billGuestsSelectionRef.nativeElement.contains(target) && this.isGuestsModalOpen) {
       this.isGuestsModalOpen = false;
     }
+    if (this.calendarSelectionRef && !this.calendarSelectionRef.nativeElement.contains(target) && this.isCalendarOpen) {
+      this.isCalendarOpen = false;
+    }
+  }
+
+  openCalendar() {
+    this.isCalendarOpen = true;
+  }
+
+  getStartingDate(calendarDate: CalendarDate | undefined) {
+    this.startingDate = calendarDate;
+    this.sendStartingDate.emit(this.startingDate);
+  }
+
+  getEndingDate(calendarDate: CalendarDate | undefined) {
+    this.endingDate = calendarDate;
+    this.sendEndingDate.emit(this.endingDate);
   }
 }

@@ -103,14 +103,16 @@
                             Add your travel dates for exact pricing
                             }
                         </h3>
-                        <app-calendar [mode]="'modal'" [theme]="'red'" (startingDate)="getStartingDate($event)"
-                            (endingDate)="getEndingDate($event)"></app-calendar>
+                        <calendar [mode]="'modal'" [theme]="'red'" [initStartingDate]="startingDate"
+                            [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event)"
+                            (sendEndingDate)="getEndingDate($event)"></calendar>
                     </div>
                 </section>
                 <section class="bill-on-rails">
                     <app-bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
                         [startingDate]="startingDate" [endingDate]="endingDate"
-                        [maximumNbOfGuests]="inn.maxNumberOfGuests"></app-bill-room>
+                        [maximumNbOfGuests]="inn.maxNumberOfGuests" (sendStartingDate)="getStartingDate($event)"
+                        (sendEndingDate)="getEndingDate($event)"></app-bill-room>
                 </section>
             </div>
             <div class="room-divider"></div>

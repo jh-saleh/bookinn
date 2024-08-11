@@ -22,7 +22,7 @@
                 @if(!startingDate){
                 Add dates
                 } @else {
-                {{startingDate.month+'-'+startingDate.day+'-'+startingDate.year| date: "MMM dd"}}
+                {{startingDate | calendarDateFormat: "MMM dd"}}
                 }
             </div>
         </div>
@@ -34,7 +34,7 @@
                 @if(!endingDate){
                 Add dates
                 } @else {
-                {{endingDate.month+'-'+endingDate.day+'-'+endingDate.year| date: "MMM dd"}}
+                {{endingDate | calendarDateFormat: "MMM dd"}}
                 }
             </div>
         </div>
@@ -60,8 +60,8 @@
 <modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
     (openModal)="openCalendar()">
     <div [ngClass]="calendarWrapperClass">
-        <app-calendar (startingDate)="setStartingDate($event)" (endingDate)="setEndingDate($event)" [mode]="'modal'"
-            [theme]="'white'"></app-calendar>
+        <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)" [mode]="'modal'"
+            [theme]="'white'"></calendar>
     </div>
 </modal>
 <modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"

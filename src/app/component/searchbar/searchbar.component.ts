@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CalendarDate } from '../../IoC/service/calendar-dates.service';
 import { Position } from '../../model/position/position.model';
+import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarComponent } from "../calendar/calendar.component";
 import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
@@ -13,7 +14,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe],
+  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })

@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PluralizePipe implements PipeTransform {
 
-  transform(value: number, originalString: string): string {
-    if (value > 1) {
+  transform(value: number | undefined, originalString: string): string {
+    if (value && value > 1) {
       return `${originalString}s`;
     }
     return originalString;
