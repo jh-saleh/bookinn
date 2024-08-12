@@ -128,3 +128,11 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.room-map {
+    color: white;
+}
+
+.room-map-header {
+    margin-bottom: 20px;
+}

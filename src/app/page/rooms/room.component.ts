@@ -10,6 +10,7 @@ import { FooterComponent } from "../../component/footer/footer.component";
 import { GuidebookRoomComponent } from "../../component/guidebook/guidebook-room/guidebook-room.component";
 import { HostComponent } from "../../component/host/host.component";
 import { ImagesViewerComponent } from "../../component/images-viewer/images-viewer.component";
+import { MapComponent } from '../../component/map/map.component';
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
 import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/inn/amenity.model';
@@ -25,7 +26,8 @@ import { PluralizePipe } from '../../pipe/pluralize.pipe';
   standalone: true,
   imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
-    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostComponent, NegationPipe],
+    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostComponent, NegationPipe,
+    MapComponent],
   providers: [CalendarDatesService],
   templateUrl: './room.component.html',
   styleUrl: './room.component.css'
