@@ -6,8 +6,14 @@ export const stays: Stay[] = [
     {
         id: "4df2b632-44ab-49a5-8d08-fd8e85af8efb",
         hostId: "cf64d4d5-d122-49c7-8025-0c2a6c0edbd2",
-        city: CityName.Ironcliff,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Ironcliff,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 170,
+                y: 800,
+            }
+        },
         ratings: 1.2,
         name: "Majestic Castle Bedroom",
         pricePerNight: 21,
@@ -83,8 +89,14 @@ export const stays: Stay[] = [
     {
         id: "7191838b-f93b-4dad-a66f-2b8892fab112",
         hostId: "cf64d4d5-d122-49c7-8025-0c2a6c0edbd2",
-        city: CityName.Frostgate,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Frostgate,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 250,
+                y: 900,
+            }
+        },
         ratings: 4,
         name: "Cozy Winter Retreat",
         pricePerNight: 25,
@@ -139,8 +151,14 @@ export const stays: Stay[] = [
     {
         id: "c3743e0a-4687-4415-85c3-b613fa052daa",
         hostId: "7da91f15-7500-4c75-bcaf-df7e4229fcaa",
-        city: CityName.Krynholm,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Krynholm,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 470,
+                y: 800,
+            }
+        },
         ratings: 4.6,
         name: "Subterranean Haven",
         pricePerNight: 36,
@@ -188,8 +206,14 @@ export const stays: Stay[] = [
     {
         id: "f20873fc-1a4a-4625-857b-4c847fa7752c",
         hostId: "998171ce-a502-4bc2-89d8-7d700e4bf6c3",
-        city: CityName.Brightwater,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Brightwater,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 255,
+                y: 310,
+            }
+        },
         ratings: 2.8,
         name: "Seafarer's Inn",
         pricePerNight: 9,
@@ -239,8 +263,14 @@ export const stays: Stay[] = [
     {
         id: "eab8c84e-1811-4c9b-95e8-606bf9d25eda",
         hostId: "998171ce-a502-4bc2-89d8-7d700e4bf6c3",
-        city: CityName.Brightwater,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Brightwater,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 255,
+                y: 310,
+            }
+        },
         ratings: 2.1,
         name: "Coastal Haven",
         pricePerNight: 13,
@@ -289,8 +319,14 @@ export const stays: Stay[] = [
     {
         id: "217140f7-afa7-4ee0-8876-e9f95921babe",
         hostId: "8ae3c716-18c6-448d-a237-0ccd101d869c",
-        city: CityName.Shadowfen,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Shadowfen,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 740,
+                y: 535,
+            }
+        },
         ratings: 4.3,
         name: "Willow's Edge Inn",
         pricePerNight: 33,
@@ -354,8 +390,14 @@ export const stays: Stay[] = [
     {
         id: "f8ef70af-d80f-46f2-9253-27d58a7d9b4b",
         hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
-        city: CityName.Goldhaven,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Goldhaven,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 870,
+                y: 480,
+            }
+        },
         ratings: 5.0,
         name: "Golden Fields Inn",
         pricePerNight: 610,
@@ -420,8 +462,14 @@ export const stays: Stay[] = [
     {
         id: "10562195-0896-4966-843c-da049b723c01",
         hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
-        city: CityName.Goldhaven,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Goldhaven,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 870,
+                y: 480,
+            }
+        },
         ratings: 4.7,
         name: "Harvest Homestead Inn",
         pricePerNight: 823,
@@ -486,8 +534,14 @@ export const stays: Stay[] = [
     {
         id: "2fb49e55-5275-4531-9e41-c77c0c467aa9",
         hostId: "8d78b3f7-cd06-430b-8c3e-f68a93d06bca",
-        city: CityName.Goldhaven,
-        kingdom: KingdomName.Orlond,
+        location: {
+            city: CityName.Goldhaven,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 870,
+                y: 480,
+            }
+        },
         ratings: 4.5,
         name: "Wheatfield Inn",
         pricePerNight: 635,
@@ -546,6 +600,136 @@ export const stays: Stay[] = [
                 fullRefund: 10,
                 partialRefund: 5,
                 noRefund: 1
+            }
+        }
+    },
+    {
+        id: "9a1414b8-13b4-45e7-a490-f982b9d46712",
+        hostId: "889c580e-ead8-473e-bf35-54f51319cacd",
+        location: {
+            city: CityName.Redleaf,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 250,
+                y: 400,
+            }
+        },
+        ratings: 2.7,
+        name: "The Crimson Maple Inn",
+        pricePerNight: 42,
+        imgsUrls: ["inns/forest/red/3.jpeg", "inns/forest/red/4.jpeg", "inns/forest/red/5.jpeg"],
+        maxNumberOfGuests: 2,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to The Crimson Maple Inn, a serene haven in the heart of Redleaf, known for its stunning red-leaved trees and celebrated herbal exports. This inn provides a perfect blend of comfort, charm, and nature, making it an ideal retreat for those seeking relaxation and a connection with the natural beauty of the region.",
+            theSpace: "Our elegantly appointed rooms offer a cozy sanctuary with a touch of rustic charm. Each room is furnished with a plush king-sized bed, a private bathroom, and large windows that flood the space with natural light and offer views of Redleaf’s famous crimson canopy.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: false,
+            hostGreetsYou: true,
+            hotWater: false,
+            dishes: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "3:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 25,
+                partialRefund: 15,
+                noRefund: 10
+            }
+        }
+    },
+    {
+        id: "660f3aba-0bc9-4b08-9aec-e4a3e0fa4b27",
+        hostId: "889c580e-ead8-473e-bf35-54f51319cacd",
+        location: {
+            city: CityName.Redleaf,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 250,
+                y: 400,
+            }
+        },
+        ratings: 2.3,
+        name: "Redleaf Retreat Inn",
+        pricePerNight: 35,
+        imgsUrls: ["inns/forest/red/1.jpeg", "inns/forest/red/2.jpeg", "inns/forest/red/3.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to our charming inn, nestled in the heart of Redleaf, a city famous for its vibrant red-leaved trees and world-renowned herbal exports. Our cozy room offers a tranquil retreat for travelers seeking both relaxation and a touch of nature’s healing powers.",
+            theSpace: "This intimate room is perfect for solo travelers or couples, featuring a comfortable queen-sized bed, a private ensuite bathroom, and a window that opens up to breathtaking views of Redleaf’s iconic trees. The room is tastefully decorated with natural elements, evoking the serene ambiance of the surrounding landscape.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: false,
+            hostGreetsYou: true,
+            hotWater: false,
+            dishes: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "3:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 17,
+                partialRefund: 10,
+                noRefund: 3
             }
         }
     }

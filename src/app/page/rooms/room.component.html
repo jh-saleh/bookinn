@@ -27,7 +27,7 @@
                     <div class="room-summary">
                         <div>
                             <h2 class="room-sub-title">
-                                Inn's bedroom in {{inn.city}}, {{inn.kingdom}}
+                                Inn's bedroom in {{inn.location.city}}, {{inn.location.kingdom}}
                             </h2>
                         </div>
                         <div class="room-properties">
@@ -77,7 +77,7 @@
                                 </div>
                                 }
                             </div>
-                            @if(totalNbOfAmenities>5){
+                            @if(totalNbOfAmenities>5 || isThereNotIncludedAmenities){
                             <button class="room-button" (click)="openAmenitiesModal()">
                                 Show all {{totalNbOfAmenities}} amenities
                             </button>
@@ -89,7 +89,7 @@
                     <div>
                         <h2 class="room-sub-title">
                             @if(nbDays){
-                            {{nbDays}} {{nbDays | pluralize: 'night'}} in {{inn.city}},{{inn.kingdom}}
+                            {{nbDays}} {{nbDays | pluralize: 'night'}} in {{inn.location.city}},{{inn.location.kingdom}}
                             } @else {
                             Select check-in date
                             }
@@ -122,10 +122,12 @@
                         Where you’ll be
                     </h2>
                     <p>
-                        {{inn.city}}, {{inn.kingdom}}
+                        {{inn.location.city}}, {{inn.location.kingdom}}
                     </p>
                 </div>
-                <app-map></app-map>
+                <div class="room-map-body">
+                    <app-map [zoom]="2" [coordinates]="inn.location.coordinates"></app-map>
+                </div>
                 <div class="room-divider"></div>
             </div>
             <host [host]="host"></host>

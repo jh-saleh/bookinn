@@ -4,8 +4,8 @@
     <div class="home-body">
         @for (inn of inns; track $index) {
         <a [routerLink]="['/room', inn.id]">
-            <app-card [city]="inn.city" [kingdom]="inn.kingdom" [name]="inn.name" [pricePerNight]="inn.pricePerNight"
-                [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></app-card>
+            <app-card [city]="inn.location.city" [kingdom]="inn.location.kingdom" [name]="inn.name"
+                [pricePerNight]="inn.pricePerNight" [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></app-card>
         </a>
         }
     </div>

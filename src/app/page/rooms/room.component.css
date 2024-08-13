@@ -136,3 +136,7 @@
 .room-map-header {
     margin-bottom: 20px;
 }
+
+.room-map-body {
+    height: 400px;
+}

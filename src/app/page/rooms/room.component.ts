@@ -39,6 +39,7 @@ export class RoomComponent implements OnInit {
   amenities!: Partial<Record<AmenityType, AminityRow[]>>;
   amenitiesSummary: AminitySummaryRow[] = [];
   totalNbOfAmenities!: number;
+  isThereNotIncludedAmenities!: boolean;
   startingDate: CalendarDate | undefined;
   endingDate: CalendarDate | undefined;
   nbDays: number | undefined;
@@ -54,6 +55,7 @@ export class RoomComponent implements OnInit {
     this.host = this.hostService.getHost(this.inn.hostId);
     this.amenities = extractAmenitiesData(this.inn.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();
+    this.isThereNotIncludedAmenities = this.amenities[AmenityType.NotIncluded] ? this.amenities[AmenityType.NotIncluded].length > 0 : false;
     this.totalNbOfAmenities = Object.keys(this.inn.amenities ?? {}).length;
   }
 

@@ -115,5 +115,27 @@ export const hosts: Host[] = [
             },
             rate: 95,
         }
+    },
+    {
+        id: "889c580e-ead8-473e-bf35-54f51319cacd",
+        firstname: "Elena",
+        lastname: "Hartley",
+        firstYearOfHosting: 2001,
+        imgSrc: "./hosts/generic/mountains.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "9a1414b8-13b4-45e7-a490-f982b9d46712",
+            "660f3aba-0bc9-4b08-9aec-e4a3e0fa4b27",
+        ],
+        shortDescription: `Elena Hartley is the proud owner of Redleaf Retreat Inn and a lifelong resident of the picturesque city of Redleaf. With a background in herbal medicine, Elena has spent years cultivating her passion for natural health and wellness. Her expertise in the local flora, particularly the healing herbs that Redleaf is famous for, has made her a respected figure in the community.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 14,
+            },
+            rate: 80,
+        }
     }
 ];

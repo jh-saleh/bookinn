@@ -1,14 +1,13 @@
-import { CityName, KingdomName } from "../land/land.model";
 import { Amenity } from "./amenity.model";
 import { GuideBook } from "./guidebook.model";
+import { Location } from "./location.model";
 import { Lodging } from "./lodging.model";
 
 export class Stay {
     id!: string;
     hostId!: string;
     name!: string;
-    kingdom!: KingdomName;
-    city!: CityName;
+    location!: Location;
     pricePerNight!: number;
     ratings!: number;
     imgsUrls!: string[];
