@@ -933,4 +933,136 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "34105491-58ae-4f26-8716-cf0d34660780",
+        hostId: "2d8289ce-efdd-4808-b3cb-1dec58b8c21e",
+        location: {
+            city: CityName.Willowgrove,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 450,
+                y: 420,
+            }
+        },
+        ratings: 3.2,
+        name: "Whispering Pines Inn",
+        pricePerNight: 23,
+        imgsUrls: ["inns/normal/1.jpeg", "inns/normal/2.jpeg", "inns/normal/3.jpeg"],
+        maxNumberOfGuests: 2,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Escape to Whispering Pines Inn, nestled deep within the tranquil woods of Willowgrove. This charming village, enveloped by the serenity of the ancient forest, offers a peaceful retreat from the hustle and bustle of daily life. Our inn is a haven of comfort and calm, perfect for nature lovers and those seeking solace in the heart of the forest.",
+            theSpace: "Your room at Whispering Pines Inn is a cozy sanctuary designed to blend seamlessly with the natural surroundings. The queen-sized bed, adorned with soft linens and a handwoven quilt, promises a restful night’s sleep to the gentle lullaby of the forest. Large windows allow you to gaze out at the lush greenery and listen to the whispering leaves.",
+            note: "The lake is within 30 mins of walking."
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: false,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 15,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
+    },
+    {
+        id: "90105f53-f88f-47e3-bcaf-c14de552ef51",
+        hostId: "2d8289ce-efdd-4808-b3cb-1dec58b8c21e",
+        location: {
+            city: CityName.Willowgrove,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 450,
+                y: 420,
+            }
+        },
+        ratings: 3.5,
+        name: "Enchanted Glade Inn",
+        pricePerNight: 28,
+        imgsUrls: ["inns/normal/3.jpeg", "inns/normal/1.jpeg", "inns/normal/4.jpeg"],
+        maxNumberOfGuests: 2,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Discover the magic of The Enchanted Glade Inn, a picturesque retreat tucked away in the heart of Willowgrove’s ancient forest. This charming inn offers an escape into a realm of tranquility and natural beauty, where every corner of the inn reflects the serene splendor of the surrounding woods. Perfect for those seeking peace and a touch of enchantment, our inn is your gateway to a restful and rejuvenating getaway.",
+            theSpace: "Your room at The Enchanted Glade Inn is designed to be a haven of comfort and elegance. The king-sized bed, adorned with plush linens and a soft throw blanket, ensures a restful sleep under the gentle glow of moonlight filtering through the large, forest-facing windows. The room's decor combines rustic charm with modern amenities, creating a soothing environment for relaxation.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: false,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "2:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: true,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 15,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
+    },
 ];

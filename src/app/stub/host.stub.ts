@@ -180,5 +180,27 @@ export const hosts: Host[] = [
             },
             rate: 42,
         }
+    },
+    {
+        id: "2d8289ce-efdd-4808-b3cb-1dec58b8c21e",
+        firstname: "Gideon",
+        lastname: "Oakwood",
+        firstYearOfHosting: 2000,
+        imgSrc: "./hosts/generic/forest1.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "34105491-58ae-4f26-8716-cf0d34660780",
+            "90105f53-f88f-47e3-bcaf-c14de552ef51"
+        ],
+        shortDescription: `Meet Gideon Oakwood, the welcoming host of Whispering Pines Inn. Gideon is a lifelong resident of Willowgrove with a deep-rooted connection to the forest. Once a dedicated forester, Gideon’s passion for the natural world led him to transition from working in the woods to hosting guests seeking a serene escape in this enchanting village.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 2,
+            },
+            rate: 55,
+        }
     }
 ];
