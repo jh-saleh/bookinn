@@ -202,5 +202,28 @@ export const hosts: Host[] = [
             },
             rate: 55,
         }
+    },
+    {
+        id: "b91151a5-f788-4108-8019-b404620d3b57",
+        firstname: "Cyrus",
+        lastname: "Ashen",
+        firstYearOfHosting: 2002,
+        imgSrc: "./hosts/generic/desert1.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "ecb441ef-f998-4c5a-9423-a49e632e054a",
+            "2ea1b2f0-a1e6-476a-b3a9-c13786439146",
+            "87342843-1f7e-4940-b046-f942c5e2ede0",
+        ],
+        shortDescription: `Meet Cyrus Ashen, the charismatic host of Golden Mirage Inn. A native of Sunspire, Cyrus has spent his life exploring the desert and its many secrets. With a deep passion for the mystical and a love for the rich culture of his homeland, Cyrus opened Golden Mirage Inn to share the beauty and magic of Sunspire with travelers from around the world.`,
+        efficiency: {
+            time: {
+                type: "days",
+                amount: 20,
+            },
+            rate: 70,
+        }
     }
 ];

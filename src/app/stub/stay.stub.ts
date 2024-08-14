@@ -1065,4 +1065,199 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "ecb441ef-f998-4c5a-9423-a49e632e054a",
+        hostId: "b91151a5-f788-4108-8019-b404620d3b57",
+        location: {
+            city: CityName.Sunspire,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 920,
+                y: 300,
+            }
+        },
+        ratings: 2.3,
+        name: "Golden Mirage Inn",
+        pricePerNight: 28,
+        imgsUrls: ["inns/desert/1.jpeg", "inns/desert/2.jpeg", "inns/desert/3.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Golden Mirage Inn, a luxurious retreat located in the heart of Sunspire, a mesmerizing city on a desertic island surrounded by golden dunes and mystical stones. This enchanting inn offers a unique blend of comfort and adventure, perfect for those seeking a serene escape or an unforgettable experience in a land where the sun never truly sets.",
+            theSpace: "Your suite at Golden Mirage Inn is a tranquil sanctuary that echoes the beauty of the surrounding desert. The king-sized bed is draped in sumptuous linens and positioned to offer breathtaking views of the golden dunes that stretch out as far as the eye can see. The decor combines traditional desert motifs with modern elegance, creating a space that is both soothing and inspiring.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "8:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "2:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 17,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "2ea1b2f0-a1e6-476a-b3a9-c13786439146",
+        hostId: "b91151a5-f788-4108-8019-b404620d3b57",
+        location: {
+            city: CityName.Sunspire,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 920,
+                y: 300,
+            }
+        },
+        ratings: 2.3,
+        name: "Sands of Solace Inn",
+        pricePerNight: 28,
+        imgsUrls: ["inns/desert/3.jpeg", "inns/desert/4.jpeg", "inns/desert/5.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Sands of Solace Inn, an enchanting desert retreat in the mystical city of Sunspire. Nestled amidst the golden dunes of this remote island, our inn offers a perfect blend of comfort, luxury, and the natural wonder of the desert. Whether you seek adventure among the towering dunes or simply wish to bask in the serene beauty of the endless sands, Sands of Solace Inn provides a tranquil oasis for all travelers.",
+            theSpace: "The Duneview Suite at Sands of Solace Inn offers a luxurious escape with breathtaking views of the golden desert. The queen-sized bed, draped in crisp, cool linens, faces a large window that perfectly frames the ever-shifting dunes. The room is elegantly decorated with natural materials and desert-inspired tones, creating a harmonious blend of modern comfort and timeless beauty.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "8:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "2:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 17,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "87342843-1f7e-4940-b046-f942c5e2ede0",
+        hostId: "b91151a5-f788-4108-8019-b404620d3b57",
+        location: {
+            city: CityName.Sunspire,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 920,
+                y: 300,
+            }
+        },
+        ratings: 2.3,
+        name: "Eclipse Oasis Inn",
+        pricePerNight: 28,
+        imgsUrls: ["inns/desert/5.jpeg", "inns/desert/2.jpeg", "inns/desert/1.jpeg", "inns/desert/3.jpeg", "inns/desert/4.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Eclipse Oasis Inn, a luxurious desert sanctuary located in the mystical city of Sunspire. Perched on the edge of the island's golden dunes, this inn offers a peaceful retreat where the golden sands meet the endless sky. Ideal for those seeking both relaxation and adventure, Eclipse Oasis Inn provides a unique blend of comfort and the natural wonder of Sunspire’s enchanted desert.",
+            theSpace: "The Sunlit Serenity Suite is a haven of tranquility, designed to capture the essence of the desert’s beauty. The king-sized bed, draped in luxurious linens, is perfectly positioned to offer uninterrupted views of the golden dunes through floor-to-ceiling windows. The suite is elegantly decorated with natural textures and warm tones, reflecting the desert landscape.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "8:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "2:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 17,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
 ];
