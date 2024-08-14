@@ -867,4 +867,70 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "e100411d-0371-48af-847a-7b106379ef16",
+        hostId: "9f4b8cc3-db20-486c-a708-73bfb5b0e8c1",
+        location: {
+            city: CityName.Stormwatch,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 870,
+                y: 710,
+            }
+        },
+        ratings: 1.4,
+        name: "Tempest’s Edge Inn",
+        pricePerNight: 23,
+        imgsUrls: ["inns/sea/5.jpeg", "inns/sea/4.jpeg", "inns/sea/3.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 4,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Tempest’s Edge Inn, a charming seaside retreat perched on the cliffs of Stormwatch, where the ocean meets the sky in a constant display of nature’s power. This room offers the perfect blend of comfort and adventure, with breathtaking views of the stormy harbor and the endless, restless sea. Whether you’re here to relax or to experience the thrill of the elements, Tempest’s Edge Inn is your perfect port of call.",
+            theSpace: "Your room is a cozy, serene escape from the wild outside. The king-sized bed, draped in luxurious linens, is positioned to offer a front-row view of the harbor, where the waves crash against the rocks and the lighthouse beams through the tempest. The decor blends nautical charm with modern comfort, creating a warm and inviting atmosphere.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            hotWater: true,
+            dishes: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "11:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys
+                ],
+                stay: {
+                    pets: true,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 15,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
+    },
 ];

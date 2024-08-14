@@ -135,7 +135,7 @@ export const hosts: Host[] = [
                 type: "hours",
                 amount: 14,
             },
-            rate: 80,
+            rate: 63,
         }
     },
     {
@@ -158,6 +158,27 @@ export const hosts: Host[] = [
                 amount: 82,
             },
             rate: 80,
+        }
+    },
+    {
+        id: "9f4b8cc3-db20-486c-a708-73bfb5b0e8c1",
+        firstname: "Rowan",
+        lastname: "Marlowe",
+        firstYearOfHosting: 2010,
+        imgSrc: "./hosts/generic/mountains3.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "e100411d-0371-48af-847a-7b106379ef16",
+        ],
+        shortDescription: `Rowan’s life was once a thrilling voyage across stormy seas, commanding ships through the tempestuous waters of Stormwatch. His adventures came to an end when an arrow to the knee during a daring skirmish forced him to leave his beloved nautical life behind. Embracing a new chapter, Rowan transformed his cliffside family home into The Stormhaven Inn, a cozy retreat where maritime charm meets warm hospitality. With his deep knowledge of the sea and its legends, Rowan is excited to share his stories and insights with you.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 1,
+            },
+            rate: 42,
         }
     }
 ];
