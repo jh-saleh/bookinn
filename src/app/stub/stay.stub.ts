@@ -732,5 +732,139 @@ export const stays: Stay[] = [
                 noRefund: 3
             }
         }
-    }
+    },
+    {
+        id: "16081a1e-95fa-4d50-9316-c1ef0736b72c",
+        hostId: "0de20ca7-a77f-492d-ae9d-b89745dc2865",
+        location: {
+            city: CityName.Moonshadow,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 500,
+                y: 610,
+            }
+        },
+        ratings: 3.4,
+        name: "The Gloaming Rest",
+        pricePerNight: 7,
+        imgsUrls: ["inns/shadow/1.jpeg", "inns/shadow/2.jpeg", "inns/shadow/3.jpeg"],
+        maxNumberOfGuests: 5,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 5,
+            nbBaths: 0,
+        },
+        about: {
+            context: "Welcome to a truly unique experience in the heart of Moonshadow, where the night never ends. Our cozy inn is nestled deep within the enchanted swamps, surrounded by the eerie beauty of moss-draped cypress trees and shimmering, ghostly lights. This is a retreat like no other—perfect for those seeking tranquility, mystery, and a touch of the otherworldly.",
+            theSpace: "Your room is a cozy sanctuary, designed for comfort and charm. The queen-sized bed, draped in luxurious dark linens, promises a restful sleep amidst the whispers of the swamp. Antique furnishings add a touch of history, while soft candlelight creates an inviting glow.",
+            note: "Due to the perpetual night, our inn provides lanterns and candles for your use. Futhermore, the swamp is alive with nocturnal creatures. Be sure to respect their home as you explore."
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            hotWater: true,
+            dishes: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "5:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.ReturnKeys
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 4,
+                partialRefund: 3,
+                noRefund: 1
+            }
+        }
+    },
+    {
+        id: "14c3d627-60f0-4da8-b196-8476bd82c006",
+        hostId: "0de20ca7-a77f-492d-ae9d-b89745dc2865",
+        location: {
+            city: CityName.Moonshadow,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 500,
+                y: 610,
+            }
+        },
+        ratings: 3.4,
+        name: "The Nocturne Haven",
+        pricePerNight: 7,
+        imgsUrls: ["inns/shadow/2.jpeg", "inns/shadow/3.jpeg"],
+        maxNumberOfGuests: 5,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 5,
+            nbBaths: 0,
+        },
+        about: {
+            context: "Welcome to a truly unique experience in the heart of Moonshadow, where the night never ends. Our cozy inn is nestled deep within the enchanted swamps, surrounded by the eerie beauty of moss-draped cypress trees and shimmering, ghostly lights. This is a retreat like no other—perfect for those seeking tranquility, mystery, and a touch of the otherworldly.",
+            theSpace: "Your room is a cozy sanctuary, designed for comfort and charm. The queen-sized bed, draped in luxurious dark linens, promises a restful sleep amidst the whispers of the swamp. Antique furnishings add a touch of history, while soft candlelight creates an inviting glow.",
+            note: "Due to the perpetual night, our inn provides lanterns and candles for your use. Futhermore, the swamp is alive with nocturnal creatures. Be sure to respect their home as you explore."
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: true,
+            hotWater: true,
+            dishes: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "5:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.ReturnKeys
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 4,
+                partialRefund: 3,
+                noRefund: 1
+            }
+        }
+    },
 ];

@@ -137,5 +137,27 @@ export const hosts: Host[] = [
             },
             rate: 80,
         }
+    },
+    {
+        id: "0de20ca7-a77f-492d-ae9d-b89745dc2865",
+        firstname: "Seraphine",
+        lastname: "Moonveil",
+        firstYearOfHosting: 2002,
+        imgSrc: "./hosts/wizard/3.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "16081a1e-95fa-4d50-9316-c1ef0736b72c",
+            "14c3d627-60f0-4da8-b196-8476bd82c006"
+        ],
+        shortDescription: `Seraphine Moonveil, is a lifelong resident of this enchanted city and a true connoisseur of its ancient magic. Seraphine has a deep connection to the swamp and its timeless secrets, and she takes great joy in sharing the wonders of Moonshadow with her guests.`,
+        efficiency: {
+            time: {
+                type: "days",
+                amount: 82,
+            },
+            rate: 80,
+        }
     }
 ];
