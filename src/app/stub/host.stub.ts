@@ -231,7 +231,7 @@ export const hosts: Host[] = [
         firstname: "Finn",
         lastname: "Hartley",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/generic/desert1.jpeg",
+        imgSrc: "./hosts/generic/snow2.jpeg",
         informations: [
 
         ],
