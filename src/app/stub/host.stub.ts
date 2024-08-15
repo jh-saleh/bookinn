@@ -269,5 +269,27 @@ export const hosts: Host[] = [
             },
             rate: 75,
         }
+    },
+    {
+        id: "45d2621d-cc2a-4914-afaa-860893d90683",
+        firstname: "Kai",
+        lastname: "Moore",
+        firstYearOfHosting: 2006,
+        imgSrc: "./hosts/generic/forest1.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "9be3ab5a-0c67-4698-9a56-aa4dcbfcecf3",
+            "ceb3b579-d5ac-4344-a2c8-4ad1fbe5f342",
+        ],
+        shortDescription: `Meet Kai Moore, the friendly and laid-back host of Coral Cove Inn. Born and raised on the island, Kai has a deep love for Briarholm and a passion for sharing its beauty and culture with guests. With a background in hospitality and a deep connection to the local community, Kai opened Coral Cove Inn to create a welcoming space where travelers can experience the best of island life.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 2,
+            },
+            rate: 95,
+        }
     }
 ];

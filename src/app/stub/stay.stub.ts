@@ -1520,4 +1520,134 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "9be3ab5a-0c67-4698-9a56-aa4dcbfcecf3",
+        hostId: "45d2621d-cc2a-4914-afaa-860893d90683",
+        location: {
+            city: CityName.Briarholm,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 120,
+                y: 230,
+            }
+        },
+        ratings: 4.8,
+        name: "Coral Cove Inn",
+        pricePerNight: 80,
+        imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Coral Cove Inn, a serene beachfront escape located in the picturesque village of Briarholm. Known for its stunning beaches, vibrant culture, and incredible cuisine, Briarholm offers the perfect island getaway, and Coral Cove Inn is your gateway to experiencing it all. Whether you're here to soak up the sun, savor the local flavors, or simply relax by the sea, our inn provides a tranquil and luxurious home base for your stay.",
+            theSpace: "The Beachside Retreat suite is designed with relaxation and comfort in mind. The spacious king-sized bed, draped in soft, island-inspired linens, promises a peaceful night’s sleep, while the suite’s tropical decor captures the vibrant spirit of Briarholm. Large windows open onto a private balcony, offering breathtaking views of the ocean and allowing the gentle sea breeze to flow through the room.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 20,
+                partialRefund: 7,
+                noRefund: 5
+            }
+        }
+    },
+    {
+        id: "ceb3b579-d5ac-4344-a2c8-4ad1fbe5f342",
+        hostId: "45d2621d-cc2a-4914-afaa-860893d90683",
+        location: {
+            city: CityName.Briarholm,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 120,
+                y: 230,
+            }
+        },
+        ratings: 4.8,
+        name: "Seabreeze Haven",
+        pricePerNight: 75,
+        imgsUrls: ["inns/island/3.jpeg", "inns/island/4.jpeg", "inns/island/5.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Seabreeze Haven, a charming coastal retreat located in the heart of Briarholm, where the turquoise waters meet golden sands. Known for its idyllic beaches, perfect climate, and mouthwatering cuisine, Briarholm is the ideal destination for those seeking a slice of paradise. Seabreeze Haven offers an intimate and relaxing stay just steps away from the beach, where you can unwind and immerse yourself in the island’s vibrant culture.",
+            theSpace: "The Island Oasis bungalow is designed to blend the indoors with the outdoors, featuring large windows and sliding doors that open onto a private terrace surrounded by lush tropical gardens. The airy queen-sized bed, adorned with crisp linens and soft pillows, ensures a restful night’s sleep. The bungalow’s decor reflects the natural beauty of Briarholm, with bamboo accents, colorful island artwork, and a touch of coastal elegance.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 20,
+                partialRefund: 7,
+                noRefund: 5
+            }
+        }
+    },
 ];
