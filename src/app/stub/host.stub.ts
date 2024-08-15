@@ -247,5 +247,27 @@ export const hosts: Host[] = [
             },
             rate: 70,
         }
+    },
+    {
+        id: "b77f15cc-5e80-4615-8f00-394d2230ffd3",
+        firstname: "Aiden",
+        lastname: "Rivers",
+        firstYearOfHosting: -1180,
+        imgSrc: "./hosts/generic/swamp2.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "38838126-ca0c-4463-ac0c-c871bd677b39",
+            "9e05c5a2-5e95-4cfe-9203-9bf7f1050851"
+        ],
+        shortDescription: `Meet Aiden Rivers, the friendly and down-to-earth host of Riverstone Inn. Aiden grew up exploring the woods and rivers of Glimmerfall, developing a deep connection to nature from a young age. After traveling the world as an adventure guide, he returned to his beloved village to create a peaceful haven for guests seeking to experience the tranquility and charm of Glimmerfall.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 6,
+            },
+            rate: 75,
+        }
     }
 ];

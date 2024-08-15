@@ -1390,4 +1390,134 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "38838126-ca0c-4463-ac0c-c871bd677b39",
+        hostId: "b77f15cc-5e80-4615-8f00-394d2230ffd3",
+        location: {
+            city: CityName.Glimmerfall,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 510,
+                y: 300,
+            }
+        },
+        ratings: 3.6,
+        name: "Riverstone Inn",
+        pricePerNight: 84,
+        imgsUrls: ["inns/normal/2.jpeg", "inns/normal/1.jpeg", "inns/normal/3.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Riverstone Inn, a tranquil escape nestled in the enchanting village of Glimmerfall. Located along the shimmering waters of the Glimmer River, this cozy inn offers a peaceful retreat for those seeking to unwind in nature’s embrace. Whether you're here to explore the natural beauty of the riverbanks, enjoy a quiet getaway, or discover the village’s charm, Riverstone Inn provides the perfect base for your stay.",
+            theSpace: "The Glimmerfall Retreat suite is designed to offer comfort and serenity, with a queen-sized bed draped in soft linens and a window that overlooks the sparkling river. The room’s decor combines rustic charm with modern comforts, creating a warm and inviting atmosphere. A seating area by the window offers a perfect spot to relax with a book or simply take in the view of the flowing water.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 20,
+                partialRefund: 7,
+                noRefund: 5
+            }
+        }
+    },
+    {
+        id: "9e05c5a2-5e95-4cfe-9203-9bf7f1050851",
+        hostId: "b77f15cc-5e80-4615-8f00-394d2230ffd3",
+        location: {
+            city: CityName.Glimmerfall,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 510,
+                y: 300,
+            }
+        },
+        ratings: 3.8,
+        name: "Willowbrook Lodge",
+        pricePerNight: 80,
+        imgsUrls: ["inns/normal/4.jpeg", "inns/normal/2.jpeg", "inns/normal/3.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Willowbrook Lodge, a serene riverside retreat in the heart of Glimmerfall. Tucked away among the whispering willows and overlooking the crystal-clear Glimmer River, this charming lodge offers a perfect getaway for those seeking peace, nature, and a touch of rustic luxury. Whether you're exploring the village or simply unwinding by the water, Willowbrook Lodge provides a tranquil base for your adventures.",
+            theSpace: "The Riverside Escape cottage is designed with both comfort and charm in mind. The cozy queen-sized bed is dressed in soft linens, ensuring a restful night’s sleep. The living area features a comfortable sofa bed, making it ideal for a small family or group of friends. Large windows let in plenty of natural light and offer stunning views of the river, while the cottage’s rustic decor adds to its cozy, inviting atmosphere.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 20,
+                partialRefund: 7,
+                noRefund: 5
+            }
+        }
+    },
 ];
