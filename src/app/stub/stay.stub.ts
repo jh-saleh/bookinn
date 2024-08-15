@@ -1260,4 +1260,134 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "d400ff13-ac46-4cc6-9910-3bee4b96b112",
+        hostId: "01c1e341-bb7d-4124-8b5f-3b8edf494794",
+        location: {
+            city: CityName.Ebonport,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 850,
+                y: 160,
+            }
+        },
+        ratings: 2.3,
+        name: "The Mariner’s Rest Inn",
+        pricePerNight: 16,
+        imgsUrls: ["inns/sea/5.jpeg", "inns/sea/2.jpeg", "inns/sea/1.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to The Mariner’s Rest Inn, a charming retreat located in the bustling port city of Ebonport. Situated just steps from the harbor, this inn offers guests a cozy sanctuary amidst the vibrant energy of a city defined by its seafaring heritage. Whether you’re visiting for business, exploration, or relaxation, The Mariner’s Rest provides a comfortable and welcoming base in the heart of Ebonport.",
+            theSpace: "The Harborview Suite offers a tranquil escape with stunning views of Ebonport’s bustling harbor. The queen-sized bed, dressed in soft, nautical-themed linens, ensures a restful night’s sleep, while the large windows allow you to enjoy the sights and sounds of the port from the comfort of your room. The suite is decorated with maritime touches, creating a cozy, sea-inspired ambiance.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 15,
+                partialRefund: 5,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "8874057f-fea2-419d-bbbd-0d5b4581cf4c",
+        hostId: "01c1e341-bb7d-4124-8b5f-3b8edf494794",
+        location: {
+            city: CityName.Ebonport,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 850,
+                y: 160,
+            }
+        },
+        ratings: 2.5,
+        name: "Anchor’s Edge Inn",
+        pricePerNight: 19,
+        imgsUrls: ["inns/sea/5.jpeg", "inns/sea/2.jpeg", "inns/sea/1.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Anchor’s Edge Inn, a cozy and elegant retreat located in the heart of Ebonport, where the city meets the sea. Nestled along the bustling harbor, this inn offers an inviting escape for travelers seeking to experience the maritime charm and vibrant energy of Ebonport. Whether you’re here for business, pleasure, or a bit of both, Anchor’s Edge Inn provides a warm and welcoming home base in this historic port city.",
+            theSpace: "The Seafarer’s Haven suite is designed with comfort and relaxation in mind. The spacious king-sized bed, draped in soft linens, promises a restful night’s sleep, while the room’s nautical-themed decor brings the spirit of the sea indoors. Large windows offer picturesque views of the harbor, allowing you to watch the ships as they come and go throughout the day.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "11:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "7:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 15,
+                partialRefund: 5,
+                noRefund: 3
+            }
+        }
+    },
 ];
