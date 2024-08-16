@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,7 +18,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
-export class SearchbarComponent implements AfterViewInit {
+export class SearchbarComponent implements AfterViewInit, OnDestroy {
   readonly searchLabel = "Search";
   services: string[] = ["Inns", "Carriages", "Monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
@@ -71,7 +71,9 @@ export class SearchbarComponent implements AfterViewInit {
           trigger: ".services-wrapper",
           start: "top top",
           end: "max",
-          onUpdate: ({ progress }) => {
+          onUpdate: ({ progress, isActive }) => {
+            console.log("progress", progress);
+            console.log("isActive", isActive);
             if (progress === 0) {
               this.animations["services-wrapper"].reverse();
             } else {
@@ -252,6 +254,16 @@ export class SearchbarComponent implements AfterViewInit {
             }
           }
         });
+    }
+  }
+
+  ngOnDestroy(): void {
+    // https://gsap.com/community/forums/topic/24365-problem-with-killing-and-reinitialising-scrolltrigger-after-single-page-app-page-transition/?do=findComment&comment=140707
+    const triggers = ScrollTrigger.getAll();
+    if (triggers) {
+      triggers.forEach((trigger) => {
+        trigger.kill();
+      })
     }
   }
 
