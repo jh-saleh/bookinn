@@ -291,5 +291,26 @@ export const hosts: Host[] = [
             },
             rate: 95,
         }
+    },
+    {
+        id: "bbb7e157-ba94-4398-a75d-d36516694bd2",
+        firstname: "Elias",
+        lastname: "Stone",
+        firstYearOfHosting: 1994,
+        imgSrc: "./hosts/generic/swamp2.jpeg",
+        informations: [
+
+        ],
+        listings: [
+            "63d6680d-a888-4ce4-8f4d-f519f696f598",
+        ],
+        shortDescription: `Meet Elias Stone, the dedicated and welcoming host of Summit Rest Inn. A lifelong resident of Highreach, Elias has a deep connection to the village and its traditions. With a background in agriculture and a love for the mountains, he opened Summit Rest Inn to share the beauty and culture of Highreach with visitors from around the world.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 2,
+            },
+            rate: 90,
+        }
     }
 ];

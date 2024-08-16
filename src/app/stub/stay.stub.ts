@@ -1650,4 +1650,71 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "63d6680d-a888-4ce4-8f4d-f519f696f598",
+        hostId: "bbb7e157-ba94-4398-a75d-d36516694bd2",
+        location: {
+            city: CityName.Highreach,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 700,
+                y: 850,
+            }
+        },
+        ratings: 3.5,
+        name: "Summit Rest Inn",
+        pricePerNight: 133,
+        imgsUrls: ["inns/normal/4.jpeg", "inns/normal/3.jpeg", "inns/normal/1.jpeg"],
+        maxNumberOfGuests: 1,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Summit Rest Inn, a cozy mountain retreat nestled in the heart of Highreach, a village famed for its world-class goat cheese and exceptional wool. Perched high in the mountains, Highreach offers breathtaking views, fresh alpine air, and a peaceful escape from the bustle of everyday life. Summit Rest Inn is the perfect spot for travelers looking to experience the unique charm and traditions of this picturesque village.",
+            theSpace: "The Alpine Serenity room is designed to offer comfort and tranquility, with a luxurious king-sized bed dressed in the finest local wool blankets and soft linens. The room’s decor reflects the rustic beauty of the mountains, with handcrafted wooden furniture and touches of local artistry. Large windows provide stunning views of the surrounding peaks, while the cozy interior invites you to unwind after a day of exploring.",
+        },
+        amenities: {
+            essentials: true,
+            lockOnBedroomDoor: true,
+            hostGreetsYou: false,
+            hotWater: true,
+            bathOutdoors: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            upperBoundary: "10:00 AM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "8:00 PM",
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.TurnThingsOff,
+                    LeaveRule.ThrowTrashAway
+                ],
+                stay: {
+                    pets: true,
+                    smoking: true,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 4,
+                partialRefund: 2,
+                noRefund: 0
+            }
+        }
+    },
 ];
