@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
 import { HostService } from '../../IoC/service/host.service';
-import { StaysService } from '../../IoC/service/inn.service';
+import { StaysService } from '../../IoC/service/stay.service';
 import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { GuidebookRoomComponent } from "../../component/guidebook/guidebook-room/guidebook-room.component";
-import { HostComponent } from "../../component/host/host.component";
+import { HostRoomComponent } from "../../component/host/host-room.component";
 import { ImagesViewerComponent } from "../../component/images-viewer/images-viewer.component";
 import { MapComponent } from '../../component/map/map.component';
 import { NavbarComponent } from "../../component/navbar/navbar.component";
@@ -22,17 +22,17 @@ import { NegationPipe } from '../../pipe/negation.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 
 @Component({
-  selector: 'app-room',
+  selector: 'room-page',
   standalone: true,
   imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
-    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostComponent, NegationPipe,
+    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
     MapComponent],
   providers: [CalendarDatesService],
-  templateUrl: './room.component.html',
-  styleUrl: './room.component.css'
+  templateUrl: './room-page.component.html',
+  styleUrl: './room-page.component.css'
 })
-export class RoomComponent implements OnInit {
+export class RoomPageComponent implements OnInit {
   roomId: string | null = null;
   inn!: Stay;
   host!: Host;

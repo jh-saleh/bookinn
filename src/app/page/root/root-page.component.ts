@@ -4,18 +4,18 @@ import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { environment } from '../../../environments/environment';
-import { CardComponent } from "../../component/card/card.component";
+import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 
 @Component({
-  selector: 'app-root',
+  selector: 'root-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, CardComponent, FooterComponent],
-  templateUrl: './root.component.html',
-  styleUrl: './root.component.css'
+  imports: [CommonModule, NavbarComponent, RoomCardComponent, FooterComponent],
+  templateUrl: './root-page.component.html',
+  styleUrl: './root-page.component.css'
 })
-export class RootComponent implements AfterViewInit {
+export class RootPageComponent implements AfterViewInit {
   readonly portfolioURL: string = environment.portfolioURL;
   readonly droplets: number = 50;
 

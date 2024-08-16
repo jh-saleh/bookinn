@@ -10,10 +10,10 @@
     <div class="modal-divider"></div>
 </ng-template>
 
-<section id="room">
+<section>
     <app-navbar></app-navbar>
-    <div class="room-body-wrapper">
-        <div class="room-body">
+    <div class="page-body-wrapper page-padding-with-searchbar">
+        <div class="page-body">
             <section>
                 <h1 class="room-title">
                     {{inn.name}}
@@ -73,7 +73,9 @@
                                     <span class="material-symbols-outlined">
                                         {{item.icon}}
                                     </span>
-                                    {{item.amenity | negation:item.included | camelToSentence}}
+                                    <span>
+                                        {{item.amenity | negation:item.included | camelToSentence}}
+                                    </span>
                                 </div>
                                 }
                             </div>
@@ -130,7 +132,7 @@
                 </div>
                 <div class="room-divider"></div>
             </div>
-            <host [host]="host"></host>
+            <host-room [host]="host"></host-room>
             <div class="room-divider"></div>
             <guidebook-room [guidebook]="inn.guidebook" [maxNumberOfGuests]="inn.maxNumberOfGuests"
                 [startingDate]="startingDate" [endingDate]="endingDate"></guidebook-room>

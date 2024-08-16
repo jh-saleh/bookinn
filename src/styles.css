@@ -12,6 +12,10 @@ body {
     scrollbar-width: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 :root {
     /*colors*/
     --crimson-900: #20070C;
@@ -48,6 +52,9 @@ body {
     --button-border-radius: 10px;
     --fullview-modal-width: 40dvw;
     --fullview-modal-padding: 20px;
+    --box-padding: 20px;
+    --page-padding-with-searchbar: 160px;
+    --page-padding-with-no-searchbar: 120px;
 
     /*shadow*/
     --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
@@ -125,4 +132,24 @@ body {
     border-radius: 10px;
     width: max-content;
     position: relative;
+}
+
+/* page */
+
+.page-body-wrapper {
+    width: 100dvw;
+    display: grid;
+    justify-items: center;
+}
+
+.page-padding-no-searchbar {
+    padding-top: 120px;
+}
+
+.page-padding-with-searchbar {
+    padding-top: 160px;
+}
+
+.page-body {
+    width: 60%;
 }

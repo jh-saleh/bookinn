@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { css } from '@emotion/css';
-import { CityName, KingdomName } from '../../model/land/land.model';
+import { CityName, KingdomName } from '../../../model/land/land.model';
 
 @Component({
-  selector: 'app-card',
+  selector: 'room-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  templateUrl: './room-card.component.html',
+  styleUrl: './room-card.component.css'
 })
-export class CardComponent implements OnInit {
+export class RoomCardComponent implements OnInit {
   @Input({ required: true }) name!: string;
   @Input({ required: true }) kingdom!: KingdomName;
   @Input({ required: true }) city!: CityName;

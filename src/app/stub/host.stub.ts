@@ -1,4 +1,4 @@
-import { Host } from "../model/inn/host.model";
+import { Host, HostInformationType } from "../model/inn/host.model";
 
 export const hosts: Host[] = [
     {
@@ -8,12 +8,32 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2022,
         imgSrc: "./hosts/wizard/1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "Wizarding school of Frostgate"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["english", "french", "elvish"]
+            },
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "The depth of space"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Magic thingies"
+            }
         ],
+        confirmation: {
+            identity: true,
+            email: false,
+            phone: true,
+        },
         listings: [
             "7191838b-f93b-4dad-a66f-2b8892fab112", "4df2b632-44ab-49a5-8d08-fd8e85af8efb"
         ],
-        shortDescription: "Greetings, curious souls!  I am Dawn Duskwell, a witch of Frostgate, where the mists are thick, and the air hums with ancient magic.",
+        shortDescription: "Greetings, curious souls! I am Dawn Duskwell, a witch of Frostgate, where the mists are thick, and the air hums with ancient magic.",
         efficiency: {
             time: {
                 type: "hours",
@@ -29,8 +49,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2005,
         imgSrc: "./hosts/dwarf/4.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "The mines of moria"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["english"]
+            },
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "Ore"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Blacksmithing"
+            }
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: false,
+        },
         listings: [
             "c3743e0a-4687-4415-85c3-b613fa052daa"
         ],
@@ -52,8 +92,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 1986,
         imgSrc: "./hosts/aquareth/1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "Ocean school"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["english", "aquareth"]
+            },
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "The ocean and the environment"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Fishing"
+            }
         ],
+        confirmation: {
+            identity: true,
+            email: false,
+            phone: false,
+        },
         listings: [
             "f20873fc-1a4a-4625-857b-4c847fa7752c",
             "eab8c84e-1811-4c9b-95e8-606bf9d25eda"
@@ -77,8 +137,32 @@ export const hosts: Host[] = [
         firstYearOfHosting: 1600,
         imgSrc: "./hosts/wizard/3.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "The void"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["english"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "I like to fly"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Enchanting"
+            },
+            {
+                enum: HostInformationType.BiographyTitle,
+                data: "A life of magic"
+            }
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: false,
+        },
         listings: [
             "217140f7-afa7-4ee0-8876-e9f95921babe",
         ],
@@ -100,8 +184,32 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2001,
         imgSrc: "./hosts/generic/forest1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "Fishing"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["english"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Water boils at 100 °C"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Farmer"
+            },
+            {
+                enum: HostInformationType.BiographyTitle,
+                data: "The Town Mouse and the Country Mouse"
+            }
         ],
+        confirmation: {
+            identity: true,
+            email: false,
+            phone: true,
+        },
         listings: [
             "f8ef70af-d80f-46f2-9253-27d58a7d9b4b",
             "10562195-0896-4966-843c-da049b723c01",
@@ -123,8 +231,32 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2001,
         imgSrc: "./hosts/generic/mountains.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "Swimming"
+            },
+            {
+                enum: HostInformationType.School,
+                data: "School of the lorem ipsum"
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Water has a pH of 7."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Herbalist"
+            },
+            {
+                enum: HostInformationType.BiographyTitle,
+                data: "Humankind cannot gain anything without first giving something in return. To obtain, something of equal value must be lost. That is alchemy's first law of Equivalent Exchange."
+            }
         ],
+        confirmation: {
+            identity: false,
+            email: false,
+            phone: true,
+        },
         listings: [
             "9a1414b8-13b4-45e7-a490-f982b9d46712",
             "660f3aba-0bc9-4b08-9aec-e4a3e0fa4b27",
@@ -145,8 +277,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2002,
         imgSrc: "./hosts/wizard/3.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "Magic"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["runes", "elvish"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Magic is fun."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Magic"
+            },
         ],
+        confirmation: {
+            identity: false,
+            email: true,
+            phone: false,
+        },
         listings: [
             "16081a1e-95fa-4d50-9316-c1ef0736b72c",
             "14c3d627-60f0-4da8-b196-8476bd82c006"
@@ -167,8 +319,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2010,
         imgSrc: "./hosts/generic/mountains3.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.ObsessedWith,
+                data: "Pirates of the Caribbean"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["pirate speak", "english"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Pirates often wore eye patches, not because they were missing an eye, but to keep one eye adjusted to darkness for quick transitions between the bright deck and dim belowdecks."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Ex-pirate"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
         listings: [
             "e100411d-0371-48af-847a-7b106379ef16",
         ],
@@ -188,8 +360,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2000,
         imgSrc: "./hosts/generic/forest1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "The school of the forest"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["elvish"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "It's dangerous to go alone."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Forester"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: false,
+        },
         listings: [
             "34105491-58ae-4f26-8716-cf0d34660780",
             "90105f53-f88f-47e3-bcaf-c14de552ef51"
@@ -210,8 +402,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2002,
         imgSrc: "./hosts/generic/desert1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "School"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Languages"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Wow what a fun fact that was !"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Lorem Ipsum"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
         listings: [
             "ecb441ef-f998-4c5a-9423-a49e632e054a",
             "2ea1b2f0-a1e6-476a-b3a9-c13786439146",
@@ -233,8 +445,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2002,
         imgSrc: "./hosts/generic/snow2.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "School"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Languages"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Wow what a fun fact that was !"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Lorem Ipsum"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
         listings: [
             "d400ff13-ac46-4cc6-9910-3bee4b96b112",
             "8874057f-fea2-419d-bbbd-0d5b4581cf4c"
@@ -255,8 +487,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: -1180,
         imgSrc: "./hosts/generic/swamp2.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "School"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Languages"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Wow what a fun fact that was !"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Lorem Ipsum"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: false,
+        },
         listings: [
             "38838126-ca0c-4463-ac0c-c871bd677b39",
             "9e05c5a2-5e95-4cfe-9203-9bf7f1050851"
@@ -277,8 +529,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 2006,
         imgSrc: "./hosts/generic/forest1.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "School"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Languages"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Wow what a fun fact that was !"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Lorem Ipsum"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: false,
+        },
         listings: [
             "9be3ab5a-0c67-4698-9a56-aa4dcbfcecf3",
             "ceb3b579-d5ac-4344-a2c8-4ad1fbe5f342",
@@ -299,8 +571,28 @@ export const hosts: Host[] = [
         firstYearOfHosting: 1994,
         imgSrc: "./hosts/generic/swamp2.jpeg",
         informations: [
-
+            {
+                enum: HostInformationType.School,
+                data: "School"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Languages"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Wow what a fun fact that was !"
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Lorem Ipsum"
+            },
         ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
         listings: [
             "63d6680d-a888-4ce4-8f4d-f519f696f598",
         ],

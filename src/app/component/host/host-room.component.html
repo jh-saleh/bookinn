@@ -3,15 +3,9 @@
         Meet your Host
     </h2>
     <div class="host-body">
-        <div class="host-card">
-            <img [src]="host.imgSrc" alt="host-photo" />
-            <h1>
-                {{host.firstname}} {{host.lastname}}
-            </h1>
-            <div>
-                Started hosting in {{host.firstYearOfHosting}}
-            </div>
-        </div>
+        <a [href]="hostURL">
+            <host-card [host]="host"></host-card>
+        </a>
         <div class="host-detail-wrapper">
             <div class="host-detail">
                 <h3>Host details</h3>

@@ -1,0 +1,93 @@
+<section>
+    <app-navbar [hideSearchbar]="true"></app-navbar>
+    <div class="page-body-wrapper page-padding-no-searchbar">
+        <div class="page-body">
+            <div class="host-page">
+                <div class="first-column-wrapper">
+                    <div class="host-column first-column">
+                        <host-card [host]="host"></host-card>
+                        @if (host.confirmation.identity || host.confirmation.email || host.confirmation.phone) {
+                        <div class="confirmed-information">
+                            <h1>
+                                {{host.firstname}}'s confirmed information
+                            </h1>
+                            <div class="confirmed-information-body">
+                                @if (host.confirmation.identity) {
+                                <span class="material-symbols-outlined">
+                                    check
+                                </span>
+                                <span>
+                                    Identity
+                                </span>
+                                }
+                                @if (host.confirmation.email) {
+                                <span class="material-symbols-outlined">
+                                    check
+                                </span>
+                                <span>
+                                    Email address
+                                </span>
+                                }
+                                @if (host.confirmation.phone) {
+                                <span class="material-symbols-outlined">
+                                    check
+                                </span>
+                                <span>
+                                    Phone number
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        }
+                        <a class="report-host" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+                            <span class="material-symbols-outlined">
+                                flag
+                            </span>
+                            <span>
+                                Report this profile
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="host-column">
+                    <div class="host-about">
+                        <div class="host-about-header">
+                            About {{host.firstname}}
+                        </div>
+                        <div class="host-about-informations">
+                            @for ( information of host.informations; track $index) {
+                            <span class="host-about-information">
+                                <span class="material-symbols-outlined">
+                                    {{information.enum | hostInformationIcon}}
+                                </span>
+                                <span>
+                                    {{information.enum | camelToSentence}} : {{information.data}}
+                                </span>
+                            </span>
+                            }
+                        </div>
+                        <div class="host-about-description">
+                            {{host.shortDescription}}
+                        </div>
+                    </div>
+                    <div class="main-divider"></div>
+                    <div class="host-listing">
+                        <h1>
+                            {{host.firstname}}'s listings
+                        </h1>
+                        <div class="host-listing-body">
+                            @for (listing of listings; track $index) {
+                            <a [routerLink]="['/room', listing.id]">
+                                <room-card [city]="listing.location.city" [kingdom]="listing.location.kingdom"
+                                    [name]="listing.name" [pricePerNight]="listing.pricePerNight"
+                                    [ratings]="listing.ratings" [imgsUrls]="listing.imgsUrls"></room-card>
+                            </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</section>

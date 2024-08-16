@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './page/home/home.component';
-import { RoomComponent } from './page/rooms/room.component';
-import { RootComponent } from './page/root/root.component';
+import { HomePageComponent } from './page/home/home-page.component';
+import { HostPageComponent } from './page/host/host-page.component';
+import { RoomPageComponent } from './page/rooms/room-page.component';
+import { RootPageComponent } from './page/root/root-page.component';
 
 export const routes: Routes = [
-    { path: '', component: RootComponent, title: 'BookInn' },
-    { path: 'home', component: HomeComponent, title: 'Home | BookInn' },
-    { path: 'room/:id', component: RoomComponent, title: 'Room | BookInn' },
+    { path: '', component: RootPageComponent, title: 'BookInn' },
+    { path: 'home', component: HomePageComponent, title: 'Home | BookInn' },
+    { path: 'room/:id', component: RoomPageComponent, title: 'Room | BookInn' },
+    { path: 'host/:id', component: HostPageComponent, title: 'Host | BookInn' },
 ];

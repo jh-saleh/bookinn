@@ -6,17 +6,6 @@
     margin: 30px 0px;
 }
 
-.room-body-wrapper {
-    padding-top: 160px;
-    width: 100dvw;
-    display: grid;
-    justify-items: center;
-}
-
-.room-body {
-    width: 60%;
-}
-
 .room-information {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -70,7 +59,7 @@
 
 .room-amenities-items-summary {
     display: grid;
-    grid-template-columns: repeat(2, 10dvw);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin: 20px 0px;
     color: white;

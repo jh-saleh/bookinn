@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AccountComponent } from "../account/account.component";
 import { LogoComponent } from "../logo/logo.component";
 import { SearchbarComponent } from "../searchbar/searchbar.component";
@@ -11,5 +11,5 @@ import { SearchbarComponent } from "../searchbar/searchbar.component";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  @Input({ required: false }) hideSearchbar: boolean = false
 }

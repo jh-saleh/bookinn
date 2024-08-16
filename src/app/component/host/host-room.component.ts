@@ -1,18 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Host } from '../../model/inn/host.model';
+import { HostCardComponent } from "../card/host-card/host-card.component";
 
 @Component({
-  selector: 'host',
+  selector: 'host-room',
   standalone: true,
-  imports: [],
-  templateUrl: './host.component.html',
-  styleUrl: './host.component.css'
+  imports: [HostCardComponent],
+  templateUrl: './host-room.component.html',
+  styleUrl: './host-room.component.css'
 })
-export class HostComponent implements OnInit {
+export class HostRoomComponent implements OnInit {
   @Input({ required: true }) host!: Host;
   isEfficiencyWithinHours: boolean = false;
+  hostURL!: string;
 
   ngOnInit(): void {
     this.isEfficiencyWithinHours = this.host.efficiency.time.type === "hours";
+    this.hostURL = `/host/${this.host.id}`;
   }
 }

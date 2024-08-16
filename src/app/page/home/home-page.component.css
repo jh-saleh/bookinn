@@ -1,4 +1,4 @@
-#home {
+.home {
     background-color: var(--background);
     width: 100dvw;
 }
@@ -12,8 +12,4 @@
     padding-top: 160px;
     padding-bottom: 20px;
     background-color: var(--background);
-}
-
-.home-body>a {
-    text-decoration: none;
 }

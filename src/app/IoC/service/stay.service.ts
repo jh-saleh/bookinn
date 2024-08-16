@@ -9,8 +9,16 @@ export class StaysService {
 
   constructor() { }
 
-  getStays(): Stay[] {
+  getHomePageStays(): Stay[] {
     return stays;
+  }
+
+  getStays(...ids: string[]): Stay[] {
+    const staysOutput: Stay[] = [];
+    ids.forEach((id) => {
+      staysOutput.push(this.getStay(id));
+    });
+    return staysOutput;
   }
 
   getStay(id: string): Stay {
@@ -18,6 +26,6 @@ export class StaysService {
     if (innIndex > -1) {
       return stays[innIndex];
     }
-    throw Error("Inn not found.");
+    throw Error("Stay not found.");
   }
 }
