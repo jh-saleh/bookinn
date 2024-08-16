@@ -8,5 +8,5 @@ export const routes: Routes = [
     { path: '', component: RootPageComponent, title: 'BookInn' },
     { path: 'home', component: HomePageComponent, title: 'Home | BookInn' },
     { path: 'room/:id', component: RoomPageComponent, title: 'Room | BookInn' },
-    { path: 'host/:id', component: HostPageComponent, title: 'Host | BookInn' },
+    { path: 'host/:id', component: HostPageComponent, title: 'Host profile | BookInn' },
 ];
