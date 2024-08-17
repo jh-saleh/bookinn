@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { css } from '@emotion/css';
 import { AccountComponent } from "../account/account.component";
 import { LogoComponent } from "../logo/logo.component";
 import { SearchbarComponent } from "../searchbar/searchbar.component";
@@ -6,10 +8,29 @@ import { SearchbarComponent } from "../searchbar/searchbar.component";
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [SearchbarComponent, LogoComponent, AccountComponent],
+  imports: [CommonModule, SearchbarComponent, LogoComponent, AccountComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   @Input({ required: false }) hideSearchbar: boolean = false
+  @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
+  isSearchbarOpen: boolean = false;
+  maximizedClass: string = "";
+
+  getSearchbarStatus(searchbarStatus: boolean) {
+    this.isSearchbarOpen = searchbarStatus;
+    if (this.isSearchbarOpen) {
+      this.maximizedClass = css`
+      grid-template-rows: auto 1fr;
+      height: 100dvh;
+    `;
+    } else {
+      this.maximizedClass = "";
+    }
+  }
+
+  closeSearchBar() {
+    this.getSearchbarStatus(false);
+  }
 }

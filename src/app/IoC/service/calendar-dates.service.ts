@@ -189,8 +189,8 @@ export class CalendarDatesService {
     }
   }
 
-  convertStringToCalendarDate(dateString: string): CalendarDate {
-    const [month, day, year] = dateString.split('/').map(Number);
+  convertStringToCalendarDate(dateString: string, separator: string = "/"): CalendarDate {
+    const [month, day, year] = dateString.split(separator).map(Number);
 
     return {
       year: year,

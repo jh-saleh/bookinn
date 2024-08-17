@@ -1,0 +1,17 @@
+.search-page-body {
+    width: 100dvw;
+    display: grid;
+    grid-template-columns: auto 40dvw;
+    padding-top: 70px;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.map-wrapper {
+    height: calc(100dvh - var(--navbar-height));
+    width: 40dvw;
+}

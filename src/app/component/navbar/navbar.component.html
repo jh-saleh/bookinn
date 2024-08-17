@@ -1,9 +1,12 @@
-<nav class="navbar-wrapper">
+<nav class="navbar-wrapper" [ngClass]="maximizedClass">
     <div class="navbar">
         <app-logo></app-logo>
         @if(!hideSearchbar){
-        <app-searchbar></app-searchbar>
+        <app-searchbar [startingState]="startingState" (sendSearchbarStatus)="getSearchbarStatus($event)"
+            [searchbarStatus]="isSearchbarOpen"></app-searchbar>
         }
         <app-account></app-account>
+    </div>
+    <div class="navbar-background" (click)="closeSearchBar()">
     </div>
 </nav>

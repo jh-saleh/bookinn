@@ -4,7 +4,8 @@
     top: 0px;
     z-index: 9999;
     width: 100%;
-    background-color: var(--background);
+    background-color: transparent;
+    display: grid;
 }
 
 .navbar {
@@ -12,4 +13,11 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px white solid;
+    background-color: var(--background);
+}
+
+.navbar-background {
+    height: 100%;
+    width: 100dvw;
+    background-color: var(--transparent-black);
 }

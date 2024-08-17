@@ -1,11 +1,14 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CalendarDate } from '../../IoC/service/calendar-dates.service';
 import { Position } from '../../model/position/position.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
+import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarComponent } from "../calendar/calendar.component";
 import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
@@ -14,13 +17,14 @@ import { ModalComponent } from '../windows/modal/modal.component';
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe],
+  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe],
+  providers: [CalendarDateFormatPipe],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
 export class SearchbarComponent implements AfterViewInit, OnDestroy {
   readonly searchLabel = "Search";
-  services: string[] = ["Inns", "Carriages", "Monuments"];
+  services: string[] = ["stays", "carriages", "monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
   selectedService: number = 0;
   isCalendarOpen: boolean = false;
@@ -35,8 +39,18 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   guests: Guests | undefined;
   totalNbOfGuests: number = 0;
   statusOfSearchBar: boolean = true;
+  locationInput!: string;
+  @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
+  @Output() sendSearchbarStatus = new EventEmitter<boolean>();
+  @Input() set searchbarStatus(open: boolean) {
+    if (open) {
+      this.openSearchbar(false);
+    } else {
+      this.closeSearchBar(false);
+    }
+  }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe) {
 
   }
 
@@ -62,7 +76,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         onReverseComplete: () => {
           this.statusOfSearchBar = true;
         }
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".services-wrapper", {}, {
         scrollTrigger: {
@@ -71,9 +85,8 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
           trigger: ".services-wrapper",
           start: "top top",
           end: "max",
-          onUpdate: ({ progress, isActive }) => {
-            console.log("progress", progress);
-            console.log("isActive", isActive);
+          onUpdate: ({ progress }) => {
+            this.sendSearchbarStatus.emit(false);
             if (progress === 0) {
               this.animations["services-wrapper"].reverse();
             } else {
@@ -91,7 +104,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         padding: "0px 0px 0px 20px",
         paused: true,
         duration: 0.3,
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".searchbar", {
       }, {
@@ -117,7 +130,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         height: "0px",
         paused: true,
         duration: 0.3,
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".location>input",
         {},
@@ -143,7 +156,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".checkin-date",
         {},
@@ -169,7 +182,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".checkout-date",
         {
@@ -197,7 +210,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".nb-of-guests", {},
         {
@@ -218,7 +231,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         height: "calc(70% - 5px)",
         paused: true,
         duration: 0.3
-      }).progress(0);
+      }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".divider", {},
         {
@@ -240,7 +253,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
           scale: 0.8,
           duration: 0.3,
           paused: true,
-        }).progress(0);
+        }).progress(this.startingState === 'normal' ? 0 : 1);
 
       tl.fromTo(".search", {},
         {
@@ -272,7 +285,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   }
 
   focusLocationInput(refLocationInput: HTMLInputElement) {
-    this.openSearchBar();
+    this.openSearchbar();
     const locationSearch: string = refLocationInput.value;
     refLocationInput.focus();
     refLocationInput.setSelectionRange(locationSearch.length, locationSearch.length);
@@ -297,13 +310,14 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
 
   openCalendar() {
     const openCalendarHandler = () => {
+      this.sendSearchbarStatus.emit(true);
       this.updateCalendarModalPosition();
       this.isCalendarOpen = true;
     }
     if (this.statusOfSearchBar) {
       openCalendarHandler();
     } else {
-      this.openSearchBar();
+      this.openSearchbar();
       setTimeout(() => {
         openCalendarHandler();
       }, 500);
@@ -334,13 +348,14 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
 
   openGuests() {
     const openGuestsHandler = () => {
+      this.sendSearchbarStatus.emit(true);
       this.updateGuestsModalPosition();
       this.isGuestsOpen = true;
     }
     if (this.statusOfSearchBar) {
       openGuestsHandler();
     } else {
-      this.openSearchBar();
+      this.openSearchbar();
       setTimeout(() => {
         openGuestsHandler();
       }, 500);
@@ -357,17 +372,33 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  openSearchBar() {
+  openSearchbar(emit: boolean = true) {
     for (let animation in this.animations) {
       this.animations[animation].reverse();
     }
     this.statusOfSearchBar = true;
+    if (emit) {
+      this.sendSearchbarStatus.emit(this.statusOfSearchBar);
+    }
   }
 
-  closeSearchBar() {
+  closeSearchBar(emit: boolean = true) {
     for (let animation in this.animations) {
       this.animations[animation].play();
     }
     this.statusOfSearchBar = false;
+    if (emit) {
+      this.sendSearchbarStatus.emit(this.statusOfSearchBar);
+    }
+  }
+
+  searchHandler() {
+    this.router.navigate(["/s/", this.locationInput, this.services[this.selectedService]], {
+      queryParams: {
+        startDate: this.calendarDateFormatPipe.transform(this.startingDate, "MM-dd-yyy"),
+        endDate: this.calendarDateFormatPipe.transform(this.endingDate, "MM-dd-yyy"),
+        nbGuests: this.totalNbOfGuests === 0 ? undefined : this.totalNbOfGuests
+      }
+    });
   }
 }

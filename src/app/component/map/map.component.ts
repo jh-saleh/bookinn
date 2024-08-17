@@ -23,7 +23,7 @@ export class MapComponent {
   width: 100%;
   `;
   @Input() zoom: number = -1;
-  @Input({ required: true }) coordinates!: Coordinates;
+  @Input({ required: true }) coordinates?: Coordinates;
 
   constructor(
     private leafletHelper: LeafletHelper,
@@ -47,11 +47,11 @@ export class MapComponent {
       return lib.divIcon({ className: "", html: icon });
     }
 
-    const getLocationMarker = () => {
+    const getLocationMarker = (coordinate: Coordinates) => {
       const icon: string = `
         <span class="material-symbols-outlined map-icon">cottage</span>
-      `
-      return lib.marker([this.coordinates.y, this.coordinates.x], { icon: lib.divIcon({ className: "", html: icon }) });
+      `;
+      return lib.marker([coordinate.y, coordinate.x], { icon: lib.divIcon({ className: "", html: icon }) });
     }
 
     const cities = lib.layerGroup([
@@ -81,10 +81,12 @@ export class MapComponent {
       minZoom: 0,
       maxZoom: 2,
     });
-    const marker = getLocationMarker().addTo(this.map);
     this.map.setMaxBounds(this.bounds);
     this.map.fitBounds(this.bounds);
-    this.map.setView([this.coordinates.y, this.coordinates.x], this.zoom);
+    if (this.coordinates) {
+      getLocationMarker(this.coordinates).addTo(this.map);
+      this.map.setView([this.coordinates.y, this.coordinates.x], this.zoom);
+    }
     const layerControl = lib.control.layers().addTo(this.map);
     layerControl.addOverlay(cities, "Cities");
     this.image = lib.imageOverlay(environment.images.worldmap, this.bounds).addTo(this.map);

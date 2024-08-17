@@ -4,7 +4,7 @@
             @for (service of services; track $index) {
             <button [id]="servicesId[$index]" [class.service-selected]="$index === selectedService"
                 (click)="selectService($index)">
-                {{service}}
+                {{service | camelToSentence}}
             </button>
             }
         </div>
@@ -12,7 +12,7 @@
     <div class="searchbar">
         <div class="location" (click)="focusLocationInput(refLocationInput)">
             <label>Where</label>
-            <input #refLocationInput placeholder="Search destinations" />
+            <input #refLocationInput [(ngModel)]="locationInput" placeholder="Search destinations" />
         </div>
         <div class="divider"></div>
         <div class="checkin" (click)="openCalendar()">
@@ -50,7 +50,7 @@
                 }
             </div>
         </div>
-        <button class="search">
+        <button class="search" (click)="searchHandler()">
             <span class="material-symbols-outlined">
                 search
             </span>
