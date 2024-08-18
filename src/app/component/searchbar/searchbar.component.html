@@ -69,7 +69,7 @@
 <modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
     (openModal)="openGuests()">
     <div [ngClass]="guestsWrapperClass">
-        <app-guests (getGuests)="getGuests($event)" [initGuests]="guests"></app-guests>
+        <guests (getGuests)="getGuests($event)" [initGuests]="guests"></guests>
     </div>
 </modal>
 <modal [isModalOpen]="isAutocompletionOpen" [classPosition]="autocompletionPosition"

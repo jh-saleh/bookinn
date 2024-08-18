@@ -13,7 +13,7 @@ import { GuestsComponent } from "../../guests/guests.component";
 import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
-  selector: 'app-bill-room',
+  selector: 'bill-room',
   standalone: true,
   imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
   templateUrl: './bill-room.component.html',
@@ -27,7 +27,7 @@ export class BillRoomComponent implements OnChanges {
   @Input({ required: true }) basePricePerNight: number | undefined;
   pricePerNight: number | undefined;
   @Input({ required: true }) maximumNbOfGuests: number = 1;
-  @Input() guests: Guests = {
+  private _initGuests: Guests = {
     adult: {
       nb: 0,
       maximum: MAX_NB_ADULTS,
@@ -45,6 +45,13 @@ export class BillRoomComponent implements OnChanges {
       nb: 0,
       maximum: MAX_NB_PETS
     }
+  }
+  @Input({ required: false }) set initGuests(value: Guests) {
+    this._initGuests = value;
+    this.nbOfGuests = getTotalNbOfGuests(this._initGuests);
+  }
+  get initGuests() {
+    return this._initGuests;
   }
   nbOfGuests: number = 0;
   @Input({ required: true }) nbOfNights: number | undefined;

@@ -79,7 +79,8 @@
                 </div>
             </div>
             <div [hidden]="!isGuestsModalOpen" [ngClass]="guestsModalWrapper">
-                <app-guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getNbOfGuests($event)"></app-guests>
+                <guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getNbOfGuests($event)"
+                    [initGuests]="initGuests"></guests>
             </div>
         </div>
     </div>

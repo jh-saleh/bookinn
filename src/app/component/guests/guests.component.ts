@@ -4,7 +4,7 @@ import { GuestType, Guests } from '../../model/stay/guest.model';
 import { CounterComponent } from "../counter/counter.component";
 
 @Component({
-  selector: 'app-guests',
+  selector: 'guests',
   standalone: true,
   imports: [CounterComponent],
   templateUrl: './guests.component.html',

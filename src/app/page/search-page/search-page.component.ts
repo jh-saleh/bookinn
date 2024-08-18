@@ -27,12 +27,12 @@ export class SearchPageComponent implements OnInit {
   queryParamEndDate: string | null = null;
   startDate: CalendarDate | null = null;
   endDate: CalendarDate | null = null;
-  location: string | null = null;
-  type: string | null = null;
-  nbAdults: number | null = null;
-  nbChildren: number | null = null;
-  nbInfants: number | null = null;
-  nbPets: number | null = null;
+  paramLocation: string | null = null;
+  paramType: string | null = null;
+  queryParamNbAdults: number | null = null;
+  queryParamNbChildren: number | null = null;
+  queryParamNbInfants: number | null = null;
+  queryParamNbPets: number | null = null;
   staysSearchResults: Stay[] = [];
   searchbarStartingState: SearchbarStartingStates | undefined;
 
@@ -44,8 +44,8 @@ export class SearchPageComponent implements OnInit {
     //Subscribing to paramMap and queryParamMap allows for updates when doing new requests on that page without having the need to reload the page
     combineLatest([this.route.paramMap, this.route.queryParamMap])
       .pipe(map(([params, queryParams]) => {
-        this.location = params.get('location');
-        this.type = params.get('type');
+        this.paramLocation = params.get('location');
+        this.paramType = params.get('type');
         this.queryParamEndDate = queryParams.get("endDate");
         if (this.queryParamEndDate) {
           this.endDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamEndDate, "-");
@@ -54,31 +54,31 @@ export class SearchPageComponent implements OnInit {
         if (this.queryParamStartDate) {
           this.startDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamStartDate, "-");
         }
-        this.nbAdults = queryParams.get("nbAdults") !== null ? Number(queryParams.get("nbAdults")) : null;
-        this.nbChildren = queryParams.get("nbChildren") !== null ? Number(queryParams.get("nbChildren")) : null;
-        this.nbInfants = queryParams.get("nbInfants") !== null ? Number(queryParams.get("nbInfants")) : null;
-        this.nbPets = queryParams.get("nbPets") !== null ? Number(queryParams.get("nbPets")) : null;
+        this.queryParamNbAdults = queryParams.get("nbAdults") !== null ? Number(queryParams.get("nbAdults")) : null;
+        this.queryParamNbChildren = queryParams.get("nbChildren") !== null ? Number(queryParams.get("nbChildren")) : null;
+        this.queryParamNbInfants = queryParams.get("nbInfants") !== null ? Number(queryParams.get("nbInfants")) : null;
+        this.queryParamNbPets = queryParams.get("nbPets") !== null ? Number(queryParams.get("nbPets")) : null;
 
       })).subscribe(() => {
         this.searchbarStartingState = {
           startingDate: this.startDate ?? undefined,
           endingDate: this.endDate ?? undefined,
-          locationInput: this.location ?? "",
+          locationInput: this.paramLocation ?? "",
           guests: {
             adult: {
-              nb: this.nbAdults ?? 0,
+              nb: this.queryParamNbAdults ?? 0,
               maximum: MAX_NB_ADULTS,
             },
             child: {
-              nb: this.nbChildren ?? 0,
+              nb: this.queryParamNbChildren ?? 0,
               maximum: MAX_NB_CHILDREN,
             },
             infant: {
-              nb: this.nbInfants ?? 0,
+              nb: this.queryParamNbInfants ?? 0,
               maximum: MAX_NB_INFANTS,
             },
             pet: {
-              nb: this.nbPets ?? 0,
+              nb: this.queryParamNbPets ?? 0,
               maximum: MAX_NB_PETS,
             }
           }
@@ -88,6 +88,6 @@ export class SearchPageComponent implements OnInit {
   }
 
   executeSearch() {
-    this.staysSearchResults = this.stayService.searchStays(this.location, getTotalNbOfGuests(this.searchbarStartingState?.guests));
+    this.staysSearchResults = this.stayService.searchStays(this.paramLocation, getTotalNbOfGuests(this.searchbarStartingState?.guests));
   }
 }

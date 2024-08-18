@@ -4,10 +4,10 @@
         <div class="search-results">
             @for (result of staysSearchResults; track $index) {
             <a [routerLink]="['/room', result.id]" [queryParams]="{
-                nbAdults,
-                nbChildren,
-                nbInfants,
-                nbPets,
+                nbAdults: queryParamNbAdults,
+                nbChildren: queryParamNbChildren,
+                nbInfants: queryParamNbInfants,
+                nbPets: queryParamNbPets,
                 startDate: queryParamStartDate,
                 endDate: queryParamEndDate
                 }">

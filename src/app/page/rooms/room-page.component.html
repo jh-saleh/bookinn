@@ -111,10 +111,10 @@
                     </div>
                 </section>
                 <section class="bill-on-rails">
-                    <app-bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
+                    <bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
                         [startingDate]="startingDate" [endingDate]="endingDate"
                         [maximumNbOfGuests]="inn.maxNumberOfGuests" (sendStartingDate)="getStartingDate($event)"
-                        (sendEndingDate)="getEndingDate($event)"></app-bill-room>
+                        (sendEndingDate)="getEndingDate($event)" [initGuests]="queryParamGuests"></bill-room>
                 </section>
             </div>
             <div class="room-divider"></div>

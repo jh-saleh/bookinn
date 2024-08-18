@@ -13,7 +13,9 @@ import { ImagesViewerComponent } from "../../component/images-viewer/images-view
 import { MapComponent } from '../../component/map/map.component';
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
 import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/stay/amenity.model';
+import { Guests } from '../../model/stay/guest.model';
 import { Host } from '../../model/stay/host.model';
 import { Stay } from '../../model/stay/stay.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
@@ -33,7 +35,6 @@ import { PluralizePipe } from '../../pipe/pluralize.pipe';
   styleUrl: './room-page.component.css'
 })
 export class RoomPageComponent implements OnInit {
-  roomId: string | null = null;
   inn!: Stay;
   host!: Host;
   amenities!: Partial<Record<AmenityType, AminityRow[]>>;
@@ -44,19 +45,53 @@ export class RoomPageComponent implements OnInit {
   endingDate: CalendarDate | undefined;
   nbDays: number | undefined;
   isAmenitiesModalOpen: boolean = false;
+  paramRoomId: string | null = null;
+  queryParamGuests!: Guests;
 
-  constructor(private route: ActivatedRoute, private staysService: StaysService, private hostService: HostService, private calendarDateService: CalendarDatesService) {
+  constructor(private route: ActivatedRoute, private staysService: StaysService, private hostService: HostService, private calendarDatesService: CalendarDatesService) {
 
   }
 
   ngOnInit(): void {
-    this.roomId = this.route.snapshot.paramMap.get('id');
-    this.inn = this.staysService.getStay(this.roomId ?? "");
+    this.paramRoomId = this.route.snapshot.paramMap.get('id');
+    this.inn = this.staysService.getStay(this.paramRoomId ?? "");
     this.host = this.hostService.getHost(this.inn.hostId);
     this.amenities = extractAmenitiesData(this.inn.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();
     this.isThereNotIncludedAmenities = this.amenities[AmenityType.NotIncluded] ? this.amenities[AmenityType.NotIncluded].length > 0 : false;
     this.totalNbOfAmenities = Object.keys(this.inn.amenities ?? {}).length;
+    const queryParamEndDate = this.route.snapshot.queryParamMap.get("endDate");
+    if (queryParamEndDate) {
+      this.getEndingDate(this.calendarDatesService.convertStringToCalendarDate(queryParamEndDate, "-"));
+    }
+    const queryParamStartDate = this.route.snapshot.queryParamMap.get("startDate");
+    if (queryParamStartDate) {
+      this.getStartingDate(this.calendarDatesService.convertStringToCalendarDate(queryParamStartDate, "-"));
+    }
+    const queryParamNbAdults: string | null = this.route.snapshot.queryParamMap.get("nbAdults");
+    const queryParamNbChildren: string | null = this.route.snapshot.queryParamMap.get("nbChildren");
+    const queryParamNbInfants: string | null = this.route.snapshot.queryParamMap.get("nbInfants");
+    const queryParamNbPets: string | null = this.route.snapshot.queryParamMap.get("nbPets");
+    if (queryParamNbAdults || queryParamNbChildren || queryParamNbInfants || queryParamNbPets) {
+      this.queryParamGuests = {
+        adult: {
+          nb: queryParamNbAdults ? Number(queryParamNbAdults) : 0,
+          maximum: MAX_NB_ADULTS,
+        },
+        child: {
+          nb: queryParamNbChildren ? Number(queryParamNbChildren) : 0,
+          maximum: MAX_NB_CHILDREN
+        },
+        infant: {
+          nb: queryParamNbInfants ? Number(queryParamNbInfants) : 0,
+          maximum: MAX_NB_INFANTS
+        },
+        pet: {
+          nb: queryParamNbPets ? Number(queryParamNbPets) : 0,
+          maximum: MAX_NB_PETS
+        }
+      }
+    }
   }
 
   extractAmenitiesSummary(): AminitySummaryRow[] {
@@ -73,7 +108,7 @@ export class RoomPageComponent implements OnInit {
   getStartingDate(date: CalendarDate | undefined) {
     this.startingDate = date;
     if (this.startingDate && this.endingDate) {
-      this.nbDays = this.calendarDateService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
+      this.nbDays = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
     } else {
       this.nbDays = undefined;
     }
@@ -82,7 +117,7 @@ export class RoomPageComponent implements OnInit {
   getEndingDate(date: CalendarDate | undefined) {
     this.endingDate = date;
     if (this.startingDate && this.endingDate) {
-      this.nbDays = this.calendarDateService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
+      this.nbDays = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
     } else {
       this.nbDays = undefined;
     }
