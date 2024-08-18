@@ -78,6 +78,7 @@ export const stays: Stay[] = [
             safety: {
                 carbonMonoxideAlarm: true,
                 smokeAlarm: true,
+                fireExtinguisher: false,
             },
             cancellationPolicy: {
                 fullRefund: 10,
@@ -1709,6 +1710,7 @@ export const stays: Stay[] = [
             safety: {
                 carbonMonoxideAlarm: true,
                 smokeAlarm: true,
+                fireExtinguisher: true
             },
             cancellationPolicy: {
                 fullRefund: 4,
@@ -1717,4 +1719,419 @@ export const stays: Stay[] = [
             }
         }
     },
+    {
+        id: "3c5f4d79-9a9d-4a7f-8b1d-f27a8e2c7a13",
+        hostId: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        location: {
+            city: CityName.Drakenshore,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 240,
+                y: 120,
+            }
+        },
+        ratings: 4.9,
+        name: "Dragon's Rest Inn",
+        pricePerNight: 50,
+        imgsUrls: ["inns/island/5.jpeg", "inns/island/2.jpeg", "inns/island/4.jpeg"],
+        maxNumberOfGuests: 6,
+        lodging: {
+            nbBedrooms: 3,
+            nbBeds: 4,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Nestled at the edge of the world, Dragon's Rest Inn in the village of Drakenshore offers a unique stay surrounded by mystery and intrigue. Known for its exotic products and enigmatic history, Drakenshore is a haven for adventurers and those seeking a truly out-of-the-ordinary experience.",
+            theSpace: "The inn features three rustic yet comfortable bedrooms, each decorated with artifacts from distant lands. The master suite includes a king-sized bed with luxurious furs and a private balcony overlooking the misty shores. The common area is centered around a grand hearth, perfect for sharing tales of adventure. The kitchen is fully equipped with rare spices and ingredients native to Drakenshore, allowing guests to prepare their own exotic meals. The inn also boasts a private bath with a stone-carved soaking tub and views of the mysterious Drakenshore Forest.",
+            note: "The innkeeper may offer you rare and potent draughts; consume them at your own risk."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: true,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: false,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: true,
+            waiter: false,
+            potionsStand: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 2
+            }
+        }
+    },
+    {
+        id: "7d9b8e3d-8c73-4bcd-96e2-f3b6c8dfc9f4",
+        hostId: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        location: {
+            city: CityName.Drakenshore,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 240,
+                y: 120,
+            }
+        },
+        ratings: 4.8,
+        name: "The Enchanted Glade Lodge",
+        pricePerNight: 65,
+        imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Hidden deep within the mystical forests of Drakenshore lies the Enchanted Glade Lodge, a secluded retreat for those seeking tranquility and a touch of magic. Surrounded by ancient trees and whispering winds, this lodge offers an escape from the mundane and a chance to reconnect with nature and the mystical energies that permeate the land.",
+            theSpace: "The Enchanted Glade Lodge is a two-bedroom cabin, crafted from the finest woods and stones sourced locally from the Drakenshore forest. Each bedroom is adorned with enchanted wood carvings and soft, plush bedding to ensure a restful night. The living area features a grand fireplace, perfect for cozy evenings, and the kitchen is fully equipped for preparing meals with local ingredients. A private bath with a rain shower and a view of the surrounding glade completes the serene experience.",
+            note: "Keep an ear out for the whispers of the forest spirits; they may have tales to tell."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: false,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "a2f9d3e7-51f6-45e3-b8da-99874eac37b7",
+        hostId: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        location: {
+            city: CityName.Drakenshore,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 240,
+                y: 120,
+            }
+        },
+        ratings: 4.9,
+        name: "Dragon's Breath Tavern",
+        pricePerNight: 40,
+        imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
+        maxNumberOfGuests: 6,
+        lodging: {
+            nbBedrooms: 3,
+            nbBeds: 4,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Dragon's Breath Tavern is a vibrant and lively inn located at the heart of Drakenshore. Known for its warm atmosphere and rich history, this tavern has long been a favorite of travelers seeking both comfort and adventure. Whether you're here to sample the local brews or to rest after a day of exploring, Dragon's Breath offers an experience like no other.",
+            theSpace: "The tavern features three cozy bedrooms, each with its own unique charm, ranging from rustic wooden beams to intricately woven tapestries. The common area boasts a large hearth where guests can gather, share stories, and enjoy hearty meals prepared in the fully equipped kitchen. The private baths include modern amenities, with one offering a stone-hewn tub for a truly luxurious soak.",
+            note: "Don’t miss the tavern’s signature drink, 'Dragon’s Breath Ale,' a fiery brew said to warm even the coldest of nights."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: true,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "11:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 5,
+                noRefund: 2
+            }
+        }
+    },
+    {
+        id: "c8a3e5b1-45f4-42f2-8d21-fc6b6c0db62d",
+        hostId: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        location: {
+            city: CityName.Drakenshore,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 240,
+                y: 120,
+            }
+        },
+        ratings: 4.7,
+        name: "Mystic Moon Haven",
+        pricePerNight: 55,
+        imgsUrls: ["inns/island/5.jpeg", "inns/island/1.jpeg", "inns/island/2.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Mystic Moon Haven, an enchanting retreat located at the edge of the Drakenshore village. This haven offers a serene escape with a touch of magic, perfect for those seeking solitude and a connection with the mystical energies of the surrounding landscape. The inn's unique charm and tranquil setting promise a memorable stay.",
+            theSpace: "The Mystic Moon Haven features a beautifully appointed bedroom with celestial-themed decor and a cozy queen-sized bed. The space is designed to provide ultimate relaxation, with soft lighting and soothing colors. The bath includes a luxurious soaking tub with a view of the night sky, allowing you to unwind under the stars. The common area includes a small library with rare and magical tomes.",
+            note: "A crystal ball in the common area may offer glimpses of the future—use it wisely!"
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: false,
+            kitchen: false,
+            librairies: true,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "5:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                fireExtinguisher: true,
+                smokeAlarm: true,
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "d4f1c2e6-9c7d-4b53-a1d4-0b6e4e1a6e7a",
+        hostId: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        location: {
+            city: CityName.Drakenshore,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 240,
+                y: 120,
+            }
+        },
+        ratings: 4.6,
+        name: "The Silverstream Inn",
+        pricePerNight: 75,
+        imgsUrls: ["inns/island/4.jpeg", "inns/island/3.jpeg", "inns/island/5.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Nestled alongside the glistening Silverstream River, The Silverstream Inn offers a peaceful retreat with breathtaking views of the water and surrounding landscape. Known for its elegant design and exceptional service, this inn is the perfect choice for those seeking a blend of luxury and nature in the remote village of Drakenshore.",
+            theSpace: "The inn features two beautifully decorated bedrooms, each with its own unique charm and views of the river. The spacious living area includes a cozy fireplace and a large window seat perfect for relaxing and enjoying the view. Both private baths offer modern amenities and luxurious fixtures. The inn also includes a private outdoor deck where guests can unwind and listen to the soothing sounds of the river.",
+            note: "Be sure to enjoy the complimentary afternoon tea served on the deck, with a selection of local pastries and herbal infusions."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 2
+            }
+        }
+    }
 ];

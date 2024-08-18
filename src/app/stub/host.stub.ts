@@ -604,5 +604,50 @@ export const hosts: Host[] = [
             },
             rate: 90,
         }
-    }
+    },
+    {
+        id: "b672d4d2-4d7f-4c92-b46b-3f8a1d7c4f56",
+        firstname: "Rhiannon",
+        lastname: "Drakewood",
+        firstYearOfHosting: 2002,
+        imgSrc: "./hosts/generic/forest1.jpeg",
+        informations: [
+            {
+                enum: HostInformationType.School,
+                data: "Academy of Ancient Lore"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Common Tongue", "Elvish", "Draconic"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Rhiannon is a skilled potion brewer and often creates unique concoctions for her guests."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Innkeeper and Herbalist"
+            }
+        ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
+        listings: [
+            "3c5f4d79-9a9d-4a7f-8b1d-f27a8e2c7a13",
+            "7d9b8e3d-8c73-4bcd-96e2-f3b6c8dfc9f4",
+            "a2f9d3e7-51f6-45e3-b8da-99874eac37b7",
+            "c8a3e5b1-45f4-42f2-8d21-fc6b6c0db62d",
+            "d4f1c2e6-9c7d-4b53-a1d4-0b6e4e1a6e7a"
+        ],
+        shortDescription: `Meet Rhiannon Drakewood, the enigmatic and knowledgeable host of Dragon's Rest Inn. A resident of Drakenshore for over two decades, Rhiannon has dedicated her life to mastering the arts of herbalism and potion brewing. Her inn is a reflection of her passion for the mystical and exotic, offering guests a unique and immersive experience at the edge of the world.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 3,
+            },
+            rate: 95,
+        }
+    },
 ];

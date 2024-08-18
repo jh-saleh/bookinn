@@ -15,7 +15,8 @@ export enum Amenity {
     Tavern = "tavern",
     Waiter = "waiter",
     LockOnBedroomDoor = "lockOnBedroomDoor",
-    Guards = "guards"
+    Guards = "guards",
+    PotionsStand = "potionsStand"
 }
 
 export enum AmenityType {
@@ -46,7 +47,8 @@ export const amenitiesTable: Record<Amenity, { type: AmenityType, icon: string }
     [Amenity.Tavern]: { type: AmenityType.Services, icon: "sports_bar" },
     [Amenity.Waiter]: { type: AmenityType.Services, icon: "menu_book" },
     [Amenity.LockOnBedroomDoor]: { type: AmenityType.PrivacyAndSafety, icon: "lock" },
-    [Amenity.Guards]: { type: AmenityType.PrivacyAndSafety, icon: "shield" }
+    [Amenity.Guards]: { type: AmenityType.PrivacyAndSafety, icon: "shield" },
+    [Amenity.PotionsStand]: { type: AmenityType.Services, icon: "experiment" },
 }
 
 export interface AminityRow {

@@ -14,7 +14,8 @@ export enum LeaveRule {
 
 export enum SafetyDevice {
     CarbonMonoxideAlarm = "carbonMonoxideAlarm",
-    SmokeAlarm = "smokeAlarm"
+    SmokeAlarm = "smokeAlarm",
+    FireExtinguisher = "fireExtinguisher"
 }
 
 export enum CheckType {
@@ -45,7 +46,7 @@ export interface GuideBook {
         stay: Partial<Record<StayRule, boolean>>;
         leave?: LeaveRule[];
     };
-    safety: Record<SafetyDevice, boolean>;
+    safety: Partial<Record<SafetyDevice, boolean>>;
     cancellationPolicy: {
         fullRefund?: number;
         partialRefund?: number;
@@ -70,4 +71,5 @@ export const leaveRulesTable: Record<LeaveRule, string> = {
 export const safetyDeviceTable: Record<SafetyDevice, string> = {
     carbonMonoxideAlarm: "nest_secure_alarm",
     smokeAlarm: "detector_smoke",
+    fireExtinguisher: "fire_extinguisher",
 }
