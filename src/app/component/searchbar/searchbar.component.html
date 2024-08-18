@@ -61,14 +61,15 @@
 <modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
     (openModal)="openCalendar()">
     <div [ngClass]="calendarWrapperClass">
-        <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)" [mode]="'modal'"
-            [theme]="'white'"></calendar>
+        <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
+            [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
+        </calendar>
     </div>
 </modal>
 <modal [isModalOpen]="isGuestsOpen" [classPosition]="guestsPosition" (closeModal)="closeGuests()"
     (openModal)="openGuests()">
     <div [ngClass]="guestsWrapperClass">
-        <app-guests (getGuests)="getGuests($event)"></app-guests>
+        <app-guests (getGuests)="getGuests($event)" [initGuests]="guests"></app-guests>
     </div>
 </modal>
 <modal [isModalOpen]="isAutocompletionOpen" [classPosition]="autocompletionPosition"

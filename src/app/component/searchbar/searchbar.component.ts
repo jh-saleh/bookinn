@@ -1,19 +1,28 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CalendarDate } from '../../IoC/service/calendar-dates.service';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
 import { Position } from '../../model/position/position.model';
+import { Guests, getTotalNbOfGuests } from '../../model/stay/guest.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { AutocompletionComponent } from "../autocompletion/autocompletion.component";
 import { CalendarComponent } from "../calendar/calendar.component";
-import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
+import { GuestsComponent } from "../guests/guests.component";
 import { ModalComponent } from '../windows/modal/modal.component';
+
+export interface SearchbarStartingStates {
+  startingDate: CalendarDate | undefined;
+  endingDate: CalendarDate | undefined;
+  locationInput: string;
+  guests: Guests | undefined;
+}
 
 @Component({
   selector: 'app-searchbar',
@@ -23,7 +32,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
 })
-export class SearchbarComponent implements AfterViewInit, OnDestroy {
+export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly searchLabel = "Search";
   services: string[] = ["stays", "carriages", "monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
@@ -37,7 +46,28 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   isGuestsOpen: boolean = false;
   guestsWrapperClass: string = css``;
   guestsPosition: Position = { top: 0, left: 0 };
-  guests: Guests | undefined;
+  guests: Guests | undefined = {
+    adult: {
+      nb: 0,
+      maximum: MAX_NB_ADULTS,
+    },
+    child: {
+      nb: 0,
+      maximum: MAX_NB_CHILDREN
+    },
+    infant: {
+      nb: 0,
+      maximum: MAX_NB_INFANTS
+    },
+    pet: {
+      nb: 0,
+      maximum: MAX_NB_PETS
+    }
+  };
+  @Input({ required: false }) set initGuests(value: Guests | undefined) {
+    this.guests = value;
+    this.totalNbOfGuests = getTotalNbOfGuests(this.guests);
+  }
   totalNbOfGuests: number = 0;
   statusOfSearchBar: boolean = true;
   @ViewChild("locationInputRef") locationInputRef: ElementRef<HTMLInputElement> | undefined;
@@ -46,7 +76,8 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   autocompletionPosition: Position = { top: 0, left: 0 };
   autocompletionWrapperClass: string = css``;
   isNavbarStuckToStart = true;
-  @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
+  @Input({ required: false }) startingModeState: 'minimized' | 'normal' = 'normal';
+  @Input({ required: false }) startingState: SearchbarStartingStates | undefined;
   @Output() sendSearchbarStatus = new EventEmitter<boolean>();
   @Input() set searchbarStatus(open: boolean) {
     if (open) {
@@ -63,6 +94,16 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   }
 
   animations: Record<string, gsap.core.Tween> = {};
+
+  ngOnInit(): void {
+    if (this.startingState) {
+      const { startingDate, endingDate, locationInput, guests } = this.startingState;
+      this.startingDate = startingDate;
+      this.endingDate = endingDate;
+      this.locationInput = locationInput;
+      this.guests = guests;
+    }
+  }
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
@@ -84,7 +125,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         onReverseComplete: () => {
           this.statusOfSearchBar = true;
         }
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".services-wrapper", {}, {
         scrollTrigger: {
@@ -114,7 +155,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         padding: "0px 0px 0px 20px",
         paused: true,
         duration: 0.3,
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".searchbar", {
       }, {
@@ -140,7 +181,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         height: "0px",
         paused: true,
         duration: 0.3,
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".location>input",
         {},
@@ -166,7 +207,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".checkin-date",
         {},
@@ -192,7 +233,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".checkout-date",
         {
@@ -220,7 +261,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         visibility: "hidden",
         paused: true,
         duration: 0.3,
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".nb-of-guests", {},
         {
@@ -241,7 +282,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         height: "calc(70% - 5px)",
         paused: true,
         duration: 0.3
-      }).progress(this.startingState === 'normal' ? 0 : 1);
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".divider", {},
         {
@@ -263,7 +304,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
           scale: 0.8,
           duration: 0.3,
           paused: true,
-        }).progress(this.startingState === 'normal' ? 0 : 1);
+        }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
       tl.fromTo(".search", {},
         {
@@ -415,12 +456,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
 
   getGuests(guests: Guests) {
     this.guests = { ...guests };
-    if (this.guests) {
-      this.totalNbOfGuests = 0;
-      for (let guest in this.guests) {
-        this.totalNbOfGuests += this.guests[guest as GuestType].nb
-      }
-    }
+    this.totalNbOfGuests = getTotalNbOfGuests(this.guests);
   }
 
   openSearchbar(emit: boolean = true) {
@@ -448,7 +484,10 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
       queryParams: {
         startDate: this.calendarDateFormatPipe.transform(this.startingDate, "MM-dd-yyy"),
         endDate: this.calendarDateFormatPipe.transform(this.endingDate, "MM-dd-yyy"),
-        nbGuests: this.totalNbOfGuests === 0 ? undefined : this.totalNbOfGuests
+        nbAdults: this.guests?.adult.nb === 0 ? undefined : this.guests?.adult.nb,
+        nbChildren: this.guests?.child.nb === 0 ? undefined : this.guests?.child.nb,
+        nbInfants: this.guests?.infant.nb === 0 ? undefined : this.guests?.infant.nb,
+        nbPets: this.guests?.pet.nb === 0 ? undefined : this.guests?.pet.nb,
       }
     });
     this.closeSearchBar();

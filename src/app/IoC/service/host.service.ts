@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Host } from '../../model/inn/host.model';
+import { Host } from '../../model/stay/host.model';
 import { hosts } from '../../stub/host.stub';
 
 @Injectable({

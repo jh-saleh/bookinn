@@ -1,6 +1,6 @@
-import { CheckType, LeaveRule } from "../model/inn/guidebook.model";
-import { Stay } from "../model/inn/stay.model";
 import { CityName, KingdomName } from "../model/land/land.model";
+import { CheckType, LeaveRule } from "../model/stay/guidebook.model";
+import { Stay } from "../model/stay/stay.model";
 
 export const stays: Stay[] = [
     {

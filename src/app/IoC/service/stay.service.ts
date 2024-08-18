@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stay } from '../../model/inn/stay.model';
+import { Stay } from '../../model/stay/stay.model';
 import { stays } from '../../stub/stay.stub';
 
 @Injectable({

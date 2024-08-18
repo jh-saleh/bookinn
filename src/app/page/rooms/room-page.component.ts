@@ -13,9 +13,9 @@ import { ImagesViewerComponent } from "../../component/images-viewer/images-view
 import { MapComponent } from '../../component/map/map.component';
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
-import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/inn/amenity.model';
-import { Host } from '../../model/inn/host.model';
-import { Stay } from '../../model/inn/stay.model';
+import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/stay/amenity.model';
+import { Host } from '../../model/stay/host.model';
+import { Stay } from '../../model/stay/stay.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { NegationPipe } from '../../pipe/negation.pipe';

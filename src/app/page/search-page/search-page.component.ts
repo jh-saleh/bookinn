@@ -7,8 +7,11 @@ import { RoomCardComponent } from "../../component/card/room-card/room-card.comp
 import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { Coordinates } from '../../model/inn/location.model';
-import { Stay } from '../../model/inn/stay.model';
+import { SearchbarStartingStates } from '../../component/searchbar/searchbar.component';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
+import { getTotalNbOfGuests } from '../../model/stay/guest.model';
+import { Coordinates } from '../../model/stay/location.model';
+import { Stay } from '../../model/stay/stay.model';
 
 @Component({
   selector: 'app-search-page',
@@ -20,12 +23,18 @@ import { Stay } from '../../model/inn/stay.model';
 })
 export class SearchPageComponent implements OnInit {
   coordinates: Coordinates | undefined;
+  queryParamStartDate: string | null = null;
+  queryParamEndDate: string | null = null;
   startDate: CalendarDate | null = null;
   endDate: CalendarDate | null = null;
-  nbGuests: number | null = null;
   location: string | null = null;
   type: string | null = null;
+  nbAdults: number | null = null;
+  nbChildren: number | null = null;
+  nbInfants: number | null = null;
+  nbPets: number | null = null;
   staysSearchResults: Stay[] = [];
+  searchbarStartingState: SearchbarStartingStates | undefined;
 
   constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StaysService) {
 
@@ -37,21 +46,48 @@ export class SearchPageComponent implements OnInit {
       .pipe(map(([params, queryParams]) => {
         this.location = params.get('location');
         this.type = params.get('type');
-        this.nbGuests = queryParams.get("nbGuests") !== null ? Number(queryParams.get("nbGuests")) : null;
-        const stringEndDate = queryParams.get("endDate");
-        if (stringEndDate) {
-          this.endDate = this.calendarDatesService.convertStringToCalendarDate(stringEndDate, "-");
+        this.queryParamEndDate = queryParams.get("endDate");
+        if (this.queryParamEndDate) {
+          this.endDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamEndDate, "-");
         }
-        const stringStartDate = queryParams.get("startDate");
-        if (stringStartDate) {
-          this.startDate = this.calendarDatesService.convertStringToCalendarDate(stringStartDate, "-");
+        this.queryParamStartDate = queryParams.get("startDate");
+        if (this.queryParamStartDate) {
+          this.startDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamStartDate, "-");
         }
+        this.nbAdults = queryParams.get("nbAdults") !== null ? Number(queryParams.get("nbAdults")) : null;
+        this.nbChildren = queryParams.get("nbChildren") !== null ? Number(queryParams.get("nbChildren")) : null;
+        this.nbInfants = queryParams.get("nbInfants") !== null ? Number(queryParams.get("nbInfants")) : null;
+        this.nbPets = queryParams.get("nbPets") !== null ? Number(queryParams.get("nbPets")) : null;
+
       })).subscribe(() => {
+        this.searchbarStartingState = {
+          startingDate: this.startDate ?? undefined,
+          endingDate: this.endDate ?? undefined,
+          locationInput: this.location ?? "",
+          guests: {
+            adult: {
+              nb: this.nbAdults ?? 0,
+              maximum: MAX_NB_ADULTS,
+            },
+            child: {
+              nb: this.nbChildren ?? 0,
+              maximum: MAX_NB_CHILDREN,
+            },
+            infant: {
+              nb: this.nbInfants ?? 0,
+              maximum: MAX_NB_INFANTS,
+            },
+            pet: {
+              nb: this.nbPets ?? 0,
+              maximum: MAX_NB_PETS,
+            }
+          }
+        }
         this.executeSearch();
-      })
+      });
   }
 
   executeSearch() {
-    this.staysSearchResults = this.stayService.searchStays(this.location, this.nbGuests);
+    this.staysSearchResults = this.stayService.searchStays(this.location, getTotalNbOfGuests(this.searchbarStartingState?.guests));
   }
 }

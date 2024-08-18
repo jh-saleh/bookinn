@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CalendarDate, CalendarDatesService } from '../../../IoC/service/calendar-dates.service';
-import { CheckType, GuideBook, GuidebookInformation, HourBoundary, LeaveRule, SafetyDevice, StayRule, leaveRulesTable, safetyDeviceTable, stayRulesTable } from '../../../model/inn/guidebook.model';
+import { CheckType, GuideBook, GuidebookInformation, HourBoundary, LeaveRule, SafetyDevice, StayRule, leaveRulesTable, safetyDeviceTable, stayRulesTable } from '../../../model/stay/guidebook.model';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
 import { NegationPipe } from '../../../pipe/negation.pipe';

@@ -4,7 +4,7 @@ import { StaysService } from '../../IoC/service/stay.service';
 import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { Stay } from '../../model/inn/stay.model';
+import { Stay } from '../../model/stay/stay.model';
 
 @Component({
   selector: 'home-page',

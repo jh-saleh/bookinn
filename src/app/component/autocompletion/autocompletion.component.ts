@@ -11,7 +11,7 @@ import { LandService } from '../../IoC/service/land.service';
 })
 export class AutocompletionComponent {
   @Input({ required: true }) set cityPart(value: string) {
-    if (value !== "") {
+    if (value) {
       this.suggestions = this.landservice.findClosestCityName(value);
     } else {
       this.suggestions = [];

@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { css } from '@emotion/css';
 import { CalendarDate } from '../../../IoC/service/calendar-dates.service';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../model/const';
 import { Position } from '../../../model/position/position.model';
+import { Guests, getTotalNbOfGuests } from '../../../model/stay/guest.model';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { DateInputComponent } from "../../date-input/date-input.component";
-import { Guests, GuestsComponent } from "../../guests/guests.component";
+import { GuestsComponent } from "../../guests/guests.component";
 import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
@@ -28,20 +30,20 @@ export class BillRoomComponent implements OnChanges {
   @Input() guests: Guests = {
     adult: {
       nb: 0,
-      maximum: 4,
+      maximum: MAX_NB_ADULTS,
       minimum: 0,
     },
     child: {
       nb: 0,
-      maximum: 4,
+      maximum: MAX_NB_CHILDREN,
     },
     infant: {
       nb: 0,
-      maximum: 2
+      maximum: MAX_NB_INFANTS
     },
     pet: {
       nb: 0,
-      maximum: 2
+      maximum: MAX_NB_PETS
     }
   }
   nbOfGuests: number = 0;
@@ -102,12 +104,7 @@ export class BillRoomComponent implements OnChanges {
   }
 
   getNbOfGuests(guests: Guests) {
-    this.guests = guests;
-    let output: number = 0;
-    for (let guest of Object.values(guests)) {
-      output += guest.nb;
-    }
-    this.nbOfGuests = output;
+    this.nbOfGuests = getTotalNbOfGuests(guests);
     this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
   }
 

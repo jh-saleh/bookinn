@@ -6,8 +6,8 @@ import { HostCardComponent } from "../../component/card/host-card/host-card.comp
 import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { Host } from '../../model/inn/host.model';
-import { Stay } from '../../model/inn/stay.model';
+import { Host } from '../../model/stay/host.model';
+import { Stay } from '../../model/stay/stay.model';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/host-information-icon.pipe';
 

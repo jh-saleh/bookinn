@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-type CounterButtonType = 'increase' | 'decrease';
-
 @Component({
   selector: 'app-counter',
   standalone: true,
@@ -11,6 +9,9 @@ type CounterButtonType = 'increase' | 'decrease';
 })
 export class CounterComponent {
   counter = 0;
+  @Input({ required: false }) set initValue(value: number) {
+    this.counter = value;
+  };
   @Input({ required: true }) maximum: number = 16;
   @Input({ required: true }) minimum: number = 0;
   @Input() blockIncreaseAction: boolean = false;

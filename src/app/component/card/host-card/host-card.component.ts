@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Host } from '../../../model/inn/host.model';
+import { Host } from '../../../model/stay/host.model';
 
 @Component({
   selector: 'host-card',

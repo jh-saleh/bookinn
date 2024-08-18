@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { css } from '@emotion/css';
 import { AccountComponent } from "../account/account.component";
 import { LogoComponent } from "../logo/logo.component";
-import { SearchbarComponent } from "../searchbar/searchbar.component";
+import { SearchbarComponent, SearchbarStartingStates } from "../searchbar/searchbar.component";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,8 @@ import { SearchbarComponent } from "../searchbar/searchbar.component";
 })
 export class NavbarComponent {
   @Input({ required: false }) hideSearchbar: boolean = false
-  @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
+  @Input({ required: false }) startingModeState: 'minimized' | 'normal' = 'normal';
+  @Input({ required: false }) searchbarStartingState: SearchbarStartingStates | undefined;
   isSearchbarOpen: boolean = false;
   maximizedClass: string = "";
 

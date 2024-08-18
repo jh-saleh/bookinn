@@ -2,8 +2,9 @@
     <div class="navbar">
         <app-logo></app-logo>
         @if(!hideSearchbar){
-        <app-searchbar [startingState]="startingState" (sendSearchbarStatus)="getSearchbarStatus($event)"
-            [searchbarStatus]="isSearchbarOpen"></app-searchbar>
+        <app-searchbar [startingModeState]="startingModeState" [startingState]="searchbarStartingState"
+            (sendSearchbarStatus)="getSearchbarStatus($event)" [searchbarStatus]="isSearchbarOpen"
+            [initGuests]="searchbarStartingState?.guests"></app-searchbar>
         }
         <app-account></app-account>
     </div>
