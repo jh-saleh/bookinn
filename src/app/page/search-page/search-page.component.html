@@ -2,7 +2,13 @@
     <app-navbar [startingState]="'minimized'"></app-navbar>
     <div class="search-page-body">
         <div class="search-results">
-
+            @for (result of staysSearchResults; track $index) {
+            <a [routerLink]="['/room', result.id]">
+                <room-card [city]="result.location.city" [kingdom]="result.location.kingdom" [name]="result.name"
+                    [pricePerNight]="result.pricePerNight" [ratings]="result.ratings"
+                    [imgsUrls]="result.imgsUrls"></room-card>
+            </a>
+            }
         </div>
         <div class="map-wrapper">
             <app-map [zoom]="0" [coordinates]="coordinates"></app-map>

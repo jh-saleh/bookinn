@@ -13,6 +13,18 @@ export class StaysService {
     return stays;
   }
 
+  searchStays(location: string | null, nbGuests: number | null): Stay[] {
+    if (location && nbGuests) {
+      return stays.filter(stay => (stay.location.city === location && stay.maxNumberOfGuests >= nbGuests));
+    } else if (location) {
+      return stays.filter(stay => (stay.location.city === location));
+    } else if (nbGuests) {
+      return stays.filter(stay => (stay.maxNumberOfGuests >= nbGuests));
+    } else {
+      return [];
+    }
+  }
+
   getStays(...ids: string[]): Stay[] {
     const staysOutput: Stay[] = [];
     ids.forEach((id) => {

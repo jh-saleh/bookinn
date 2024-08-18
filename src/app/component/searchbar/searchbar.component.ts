@@ -45,13 +45,16 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   isAutocompletionOpen: boolean = false;
   autocompletionPosition: Position = { top: 0, left: 0 };
   autocompletionWrapperClass: string = css``;
+  isNavbarStuckToStart = true;
   @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
   @Output() sendSearchbarStatus = new EventEmitter<boolean>();
   @Input() set searchbarStatus(open: boolean) {
     if (open) {
       this.openSearchbar(false);
     } else {
-      this.closeSearchBar(false);
+      if (!this.isNavbarStuckToStart) {
+        this.closeSearchBar(false);
+      }
     }
   }
 
@@ -91,6 +94,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
           start: "top top",
           end: "max",
           onUpdate: ({ progress }) => {
+            this.isNavbarStuckToStart = progress === 0;
             this.sendSearchbarStatus.emit(false);
             if (progress === 0) {
               this.animations["services-wrapper"].reverse();

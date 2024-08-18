@@ -2,10 +2,10 @@
     <app-navbar>
     </app-navbar>
     <div class="home-body">
-        @for (inn of inns; track $index) {
-        <a [routerLink]="['/room', inn.id]">
-            <room-card [city]="inn.location.city" [kingdom]="inn.location.kingdom" [name]="inn.name"
-                [pricePerNight]="inn.pricePerNight" [ratings]="inn.ratings" [imgsUrls]="inn.imgsUrls"></room-card>
+        @for (stay of stays; track $index) {
+        <a [routerLink]="['/room', stay.id]">
+            <room-card [city]="stay.location.city" [kingdom]="stay.location.kingdom" [name]="stay.name"
+                [pricePerNight]="stay.pricePerNight" [ratings]="stay.ratings" [imgsUrls]="stay.imgsUrls"></room-card>
         </a>
         }
     </div>

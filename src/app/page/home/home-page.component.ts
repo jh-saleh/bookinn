@@ -14,11 +14,11 @@ import { Stay } from '../../model/inn/stay.model';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent implements OnInit {
-  inns!: Stay[];
+  stays!: Stay[];
 
   constructor(private innService: StaysService) { }
 
   ngOnInit(): void {
-    this.inns = this.innService.getHomePageStays();
+    this.stays = this.innService.getHomePageStays();
   }
 }

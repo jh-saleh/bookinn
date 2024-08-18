@@ -10,5 +10,5 @@ export const routes: Routes = [
     { path: 'home', component: HomePageComponent, title: 'Home | BookInn' },
     { path: 'room/:id', component: RoomPageComponent, title: 'Room | BookInn' },
     { path: 'host/:id', component: HostPageComponent, title: 'Host profile | BookInn' },
-    { path: 's/:location/:type?startDate&endDate&nbGuests', component: SearchPageComponent, title: 'Search Page | BookInn' },
+    { path: 's/:location/:type', component: SearchPageComponent, title: 'Search Page | BookInn' },
 ];
