@@ -650,4 +650,47 @@ export const hosts: Host[] = [
             rate: 95,
         }
     },
+    {
+        id: "c6f0e9d3-5c6b-4d1b-a8e9-b77c1d9eec8d",
+        firstname: "Liora",
+        lastname: "Starcrest",
+        firstYearOfHosting: 2002,
+        imgSrc: "./hosts/generic/desert1.jpeg",
+        informations: [
+            {
+                enum: HostInformationType.School,
+                data: "Graduated from the Mirros Magic Academy"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Common", "Draconic", "Celestial"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Liora can perform an ancient spell to reveal hidden messages in ruins."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Innkeeper with a background in magical artifact restoration."
+            },
+        ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
+        listings: [
+            "f5c1e9d7-1a2b-4f67-8d33-fde83d8912b4",
+            "e7a1d6c8-8d9b-4c77-9c2b-1a5e9f5d6e2a",
+            "d6c4e2b1-0a1b-4f67-9f3a-7c8e7a3b0d2a"
+        ],
+        shortDescription: `Meet Liora Starcrest, the enchanting host of Ancient Sands Inn. With a distinguished education from the Mirros Magic Academy and expertise in magical artifact restoration, Liora brings a touch of magic and historical insight to her role. Her deep connection to the ancient city of Mirros and its magical heritage ensures a memorable stay for all visitors.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 1,
+            },
+            rate: 85,
+        }
+    }
 ];

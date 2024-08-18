@@ -2133,5 +2133,254 @@ export const stays: Stay[] = [
                 noRefund: 2
             }
         }
+    },
+    {
+        id: "f5c1e9d7-1a2b-4f67-8d33-fde83d8912b4",
+        hostId: "c6f0e9d3-5c6b-4d1b-a8e9-b77c1d9eec8d",
+        location: {
+            city: CityName.Mirros,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 210,
+                y: 580,
+            }
+        },
+        ratings: 4.8,
+        name: "Ancient Sands Inn",
+        pricePerNight: 65,
+        imgsUrls: ["inns/desert/3.jpeg", "inns/desert/1.jpeg", "inns/desert/3.jpeg"],
+        maxNumberOfGuests: 5,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Ancient Sands Inn offers a unique blend of history and comfort in the heart of Mirros, the city of magic and ancient mysteries. Situated amidst the remnants of a once-great civilization, this inn provides a tranquil oasis for travelers exploring the desertic plains and the renowned magic academy. Immerse yourself in the ambiance of an ancient city while enjoying modern luxuries.",
+            theSpace: "The inn features two spacious bedrooms decorated with motifs inspired by the ancient civilization of Mirros. Each room provides breathtaking views of the surrounding desert and the majestic ruins. The common area includes a cozy lounge with traditional desert furnishings and a small library of ancient texts. The private baths come with modern fixtures and soothing desert-themed decor.",
+            note: "Explore the nearby ruins and magical academy during your stay. The inn’s staff can provide guided tours and magical insights upon request."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: false,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: true,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "8:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "e7a1d6c8-8d9b-4c77-9c2b-1a5e9f5d6e2a",
+        hostId: "c6f0e9d3-5c6b-4d1b-a8e9-b77c1d9eec8d",
+        location: {
+            city: CityName.Mirros,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 210,
+                y: 580,
+            }
+        },
+        ratings: 4.9,
+        name: "The Celestial Oasis",
+        pricePerNight: 85,
+        imgsUrls: ["inns/desert/1.jpeg", "inns/desert/2.jpeg", "inns/desert/3.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Experience the magic of Mirros at The Celestial Oasis, a serene retreat in the heart of the ancient city. Surrounded by the remnants of a bygone era, this inn offers a unique blend of historical ambiance and modern comfort. Perfect for those looking to explore the mysteries of Mirros and enjoy its renowned magical heritage.",
+            theSpace: "The Celestial Oasis features two elegantly appointed bedrooms with enchanting views of the desert and ancient ruins. The common area includes a cozy lounge with magical decor and a small library filled with ancient texts. Both private baths are equipped with contemporary amenities and designed to provide a luxurious experience.",
+            note: "Enjoy exclusive access to the inn's private rooftop terrace, where you can gaze at the stars and marvel at the magical auroras that illuminate the night sky."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: true,
+            dishes: true,
+            essentials: true,
+            fireplace: false,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: true,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "d6c4e2b1-0a1b-4f67-9f3a-7c8e7a3b0d2a",
+        hostId: "c6f0e9d3-5c6b-4d1b-a8e9-b77c1d9eec8d",
+        location: {
+            city: CityName.Mirros,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 210,
+                y: 580,
+            }
+        },
+        ratings: 4.7,
+        name: "Mystic Mirage Suite",
+        pricePerNight: 90,
+        imgsUrls: ["inns/desert/3.jpeg", "inns/desert/4.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Step into the enchanting Mystic Mirage Suite, located in the heart of Mirros. This elegant retreat offers a blend of historical charm and magical ambiance, perfect for travelers seeking a unique experience in the ancient city known for its magic academy and mysterious ruins.",
+            theSpace: "The suite features a spacious bedroom with mystical decor and a large window overlooking the desert plains. The cozy living area is designed with magical artifacts and comfortable furnishings. The private bath includes modern amenities and a touch of desert-themed luxury.",
+            note: "Enjoy access to the inn's exclusive garden, which features magical flora and provides a peaceful retreat from the bustling city."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: false,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: false,
+            librairies: true,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
     }
 ];
