@@ -65,6 +65,29 @@ export enum CityName {
     Brightwater = "Brightwater",
 }
 
+export const citiesName: string[] = [
+    CityName.Thandor,
+    CityName.Krynholm,
+    CityName.Lurendale,
+    CityName.Vorandal,
+    CityName.Mirros,
+    CityName.Drakenshore,
+    CityName.Highreach,
+    CityName.Briarholm,
+    CityName.Glimmerfall,
+    CityName.Ebonport,
+    CityName.Ironcliff,
+    CityName.Sunspire,
+    CityName.Frostgate,
+    CityName.Willowgrove,
+    CityName.Stormwatch,
+    CityName.Moonshadow,
+    CityName.Redleaf,
+    CityName.Goldhaven,
+    CityName.Shadowfen,
+    CityName.Brightwater,
+]
+
 interface City {
     name: CityName;
     biome: Biome;

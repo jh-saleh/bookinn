@@ -1,0 +1,12 @@
+<div class="autocompletion-wrapper">
+    @for (city of suggestions; track $index) {
+    <div class="autocompletion-suggestion" (click)="suggestionClickHandler(city)">
+        <span class="material-symbols-outlined">
+            location_on
+        </span>
+        <span>
+            {{city}}
+        </span>
+    </div>
+    }
+</div>

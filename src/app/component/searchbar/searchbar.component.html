@@ -10,9 +10,10 @@
         </div>
     </div>
     <div class="searchbar">
-        <div class="location" (click)="focusLocationInput(refLocationInput)">
+        <div class="location" (click)="focusLocationInput(locationInputRef)">
             <label>Where</label>
-            <input #refLocationInput [(ngModel)]="locationInput" placeholder="Search destinations" />
+            <input #locationInputRef (input)="autocompletionOpenStatusHandler()" [(ngModel)]="locationInput"
+                placeholder="Search destinations" />
         </div>
         <div class="divider"></div>
         <div class="checkin" (click)="openCalendar()">
@@ -68,5 +69,11 @@
     (openModal)="openGuests()">
     <div [ngClass]="guestsWrapperClass">
         <app-guests (getGuests)="getGuests($event)"></app-guests>
+    </div>
+</modal>
+<modal [isModalOpen]="isAutocompletionOpen" [classPosition]="autocompletionPosition"
+    (closeModal)="closeAutocompletion()" (openModal)="focusLocationInput(locationInputRef)">
+    <div [ngClass]="autocompletionWrapperClass">
+        <autocompletion [cityPart]="locationInput" (sendSuggestion)="getLocationSuggestion($event)"></autocompletion>
     </div>
 </modal>

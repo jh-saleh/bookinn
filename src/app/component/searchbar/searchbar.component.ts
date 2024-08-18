@@ -10,6 +10,7 @@ import { Position } from '../../model/position/position.model';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
+import { AutocompletionComponent } from "../autocompletion/autocompletion.component";
 import { CalendarComponent } from "../calendar/calendar.component";
 import { GuestType, Guests, GuestsComponent } from "../guests/guests.component";
 import { ModalComponent } from '../windows/modal/modal.component';
@@ -17,7 +18,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe],
+  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe, AutocompletionComponent],
   providers: [CalendarDateFormatPipe],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css'
@@ -39,7 +40,11 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
   guests: Guests | undefined;
   totalNbOfGuests: number = 0;
   statusOfSearchBar: boolean = true;
+  @ViewChild("locationInputRef") locationInputRef: ElementRef<HTMLInputElement> | undefined;
   locationInput!: string;
+  isAutocompletionOpen: boolean = false;
+  autocompletionPosition: Position = { top: 0, left: 0 };
+  autocompletionWrapperClass: string = css``;
   @Input({ required: false }) startingState: 'minimized' | 'normal' = 'normal';
   @Output() sendSearchbarStatus = new EventEmitter<boolean>();
   @Input() set searchbarStatus(open: boolean) {
@@ -92,6 +97,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
             } else {
               this.isCalendarOpen = false;
               this.isGuestsOpen = false;
+              this.isAutocompletionOpen = false;
               this.animations["services-wrapper"].play();
             }
           }
@@ -284,11 +290,52 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
     this.selectedService = index;
   }
 
-  focusLocationInput(refLocationInput: HTMLInputElement) {
-    this.openSearchbar();
-    const locationSearch: string = refLocationInput.value;
-    refLocationInput.focus();
-    refLocationInput.setSelectionRange(locationSearch.length, locationSearch.length);
+  focusLocationInput(locationInputRef: HTMLInputElement) {
+    const openAutocompletionHandler = () => {
+      this.updateAutocompletionModalPosition();
+      this.openSearchbar();
+      const locationSearch: string = locationInputRef.value;
+      locationInputRef.focus();
+      locationInputRef.setSelectionRange(locationSearch.length, locationSearch.length);
+    }
+    if (this.statusOfSearchBar) {
+      openAutocompletionHandler();
+    } else {
+      this.openSearchbar();
+      setTimeout(() => {
+        openAutocompletionHandler();
+      }, 500);
+    }
+  }
+
+  autocompletionOpenStatusHandler() {
+    if (this.locationInput.length > 0) {
+      this.sendSearchbarStatus.emit(true);
+      this.isAutocompletionOpen = true;
+    } else {
+      this.closeAutocompletion();
+    }
+  }
+
+  closeAutocompletion() {
+    this.isAutocompletionOpen = false;
+  }
+
+  updateAutocompletionModalPosition() {
+    if (this.locationInputRef && this.searchBarRef) {
+      const { width } = this.locationInputRef.nativeElement.getBoundingClientRect();
+      const { top, height, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      this.autocompletionPosition = { top: top + height + 10, left: left };
+      this.autocompletionWrapperClass = css`
+        width: ${width + 30}px;
+        padding: 12px;
+      `;
+    }
+  }
+
+  getLocationSuggestion(location: string) {
+    this.locationInput = location;
+    this.isAutocompletionOpen = false;
   }
 
   updateCalendarModalPosition() {
@@ -400,5 +447,6 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy {
         nbGuests: this.totalNbOfGuests === 0 ? undefined : this.totalNbOfGuests
       }
     });
+    this.closeSearchBar();
   }
 }
