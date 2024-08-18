@@ -173,7 +173,6 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.animations["location>input"] = gsap.fromTo('.location>input', {
         opacity: 1,
-        width: "250px",
         height: "20px",
       }, {
         opacity: 0,
@@ -199,7 +198,6 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.animations["checkin-date"] = gsap.fromTo('.checkin-date', {
         opacity: 1,
-        width: "80px",
       }, {
         opacity: 0,
         width: "0px",
@@ -225,7 +223,6 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.animations["checkout-date"] = gsap.fromTo('.checkout-date', {
         opacity: 1,
-        width: "80px",
       }, {
         opacity: 0,
         width: "0px",

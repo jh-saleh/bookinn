@@ -53,6 +53,11 @@
     font-size: medium;
 }
 
+.checkin-date,
+.checkout-date {
+    width: 80px;
+}
+
 .checkin-empty-date,
 .checkout-empty-date,
 .no-guests {
