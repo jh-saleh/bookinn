@@ -1,0 +1,12 @@
+.not-found-page-wrapper {
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    place-items: center;
+    color: white;
+}
+
+.error-value {
+    text-align: center;
+    font-size: 75px;
+}
