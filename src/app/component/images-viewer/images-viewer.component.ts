@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { css } from '@emotion/css';
 
 @Component({
-  selector: 'app-images-viewer',
+  selector: 'images-viewer',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './images-viewer.component.html',
@@ -90,7 +90,7 @@ export class ImagesViewerComponent {
       this.imagesViewerWrapperClass = css`
       height: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 29dvw);
+      grid-template-columns: repeat(2, 29.5dvw);
       gap: 1dvw;
       > img {
         height: 29dvw;

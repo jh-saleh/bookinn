@@ -28,7 +28,7 @@ import { PluralizePipe } from '../../pipe/pluralize.pipe';
   standalone: true,
   imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
-    PluralizePipe, CamelToSentencePipe, FullViewModalComponent, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
+    PluralizePipe, CamelToSentencePipe, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
     MapComponent],
   providers: [CalendarDatesService],
   templateUrl: './room-page.component.html',
