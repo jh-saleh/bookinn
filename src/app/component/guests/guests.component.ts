@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
-import { GuestType, Guests } from '../../model/stay/guest.model';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
+import { GuestType, Guests } from '../../hexagonal/domain/model/stay/guest.model';
 import { CounterComponent } from "../counter/counter.component";
 
 @Component({

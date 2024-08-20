@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { css } from '@emotion/css';
-import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
+import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 
 @Component({
   selector: 'date-input',

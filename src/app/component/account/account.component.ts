@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Position } from '../../model/position/position.model';
+import { Position } from '../../hexagonal/domain/model/position/position.model';
 import { ModalComponent } from '../windows/modal/modal.component';
 
 @Component({

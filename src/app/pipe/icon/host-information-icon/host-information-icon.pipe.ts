@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { HostInformationTable, HostInformationType } from '../../../model/stay/host.model';
+import { HostInformationTable, HostInformationType } from '../../../hexagonal/domain/model/stay/host.model';
 
 @Pipe({
   name: 'hostInformationIcon',

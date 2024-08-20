@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
-import { CalendarDate } from '../IoC/service/calendar-dates.service';
+import { CalendarDate } from '../service/calendar-dates.service';
 
 @Pipe({
   name: 'calendarDateFormat',

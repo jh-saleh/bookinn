@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
-import { HostService } from '../../IoC/service/host.service';
-import { StaysService } from '../../IoC/service/stay.service';
 import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
@@ -13,15 +10,19 @@ import { ImagesViewerComponent } from "../../component/images-viewer/images-view
 import { MapComponent } from '../../component/map/map.component';
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
-import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
-import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../model/stay/amenity.model';
-import { Guests } from '../../model/stay/guest.model';
-import { Host } from '../../model/stay/host.model';
-import { Stay } from '../../model/stay/stay.model';
+import { hostServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
+import { AmenityType, AminityRow, AminitySummaryRow, extractAmenitiesData } from '../../hexagonal/domain/model/stay/amenity.model';
+import { Guests } from '../../hexagonal/domain/model/stay/guest.model';
+import { Host } from '../../hexagonal/domain/model/stay/host.model';
+import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
+import { HostPort } from '../../hexagonal/domain/port/host.port';
+import { StayPort } from '../../hexagonal/domain/port/stay.port';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { NegationPipe } from '../../pipe/negation.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
+import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 
 @Component({
   selector: 'room-page',
@@ -30,7 +31,7 @@ import { PluralizePipe } from '../../pipe/pluralize.pipe';
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
     PluralizePipe, CamelToSentencePipe, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
     MapComponent],
-  providers: [CalendarDatesService],
+  providers: [CalendarDatesService, { provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './room-page.component.html',
   styleUrl: './room-page.component.css'
 })
@@ -48,14 +49,16 @@ export class RoomPageComponent implements OnInit {
   paramRoomId: string | null = null;
   queryParamGuests!: Guests;
 
-  constructor(private route: ActivatedRoute, private staysService: StaysService, private hostService: HostService, private calendarDatesService: CalendarDatesService) {
+  constructor(private route: ActivatedRoute, private staysService: StayPort, private hostService: HostPort, private calendarDatesService: CalendarDatesService) {
 
   }
 
   ngOnInit(): void {
     this.paramRoomId = this.route.snapshot.paramMap.get('id');
-    this.inn = this.staysService.getStay(this.paramRoomId ?? "");
-    this.host = this.hostService.getHost(this.inn.hostId);
+    this.staysService.getStay(this.paramRoomId ?? "").subscribe((stay) => this.inn = stay);
+    this.hostService.getHost(this.inn.hostId).subscribe((value) => {
+      this.host = value;
+    });
     this.amenities = extractAmenitiesData(this.inn.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();
     this.isThereNotIncludedAmenities = this.amenities[AmenityType.NotIncluded] ? this.amenities[AmenityType.NotIncluded].length > 0 : false;

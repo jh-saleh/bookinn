@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { css } from '@emotion/css';
-import { CalendarDate, CalendarDatesService, CalendarDay } from '../../IoC/service/calendar-dates.service';
-import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../model/enum/date.util';
+import { DaysShortHand, Month, convertMonthToNumber, getCurrentCalendarDate, getNextMonth, getPreviousMonth } from '../../hexagonal/domain/model/enum/date.util';
+import { CalendarDate, CalendarDatesService, CalendarDay } from '../../service/calendar-dates.service';
 import { ModalComponent } from "../windows/modal/modal.component";
 
 @Component({

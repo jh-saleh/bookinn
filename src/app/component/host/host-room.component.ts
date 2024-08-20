@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Host } from '../../model/stay/host.model';
+import { Host } from '../../hexagonal/domain/model/stay/host.model';
 import { HostCardComponent } from "../card/host-card/host-card.component";
 
 @Component({

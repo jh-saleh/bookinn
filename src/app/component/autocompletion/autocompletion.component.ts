@@ -1,18 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LandService } from '../../IoC/service/land.service';
+import { landServiceFactory } from '../../hexagonal/di-factories';
+import { LandPort } from '../../hexagonal/domain/port/land.port';
 
 @Component({
   selector: 'autocompletion',
   standalone: true,
   imports: [],
-  providers: [LandService],
+  providers: [{ provide: LandPort, useFactory: landServiceFactory }],
   templateUrl: './autocompletion.component.html',
   styleUrl: './autocompletion.component.css'
 })
 export class AutocompletionComponent {
   @Input({ required: true }) set cityPart(value: string) {
     if (value) {
-      this.suggestions = this.landservice.findClosestCityName(value);
+      this.landservice.findClosestCityName(value).subscribe((suggestions) => this.suggestions = suggestions);
     } else {
       this.suggestions = [];
     }
@@ -20,7 +21,7 @@ export class AutocompletionComponent {
   suggestions: string[] = [];
   @Output() sendSuggestion = new EventEmitter<string>();
 
-  constructor(private landservice: LandService) {
+  constructor(private landservice: LandPort) {
 
   }
 

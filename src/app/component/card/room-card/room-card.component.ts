@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { css } from '@emotion/css';
-import { CityName, KingdomName } from '../../../model/land/land.model';
+import { CityName, KingdomName } from '../../../hexagonal/domain/model/land/land.model';
 
 @Component({
   selector: 'room-card',

@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { StaysService } from '../../IoC/service/stay.service';
 import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { Stay } from '../../model/stay/stay.model';
+import { stayServiceFactory } from '../../hexagonal/di-factories';
+import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
+import { StayPort } from '../../hexagonal/domain/port/stay.port';
 
 @Component({
   selector: 'home-page',
   standalone: true,
   imports: [RouterModule, NavbarComponent, FooterComponent, RoomCardComponent],
+  providers: [{ provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent implements OnInit {
   stays!: Stay[];
 
-  constructor(private innService: StaysService) { }
+  constructor(private stayService: StayPort) { }
 
   ngOnInit(): void {
-    this.stays = this.innService.getHomePageStays();
+    this.stayService.getHomePageStays().subscribe((stays) => this.stays = stays);
   }
 }

@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { css } from '@emotion/css';
 import { environment } from '../../../environments/environment';
-import { LeafletHelper } from '../../IoC/service/leaflet.helper';
-import { CityName } from '../../model/land/land.model';
-import { Coordinates } from '../../model/stay/location.model';
+import { CityName } from '../../hexagonal/domain/model/land/land.model';
+import { Coordinates } from '../../hexagonal/domain/model/stay/location.model';
+import { LeafletLoadingService } from '../../service/leaflet-loading.service';
 
 @Component({
   selector: 'app-map',
   standalone: true,
   templateUrl: './map.component.html',
   imports: [CommonModule],
-  providers: [LeafletHelper],
+  providers: [LeafletLoadingService],
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
@@ -26,14 +26,14 @@ export class MapComponent {
   @Input({ required: true }) coordinates?: Coordinates;
 
   constructor(
-    private leafletHelper: LeafletHelper,
+    private leafletLoadingService: LeafletLoadingService,
     @Inject(PLATFORM_ID) private _platformId: Object
   ) { }
 
   ngOnInit() {
     // check if app is running in browser and then lazyload leaflet because of SSR
     if (this._platformId === 'browser') {
-      this.leafletHelper.loadLeaflet().then((leafletLib) => {
+      this.leafletLoadingService.loadLeaflet().then((leafletLib) => {
         this.initMap(leafletLib);
       });
     }

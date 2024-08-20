@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
-import { CalendarDate, CalendarDatesService } from '../../IoC/service/calendar-dates.service';
-import { StaysService } from '../../IoC/service/stay.service';
 import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { SearchbarStartingStates } from '../../component/searchbar/searchbar.component';
-import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../model/const';
-import { getTotalNbOfGuests } from '../../model/stay/guest.model';
-import { Coordinates } from '../../model/stay/location.model';
-import { Stay } from '../../model/stay/stay.model';
+import { stayServiceFactory } from '../../hexagonal/di-factories';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
+import { getTotalNbOfGuests } from '../../hexagonal/domain/model/stay/guest.model';
+import { Coordinates } from '../../hexagonal/domain/model/stay/location.model';
+import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
+import { StayPort } from '../../hexagonal/domain/port/stay.port';
+import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
   imports: [NavbarComponent, FooterComponent, MapComponent, RouterModule, RoomCardComponent],
-  providers: [CalendarDatesService, StaysService],
+  providers: [CalendarDatesService, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.css'
 })
@@ -36,7 +37,7 @@ export class SearchPageComponent implements OnInit {
   staysSearchResults: Stay[] = [];
   searchbarStartingState: SearchbarStartingStates | undefined;
 
-  constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StaysService) {
+  constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StayPort) {
 
   }
 
@@ -88,6 +89,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   executeSearch() {
-    this.staysSearchResults = this.stayService.searchStays(this.paramLocation, getTotalNbOfGuests(this.searchbarStartingState?.guests));
+    this.stayService.searchStays(this.paramLocation, getTotalNbOfGuests(this.searchbarStartingState?.guests))
+      .subscribe((stays) => this.staysSearchResults = stays);
   }
 }

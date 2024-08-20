@@ -3,5 +3,6 @@ export const environment = {
     portfolioURL: "https://jh-saleh.vercel.app",
     images: {
         worldmap: "/map/Orlond.svg",
-    }
+    },
+    mode: "portfolio"
 }

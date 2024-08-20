@@ -1,4 +1,4 @@
-import { Host, HostInformationType } from "../model/stay/host.model";
+import { Host, HostInformationType } from "../hexagonal/domain/model/stay/host.model";
 
 export const hosts: Host[] = [
     {

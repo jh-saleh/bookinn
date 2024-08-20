@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Days, Month, convertMonthToNumber, getDayName } from '../../model/enum/date.util';
+import { Days, Month, convertMonthToNumber, getDayName } from '../hexagonal/domain/model/enum/date.util';
 
 export interface CalendarDate {
   day: number;

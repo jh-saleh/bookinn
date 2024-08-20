@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { css } from '@emotion/css';
-import { Position } from '../../../model/position/position.model';
+import { Position } from '../../../hexagonal/domain/model/position/position.model';
 
 @Component({
   selector: 'modal',

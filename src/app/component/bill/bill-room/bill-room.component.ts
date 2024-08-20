@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { css } from '@emotion/css';
-import { CalendarDate } from '../../../IoC/service/calendar-dates.service';
-import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../model/const';
-import { Position } from '../../../model/position/position.model';
-import { Guests, getTotalNbOfGuests } from '../../../model/stay/guest.model';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../hexagonal/domain/model/const';
+import { Position } from '../../../hexagonal/domain/model/position/position.model';
+import { Guests, getTotalNbOfGuests } from '../../../hexagonal/domain/model/stay/guest.model';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
+import { CalendarDate } from '../../../service/calendar-dates.service';
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { DateInputComponent } from "../../date-input/date-input.component";
 import { GuestsComponent } from "../../guests/guests.component";

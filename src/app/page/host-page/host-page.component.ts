@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { HostService } from '../../IoC/service/host.service';
-import { StaysService } from '../../IoC/service/stay.service';
 import { HostCardComponent } from "../../component/card/host-card/host-card.component";
 import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
-import { Host } from '../../model/stay/host.model';
-import { Stay } from '../../model/stay/stay.model';
+import { hostServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
+import { Host } from '../../hexagonal/domain/model/stay/host.model';
+import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
+import { HostPort } from '../../hexagonal/domain/port/host.port';
+import { StayPort } from '../../hexagonal/domain/port/stay.port';
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/host-information-icon.pipe';
 
@@ -16,7 +17,7 @@ import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/h
   standalone: true,
   imports: [NavbarComponent, FooterComponent, HostCardComponent, RoomCardComponent, RouterModule,
     CamelToSentencePipe, HostInformationIconPipe],
-  providers: [HostService, StaysService],
+  providers: [{ provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.css'
 })
@@ -24,13 +25,13 @@ export class HostPageComponent implements OnInit {
   host!: Host;
   listings!: Stay[];
 
-  constructor(private route: ActivatedRoute, private hostService: HostService, private staysService: StaysService) {
+  constructor(private route: ActivatedRoute, private hostService: HostPort, private staysService: StayPort) {
 
   }
 
   ngOnInit(): void {
     const hostId = this.route.snapshot.paramMap.get('id');
-    this.host = this.hostService.getHost(hostId ?? "");
-    this.listings = this.staysService.getStays(...this.host.listings);
+    this.hostService.getHost(hostId ?? "").subscribe((host) => this.host = host);
+    this.staysService.getStays(...this.host.listings).subscribe((stays) => this.listings = stays);
   }
 }
