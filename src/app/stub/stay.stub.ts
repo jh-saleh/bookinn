@@ -2382,5 +2382,254 @@ export const stays: Stay[] = [
                 noRefund: 3
             }
         }
+    },
+    {
+        id: "a8f1c3e7-2b4c-4d9a-8b5f-9e1b8b6a0d4e",
+        hostId: "b4e9d7a3-8c5d-4f6b-a1f9-c7e2a4d8eec9",
+        location: {
+            city: CityName.Vorandal,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 370,
+                y: 540,
+            }
+        },
+        ratings: 4.8,
+        name: "Saffron Sands Suite",
+        pricePerNight: 85,
+        imgsUrls: ["inns/desert/4.jpeg", "inns/desert/2.jpeg", "inns/desert/5.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Nestled in the vibrant city of Vorandal, the Saffron Sands Suite offers a luxurious escape amid the arid beauty of the desert. This suite provides a serene atmosphere where the rich cultural heritage of spice trade and textiles blends with modern comforts.",
+            theSpace: "The suite features two elegantly designed bedrooms with desert-inspired decor and large windows overlooking the bustling spice markets. The living area is spacious and filled with handcrafted textiles, offering a cozy retreat after a day of exploring the city. The private bath is equipped with modern amenities, enhanced by traditional elements reflecting the region's rich culture.",
+            note: "Guests are invited to relax in the rooftop garden, which offers panoramic views of the desert landscape and the vibrant city life below."
+        },
+        amenities: {
+            bathOutdoors: true,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: false,
+            iron: true,
+            kitchen: false,
+            librairies: false,
+            silverware: true,
+            tavern: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "8:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: true,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: false,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 10,
+                partialRefund: 4,
+                noRefund: 2
+            }
+        }
+    },
+    {
+        id: "d3e7f9c4-1b3d-4f8b-8a9c-5e2b7f4d8c3b",
+        hostId: "b4e9d7a3-8c5d-4f6b-a1f9-c7e2a4d8eec9",
+        location: {
+            city: CityName.Vorandal,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 400,
+                y: 550,
+            }
+        },
+        ratings: 4.9,
+        name: "Desert Jewel Retreat",
+        pricePerNight: 120,
+        imgsUrls: ["inns/desert/5.jpeg", "inns/desert/3.jpeg", "inns/desert/1.jpeg"],
+        maxNumberOfGuests: 5,
+        lodging: {
+            nbBedrooms: 3,
+            nbBeds: 4,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Discover the Desert Jewel Retreat, a luxurious oasis in the heart of Vorandal. Perfectly situated in the vibrant city known for its spice trade and artisan textiles, this retreat offers a blend of comfort and tradition, making it ideal for travelers seeking both relaxation and cultural immersion.",
+            theSpace: "This spacious inn features three elegantly decorated bedrooms with desert hues and handcrafted furnishings. The living area is expansive, designed with artisanal touches that reflect Vorandal’s rich cultural heritage. The retreat also includes two modern baths with amenities that combine luxury with a touch of the exotic.",
+            note: "Guests can unwind in the private courtyard garden, where the scent of exotic spices mingles with the desert breeze, creating a tranquil escape from the city's bustling markets."
+        },
+        amenities: {
+            bathOutdoors: true,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: true,
+            bards: true,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: true,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: true,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "1:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 21,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
+    },
+    {
+        id: "f2b9e3a1-7d3c-4c8e-9a2f-5d7b1c9a2d3e",
+        hostId: "b4e9d7a3-8c5d-4f6b-a1f9-c7e2a4d8eec9",
+        location: {
+            city: CityName.Vorandal,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 360,
+                y: 530,
+            }
+        },
+        ratings: 4.6,
+        name: "Spice Market Haven",
+        pricePerNight: 75,
+        imgsUrls: ["inns/desert/2.jpeg", "inns/desert/1.jpeg", "inns/desert/4.jpeg"],
+        maxNumberOfGuests: 2,
+        lodging: {
+            nbBedrooms: 1,
+            nbBeds: 1,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Located steps away from Vorandal’s famous spice markets, Spice Market Haven is a cozy retreat for travelers looking to immerse themselves in the vibrant culture of the city. Ideal for solo adventurers or couples, this inn offers a comfortable stay with easy access to the heart of the spice trade.",
+            theSpace: "This charming inn features a single, well-appointed bedroom with views of the bustling markets below. The decor reflects the rich colors and textures of Vorandal’s famous textiles. The living space is intimate yet inviting, perfect for unwinding after a day exploring the city. The modern bath is equipped with all the essentials for a refreshing stay.",
+            note: "Guests have exclusive access to a rooftop terrace, providing a serene space to enjoy a cup of tea while taking in the vibrant atmosphere of the spice markets."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: false,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: false,
+            librairies: false,
+            silverware: true,
+            tavern: true,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "4:00 PM",
+                            upperBoundary: "10:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
     }
 ];

@@ -692,5 +692,48 @@ export const hosts: Host[] = [
             },
             rate: 85,
         }
+    },
+    {
+        id: "b4e9d7a3-8c5d-4f6b-a1f9-c7e2a4d8eec9",
+        firstname: "Aric",
+        lastname: "Spiceveil",
+        firstYearOfHosting: 2005,
+        imgSrc: "./hosts/generic/desert1.jpeg",
+        informations: [
+            {
+                enum: HostInformationType.School,
+                data: "Studied Textile Arts at the Vorandal Trade Academy"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Common", "Elvish", "Dwarvish"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Aric is an expert in ancient weaving techniques and can identify the origin of any textile just by touch."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Innkeeper with extensive experience in the spice trade and textile curation."
+            },
+        ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
+        listings: [
+            "a8f1c3e7-2b4c-4d9a-8b5f-9e1b8b6a0d4e",
+            "d3e7f9c4-1b3d-4f8b-8a9c-5e2b7f4d8c3b",
+            "f2b9e3a1-7d3c-4c8e-9a2f-5d7b1c9a2d3e"
+        ],
+        shortDescription: `Meet Aric Spiceveil, the welcoming host of Saffron Sands Suite. With a background in Textile Arts from the Vorandal Trade Academy and deep expertise in the spice trade, Aric offers guests a unique cultural experience. His passion for the rich traditions of Vorandal, combined with his knowledge of ancient weaving techniques, ensures a stay that is both comfortable and enlightening.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 2,
+            },
+            rate: 90,
+        }
     }
 ];
