@@ -2880,5 +2880,88 @@ export const stays: Stay[] = [
                 noRefund: 3
             }
         }
+    },
+    {
+        id: "c9e4f1b2-7a9d-4e5c-8b6e-3c7d8a9f5e2a",
+        hostId: "a5d9f8c2-3b4e-4a7f-9d6b-1c8e9f5d3a2b",
+        location: {
+            city: CityName.Thandor,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 450,
+                y: 220,
+            }
+        },
+        ratings: 4.8,
+        name: "Timberwood Haven",
+        pricePerNight: 85,
+        imgsUrls: ["inns/normal/1.jpeg", "inns/normal/2.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Timberwood Haven is a delightful retreat located in the tranquil village of Thandor, renowned for its timber production and herbalism. Set amidst lush plains and surrounded by verdant woodlands, this inn offers a perfect escape for those seeking relaxation and a connection to nature's bounty.",
+            theSpace: "The inn features two elegantly furnished bedrooms with wooden accents that reflect Thandor’s timber heritage. The living area is designed for comfort, with cozy seating around a central fireplace. Guests can prepare meals in the well-equipped kitchen using fresh herbs from the nearby herbalists. The modern bath includes all the amenities needed for a refreshing stay. Large windows provide picturesque views of the surrounding plains and woodlands.",
+            note: "Guests are encouraged to explore the local timber workshops and herbalist shops, or simply relax in the inn’s garden, where the scent of pine and herbs creates a serene atmosphere."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
     }
 ];

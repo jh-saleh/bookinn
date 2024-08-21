@@ -778,5 +778,46 @@ export const hosts: Host[] = [
             },
             rate: 92,
         }
+    },
+    {
+        id: "a5d9f8c2-3b4e-4a7f-9d6b-1c8e9f5d3a2b",
+        firstname: "Rowan",
+        lastname: "Thornfield",
+        firstYearOfHosting: 2015,
+        imgSrc: "./hosts/generic/snow1.jpeg",
+        informations: [
+            {
+                enum: HostInformationType.School,
+                data: "Studied Herbalism and Forestry at the Thandor Institute of Natural Sciences"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Common", "Elvish"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Rowan is an avid woodworker and creates custom wooden crafts for guests upon request."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Innkeeper with a background in timber production and herbalism."
+            },
+        ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
+        listings: [
+            "c9e4f1b2-7a9d-4e5c-8b6e-3c7d8a9f5e2a"
+        ],
+        shortDescription: `Meet Rowan Thornfield, the dedicated host of Timberwood Haven. With a strong background in both timber production and herbalism, Rowan provides a unique and enriching experience for guests. Rowan’s expertise in natural crafts and local herbs adds a special touch to the stay, making it both comfortable and memorable.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 1.5,
+            },
+            rate: 90,
+        }
     }
 ];
