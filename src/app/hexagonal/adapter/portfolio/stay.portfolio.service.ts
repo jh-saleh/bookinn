@@ -12,7 +12,7 @@ export class StayPortfolioService implements StayPort {
   constructor() { }
 
   getHomePageStays(): Observable<Stay[]> {
-    return of(stays);
+    return of(stays.slice(0, 40));
   }
 
   searchStays(location: string | null, nbGuests: number | null): Observable<Stay[]> {
