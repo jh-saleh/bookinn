@@ -735,5 +735,48 @@ export const hosts: Host[] = [
             },
             rate: 90,
         }
+    },
+    {
+        id: "d1f8c9b7-6c3f-4a7e-8b9e-c6d2a7b9e2f1",
+        firstname: "Elara",
+        lastname: "Greenthorn",
+        firstYearOfHosting: 2010,
+        imgSrc: "./hosts/generic/forest1.jpeg",
+        informations: [
+            {
+                enum: HostInformationType.School,
+                data: "Studied Herbal Medicine at the Lurendale Agricultural Academy"
+            },
+            {
+                enum: HostInformationType.Languages,
+                data: ["Common", "Sylvan"]
+            },
+            {
+                enum: HostInformationType.FunFact,
+                data: "Elara is an expert in herbal remedies and often creates her own teas from local herbs."
+            },
+            {
+                enum: HostInformationType.Work,
+                data: "Innkeeper and part-time herbalist with a passion for sustainable farming."
+            },
+        ],
+        confirmation: {
+            identity: true,
+            email: true,
+            phone: true,
+        },
+        listings: [
+            "e4c9f2b1-8a3d-4f5b-9b1f-6c7d9a4e8c1d",
+            "a7d4e2c9-5b3f-4e9a-9c6d-3b1e9f8d7c4b",
+            "b8e5f3a2-6d4f-4a8c-9d7e-2b3c8f9d6e4c"
+        ],
+        shortDescription: `Meet Elara Greenthorn, the warm and welcoming host of Meadowview Rest. With a background in herbal medicine and sustainable farming, Elara is deeply connected to the land and its natural beauty. Her knowledge of local herbs and passion for rural life make her the perfect guide for guests looking to experience the tranquility of Lurendale.`,
+        efficiency: {
+            time: {
+                type: "hours",
+                amount: 2,
+            },
+            rate: 92,
+        }
     }
 ];

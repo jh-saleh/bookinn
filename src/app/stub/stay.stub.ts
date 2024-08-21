@@ -2631,5 +2631,254 @@ export const stays: Stay[] = [
                 noRefund: 3
             }
         }
+    },
+    {
+        id: "e4c9f2b1-8a3d-4f5b-9b1f-6c7d9a4e8c1d",
+        hostId: "d1f8c9b7-6c3f-4a7e-8b9e-c6d2a7b9e2f1",
+        location: {
+            city: CityName.Lurendale,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 760,
+                y: 470,
+            }
+        },
+        ratings: 4.9,
+        name: "Meadowview Rest",
+        pricePerNight: 65,
+        imgsUrls: ["inns/normal/4.jpeg", "inns/normal/2.jpeg"],
+        maxNumberOfGuests: 4,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 3,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Welcome to Meadowview Rest, a serene retreat located in the idyllic village of Lurendale. Surrounded by lush fields and thriving farms, this inn offers a peaceful escape for those seeking rest and rejuvenation in the heart of nature. Lurendale is known for its agriculture and livestock, making it a perfect stop for travelers and adventurers looking to experience the simple joys of rural life.",
+            theSpace: "The inn features two cozy bedrooms with rustic decor that reflects the village’s agricultural charm. The living area is warm and inviting, with large windows offering breathtaking views of the surrounding plains. The kitchen is fully equipped for those who wish to prepare meals using fresh, local ingredients. The single bath is clean and modern, ensuring a comfortable stay.",
+            note: "Guests are encouraged to explore the nearby farms and enjoy the village's fresh produce, or simply relax in the inn’s private garden, where the gentle breeze and the sounds of nature provide a perfect setting for unwinding."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "8:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
+    },
+    {
+        id: "a7d4e2c9-5b3f-4e9a-9c6d-3b1e9f8d7c4b",
+        hostId: "d1f8c9b7-6c3f-4a7e-8b9e-c6d2a7b9e2f1",
+        location: {
+            city: CityName.Lurendale,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 760,
+                y: 470,
+            }
+        },
+        ratings: 4.8,
+        name: "Harvest Home",
+        pricePerNight: 80,
+        imgsUrls: ["inns/normal/3.jpeg", "inns/normal/4.jpeg"],
+        maxNumberOfGuests: 6,
+        lodging: {
+            nbBedrooms: 3,
+            nbBeds: 4,
+            nbBaths: 2,
+        },
+        about: {
+            context: "Nestled in the heart of Lurendale, Harvest Home offers a cozy retreat where guests can experience the serene beauty of village life. Surrounded by lush fields and friendly farms, this inn is perfect for those looking to unwind and connect with nature in one of Orlond's most peaceful regions.",
+            theSpace: "Harvest Home features three comfortable bedrooms, each designed with rustic charm and an emphasis on natural materials. The spacious living area is ideal for gatherings, with a large hearth and plenty of seating. A fully equipped kitchen allows guests to prepare meals using fresh ingredients sourced from nearby farms. Two modern baths ensure that guests have all the comforts they need for a relaxing stay.",
+            note: "Guests are welcome to explore the surrounding farmland, where they can meet local farmers, participate in seasonal harvests, and enjoy fresh produce right from the source."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.FlexibleCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "3:00 PM",
+                            upperBoundary: "9:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "11:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: true,
+                    smoking: false,
+                    parties: true,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 21,
+                partialRefund: 10,
+                noRefund: 5
+            }
+        }
+    },
+    {
+        id: "b8e5f3a2-6d4f-4a8c-9d7e-2b3c8f9d6e4c",
+        hostId: "d1f8c9b7-6c3f-4a7e-8b9e-c6d2a7b9e2f1",
+        location: {
+            city: CityName.Lurendale,
+            kingdom: KingdomName.Orlond,
+            coordinates: {
+                x: 760,
+                y: 470,
+            }
+        },
+        ratings: 4.7,
+        name: "Sunnybrook Lodge",
+        pricePerNight: 70,
+        imgsUrls: ["inns/normal/2.jpeg", "inns/normal/3.jpeg"],
+        maxNumberOfGuests: 3,
+        lodging: {
+            nbBedrooms: 2,
+            nbBeds: 2,
+            nbBaths: 1,
+        },
+        about: {
+            context: "Sunnybrook Lodge is a charming retreat nestled in the picturesque village of Lurendale, surrounded by rolling plains and flourishing farmland. Known for its warm hospitality and peaceful atmosphere, this inn is the perfect getaway for those seeking tranquility and a taste of rural life.",
+            theSpace: "The lodge features two cozy bedrooms with soft linens and handcrafted wooden furniture, reflecting the natural beauty of Lurendale. The living space is quaint and comfortable, with a small but well-equipped kitchen for preparing simple meals. The single bath is modern and clean, offering all necessary amenities for a pleasant stay. Large windows throughout the lodge allow guests to enjoy stunning views of the surrounding countryside.",
+            note: "Guests can take a leisurely stroll to the nearby brook, where the gentle sound of flowing water and the sights of local wildlife provide a serene escape from the everyday hustle."
+        },
+        amenities: {
+            bathOutdoors: false,
+            hotWater: true,
+            hostGreetsYou: true,
+            lockOnBedroomDoor: true,
+            magicAirConditioning: false,
+            bards: false,
+            dishes: true,
+            essentials: true,
+            fireplace: true,
+            guards: false,
+            hangers: true,
+            iron: true,
+            kitchen: true,
+            librairies: false,
+            silverware: true,
+            tavern: false,
+        },
+        guidebook: {
+            houserules: {
+                time: {
+                    type: CheckType.StandardCheck,
+                    interval: {
+                        checkIn: {
+                            lowerBoundary: "2:00 PM",
+                            upperBoundary: "8:00 PM"
+                        },
+                        checkOut: {
+                            lowerBoundary: "10:00 AM"
+                        }
+                    }
+                },
+                leave: [
+                    LeaveRule.ReturnKeys,
+                    LeaveRule.GatherUsedTowels,
+                    LeaveRule.LockUp,
+                    LeaveRule.ThrowTrashAway,
+                    LeaveRule.TurnThingsOff
+                ],
+                stay: {
+                    pets: false,
+                    smoking: false,
+                    parties: false,
+                }
+            },
+            safety: {
+                carbonMonoxideAlarm: true,
+                smokeAlarm: true,
+                fireExtinguisher: true
+            },
+            cancellationPolicy: {
+                fullRefund: 14,
+                partialRefund: 7,
+                noRefund: 3
+            }
+        }
     }
 ];
