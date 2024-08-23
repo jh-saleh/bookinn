@@ -1,3 +1,5 @@
+import { User } from "./user.model";
+
 export enum HostInformationType {
     Work = "myWork",
     School = "whereIWentToSchool",
@@ -37,10 +39,7 @@ export const HostInformationTable: Record<HostInformationType, HostInformationRo
     }
 }
 
-export interface Host {
-    id: string;
-    firstname: string;
-    lastname: string;
+export interface Host extends User {
     imgSrc: string;
     firstYearOfHosting: number;
     informations: HostInformation[];

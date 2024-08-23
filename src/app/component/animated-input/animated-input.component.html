@@ -1,0 +1,5 @@
+<div class="animated-input" [class.animated-input-error]="hasError" (click)="focusAnimatedInput()">
+    <span [class.block-text-position-up]="isAnimatedTextAbove">{{label}}</span>
+    <input [class.block-input-opacity]="isAnimatedTextAbove" #inputRef type="text" (input)="onInput($event)"
+        [value]="value" [type]="type" (blur)="blurAnimatedInput()">
+</div>

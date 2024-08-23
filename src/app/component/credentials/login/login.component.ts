@@ -1,0 +1,53 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authServiceFactory, userServiceFactory } from '../../../hexagonal/di-factories';
+import { AuthPort } from '../../../hexagonal/domain/port/auth.port';
+import { UserPort } from '../../../hexagonal/domain/port/user.port';
+import { AppState } from '../../../state/app.state';
+import { UserActions } from '../../../state/user/user.actions';
+import { AnimatedInputComponent } from "../../animated-input/animated-input.component";
+
+@Component({
+  selector: 'login',
+  standalone: true,
+  imports: [AnimatedInputComponent, ReactiveFormsModule],
+  providers: [{ provide: AuthPort, useFactory: authServiceFactory }, { provide: UserPort, useFactory: userServiceFactory }],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css', '../credentials.css']
+})
+export class LoginComponent {
+  form!: FormGroup<{ email: FormControl<string | null>, password: FormControl<string | null> }>;
+  areWrongCrendentials: boolean = false;
+
+  constructor(private fb: FormBuilder, private authService: AuthPort, private router: Router, private store: Store<AppState>
+    , private userService: UserPort) { }
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  logInHandler() {
+    if (this.form.valid) {
+      const { email, password } = this.form.controls;
+      // call api
+      this.authService.login(email.value ?? "", password.value ?? "").subscribe((response) => {
+        if (response) {
+          this.userService.getUser().subscribe((user) => {
+            if (user) {
+              this.store.dispatch(UserActions.setUser({ user: user }));
+              this.router.navigate(['/home']);
+              this.areWrongCrendentials = false;
+            } else {
+              this.areWrongCrendentials = true;
+            }
+          });
+        }
+      });
+    }
+  }
+}

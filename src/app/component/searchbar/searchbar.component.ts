@@ -25,7 +25,7 @@ export interface SearchbarStartingStates {
 }
 
 @Component({
-  selector: 'app-searchbar',
+  selector: 'searchbar',
   standalone: true,
   imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe, AutocompletionComponent],
   providers: [CalendarDateFormatPipe],

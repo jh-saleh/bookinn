@@ -1,0 +1,63 @@
+.animated-input {
+    position: relative;
+    border: 1px var(--black-300) solid;
+    border-radius: var(--button-border-radius);
+    padding: 17px 12px;
+    cursor: pointer;
+}
+
+.animated-input-error:focus-within {
+    background-color: white;
+    outline: 2px var(--error-color) solid !important;
+}
+
+.animated-input:focus-within {
+    border: 1px white solid;
+    outline: 2px black solid;
+}
+
+.animated-input>* {
+    font-size: medium;
+}
+
+.animated-input-error {
+    border: 1px var(--error-color) solid !important;
+}
+
+.animated-input-error>span {
+    color: var(--error-color) !important;
+}
+
+.animated-input>span {
+    color: var(--black-300);
+    position: absolute;
+    transform: scale(1) translateY(0px);
+    transition: all 200ms;
+}
+
+.animated-input:focus-within>span {
+    transform-origin: top left;
+    transform: scale(0.8) translateY(-20px);
+}
+
+.block-text-position-up {
+    transition: none !important;
+    transform-origin: top left !important;
+    transform: scale(0.8) translateY(-20px) !important;
+}
+
+.block-input-opacity {
+    opacity: 1 !important;
+}
+
+.animated-input>input {
+    border: none;
+    outline: none;
+    width: 100%;
+    opacity: 0;
+    transition: all 200ms;
+}
+
+.animated-input:focus-within>input {
+    opacity: 1;
+}

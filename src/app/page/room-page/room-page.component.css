@@ -42,21 +42,6 @@
     font-weight: normal;
 }
 
-.room-button {
-    border-radius: var(--button-border-radius);
-    background-color: transparent;
-    border: 1px white solid;
-    padding: 10px 20px;
-    color: white;
-    font-size: medium;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.room-button:active {
-    transform: scale(0.95);
-}
-
 .room-amenities-items-summary {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

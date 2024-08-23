@@ -1,3 +1,4 @@
+export const LOCAL_STORAGE_USER_KEY = 'auth_token';
 export const MAX_NB_ADULTS = 4;
 export const MAX_NB_CHILDREN = 4;
 export const MAX_NB_INFANTS = 2;

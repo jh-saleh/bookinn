@@ -2,11 +2,11 @@
     <div class="navbar">
         <app-logo></app-logo>
         @if(!hideSearchbar){
-        <app-searchbar [startingModeState]="startingModeState" [startingState]="searchbarStartingState"
+        <searchbar [startingModeState]="startingModeState" [startingState]="searchbarStartingState"
             (sendSearchbarStatus)="getSearchbarStatus($event)" [searchbarStatus]="isSearchbarOpen"
-            [initGuests]="searchbarStartingState?.guests"></app-searchbar>
+            [initGuests]="searchbarStartingState?.guests"></searchbar>
         }
-        <app-account></app-account>
+        <account></account>
     </div>
     <div class="navbar-background" (click)="closeSearchBar()">
     </div>

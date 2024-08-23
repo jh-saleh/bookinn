@@ -3,15 +3,25 @@
         <span class="material-symbols-outlined">
             menu
         </span>
-        <span class="material-symbols-outlined">
-            account_circle
+        <span *ngIf="user; else noUser" class="account-icon">
+            {{user.firstname | initials}}
         </span>
+        <ng-template #noUser>
+            <span class="material-symbols-outlined">
+                account_circle
+            </span>
+        </ng-template>
     </span>
     <modal [isModalOpen]="isAccountModalOpen" (closeModal)="closeAccountModal()" (openModal)="openAccountModal()"
         [classPosition]="buttonPosition">
         <div class="account-modal">
-            <a>Sign in</a>
-            <a>Sign up</a>
+            @if(user){
+            <a [routerLink]="'/trips'">Trips</a>
+            <a (click)="logOutHandler($event)">Log out</a>
+            } @else {
+            <a [routerLink]="'/login'">Sign in</a>
+            <a [routerLink]="'/signup'">Sign up</a>
+            }
             <div class="divider-modal"></div>
             <a [href]="portfolioURL" target="_blank">Visit my portfolio !</a>
         </div>

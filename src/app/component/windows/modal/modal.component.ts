@@ -11,12 +11,10 @@ import { Position } from '../../../hexagonal/domain/model/position/position.mode
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  @Input({ required: true })
-  isModalOpen: boolean = false;
+  @Input({ required: true }) isModalOpen: boolean = false;
   @Output() closeModal = new EventEmitter<void>();
   @Output() openModal = new EventEmitter<void>();
   @ViewChild('modalRef') modalRef: ElementRef<HTMLDivElement> | undefined;
-
   _classPosition: string = css``;
   @Input({ required: true }) set classPosition({ top, left, right }: Partial<Position>) {
     this._classPosition = css`

@@ -38,6 +38,7 @@
     text-align: left;
     font-size: medium;
     padding: 14px 10px;
+    cursor: pointer;
 }
 
 .account-modal>a:hover {
@@ -49,4 +50,14 @@
     height: 1px;
     width: 100%;
     background-color: var(--black-100);
+}
+
+.account-icon {
+    background-color: var(--background);
+    color: white !important;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
 }
