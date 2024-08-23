@@ -50,4 +50,20 @@ export class LoginComponent {
       });
     }
   }
+
+  logInAsGuestHandler() {
+    this.authService.login("guest-demo@demo.com", "123").subscribe((response) => {
+      if (response) {
+        this.userService.getUser().subscribe((user) => {
+          if (user) {
+            this.store.dispatch(UserActions.setUser({ user: user }));
+            this.router.navigate(['/home']);
+            this.areWrongCrendentials = false;
+          } else {
+            this.areWrongCrendentials = true;
+          }
+        });
+      }
+    });
+  }
 }

@@ -19,6 +19,14 @@ export class UserPortfolioService extends Dexie implements UserPort {
         });
 
         this.user = this.table('user');
+
+        this.user.add({
+            id: "f61d9a50-6a91-4f58-9cf4-974357d93581",
+            firstname: "guest",
+            lastname: "demo",
+            email: "guest-demo@demo.com",
+            password: "123"
+        });
     }
 
     createUser(user: { email: string, password: string, firstname: string, lastname: string }): Observable<User | undefined> {
