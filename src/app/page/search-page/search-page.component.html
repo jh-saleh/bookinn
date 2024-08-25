@@ -12,7 +12,7 @@
                 endDate: queryParamEndDate
                 }">
                 <room-card [city]="result.location.city" [kingdom]="result.location.kingdom" [name]="result.name"
-                    [pricePerNight]="result.pricePerNight" [ratings]="result.ratings"
+                    [pricePerNight]="result.billing.basePricePerNight" [ratings]="result.ratings"
                     [imgsUrls]="result.imgsUrls"></room-card>
             </a>
             }

@@ -79,12 +79,12 @@
                 </div>
             </div>
             <div [hidden]="!isGuestsModalOpen" [ngClass]="guestsModalWrapper">
-                <guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getNbOfGuests($event)"
+                <guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getGuests($event)"
                     [initGuests]="initGuests"></guests>
             </div>
         </div>
     </div>
-    <button class="bill-button">
+    <button #reservationButtonRef class="bill-button" (click)="reserveButtonHandler()">
         @if(startingDate && endingDate && nbOfGuests > 0){
         Reserve
         }@else {

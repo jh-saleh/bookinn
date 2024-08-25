@@ -1,3 +1,4 @@
+import { StayFees } from "../billing/fee.model";
 import { Amenity } from "./amenity.model";
 import { GuideBook } from "./guidebook.model";
 import { Location } from "./location.model";
@@ -8,7 +9,10 @@ export class Stay {
     hostId!: string;
     name!: string;
     location!: Location;
-    pricePerNight!: number;
+    billing!: {
+        basePricePerNight: number;
+        fees: StayFees;
+    };
     ratings!: number;
     imgsUrls!: string[];
     maxNumberOfGuests!: number;

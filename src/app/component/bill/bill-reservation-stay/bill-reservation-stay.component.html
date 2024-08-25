@@ -1,0 +1,62 @@
+<section class="bill">
+    <div class="bill-stay-summary">
+        <img [src]="stay?.imgsUrls?.at(0)" />
+        <div class="bill-stay-text">
+            <div>
+                <h4>{{stay?.name}}</h4>
+                <div class="bill-stay-rating">
+                    <span class="material-symbols-outlined">
+                        star
+                    </span>
+                    {{stay?.ratings}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bill-divider"></div>
+    @if(startingDate && endingDate && nbOfGuests > 0){
+    <div class="bill-summary-wrapper">
+        <div class="bill-summary">
+            <div class="price-detail">
+                <span>
+                    ${{pricePerNight}}x{{nbOfNights}}
+                </span>
+                <span>
+                    ${{completeBillWithoutCharges}}
+                </span>
+            </div>
+            @if(stay?.billing?.fees?.cleaningFee){
+            <div class="price-detail">
+                <span>
+                    Cleaning fee
+                </span>
+                <span>
+                    ${{stay?.billing?.fees?.cleaningFee}}
+                </span>
+            </div>
+            }
+            <div class="price-detail">
+                <span>
+                    BookInn fee
+                </span>
+                <span>
+                    ${{bookInnFee | number: '1.0-0'}}
+                </span>
+            </div>
+            <div class="price-detail">
+                <span>
+                    Taxes
+                </span>
+                <span>
+                    ${{VAT | number: '1.0-0'}}
+                </span>
+            </div>
+        </div>
+        <div class="bill-divider"></div>
+        <div class="bill-total">
+            <span><b>Total</b></span>
+            <span><b>$ {{completeBill}}</b></span>
+        </div>
+    </div>
+    }
+</section>

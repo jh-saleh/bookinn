@@ -16,7 +16,12 @@ export const stays: Stay[] = [
         },
         ratings: 1.2,
         name: "Majestic Castle Bedroom",
-        pricePerNight: 21,
+        billing: {
+            basePricePerNight: 21,
+            fees: {
+                cleaningFee: undefined,
+            }
+        },
         imgsUrls: ["inns/black_castle/1.jpeg", "inns/black_castle/2.jpeg", "inns/black_castle/3.jpeg", "inns/black_castle/4.jpeg", "inns/black_castle/5.jpeg"],
         maxNumberOfGuests: 2,
         lodging: {
@@ -100,7 +105,12 @@ export const stays: Stay[] = [
         },
         ratings: 4,
         name: "Cozy Winter Retreat",
-        pricePerNight: 25,
+        billing: {
+            basePricePerNight: 25,
+            fees: {
+                cleaningFee: 15
+            }
+        },
         imgsUrls: ["inns/snow/1.jpeg", "inns/snow/2.jpeg", "inns/snow/3.jpeg", "inns/snow/4.jpeg", "inns/snow/5.jpeg"],
         maxNumberOfGuests: 5,
         lodging: {
@@ -162,7 +172,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.6,
         name: "Subterranean Haven",
-        pricePerNight: 36,
+        billing: {
+            basePricePerNight: 36,
+            fees: {
+                cleaningFee: 20
+            }
+        },
         imgsUrls: ["inns/stone/1.jpeg", "inns/stone/2.jpeg", "inns/stone/3.jpeg"],
         maxNumberOfGuests: 10,
         lodging: {
@@ -217,7 +232,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.8,
         name: "Seafarer's Inn",
-        pricePerNight: 9,
+        billing: {
+            basePricePerNight: 9,
+            fees: {
+                cleaningFee: 5
+            }
+        },
         imgsUrls: ["inns/sea/1.jpeg", "inns/sea/2.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg", "inns/sea/5.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -274,7 +294,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.1,
         name: "Coastal Haven",
-        pricePerNight: 13,
+        billing: {
+            basePricePerNight: 13,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/sea/3.jpeg", "inns/sea/4.jpeg", "inns/sea/5.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -330,7 +355,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.3,
         name: "Willow's Edge Inn",
-        pricePerNight: 33,
+        billing: {
+            basePricePerNight: 33,
+            fees: {
+                cleaningFee: 3
+            }
+        },
         imgsUrls: ["inns/swamp/1.jpeg", "inns/swamp/2.jpeg", "inns/swamp/3.jpeg", "inns/swamp/4.jpeg", "inns/swamp/5.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -401,7 +431,12 @@ export const stays: Stay[] = [
         },
         ratings: 5.0,
         name: "Golden Fields Inn",
-        pricePerNight: 610,
+        billing: {
+            basePricePerNight: 610,
+            fees: {
+                cleaningFee: 25
+            }
+        },
         imgsUrls: ["inns/wheat/1.jpeg", "inns/wheat/2.jpeg", "inns/wheat/3.jpeg", "inns/wheat/4.jpeg", "inns/wheat/5.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -473,7 +508,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.7,
         name: "Harvest Homestead Inn",
-        pricePerNight: 823,
+        billing: {
+            basePricePerNight: 823,
+            fees: {
+                cleaningFee: 45
+            }
+        },
         imgsUrls: ["inns/wheat/5.jpeg", "inns/wheat/6.jpeg", "inns/wheat/7.jpeg"],
         maxNumberOfGuests: 6,
         lodging: {
@@ -545,7 +585,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.5,
         name: "Wheatfield Inn",
-        pricePerNight: 635,
+        billing: {
+            basePricePerNight: 635,
+            fees: {
+                cleaningFee: 50
+            }
+        },
         imgsUrls: ["inns/wheat/2.jpeg", "inns/wheat/4.jpeg", "inns/wheat/6.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -617,7 +662,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.7,
         name: "The Crimson Maple Inn",
-        pricePerNight: 42,
+        billing: {
+            basePricePerNight: 42,
+            fees: {
+                cleaningFee: 5
+            }
+        },
         imgsUrls: ["inns/forest/red/3.jpeg", "inns/forest/red/4.jpeg", "inns/forest/red/5.jpeg"],
         maxNumberOfGuests: 2,
         lodging: {
@@ -682,7 +732,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.3,
         name: "Redleaf Retreat Inn",
-        pricePerNight: 35,
+        billing: {
+            basePricePerNight: 35,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/forest/red/1.jpeg", "inns/forest/red/2.jpeg", "inns/forest/red/3.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -747,7 +802,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.4,
         name: "The Gloaming Rest",
-        pricePerNight: 7,
+        billing: {
+            basePricePerNight: 7,
+            fees: {
+                cleaningFee: 15
+            }
+        },
         imgsUrls: ["inns/shadow/1.jpeg", "inns/shadow/2.jpeg", "inns/shadow/3.jpeg"],
         maxNumberOfGuests: 5,
         lodging: {
@@ -814,7 +874,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.4,
         name: "The Nocturne Haven",
-        pricePerNight: 7,
+        billing: {
+            basePricePerNight: 7,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/shadow/2.jpeg", "inns/shadow/3.jpeg"],
         maxNumberOfGuests: 5,
         lodging: {
@@ -881,7 +946,12 @@ export const stays: Stay[] = [
         },
         ratings: 1.4,
         name: "Tempest’s Edge Inn",
-        pricePerNight: 23,
+        billing: {
+            basePricePerNight: 23,
+            fees: {
+                cleaningFee: 10
+            }
+        },
         imgsUrls: ["inns/sea/5.jpeg", "inns/sea/4.jpeg", "inns/sea/3.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -947,7 +1017,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.2,
         name: "Whispering Pines Inn",
-        pricePerNight: 23,
+        billing: {
+            basePricePerNight: 23,
+            fees: {
+                cleaningFee: 65
+            }
+        },
         imgsUrls: ["inns/normal/1.jpeg", "inns/normal/2.jpeg", "inns/normal/3.jpeg"],
         maxNumberOfGuests: 2,
         lodging: {
@@ -1014,7 +1089,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.5,
         name: "Enchanted Glade Inn",
-        pricePerNight: 28,
+        billing: {
+            basePricePerNight: 28,
+            fees: {
+                cleaningFee: 10
+            }
+        },
         imgsUrls: ["inns/normal/3.jpeg", "inns/normal/1.jpeg", "inns/normal/4.jpeg"],
         maxNumberOfGuests: 2,
         lodging: {
@@ -1079,7 +1159,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.3,
         name: "Golden Mirage Inn",
-        pricePerNight: 28,
+        billing: {
+            basePricePerNight: 28,
+            fees: {
+                cleaningFee: 6
+            }
+        },
         imgsUrls: ["inns/desert/1.jpeg", "inns/desert/2.jpeg", "inns/desert/3.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -1144,7 +1229,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.3,
         name: "Sands of Solace Inn",
-        pricePerNight: 28,
+        billing: {
+            basePricePerNight: 28,
+            fees: {
+                cleaningFee: 12
+            }
+        },
         imgsUrls: ["inns/desert/3.jpeg", "inns/desert/4.jpeg", "inns/desert/5.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -1209,7 +1299,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.3,
         name: "Eclipse Oasis Inn",
-        pricePerNight: 28,
+        billing: {
+            basePricePerNight: 28,
+            fees: {
+                cleaningFee: 20
+            }
+        },
         imgsUrls: ["inns/desert/5.jpeg", "inns/desert/2.jpeg", "inns/desert/1.jpeg", "inns/desert/3.jpeg", "inns/desert/4.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -1274,7 +1369,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.3,
         name: "The Mariner’s Rest Inn",
-        pricePerNight: 16,
+        billing: {
+            basePricePerNight: 16,
+            fees: {
+                cleaningFee: 25
+            }
+        },
         imgsUrls: ["inns/sea/5.jpeg", "inns/sea/2.jpeg", "inns/sea/1.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -1339,7 +1439,12 @@ export const stays: Stay[] = [
         },
         ratings: 2.5,
         name: "Anchor’s Edge Inn",
-        pricePerNight: 19,
+        billing: {
+            basePricePerNight: 19,
+            fees: {
+                cleaningFee: 30
+            }
+        },
         imgsUrls: ["inns/sea/5.jpeg", "inns/sea/2.jpeg", "inns/sea/1.jpeg", "inns/sea/3.jpeg", "inns/sea/4.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -1404,7 +1509,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.6,
         name: "Riverstone Inn",
-        pricePerNight: 84,
+        billing: {
+            basePricePerNight: 84,
+            fees: {
+                cleaningFee: 50
+            }
+        },
         imgsUrls: ["inns/normal/2.jpeg", "inns/normal/1.jpeg", "inns/normal/3.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -1469,7 +1579,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.8,
         name: "Willowbrook Lodge",
-        pricePerNight: 80,
+        billing: {
+            basePricePerNight: 80,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/normal/4.jpeg", "inns/normal/2.jpeg", "inns/normal/3.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -1534,7 +1649,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Coral Cove Inn",
-        pricePerNight: 80,
+        billing: {
+            basePricePerNight: 80,
+            fees: {
+                cleaningFee: 5
+            }
+        },
         imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -1599,7 +1719,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Seabreeze Haven",
-        pricePerNight: 75,
+        billing: {
+            basePricePerNight: 75,
+            fees: {
+                cleaningFee: 20
+            }
+        },
         imgsUrls: ["inns/island/3.jpeg", "inns/island/4.jpeg", "inns/island/5.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -1664,7 +1789,12 @@ export const stays: Stay[] = [
         },
         ratings: 3.5,
         name: "Summit Rest Inn",
-        pricePerNight: 133,
+        billing: {
+            basePricePerNight: 133,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/normal/4.jpeg", "inns/normal/3.jpeg", "inns/normal/1.jpeg"],
         maxNumberOfGuests: 1,
         lodging: {
@@ -1732,7 +1862,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.9,
         name: "Dragon's Rest Inn",
-        pricePerNight: 50,
+        billing: {
+            basePricePerNight: 50,
+            fees: {
+                cleaningFee: 12
+            }
+        },
         imgsUrls: ["inns/island/5.jpeg", "inns/island/2.jpeg", "inns/island/4.jpeg"],
         maxNumberOfGuests: 6,
         lodging: {
@@ -1817,7 +1952,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "The Enchanted Glade Lodge",
-        pricePerNight: 65,
+        billing: {
+            basePricePerNight: 65,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -1899,7 +2039,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.9,
         name: "Dragon's Breath Tavern",
-        pricePerNight: 40,
+        billing: {
+            basePricePerNight: 40,
+            fees: {
+                cleaningFee: 5
+            }
+        },
         imgsUrls: ["inns/island/1.jpeg", "inns/island/2.jpeg", "inns/island/3.jpeg"],
         maxNumberOfGuests: 6,
         lodging: {
@@ -1982,7 +2127,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.7,
         name: "Mystic Moon Haven",
-        pricePerNight: 55,
+        billing: {
+            basePricePerNight: 55,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/island/5.jpeg", "inns/island/1.jpeg", "inns/island/2.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -2064,7 +2214,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.6,
         name: "The Silverstream Inn",
-        pricePerNight: 75,
+        billing: {
+            basePricePerNight: 75,
+            fees: {
+                cleaningFee: 15
+            }
+        },
         imgsUrls: ["inns/island/4.jpeg", "inns/island/3.jpeg", "inns/island/5.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -2147,7 +2302,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Ancient Sands Inn",
-        pricePerNight: 65,
+        billing: {
+            basePricePerNight: 65,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/desert/3.jpeg", "inns/desert/1.jpeg", "inns/desert/3.jpeg"],
         maxNumberOfGuests: 5,
         lodging: {
@@ -2230,7 +2390,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.9,
         name: "The Celestial Oasis",
-        pricePerNight: 85,
+        billing: {
+            basePricePerNight: 85,
+            fees: {
+                cleaningFee: 25
+            }
+        },
         imgsUrls: ["inns/desert/1.jpeg", "inns/desert/2.jpeg", "inns/desert/3.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -2313,7 +2478,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.7,
         name: "Mystic Mirage Suite",
-        pricePerNight: 90,
+        billing: {
+            basePricePerNight: 90,
+            fees: {
+                cleaningFee: 20
+            }
+        },
         imgsUrls: ["inns/desert/3.jpeg", "inns/desert/4.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -2396,7 +2566,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Saffron Sands Suite",
-        pricePerNight: 85,
+        billing: {
+            basePricePerNight: 85,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/desert/4.jpeg", "inns/desert/2.jpeg", "inns/desert/5.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -2479,7 +2654,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.9,
         name: "Desert Jewel Retreat",
-        pricePerNight: 120,
+        billing: {
+            basePricePerNight: 120,
+            fees: {
+                cleaningFee: 20
+            }
+        },
         imgsUrls: ["inns/desert/5.jpeg", "inns/desert/3.jpeg", "inns/desert/1.jpeg"],
         maxNumberOfGuests: 5,
         lodging: {
@@ -2562,7 +2742,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.6,
         name: "Spice Market Haven",
-        pricePerNight: 75,
+        billing: {
+            basePricePerNight: 75,
+            fees: {
+                cleaningFee: 45
+            }
+        },
         imgsUrls: ["inns/desert/2.jpeg", "inns/desert/1.jpeg", "inns/desert/4.jpeg"],
         maxNumberOfGuests: 2,
         lodging: {
@@ -2645,7 +2830,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.9,
         name: "Meadowview Rest",
-        pricePerNight: 65,
+        billing: {
+            basePricePerNight: 65,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/normal/4.jpeg", "inns/normal/2.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {
@@ -2728,7 +2918,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Harvest Home",
-        pricePerNight: 80,
+        billing: {
+            basePricePerNight: 80,
+            fees: {
+                cleaningFee: 12
+            }
+        },
         imgsUrls: ["inns/normal/3.jpeg", "inns/normal/4.jpeg"],
         maxNumberOfGuests: 6,
         lodging: {
@@ -2811,7 +3006,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.7,
         name: "Sunnybrook Lodge",
-        pricePerNight: 70,
+        billing: {
+            basePricePerNight: 70,
+            fees: {
+                cleaningFee: undefined
+            }
+        },
         imgsUrls: ["inns/normal/2.jpeg", "inns/normal/3.jpeg"],
         maxNumberOfGuests: 3,
         lodging: {
@@ -2894,7 +3094,12 @@ export const stays: Stay[] = [
         },
         ratings: 4.8,
         name: "Timberwood Haven",
-        pricePerNight: 85,
+        billing: {
+            basePricePerNight: 85,
+            fees: {
+                cleaningFee: 6
+            }
+        },
         imgsUrls: ["inns/normal/1.jpeg", "inns/normal/2.jpeg"],
         maxNumberOfGuests: 4,
         lodging: {

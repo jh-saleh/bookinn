@@ -1,0 +1,92 @@
+.reservation-page {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    color: white;
+    padding-bottom: 30px;
+}
+
+.confirmation-button {
+    font-size: large;
+    font-weight: 500;
+    padding: 15px 30px;
+    width: max-content;
+}
+
+.reservation-main-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reservation-main-summary>h1 {
+    font-size: xx-large;
+}
+
+.reservation-your-trip-informations {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.trip-item {
+    display: flex;
+}
+
+.reservation-information {
+    display: flex;
+    gap: 10px;
+}
+
+.learn-more-button {
+    color: inherit;
+    border: none;
+    text-decoration: underline;
+    font-size: medium;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.reservation-ground-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reservation-ground-rules>ul {
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.reservation-information>span:first-child {
+    transform: scale(1.2);
+}
+
+.reservation-cancellation-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.reservation-time {
+    display: flex;
+    flex-direction: column;
+
+    :first-child {
+        font-weight: bold;
+        font-size: medium;
+    }
+
+    :nth-child(2) {
+        font-size: small;
+    }
+}
+
+.reservation-cancellation-policy {
+    width: max-content;
+}
+
+.reservation-secondary-summary {
+    position: relative;
+}

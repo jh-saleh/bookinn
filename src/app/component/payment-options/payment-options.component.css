@@ -1,0 +1,72 @@
+.payment-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-option {
+    display: grid;
+    grid-template-columns: auto min-content;
+    padding: 10px;
+    border: 1px white solid;
+    cursor: pointer;
+}
+
+.payment-option:first-child {
+    border-top-right-radius: var(--box-border-radius);
+    border-top-left-radius: var(--box-border-radius);
+}
+
+.payment-option:last-child {
+    border-bottom-right-radius: var(--box-border-radius);
+    border-bottom-left-radius: var(--box-border-radius);
+}
+
+label {
+    position: relative;
+}
+
+.payment-option-selected {
+    outline: 3px black solid;
+    outline-offset: -2px;
+    border-color: var(--background);
+}
+
+label>input {
+    appearance: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+label>span {
+    display: block;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    background-color: white;
+    border-radius: 50%;
+}
+
+label>input:checked~span {
+    background-color: black;
+}
+
+label>input:checked~span::before {
+    background-color: black;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+}
+
+label>input:checked~span::after {
+    background-color: white;
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    content: '';
+    border-radius: 50%;
+}

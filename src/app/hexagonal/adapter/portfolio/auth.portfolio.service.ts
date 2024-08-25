@@ -7,7 +7,6 @@ import { AuthPort } from "../../domain/port/auth.port";
     providedIn: 'root'
 })
 export class AuthPortfolioService implements AuthPort {
-
     private generateFakeToken(email: string): string {
         const fakePayload = {
             email: email,
@@ -51,5 +50,9 @@ export class AuthPortfolioService implements AuthPort {
         } catch {
             return undefined;
         }
+    }
+
+    isLoggedIn(): boolean {
+        return this.loadUserFromStorage() !== undefined;
     }
 }

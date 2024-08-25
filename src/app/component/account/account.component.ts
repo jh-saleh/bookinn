@@ -39,11 +39,9 @@ export class AccountComponent implements OnInit {
 
   closeAccountModal(): void {
     this.isAccountModalOpen = false;
-    console.log(this.isAccountModalOpen);
   }
 
   openAccountModal(): void {
-    console.log("openAccountModal");
     this.updateModalPosition();
     this.isAccountModalOpen = true;
   }

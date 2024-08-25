@@ -1,0 +1,45 @@
+<section class="how-to-pay-wrapper">
+    <div class="payment-option" [class.payment-option-selected]="choice === 0"
+        (click)="focusPaymentRadioInput(fullPayment, 0)">
+        <div>
+            Pay ${{fullPrice}} now
+        </div>
+        <label for="full-payment-method">
+            <input #fullPayment id="full-payment-method" type="radio" name="payment" value="full-payment"
+                [defaultChecked]="true" autocomplete="off" />
+            <span></span>
+        </label>
+    </div>
+    <div class="payment-option" [class.payment-option-selected]="choice === 1"
+        (click)="focusPaymentRadioInput(halfPayment, 1)">
+        <div>
+            <div>
+                Pay part now, part later
+            </div>
+            <div>
+                ${{halfPrice}} due today, ${{halfPrice}} later. No extra fees
+            </div>
+        </div>
+        <label for="half-payment-method">
+            <input #halfPayment id="half-payment-method" type="radio" name="payment" value="half-payment"
+                autocomplete="off" />
+            <span></span>
+        </label>
+    </div>
+    <div class="payment-option" [class.payment-option-selected]="choice === 2"
+        (click)="focusPaymentRadioInput(threePayments, 2)">
+        <div>
+            <div>
+                <b>Pay in 3 payments</b>
+            </div>
+            <div>
+                3 payments of ${{thirdPrice}}.
+            </div>
+        </div>
+        <label for="three-payments-method">
+            <input #threePayments id="three-payments-method" type="radio" name="payment" value="three-payments"
+                autocomplete="off" />
+            <span></span>
+        </label>
+    </div>
+</section>

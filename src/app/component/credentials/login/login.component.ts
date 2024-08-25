@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authServiceFactory, userServiceFactory } from '../../../hexagonal/di-factories';
 import { AuthPort } from '../../../hexagonal/domain/port/auth.port';
@@ -20,8 +20,9 @@ import { AnimatedInputComponent } from "../../animated-input/animated-input.comp
 export class LoginComponent {
   form!: FormGroup<{ email: FormControl<string | null>, password: FormControl<string | null> }>;
   areWrongCrendentials: boolean = false;
+  redirectUrl: string = "/home";
 
-  constructor(private fb: FormBuilder, private authService: AuthPort, private router: Router, private store: Store<AppState>
+  constructor(private fb: FormBuilder, private authService: AuthPort, private router: Router, private route: ActivatedRoute, private store: Store<AppState>
     , private userService: UserPort) { }
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+    this.redirectUrl = this.route.snapshot.queryParamMap.get('redirectUrl') ?? "/home";
   }
 
   logInHandler() {
@@ -40,8 +42,8 @@ export class LoginComponent {
           this.userService.getUser().subscribe((user) => {
             if (user) {
               this.store.dispatch(UserActions.setUser({ user: user }));
-              this.router.navigate(['/home']);
               this.areWrongCrendentials = false;
+              this.router.navigateByUrl(this.redirectUrl);
             } else {
               this.areWrongCrendentials = true;
             }
@@ -57,8 +59,8 @@ export class LoginComponent {
         this.userService.getUser().subscribe((user) => {
           if (user) {
             this.store.dispatch(UserActions.setUser({ user: user }));
-            this.router.navigate(['/home']);
             this.areWrongCrendentials = false;
+            this.router.navigateByUrl(this.redirectUrl);
           } else {
             this.areWrongCrendentials = true;
           }

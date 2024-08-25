@@ -1,0 +1,29 @@
+.bill-stay-summary {
+    display: flex;
+    gap: 10px;
+}
+
+.bill-stay-summary>img {
+    border-radius: var(--button-border-radius);
+    height: 70px;
+    width: 70px;
+}
+
+.bill-stay-rating {
+    display: flex;
+    place-items: center;
+    gap: 7px;
+}
+
+.bill-stay-rating>span {
+    transform: scale(0.85);
+}
+
+.bill-stay-text {
+    display: grid;
+    align-items: center;
+}
+
+.bill-stay-text>div {
+    align-items: center;
+}

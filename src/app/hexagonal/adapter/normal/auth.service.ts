@@ -28,4 +28,8 @@ export class AuthService implements AuthPort {
             return undefined;
         }
     }
+
+    isLoggedIn(): boolean {
+        return this.loadUserFromStorage() !== undefined;
+    }
 }

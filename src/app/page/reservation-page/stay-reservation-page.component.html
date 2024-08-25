@@ -1,0 +1,125 @@
+<ng-template #cancellationInformation let-date="date" let-policy="policy">
+    <div class="reservation-cancellation-item">
+        <div class="reservation-time">
+            <div>
+                {{date | calendarDateFormat: 'MMM dd, yyyy'}}
+            </div>
+            <div>
+                {{stay.guidebook.houserules.time.interval?.checkIn?.lowerBoundary}}
+            </div>
+        </div>
+        <p class="reservation-cancellation-policy">
+            {{policy}}
+        </p>
+    </div>
+</ng-template>
+
+<section>
+    <app-navbar [hideSearchbar]="true"></app-navbar>
+    <div class="page-body-wrapper page-padding-without-searchbar">
+        <div class="page-body">
+            <div class="reservation-page">
+                <div class="reservation-main-summary">
+                    <h1>Confirm and pay</h1>
+                    <h2>Your trip</h2>
+                    <div class="reservation-your-trip-informations">
+                        <div>
+                            <div>
+                                <div><b>Dates</b></div>
+                                <div>
+                                    {{startingState?.startingDate | calendarDateFormat: "MMM dd,yyyy"}} -
+                                    {{startingState?.endingDate | calendarDateFormat: "MMM dd,yyyy"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div><b>Guests</b></div>
+                            </div>
+                            <div>
+                                {{nbOfGuests}} {{nbOfGuests | pluralize: 'guest'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-divider"></div>
+                    <h2>Choose how to pay</h2>
+                    <payment-options [initPrice]="completeBill"></payment-options>
+                    <div class="main-divider"></div>
+                    <h2>Cancellation policy</h2>
+                    <div>
+                        <div>
+                            @if(stay.guidebook.cancellationPolicy.fullRefund){
+                            Free cancellation before {{fullRefundDate | calendarDateFormat: 'MMM dd, yyyy'}}.
+                            }
+                            @if(stay.guidebook.cancellationPolicy.partialRefund){
+                            Cancel before {{partialRefundDate | calendarDateFormat: 'MMM dd, yyyy'}} for a partial
+                            refund.
+                            }
+                        </div>
+                        <button class="learn-more-button" (click)="openCancellationPolicyModal()">
+                            Learn more.
+                        </button>
+                    </div>
+                    <div class="main-divider"></div>
+                    <h2>Ground rule</h2>
+                    <div class="reservation-ground-rules">
+                        <div>
+                            We ask every guest to remember a few simple things about what makes a great guest.
+                        </div>
+                        <ul>
+                            <li>Follow the house rules</li>
+                            <li>Treat your Host’s home like your own</li>
+                        </ul>
+                    </div>
+                    <div class="main-divider"></div>
+                    <div class="reservation-information">
+                        <span class="material-symbols-outlined">
+                            event_available
+                        </span>
+                        <span>
+                            <b>Your reservation won’t be confirmed until the Host accepts your request (within 24
+                                hours).</b>
+                            You won’t be charged until then.
+                        </span>
+                    </div>
+                    <div class="main-divider"></div>
+                    <button class="inverse-button confirmation-button">Confirm and pay</button>
+                </div>
+                <div class="reservation-secondary-summary">
+                    <bill-reservation-stay [stayId]="stay.id" [startingDate]="startingState?.startingDate"
+                        [endingDate]="startingState?.endingDate" [nbOfGuests]="nbOfGuests"></bill-reservation-stay>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</section>
+<full-view-modal [isModalOpen]="isCancellationPolicyModalOpen" (openModal)="openCancellationPolicyModal()"
+    (closeModal)="closeCancellationPolicyModal()">
+    <div class="full-view-modal-body">
+        <section>
+            <h1>
+                Cancellation policy
+            </h1>
+            <p>
+                Make sure you’re comfortable with this Host’s policy.
+            </p>
+        </section>
+        <h2>
+            Cancel by
+        </h2>
+        @if(stay.guidebook.cancellationPolicy.fullRefund){
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: fullRefundDate, policy: 'Full refund: Get back 100% of what you paid.'}"></ng-template>
+        <div class="modal-divider"></div>
+        }
+        @if(stay.guidebook.cancellationPolicy.partialRefund){
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: partialRefundDate, policy: 'Partial refund: Get back 50% of every night. No refund of the service fee.'}"></ng-template>
+        <div class="modal-divider"></div>
+        }
+        <ng-template
+            *ngTemplateOutlet="cancellationInformation; context:{date: noRefundDate, policy: 'No refund.'}"></ng-template>
+        <div class="modal-divider"></div>
+    </div>
+</full-view-modal>

@@ -20,4 +20,8 @@ export class AuthPort {
     loadUserFromStorage(): string | undefined {
         throw Error("loadUserFromStorage to implement.");
     }
+
+    isLoggedIn(): boolean {
+        throw Error("isLoggedIn to implement.");
+    }
 }

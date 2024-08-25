@@ -72,7 +72,8 @@ a {
     }
 }
 
-/*Modal components*/
+/* modal components */
+
 .full-view-modal-body>section {
     padding: 10px 0px 25px 0px;
 }
@@ -106,12 +107,21 @@ a {
     background-color: var(--background-box-hover);
 }
 
+/* dividers */
+
 .main-divider {
     display: grid;
     width: 100%;
     border-bottom: 1px white solid;
     height: 1px;
     margin: 5px 0px;
+}
+
+.modal-divider {
+    display: grid;
+    border-top: 1px var(--black-300) solid;
+    height: 1px;
+    margin: 30px 0px;
 }
 
 /* map */
@@ -144,7 +154,7 @@ a {
     justify-items: center;
 }
 
-.page-padding-no-searchbar {
+.page-padding-without-searchbar {
     padding-top: 120px;
 }
 
@@ -158,17 +168,28 @@ a {
 
 /* button */
 
-.button {
+.button,
+.inverse-button {
     border-radius: var(--button-border-radius);
-    background-color: var(--background);
-    border: 1px white solid;
     padding: 10px 20px;
-    color: white;
     font-size: medium;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.button:active {
+.button {
+    background-color: var(--background);
+    border: 1px white solid;
+    color: white;
+}
+
+.inverse-button {
+    background-color: white;
+    border: 1px var(--background) solid;
+    color: var(--background);
+}
+
+.button:active,
+.inverse-button:active {
     transform: scale(0.95);
 }

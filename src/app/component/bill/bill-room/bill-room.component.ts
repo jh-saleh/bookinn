@@ -1,12 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { css } from '@emotion/css';
+import { Store } from '@ngrx/store';
+import { billingServiceFactory } from '../../../hexagonal/di-factories';
 import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../hexagonal/domain/model/const';
 import { Position } from '../../../hexagonal/domain/model/position/position.model';
 import { Guests, getTotalNbOfGuests } from '../../../hexagonal/domain/model/stay/guest.model';
+import { BillingPort } from '../../../hexagonal/domain/port/billing.port';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { CalendarDate } from '../../../service/calendar-dates.service';
+import { selectStay } from '../../../state/stay/stay.selectors';
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { DateInputComponent } from "../../date-input/date-input.component";
 import { GuestsComponent } from "../../guests/guests.component";
@@ -16,17 +21,17 @@ import { ModalComponent } from "../../windows/modal/modal.component";
   selector: 'bill-room',
   standalone: true,
   imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
+  providers: [CalendarDateFormatPipe, { provide: BillingPort, useFactory: billingServiceFactory }],
   templateUrl: './bill-room.component.html',
-  styleUrl: './bill-room.component.css'
+  styleUrls: ['./bill-room.component.css', '../bill.css']
 })
-export class BillRoomComponent implements OnChanges {
+export class BillRoomComponent implements OnInit, OnChanges {
+  stayId!: string;
   @Input({ required: true }) startingDate: CalendarDate | undefined;
   @Input({ required: true }) endingDate: CalendarDate | undefined;
   @Output() sendStartingDate = new EventEmitter<CalendarDate | undefined>();
   @Output() sendEndingDate = new EventEmitter<CalendarDate | undefined>();
-  @Input({ required: true }) basePricePerNight: number | undefined;
-  pricePerNight: number | undefined;
-  @Input({ required: true }) maximumNbOfGuests: number = 1;
+  maximumNbOfGuests: number = 1;
   private _initGuests: Guests = {
     adult: {
       nb: 0,
@@ -48,26 +53,40 @@ export class BillRoomComponent implements OnChanges {
   }
   @Input({ required: false }) set initGuests(value: Guests) {
     this._initGuests = value;
+    this.guests = value;
     this.nbOfGuests = getTotalNbOfGuests(this._initGuests);
   }
   get initGuests() {
     return this._initGuests;
   }
+  guests!: Guests;
   nbOfGuests: number = 0;
   @Input({ required: true }) nbOfNights: number | undefined;
+  pricePerNight: number | undefined;
   completeBillWithoutCharges: number | undefined;
-  @Input() cleaningFee: number | undefined;
-  bookInnRate: number = 0.05;
+  cleaningFee: number = 0;
   bookInnFee: number = 0;
-  VATRate = 0.2;
   VAT: number = 0;
   completeBill: number = 0;
   @ViewChild("billGuestsSelection") billGuestsSelectionRef: ElementRef<HTMLDivElement> | undefined;
   @ViewChild("calendarSelectionRef") calendarSelectionRef: ElementRef<HTMLDivElement> | undefined;
+  @ViewChild("reservationButtonRef") reservationButtonRef: ElementRef<HTMLButtonElement> | undefined;
   isGuestsModalOpen: boolean = false;
   guestsPosition: Position = { top: 0, left: 0 };
   guestsModalWrapper: string = "";
   isCalendarOpen: boolean = false;
+  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe, private billingService: BillingPort, private store: Store) {
+
+  }
+
+  ngOnInit(): void {
+    this.store.select(selectStay).subscribe(({ stay }) => {
+      this.stayId = stay?.id ?? "";
+      this.maximumNbOfGuests = stay?.maxNumberOfGuests ?? 1;
+      this.cleaningFee = stay?.billing.fees.cleaningFee ?? 0;
+      this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { nbOfNights } = changes;
@@ -77,17 +96,15 @@ export class BillRoomComponent implements OnChanges {
   }
 
   updateBillPrices(nbOfNights: number | undefined, nbOfGuests: number) {
-    if (this.basePricePerNight && nbOfNights) {
-      if (this.maximumNbOfGuests > 1) {
-        this.pricePerNight = Math.ceil(this.basePricePerNight * (1 + ((nbOfGuests - 1) / (this.maximumNbOfGuests - 1))));
-      } else {
-        this.pricePerNight = this.basePricePerNight;
-      }
-
-      this.completeBillWithoutCharges = Math.ceil(this.pricePerNight * nbOfNights + (this.cleaningFee ?? 0));
-      this.bookInnFee = Math.ceil(this.completeBillWithoutCharges * this.bookInnRate);
-      this.VAT = Math.ceil(this.VATRate * (this.completeBillWithoutCharges + this.bookInnFee));
-      this.completeBill = this.completeBillWithoutCharges + this.bookInnFee + this.VAT;
+    if (nbOfNights && this.stayId) {
+      this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests).subscribe((billing) => {
+        const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
+        this.pricePerNight = pricePerNight;
+        this.completeBillWithoutCharges = completeBillWithoutCharges;
+        this.bookInnFee = bookInnFee;
+        this.VAT = VAT;
+        this.completeBill = completeBill;
+      });
     }
   }
 
@@ -110,12 +127,17 @@ export class BillRoomComponent implements OnChanges {
     }
   }
 
-  getNbOfGuests(guests: Guests) {
+  getGuests(guests: Guests) {
+    this.guests = guests;
     this.nbOfGuests = getTotalNbOfGuests(guests);
     this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
   }
 
   @HostListener('document:click', ['$event.target']) onClick(target: Node | null) {
+    if (this.reservationButtonRef && this.reservationButtonRef.nativeElement.contains(target)) {
+      return;
+    }
+
     if (this.billGuestsSelectionRef && !this.billGuestsSelectionRef.nativeElement.contains(target) && this.isGuestsModalOpen) {
       this.isGuestsModalOpen = false;
     }
@@ -136,5 +158,30 @@ export class BillRoomComponent implements OnChanges {
   getEndingDate(calendarDate: CalendarDate | undefined) {
     this.endingDate = calendarDate;
     this.sendEndingDate.emit(this.endingDate);
+  }
+
+  reserveButtonHandler() {
+    if (this.startingDate && this.endingDate && this.nbOfGuests > 0) {
+      this.router.navigate(['/book/stays'], {
+        queryParams: {
+          productId: this.stayId,
+          startDate: this.calendarDateFormatPipe.transform(this.startingDate, "MM-dd-yyyy"),
+          endDate: this.calendarDateFormatPipe.transform(this.endingDate, "MM-dd-yyyy"),
+          nbAdults: this.guests.adult.nb,
+          nbChildren: this.guests.child.nb,
+          nbInfants: this.guests.child.nb,
+          nbPets: this.guests.pet.nb
+        }
+      });
+    }
+
+    if (!this.startingDate || !this.endingDate) {
+      this.openCalendar();
+      return;
+    }
+
+    if (this.nbOfGuests === 0) {
+      this.openGuestsModal();
+    }
   }
 }

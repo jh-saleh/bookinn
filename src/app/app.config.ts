@@ -6,6 +6,8 @@ import { provideState, provideStore } from '@ngrx/store';
 import { routes } from './app.routes';
 import { HTMLBodyReducer } from './state/htmlBody/htmlBody.reducer';
 import { HTMLBodyFeatureKey } from './state/htmlBody/htmlBody.selectors';
+import { StayReducer } from './state/stay/stay.reducer';
+import { StayFeatureKey } from './state/stay/stay.selectors';
 import { UserReducer } from './state/user/user.reducer';
 import { UserFeatureKey } from './state/user/user.selectors';
 
@@ -22,5 +24,6 @@ export const appConfig: ApplicationConfig = {
   provideStore(HTMLBodyReducer),
   provideState({ name: HTMLBodyFeatureKey, reducer: HTMLBodyReducer }),
   provideState({ name: UserFeatureKey, reducer: UserReducer }),
+  provideState({ name: StayFeatureKey, reducer: StayReducer }),
   ]
 };

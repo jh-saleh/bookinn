@@ -1,0 +1,42 @@
+.bill {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-border-radius);
+    width: inherit;
+    position: sticky;
+    top: 150px;
+    padding: 30px;
+    display: grid;
+    gap: 10px;
+    width: 350px;
+    z-index: 2;
+    color: black;
+}
+
+.bill-summary-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bill-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bill-divider {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px var(--black-100) solid;
+}
+
+.price-detail,
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-detail>*:first-child {
+    text-decoration: underline;
+}

@@ -9,8 +9,6 @@ import { StayPort } from '../../domain/port/stay.port';
 })
 export class StayPortfolioService implements StayPort {
 
-  constructor() { }
-
   getHomePageStays(): Observable<Stay[]> {
     return of(stays.slice(0, 40));
   }

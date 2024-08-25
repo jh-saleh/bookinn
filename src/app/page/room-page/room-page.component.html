@@ -16,10 +16,10 @@
         <div class="page-body">
             <section>
                 <h1 class="room-title">
-                    {{inn.name}}
+                    {{stay.name}}
                 </h1>
                 <div class="room-picture">
-                    <images-viewer [imgsUrls]="inn.imgsUrls"></images-viewer>
+                    <images-viewer [imgsUrls]="stay.imgsUrls"></images-viewer>
                 </div>
             </section>
             <div class="room-information">
@@ -27,14 +27,14 @@
                     <div class="room-summary">
                         <div>
                             <h2 class="room-sub-title">
-                                Inn's bedroom in {{inn.location.city}}, {{inn.location.kingdom}}
+                                Inn's bedroom in {{stay.location.city}}, {{stay.location.kingdom}}
                             </h2>
                         </div>
                         <div class="room-properties">
-                            {{inn.maxNumberOfGuests}} {{inn.maxNumberOfGuests | pluralize: 'guest'}} ·
-                            {{inn.lodging.nbBedrooms}} {{inn.lodging.nbBedrooms | pluralize: 'bedroom'}} ·
-                            {{inn.lodging.nbBeds}} {{inn.lodging.nbBeds | pluralize: 'bed'}} ·
-                            {{inn.lodging.nbBaths}} {{inn.lodging.nbBaths | pluralize: 'bath'}}
+                            {{stay.maxNumberOfGuests}} {{stay.maxNumberOfGuests | pluralize: 'guest'}} ·
+                            {{stay.lodging.nbBedrooms}} {{stay.lodging.nbBedrooms | pluralize: 'bedroom'}} ·
+                            {{stay.lodging.nbBeds}} {{stay.lodging.nbBeds | pluralize: 'bed'}} ·
+                            {{stay.lodging.nbBaths}} {{stay.lodging.nbBaths | pluralize: 'bath'}}
                         </div>
                     </div>
                     <div class="room-divider"></div>
@@ -43,25 +43,25 @@
                             About this place
                         </h2>
                         <div>
-                            {{inn.about.context}}
+                            {{stay.about.context}}
                         </div>
                         <h2 class="room-sub-title">
                             The place
                         </h2>
                         <div>
-                            {{inn.about.theSpace}}
+                            {{stay.about.theSpace}}
                         </div>
-                        @if(inn.about.note){
+                        @if(stay.about.note){
                         <h2 class="room-sub-title">
                             Note
                         </h2>
                         <div>
-                            {{inn.about.note}}
+                            {{stay.about.note}}
                         </div>
                         }
                     </div>
                     <div class="room-divider"></div>
-                    @if(inn.amenities){
+                    @if(stay.amenities){
                     <div class="room-amenities">
                         <h2 class="room-sub-title">
                             Amenities
@@ -91,7 +91,8 @@
                     <div>
                         <h2 class="room-sub-title">
                             @if(nbDays){
-                            {{nbDays}} {{nbDays | pluralize: 'night'}} in {{inn.location.city}},{{inn.location.kingdom}}
+                            {{nbDays}} {{nbDays | pluralize: 'night'}} in
+                            {{stay.location.city}},{{stay.location.kingdom}}
                             } @else {
                             Select check-in date
                             }
@@ -111,10 +112,9 @@
                     </div>
                 </section>
                 <section class="bill-on-rails">
-                    <bill-room [basePricePerNight]="inn.pricePerNight" [nbOfNights]="nbDays"
-                        [startingDate]="startingDate" [endingDate]="endingDate"
-                        [maximumNbOfGuests]="inn.maxNumberOfGuests" (sendStartingDate)="getStartingDate($event)"
-                        (sendEndingDate)="getEndingDate($event)" [initGuests]="queryParamGuests"></bill-room>
+                    <bill-room [nbOfNights]="nbDays" [startingDate]="startingDate" [endingDate]="endingDate"
+                        (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
+                        [initGuests]="queryParamGuests"></bill-room>
                 </section>
             </div>
             <div class="room-divider"></div>
@@ -124,17 +124,17 @@
                         Where you’ll be
                     </h2>
                     <p>
-                        {{inn.location.city}}, {{inn.location.kingdom}}
+                        {{stay.location.city}}, {{stay.location.kingdom}}
                     </p>
                 </div>
                 <div class="room-map-body">
-                    <app-map [zoom]="2" [coordinates]="inn.location.coordinates"></app-map>
+                    <app-map [zoom]="2" [coordinates]="stay.location.coordinates"></app-map>
                 </div>
                 <div class="room-divider"></div>
             </div>
             <host-room [host]="host"></host-room>
             <div class="room-divider"></div>
-            <guidebook-room [guidebook]="inn.guidebook" [maxNumberOfGuests]="inn.maxNumberOfGuests"
+            <guidebook-room [guidebook]="stay.guidebook" [maxNumberOfGuests]="stay.maxNumberOfGuests"
                 [startingDate]="startingDate" [endingDate]="endingDate"></guidebook-room>
         </div>
     </div>
