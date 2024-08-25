@@ -12,7 +12,7 @@ export const userOnlyGuard: CanActivateFn = (route, state) => {
     router.navigate(['/login'], {
       queryParams: {
         redirectUrl: state.url,
-      }
+      },
     });
     return false;
   }

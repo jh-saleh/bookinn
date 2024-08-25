@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, combineLatest, filter, of, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject } from 'rxjs';
 import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
@@ -26,7 +26,6 @@ import { NegationPipe } from '../../pipe/negation.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 import { StayActions } from '../../state/stay/stay.actions';
-import { selectStay } from '../../state/stay/stay.selectors';
 
 @Component({
   selector: 'room-page',
@@ -61,28 +60,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramRoomId = this.route.snapshot.paramMap.get('id');
-    this.store.select(selectStay)
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(({ stay }) => !stay),
-        switchMap(() => this.stayService.getStay(this.paramRoomId ?? "").pipe(
-          tap((stay) => this.store.dispatch(StayActions.setStay({ stay })))
-        )),
-      ).subscribe();
 
-    this.store.select(selectStay)
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(({ stay }) => !!stay),
-        switchMap(({ stay }) => combineLatest([of(stay), this.hostService.getHost(stay?.hostId ?? "")]).pipe(
-          tap(([_stay, host]) => this.host = host)
-        ))
-      )
-      .subscribe(([stay]) => {
-        if (stay) {
-          this.stay = stay;
-        }
-      });
+    this.stayService.getStay(this.paramRoomId ?? "").subscribe((stay) => {
+      this.store.dispatch(StayActions.setStay({ stay }));
+      this.stay = stay;
+    });
+    this.hostService.getHost(this.stay.hostId).subscribe((host) => this.host = host);
 
     this.amenities = extractAmenitiesData(this.stay?.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();

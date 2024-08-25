@@ -20,6 +20,7 @@ import { AnimatedInputComponent } from "../../animated-input/animated-input.comp
 export class LoginComponent {
   form!: FormGroup<{ email: FormControl<string | null>, password: FormControl<string | null> }>;
   areWrongCrendentials: boolean = false;
+  readonly defaultRedirectUrl = '/home';
   redirectUrl: string = "/home";
 
   constructor(private fb: FormBuilder, private authService: AuthPort, private router: Router, private route: ActivatedRoute, private store: Store<AppState>
@@ -43,7 +44,7 @@ export class LoginComponent {
             if (user) {
               this.store.dispatch(UserActions.setUser({ user: user }));
               this.areWrongCrendentials = false;
-              this.router.navigateByUrl(this.redirectUrl);
+              this.router.navigateByUrl(this.redirectUrl, { replaceUrl: this.redirectUrl !== this.defaultRedirectUrl });
             } else {
               this.areWrongCrendentials = true;
             }
@@ -60,7 +61,7 @@ export class LoginComponent {
           if (user) {
             this.store.dispatch(UserActions.setUser({ user: user }));
             this.areWrongCrendentials = false;
-            this.router.navigateByUrl(this.redirectUrl);
+            this.router.navigateByUrl(this.redirectUrl, { replaceUrl: this.redirectUrl !== this.defaultRedirectUrl });
           } else {
             this.areWrongCrendentials = true;
           }
