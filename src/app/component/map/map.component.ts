@@ -22,8 +22,9 @@ export class MapComponent {
   height: 100%;
   width: 100%;
   `;
-  @Input() zoom: number = -1;
+  @Input({ required: true }) zoom: number = -1;
   @Input({ required: true }) coordinates?: Coordinates;
+  @Input({ required: false }) displayAllCities?: boolean;
 
   constructor(
     private leafletLoadingService: LeafletLoadingService,
@@ -87,7 +88,12 @@ export class MapComponent {
       getLocationMarker(this.coordinates).addTo(this.map);
       this.map.setView([this.coordinates.y, this.coordinates.x], this.zoom);
     }
-    const layerControl = lib.control.layers().addTo(this.map);
+    if (this.displayAllCities) {
+      cities.addTo(this.map);
+    }
+    const layerControl = lib.control.layers({}, {
+
+    }).addTo(this.map);
     layerControl.addOverlay(cities, "Cities");
     this.image = lib.imageOverlay(environment.images.worldmap, this.bounds).addTo(this.map);
   }
