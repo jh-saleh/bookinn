@@ -6,7 +6,7 @@ export const hosts: Host[] = [
         firstname: "Dawn",
         lastname: "Duskwell",
         firstYearOfHosting: 2022,
-        imgSrc: "./hosts/wizard/1.jpeg",
+        imgSrc: "./hosts/1.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -47,7 +47,7 @@ export const hosts: Host[] = [
         firstname: "Garrick",
         lastname: "Stormforge",
         firstYearOfHosting: 2005,
-        imgSrc: "./hosts/dwarf/4.jpeg",
+        imgSrc: "./hosts/2.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -90,7 +90,7 @@ export const hosts: Host[] = [
         firstname: "Liyrax",
         lastname: "Marinthal",
         firstYearOfHosting: 1986,
-        imgSrc: "./hosts/aquareth/1.jpeg",
+        imgSrc: "./hosts/3.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -135,7 +135,7 @@ export const hosts: Host[] = [
         firstname: "Thorne",
         lastname: "Willowbend",
         firstYearOfHosting: 1600,
-        imgSrc: "./hosts/wizard/3.jpeg",
+        imgSrc: "./hosts/4.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -182,7 +182,7 @@ export const hosts: Host[] = [
         firstname: "Eliza",
         lastname: "Meadowbrook",
         firstYearOfHosting: 2001,
-        imgSrc: "./hosts/generic/forest1.jpeg",
+        imgSrc: "./hosts/5.jpeg",
         informations: [
             {
                 enum: HostInformationType.ObsessedWith,
@@ -229,7 +229,7 @@ export const hosts: Host[] = [
         firstname: "Elena",
         lastname: "Hartley",
         firstYearOfHosting: 2001,
-        imgSrc: "./hosts/generic/mountains.jpeg",
+        imgSrc: "./hosts/6.jpeg",
         informations: [
             {
                 enum: HostInformationType.ObsessedWith,
@@ -275,7 +275,7 @@ export const hosts: Host[] = [
         firstname: "Seraphine",
         lastname: "Moonveil",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/wizard/3.jpeg",
+        imgSrc: "./hosts/7.jpeg",
         informations: [
             {
                 enum: HostInformationType.ObsessedWith,
@@ -317,7 +317,7 @@ export const hosts: Host[] = [
         firstname: "Rowan",
         lastname: "Marlowe",
         firstYearOfHosting: 2010,
-        imgSrc: "./hosts/generic/mountains3.jpeg",
+        imgSrc: "./hosts/8.jpeg",
         informations: [
             {
                 enum: HostInformationType.ObsessedWith,
@@ -358,7 +358,7 @@ export const hosts: Host[] = [
         firstname: "Gideon",
         lastname: "Oakwood",
         firstYearOfHosting: 2000,
-        imgSrc: "./hosts/generic/forest1.jpeg",
+        imgSrc: "./hosts/9.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -400,7 +400,7 @@ export const hosts: Host[] = [
         firstname: "Cyrus",
         lastname: "Ashen",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/generic/desert1.jpeg",
+        imgSrc: "./hosts/1.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -443,7 +443,7 @@ export const hosts: Host[] = [
         firstname: "Finn",
         lastname: "Hartley",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/generic/snow2.jpeg",
+        imgSrc: "./hosts/2.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -485,7 +485,7 @@ export const hosts: Host[] = [
         firstname: "Aiden",
         lastname: "Rivers",
         firstYearOfHosting: -1180,
-        imgSrc: "./hosts/generic/swamp2.jpeg",
+        imgSrc: "./hosts/3.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -527,7 +527,7 @@ export const hosts: Host[] = [
         firstname: "Kai",
         lastname: "Moore",
         firstYearOfHosting: 2006,
-        imgSrc: "./hosts/generic/forest1.jpeg",
+        imgSrc: "./hosts/4.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -569,7 +569,7 @@ export const hosts: Host[] = [
         firstname: "Elias",
         lastname: "Stone",
         firstYearOfHosting: 1994,
-        imgSrc: "./hosts/generic/swamp2.jpeg",
+        imgSrc: "./hosts/5.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -610,7 +610,7 @@ export const hosts: Host[] = [
         firstname: "Rhiannon",
         lastname: "Drakewood",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/generic/forest1.jpeg",
+        imgSrc: "./hosts/6.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -655,7 +655,7 @@ export const hosts: Host[] = [
         firstname: "Liora",
         lastname: "Starcrest",
         firstYearOfHosting: 2002,
-        imgSrc: "./hosts/generic/desert1.jpeg",
+        imgSrc: "./hosts/7.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -698,7 +698,7 @@ export const hosts: Host[] = [
         firstname: "Aric",
         lastname: "Spiceveil",
         firstYearOfHosting: 2005,
-        imgSrc: "./hosts/generic/desert1.jpeg",
+        imgSrc: "./hosts/8.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -741,7 +741,7 @@ export const hosts: Host[] = [
         firstname: "Elara",
         lastname: "Greenthorn",
         firstYearOfHosting: 2010,
-        imgSrc: "./hosts/generic/forest1.jpeg",
+        imgSrc: "./hosts/9.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
@@ -784,7 +784,7 @@ export const hosts: Host[] = [
         firstname: "Rowan",
         lastname: "Thornfield",
         firstYearOfHosting: 2015,
-        imgSrc: "./hosts/generic/snow1.jpeg",
+        imgSrc: "./hosts/1.jpeg",
         informations: [
             {
                 enum: HostInformationType.School,
