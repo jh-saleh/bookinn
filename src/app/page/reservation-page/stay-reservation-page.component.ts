@@ -13,6 +13,7 @@ import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
 import { BillingPort } from '../../hexagonal/domain/port/billing.port';
 import { StayPort } from '../../hexagonal/domain/port/stay.port';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
+import { PastDateStrikeThroughPipe } from '../../pipe/past-date-strike-through.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 
@@ -28,7 +29,7 @@ export interface ReservationStartingStates {
   selector: 'stay-reservation-page',
   standalone: true,
   imports: [NavbarComponent, FooterComponent, CalendarDateFormatPipe, PluralizePipe,
-    FullViewModalComponent, CommonModule, PaymentOptionsComponent, BillReservationStayComponent],
+    FullViewModalComponent, CommonModule, PaymentOptionsComponent, BillReservationStayComponent, PastDateStrikeThroughPipe],
   providers: [{ provide: StayPort, useFactory: stayServiceFactory }, { provide: BillingPort, useFactory: billingServiceFactory }],
   templateUrl: './stay-reservation-page.component.html',
   styleUrl: './stay-reservation-page.component.css'
@@ -41,7 +42,6 @@ export class StayReservationPageComponent implements OnInit {
   stay!: Stay;
   fullRefundDate: CalendarDate | undefined;
   partialRefundDate: CalendarDate | undefined;
-  noRefundDate: CalendarDate | undefined;
   isCancellationPolicyModalOpen: boolean = false;
   completeBill!: number;
   constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StayPort,
@@ -81,13 +81,10 @@ export class StayReservationPageComponent implements OnInit {
       this.stayService.getStay(this.startingState.productId).subscribe((stay) => {
         this.stay = stay;
         if (this.startingState?.startingDate && this.startingState.startingDate) {
-          if (this.stay.guidebook.cancellationPolicy.fullRefund) {
-            this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.fullRefund);
-          }
+          this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.fullRefund);
           if (this.stay.guidebook.cancellationPolicy.partialRefund) {
             this.partialRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.partialRefund);
           }
-          this.noRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.noRefund);
         }
       });
       if (this.startingState.startingDate && this.startingState.endingDate) {

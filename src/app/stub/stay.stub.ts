@@ -88,7 +88,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 5,
-                noRefund: 3
             }
         }
     },
@@ -155,7 +154,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 30,
                 partialRefund: 15,
-                noRefund: 5
             }
         }
     },
@@ -215,7 +213,7 @@ export const stays: Stay[] = [
                 smokeAlarm: false,
             },
             cancellationPolicy: {
-                noRefund: 15
+                fullRefund: 10
             }
         }
     },
@@ -277,7 +275,7 @@ export const stays: Stay[] = [
                 smokeAlarm: true,
             },
             cancellationPolicy: {
-                noRefund: 2
+                fullRefund: 15
             }
         }
     },
@@ -338,7 +336,7 @@ export const stays: Stay[] = [
                 smokeAlarm: false,
             },
             cancellationPolicy: {
-                noRefund: 15
+                fullRefund: 45
             }
         }
     },
@@ -414,7 +412,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 20,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -491,7 +488,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 5,
-                noRefund: 1
             }
         }
     },
@@ -568,7 +564,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 5,
-                noRefund: 1
             }
         }
     },
@@ -645,7 +640,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 5,
-                noRefund: 1
             }
         }
     },
@@ -715,7 +709,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 25,
                 partialRefund: 15,
-                noRefund: 10
             }
         }
     },
@@ -785,7 +778,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 17,
                 partialRefund: 10,
-                noRefund: 3
             }
         }
     },
@@ -857,7 +849,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 4,
                 partialRefund: 3,
-                noRefund: 1
             }
         }
     },
@@ -929,7 +920,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 4,
                 partialRefund: 3,
-                noRefund: 1
             }
         }
     },
@@ -1000,7 +990,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 15,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -1072,7 +1061,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 15,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -1142,7 +1130,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 15,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -1212,7 +1199,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 17,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -1282,7 +1268,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 17,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -1352,7 +1337,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 17,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -1422,7 +1406,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 15,
                 partialRefund: 5,
-                noRefund: 3
             }
         }
     },
@@ -1492,7 +1475,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 15,
                 partialRefund: 5,
-                noRefund: 3
             }
         }
     },
@@ -1562,7 +1544,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 20,
                 partialRefund: 7,
-                noRefund: 5
             }
         }
     },
@@ -1632,7 +1613,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 20,
                 partialRefund: 7,
-                noRefund: 5
             }
         }
     },
@@ -1702,7 +1682,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 20,
                 partialRefund: 7,
-                noRefund: 5
             }
         }
     },
@@ -1772,7 +1751,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 20,
                 partialRefund: 7,
-                noRefund: 5
             }
         }
     },
@@ -1845,7 +1823,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 4,
                 partialRefund: 2,
-                noRefund: 0
             }
         }
     },
@@ -1935,7 +1912,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 2
             }
         }
     },
@@ -2022,7 +1998,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2110,7 +2085,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 5,
-                noRefund: 2
             }
         }
     },
@@ -2197,7 +2171,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2285,7 +2258,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 2
             }
         }
     },
@@ -2373,7 +2345,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2461,7 +2432,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2549,7 +2519,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2637,7 +2606,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 10,
                 partialRefund: 4,
-                noRefund: 2
             }
         }
     },
@@ -2725,7 +2693,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 21,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -2813,7 +2780,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2901,7 +2867,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -2989,7 +2954,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 21,
                 partialRefund: 10,
-                noRefund: 5
             }
         }
     },
@@ -3077,7 +3041,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     },
@@ -3165,7 +3128,6 @@ export const stays: Stay[] = [
             cancellationPolicy: {
                 fullRefund: 14,
                 partialRefund: 7,
-                noRefund: 3
             }
         }
     }

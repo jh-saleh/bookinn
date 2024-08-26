@@ -48,9 +48,8 @@ export interface GuideBook {
     };
     safety: Partial<Record<SafetyDevice, boolean>>;
     cancellationPolicy: {
-        fullRefund?: number;
+        fullRefund: number;
         partialRefund?: number;
-        noRefund: number;
     };
 }
 

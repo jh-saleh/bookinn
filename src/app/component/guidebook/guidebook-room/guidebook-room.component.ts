@@ -4,6 +4,7 @@ import { CheckType, GuideBook, GuidebookInformation, HourBoundary, LeaveRule, Sa
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
 import { NegationPipe } from '../../../pipe/negation.pipe';
+import { PastDateStrikeThroughPipe } from '../../../pipe/past-date-strike-through.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { CalendarDate, CalendarDatesService } from '../../../service/calendar-dates.service';
 import { FullViewModalComponent } from '../../windows/full-view-classic-modal/full-view-modal.component';
@@ -11,7 +12,7 @@ import { FullViewModalComponent } from '../../windows/full-view-classic-modal/fu
 @Component({
   selector: 'guidebook-room',
   standalone: true,
-  imports: [CommonModule, FullViewModalComponent, PluralizePipe, CamelToSentencePipe, NegationPipe, FullViewModalComponent, CalendarDateFormatPipe],
+  imports: [CommonModule, FullViewModalComponent, PluralizePipe, CamelToSentencePipe, NegationPipe, FullViewModalComponent, CalendarDateFormatPipe, PastDateStrikeThroughPipe],
   providers: [CalendarDatesService],
   templateUrl: './guidebook-room.component.html',
   styleUrl: './guidebook-room.component.css'
@@ -50,18 +51,14 @@ export class GuidebookRoomComponent {
   isCancellationPolicyModalOpen: boolean = false;
   fullRefundDate: CalendarDate | undefined;
   partialRefundDate: CalendarDate | undefined;
-  noRefundDate: CalendarDate | undefined;
   _startingDate: CalendarDate | undefined;
   @Input({ required: true }) set startingDate(date: CalendarDate | undefined) {
     this._startingDate = date;
     if (date) {
-      if (this.guidebook.cancellationPolicy.fullRefund) {
-        this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(date, this.guidebook.cancellationPolicy.fullRefund);
-      }
+      this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(date, this.guidebook.cancellationPolicy.fullRefund);
       if (this.guidebook.cancellationPolicy.partialRefund) {
         this.partialRefundDate = this.calendarDatesService.substractDaysFromDate(date, this.guidebook.cancellationPolicy.partialRefund);
       }
-      this.noRefundDate = this.calendarDatesService.substractDaysFromDate(date, this.guidebook.cancellationPolicy.noRefund);
     }
   }
   get startingDate(): CalendarDate | undefined {

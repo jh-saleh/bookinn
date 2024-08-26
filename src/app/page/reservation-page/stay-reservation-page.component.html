@@ -8,9 +8,7 @@
                 {{stay.guidebook.houserules.time.interval?.checkIn?.lowerBoundary}}
             </div>
         </div>
-        <p class="reservation-cancellation-policy">
-            {{policy}}
-        </p>
+        <p class="reservation-cancellation-policy" [innerHTML]="policy | pastDateStrikeThrough: date"></p>
     </div>
 </ng-template>
 
@@ -48,9 +46,7 @@
                     <h2>Cancellation policy</h2>
                     <div>
                         <div>
-                            @if(stay.guidebook.cancellationPolicy.fullRefund){
                             Free cancellation before {{fullRefundDate | calendarDateFormat: 'MMM dd, yyyy'}}.
-                            }
                             @if(stay.guidebook.cancellationPolicy.partialRefund){
                             Cancel before {{partialRefundDate | calendarDateFormat: 'MMM dd, yyyy'}} for a partial
                             refund.
@@ -106,20 +102,15 @@
             </p>
         </section>
         <h2>
-            Cancel by
+            Cancel before
         </h2>
-        @if(stay.guidebook.cancellationPolicy.fullRefund){
         <ng-template
             *ngTemplateOutlet="cancellationInformation; context:{date: fullRefundDate, policy: 'Full refund: Get back 100% of what you paid.'}"></ng-template>
         <div class="modal-divider"></div>
-        }
         @if(stay.guidebook.cancellationPolicy.partialRefund){
         <ng-template
             *ngTemplateOutlet="cancellationInformation; context:{date: partialRefundDate, policy: 'Partial refund: Get back 50% of every night. No refund of the service fee.'}"></ng-template>
         <div class="modal-divider"></div>
         }
-        <ng-template
-            *ngTemplateOutlet="cancellationInformation; context:{date: noRefundDate, policy: 'No refund.'}"></ng-template>
-        <div class="modal-divider"></div>
     </div>
 </full-view-modal>
