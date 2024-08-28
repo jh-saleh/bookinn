@@ -1,0 +1,32 @@
+.pagination {
+    width: 100%;
+    user-select: none;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}
+
+.pagination>div {
+    width: max-content;
+    display: flex;
+    gap: 15px;
+}
+
+.page-item {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.page-item-selected {
+    background-color: black;
+    color: white;
+}
+
+.page-etc {
+    color: white;
+}

@@ -1,0 +1,51 @@
+<div class="pagination">
+    <div>
+        <div class="page-item" [class.page-item-selected]="currentPage === 1" (click)="selectedPageHandler(1)">
+            1
+        </div>
+        <div *ngIf="(currentPage<=3 && ((2<=lastPage && lastPage<=5) || lastPage>=6 )) || lastPage === 4"
+            class="page-item" [class.page-item-selected]="currentPage === 2" (click)="selectedPageHandler(2)">
+            2
+        </div>
+        <div *ngIf="currentPage >= 4 && lastPage > 5" class="page-etc">...</div>
+        <div *ngIf="(currentPage<=3 && ((3<=lastPage && lastPage<=5) || lastPage>=6)) || lastPage === 4"
+            class="page-item" [class.page-item-selected]="currentPage === 3" (click)="selectedPageHandler(3)">
+            3
+        </div>
+        <div *ngIf="(currentPage<=3 && ((4<=lastPage && lastPage<=5) || lastPage>=6)) || lastPage === 4"
+            class="page-item" [class.page-item-selected]="currentPage === 4" (click)="selectedPageHandler(4)">
+            4
+        </div>
+
+        <div *ngIf="currentPage>=4 && currentPage <= lastPage - 3" class="page-item"
+            [class.page-item-selected]="currentPage === currentPage-1" (click)="selectedPageHandler(currentPage-1)">
+            {{currentPage-1}}
+        </div>
+        <div *ngIf="currentPage>=4 && currentPage <= lastPage - 3" class="page-item"
+            [class.page-item-selected]="currentPage === currentPage" (click)="selectedPageHandler(currentPage)">
+            {{currentPage}}
+        </div>
+        <div *ngIf="currentPage>=4 && currentPage <= lastPage - 3" class="page-item"
+            [class.page-item-selected]="currentPage === currentPage+1" (click)="selectedPageHandler(currentPage+1)">
+            {{currentPage + 1}}
+        </div>
+
+        <div *ngIf="currentPage>=lastPage-2 && lastPage > 4 && currentPage !== 3" class="page-item"
+            [class.page-item-selected]="currentPage === lastPage-3" (click)="selectedPageHandler(lastPage-3)">
+            {{lastPage-3}}
+        </div>
+        <div *ngIf="currentPage>=lastPage-2 && lastPage > 4 && currentPage !== 3" class="page-item"
+            [class.page-item-selected]="currentPage === lastPage-2" (click)="selectedPageHandler(lastPage-2)">
+            {{lastPage-2}}
+        </div>
+        <div *ngIf="currentPage>=lastPage-2 && lastPage > 4 && currentPage !== 3" class="page-item"
+            [class.page-item-selected]="currentPage === lastPage-1" (click)="selectedPageHandler(lastPage-1)">
+            {{lastPage-1}}
+        </div>
+        <div *ngIf="currentPage < lastPage-2 && lastPage > 5" class="page-etc">...</div>
+        <div *ngIf="lastPage !== 1 && lastPage > 4" class="page-item"
+            [class.page-item-selected]="currentPage === lastPage" (click)="selectedPageHandler(lastPage)">
+            {{lastPage}}
+        </div>
+    </div>
+</div>

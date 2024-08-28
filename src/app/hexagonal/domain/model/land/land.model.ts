@@ -1,3 +1,5 @@
+import { Coordinates } from "../stay/location.model";
+
 enum Economy {
     Timber,
     Herbalism,
@@ -88,127 +90,177 @@ export const citiesName: string[] = [
     CityName.Brightwater,
 ]
 
-interface City {
-    name: CityName;
+interface CityData {
     biome: Biome;
     economy: Economy[];
+    position: Coordinates;
 }
 
 export enum KingdomName {
     Orlond = "Orlond",
 }
 
-interface Kingdom {
-    name: KingdomName;
-    cities: City[];
-}
+export type World = Record<CityName, CityData>;
 
-export type World = Kingdom[];
-
-export const world: World = [
-    {
-        name: KingdomName.Orlond,
-        cities: [
-            {
-                name: CityName.Thandor,
-                biome: Biome.Forest,
-                economy: [Economy.Timber, Economy.Herbalism]
-            },
-            {
-                name: CityName.Krynholm,
-                biome: Biome.Mountain,
-                economy: [Economy.Mining, Economy.Blacksmithing]
-            },
-            {
-                name: CityName.Lurendale,
-                biome: Biome.Plains,
-                economy: [Economy.Agriculture, Economy.Livestock]
-            },
-            {
-                name: CityName.Vorandal,
-                biome: Biome.Desert,
-                economy: [Economy.SpiceTrade, Economy.Textiles]
-            },
-            {
-                name: CityName.Mirros,
-                biome: Biome.Desert,
-                economy: [Economy.Fishing, Economy.Shipbuilding]
-            },
-            {
-                name: CityName.Drakenshore,
-                biome: Biome.Island,
-                economy: [Economy.Alchemy, Economy.HerbalRemedies]
-            },
-            {
-                name: CityName.Highreach,
-                biome: Biome.Highland,
-                economy: [Economy.Wool, Economy.CheeseMaking]
-            },
-            {
-                name: CityName.Briarholm,
-                biome: Biome.Island,
-                economy: [Economy.Hunting, Economy.FurTrade]
-            },
-            {
-                name: CityName.Glimmerfall,
-                biome: Biome.River,
-                economy: [Economy.Trade, Economy.Craftsmanship]
-            },
-            {
-                name: CityName.Ebonport,
-                biome: Biome.Coastal,
-                economy: [Economy.Trade, Economy.Fishing]
-            },
-            {
-                name: CityName.Ironcliff,
-                biome: Biome.Mountain,
-                economy: [Economy.IronMining, Economy.Blacksmithing]
-            },
-            {
-                name: CityName.Sunspire,
-                biome: Biome.DesertOasis,
-                economy: [Economy.SilkProduction, Economy.Alchemy]
-            },
-            {
-                name: CityName.Frostgate,
-                biome: Biome.Tundra,
-                economy: [Economy.FurTrade, Economy.IceFishing]
-            },
-            {
-                name: CityName.Willowgrove,
-                biome: Biome.Forest,
-                economy: [Economy.Woodworking, Economy.Beekeeping]
-            },
-            {
-                name: CityName.Stormwatch,
-                biome: Biome.Coastal,
-                economy: [Economy.SaltProduction, Economy.Shipbuilding]
-            },
-            {
-                name: CityName.Moonshadow,
-                biome: Biome.Swamp,
-                economy: [Economy.Alchemy, Economy.ExoticPlants]
-            },
-            {
-                name: CityName.Redleaf,
-                biome: Biome.Forest,
-                economy: [Economy.Herbalism, Economy.Hunting]
-            },
-            {
-                name: CityName.Goldhaven,
-                biome: Biome.Plains,
-                economy: [Economy.Agriculture, Economy.Livestock]
-            },
-            {
-                name: CityName.Shadowfen,
-                biome: Biome.Marsh,
-                economy: [Economy.HerbalRemedies, Economy.Fishery]
-            },
-            {
-                name: CityName.Brightwater,
-                biome: Biome.River,
-                economy: [Economy.Trade, Economy.Pottery]
-            }
-        ]
+export const world: World = {
+    Thandor: {
+        biome: Biome.Forest,
+        economy: [Economy.Timber, Economy.Herbalism],
+        position: {
+            x: 450,
+            y: 220,
+        }
+    },
+    Krynholm: {
+        biome: Biome.Mountain,
+        economy: [Economy.Mining, Economy.Blacksmithing],
+        position: {
+            x: 470,
+            y: 800,
+        }
+    },
+    Lurendale: {
+        biome: Biome.Plains,
+        economy: [Economy.Agriculture, Economy.Livestock],
+        position: {
+            x: 760,
+            y: 470,
+        }
+    },
+    Vorandal: {
+        biome: Biome.Desert,
+        economy: [Economy.SpiceTrade, Economy.Textiles],
+        position: {
+            x: 370,
+            y: 540,
+        }
+    },
+    Mirros: {
+        biome: Biome.Desert,
+        economy: [Economy.Fishing, Economy.Shipbuilding],
+        position: {
+            x: 210,
+            y: 580,
+        }
+    },
+    Drakenshore: {
+        biome: Biome.Island,
+        economy: [Economy.Alchemy, Economy.HerbalRemedies],
+        position: {
+            x: 240,
+            y: 120,
+        }
+    },
+    Highreach: {
+        biome: Biome.Highland,
+        economy: [Economy.Wool, Economy.CheeseMaking],
+        position: {
+            x: 700,
+            y: 850,
+        }
+    },
+    Briarholm: {
+        biome: Biome.Island,
+        economy: [Economy.Hunting, Economy.FurTrade],
+        position: {
+            x: 120,
+            y: 230,
+        }
+    },
+    Glimmerfall: {
+        biome: Biome.River,
+        economy: [Economy.Trade, Economy.Craftsmanship],
+        position: {
+            x: 510,
+            y: 300,
+        }
+    },
+    Ebonport: {
+        biome: Biome.Coastal,
+        economy: [Economy.Trade, Economy.Fishing],
+        position: {
+            x: 850,
+            y: 160,
+        }
+    },
+    Ironcliff: {
+        biome: Biome.Mountain,
+        economy: [Economy.IronMining, Economy.Blacksmithing],
+        position: {
+            x: 170,
+            y: 800,
+        }
+    },
+    Sunspire: {
+        biome: Biome.DesertOasis,
+        economy: [Economy.SilkProduction, Economy.Alchemy],
+        position: {
+            x: 920,
+            y: 300,
+        }
+    },
+    Frostgate: {
+        biome: Biome.Tundra,
+        economy: [Economy.FurTrade, Economy.IceFishing],
+        position: {
+            x: 250,
+            y: 900,
+        }
+    },
+    Willowgrove: {
+        biome: Biome.Forest,
+        economy: [Economy.Woodworking, Economy.Beekeeping],
+        position: {
+            x: 450,
+            y: 420,
+        }
+    },
+    Stormwatch: {
+        biome: Biome.Coastal,
+        economy: [Economy.SaltProduction, Economy.Shipbuilding],
+        position: {
+            x: 870,
+            y: 710,
+        }
+    },
+    Moonshadow: {
+        biome: Biome.Swamp,
+        economy: [Economy.Alchemy, Economy.ExoticPlants],
+        position: {
+            x: 500,
+            y: 610,
+        }
+    },
+    Redleaf: {
+        biome: Biome.Forest,
+        economy: [Economy.Herbalism, Economy.Hunting],
+        position: {
+            x: 250,
+            y: 400,
+        }
+    },
+    Goldhaven: {
+        biome: Biome.Plains,
+        economy: [Economy.Agriculture, Economy.Livestock],
+        position: {
+            x: 870,
+            y: 480,
+        }
+    },
+    Shadowfen: {
+        biome: Biome.Marsh,
+        economy: [Economy.HerbalRemedies, Economy.Fishery],
+        position: {
+            x: 740,
+            y: 535,
+        }
+    },
+    Brightwater: {
+        biome: Biome.River,
+        economy: [Economy.Trade, Economy.Pottery],
+        position: {
+            x: 255,
+            y: 310,
+        }
     }
-];
+};

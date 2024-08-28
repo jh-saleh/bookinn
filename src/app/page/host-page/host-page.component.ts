@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HostCardComponent } from "../../component/card/host-card/host-card.component";
-import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
+import { StayCardComponent } from "../../component/card/stay-card/stay-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { hostServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
@@ -15,7 +15,7 @@ import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/h
 @Component({
   selector: 'host-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, HostCardComponent, RoomCardComponent, RouterModule,
+  imports: [NavbarComponent, FooterComponent, HostCardComponent, StayCardComponent, RouterModule,
     CamelToSentencePipe, HostInformationIconPipe],
   providers: [{ provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './host-page.component.html',

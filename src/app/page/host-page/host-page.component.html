@@ -78,9 +78,9 @@
                         <div class="host-listing-body">
                             @for (listing of listings; track $index) {
                             <a [routerLink]="['/room', listing.id]">
-                                <room-card [city]="listing.location.city" [kingdom]="listing.location.kingdom"
+                                <stay-card [city]="listing.location.city" [kingdom]="listing.location.kingdom"
                                     [name]="listing.name" [pricePerNight]="listing.billing.basePricePerNight"
-                                    [ratings]="listing.ratings" [imgsUrls]="listing.imgsUrls"></room-card>
+                                    [ratings]="listing.ratings" [imgsUrls]="listing.imgsUrls"></stay-card>
                             </a>
                             }
                         </div>

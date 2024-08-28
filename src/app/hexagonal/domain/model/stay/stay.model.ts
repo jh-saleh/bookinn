@@ -25,3 +25,7 @@ export class Stay {
     amenities?: Partial<Record<Amenity, boolean>>;
     guidebook!: GuideBook;
 }
+
+export interface StayWithDistanceToOrigin extends Stay {
+    distanceToOrigin: number;
+}

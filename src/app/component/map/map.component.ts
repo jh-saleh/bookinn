@@ -23,7 +23,16 @@ export class MapComponent {
   width: 100%;
   `;
   @Input({ required: true }) zoom: number = -1;
-  @Input({ required: true }) coordinates?: Coordinates;
+  _coordinates?: Coordinates;
+  @Input({ required: true }) set coordinates(value: Coordinates | undefined) {
+    this._coordinates = value;
+    if (value && this.map) {
+      this.map.setView([value.y, value.x], this.zoom);
+    }
+  };
+  get coordinates(): Coordinates | undefined {
+    return this._coordinates;
+  }
   @Input({ required: false }) displayAllCities?: boolean;
 
   constructor(

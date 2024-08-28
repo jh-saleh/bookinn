@@ -1,17 +1,14 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { environment } from '../../../environments/environment';
-import { RoomCardComponent } from "../../component/card/room-card/room-card.component";
-import { FooterComponent } from "../../component/footer/footer.component";
-import { NavbarComponent } from "../../component/navbar/navbar.component";
 
 @Component({
   selector: 'root-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, RoomCardComponent, FooterComponent],
+  imports: [],
   templateUrl: './root-page.component.html',
   styleUrl: './root-page.component.css'
 })

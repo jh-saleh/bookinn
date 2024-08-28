@@ -62,29 +62,28 @@
     scale: 1.05;
 }
 
-.card-body {
-    display: grid;
-    grid-template-rows: repeat(2, min-content);
+.card-body-wrapper {
+    display: flex;
+    justify-content: space-between;
     padding: 5px;
     font-size: small;
     color: white;
 }
 
-.location-ratings {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
+.card-body {
+    display: grid;
+    gap: 5px;
 }
 
 .price {
     font-weight: bold;
 }
 
-.ratings {
+.ratings>div {
     display: flex;
     align-items: center;
 }
 
-.ratings>span {
+.ratings>div>span {
     scale: 0.7;
 }

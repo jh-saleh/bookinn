@@ -20,20 +20,29 @@
         </button>
         }
     </div>
-    <div class="card-body">
-        <div class="location-ratings">
-            <span>
-                {{city}}, {{kingdom}}
-            </span>
-            <span class="ratings">
+    <div class="card-body-wrapper">
+        <span class="card-body">
+            <div>
+                <span>
+                    {{city}}, {{kingdom}}
+                </span>
+                @if(distanceToOrigin){
+                <div class="location-distance">
+                    {{distanceToOrigin}} {{ distanceToOrigin | pluralize: 'kilometer'}} away
+                </div>
+                }
+            </div>
+            <div class="price">
+                ${{pricePerNight}} night
+            </div>
+        </span>
+        <span class="ratings">
+            <div>
                 {{ratings}}
                 <span class="material-symbols-outlined">
                     star
                 </span>
-            </span>
-        </div>
-        <div class="price">
-            ${{pricePerNight}} night
-        </div>
+            </div>
+        </span>
     </div>
 </div>

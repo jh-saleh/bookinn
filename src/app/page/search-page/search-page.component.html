@@ -1,24 +1,29 @@
 <section class="page">
     <app-navbar [startingModeState]="'minimized'" [searchbarStartingState]="searchbarStartingState"></app-navbar>
     <div class="search-page-body">
-        <div class="search-results">
-            @for (result of staysSearchResults; track $index) {
-            <a [routerLink]="['/room', result.id]" [queryParams]="{
+        <div>
+            <div class="search-results">
+                @for (result of staysSearchResults; track $index) {
+                <a [routerLink]="['/room', result.id]" [queryParams]="{
                 nbAdults: queryParamNbAdults,
                 nbChildren: queryParamNbChildren,
                 nbInfants: queryParamNbInfants,
                 nbPets: queryParamNbPets,
                 startDate: queryParamStartDate,
                 endDate: queryParamEndDate
-                }">
-                <room-card [city]="result.location.city" [kingdom]="result.location.kingdom" [name]="result.name"
-                    [pricePerNight]="result.billing.basePricePerNight" [ratings]="result.ratings"
-                    [imgsUrls]="result.imgsUrls"></room-card>
-            </a>
-            }
+                }" (mouseenter)="setMapView(result.location.coordinates)">
+                    <stay-card [city]="result.location.city" [kingdom]="result.location.kingdom" [name]="result.name"
+                        [pricePerNight]="result.billing.basePricePerNight" [ratings]="result.ratings"
+                        [imgsUrls]="result.imgsUrls" [distanceToOrigin]="result.distanceToOrigin"></stay-card>
+                </a>
+                }
+            </div>
+            <div class="pagination-wrapper">
+                <pagination [lastPage]="lastPage" (sendCurrentPage)="executeSearch($event)"></pagination>
+            </div>
         </div>
         <div class="map-wrapper">
-            <app-map [zoom]="0" [coordinates]="coordinates" [displayAllCities]="true"></app-map>
+            <app-map [zoom]="2" [coordinates]="coordinates" [displayAllCities]="true"></app-map>
         </div>
     </div>
     <app-footer></app-footer>
