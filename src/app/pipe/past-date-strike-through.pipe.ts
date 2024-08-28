@@ -6,7 +6,11 @@ import { CalendarDate } from '../service/calendar-dates.service';
   standalone: true
 })
 export class PastDateStrikeThroughPipe implements PipeTransform {
-  transform(value: string, date: CalendarDate | undefined): string {
+  transform(value: string | undefined | null, date: CalendarDate | undefined): string {
+    if (!value) {
+      return '';
+    }
+
     if (!date) {
       return value;
     }

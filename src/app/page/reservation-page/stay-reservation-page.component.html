@@ -1,11 +1,10 @@
 <ng-template #cancellationInformation let-date="date" let-policy="policy">
     <div class="reservation-cancellation-item">
         <div class="reservation-time">
-            <div>
-                {{date | calendarDateFormat: 'MMM dd, yyyy'}}
+            <div [innerHTML]="date | calendarDateFormat: 'MMM dd, yyyy' | pastDateStrikeThrough: date">
             </div>
-            <div>
-                {{stay.guidebook.houserules.time.interval?.checkIn?.lowerBoundary}}
+            <div
+                [innerHTML]="stay.guidebook.houserules.time.interval?.checkIn?.lowerBoundary | pastDateStrikeThrough: date">
             </div>
         </div>
         <p class="reservation-cancellation-policy" [innerHTML]="policy | pastDateStrikeThrough: date"></p>
