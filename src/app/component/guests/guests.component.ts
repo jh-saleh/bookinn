@@ -33,6 +33,7 @@ export class GuestsComponent {
   @Input({ required: false }) set initGuests(value: Guests | undefined) {
     if (value) {
       this.guests = value;
+      this.shouldBlockIncreaseGuestsAction();
     }
   }
   @Output() getGuests = new EventEmitter<Guests>();
@@ -43,13 +44,17 @@ export class GuestsComponent {
     return Object.values(this.guests).map((value) => value.nb).reduce((previousValue, currentValue) => previousValue + currentValue);
   }
 
-  sendGuests(guest: GuestType, counter: number) {
-    this.guests[guest].nb = counter;
+  shouldBlockIncreaseGuestsAction() {
     if (this.maximumNbOfGuests && this.maximumNbOfGuests === this.getTotalNbOfGuests()) {
       this.blockIncreaseGuestsAction = true;
     } else {
       this.blockIncreaseGuestsAction = false;
     }
+  }
+
+  sendGuests(guest: GuestType, counter: number) {
+    this.guests[guest].nb = counter;
+    this.shouldBlockIncreaseGuestsAction();
     this.getGuests.emit(this.guests);
   }
 }
