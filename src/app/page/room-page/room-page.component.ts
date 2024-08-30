@@ -89,24 +89,23 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     const queryParamNbChildren: string | null = this.route.snapshot.queryParamMap.get("nbChildren");
     const queryParamNbInfants: string | null = this.route.snapshot.queryParamMap.get("nbInfants");
     const queryParamNbPets: string | null = this.route.snapshot.queryParamMap.get("nbPets");
-    if (queryParamNbAdults || queryParamNbChildren || queryParamNbInfants || queryParamNbPets) {
-      this.queryParamGuests = {
-        adult: {
-          nb: queryParamNbAdults ? Number(queryParamNbAdults) : 0,
-          maximum: MAX_NB_ADULTS,
-        },
-        child: {
-          nb: queryParamNbChildren ? Number(queryParamNbChildren) : 0,
-          maximum: MAX_NB_CHILDREN
-        },
-        infant: {
-          nb: queryParamNbInfants ? Number(queryParamNbInfants) : 0,
-          maximum: MAX_NB_INFANTS
-        },
-        pet: {
-          nb: queryParamNbPets ? Number(queryParamNbPets) : 0,
-          maximum: MAX_NB_PETS
-        }
+    this.queryParamGuests = {
+      adult: {
+        nb: queryParamNbAdults ? Number(queryParamNbAdults) : 1,
+        maximum: MAX_NB_ADULTS,
+        minimum: 1,
+      },
+      child: {
+        nb: queryParamNbChildren ? Number(queryParamNbChildren) : 0,
+        maximum: MAX_NB_CHILDREN
+      },
+      infant: {
+        nb: queryParamNbInfants ? Number(queryParamNbInfants) : 0,
+        maximum: MAX_NB_INFANTS
+      },
+      pet: {
+        nb: queryParamNbPets ? Number(queryParamNbPets) : 0,
+        maximum: MAX_NB_PETS
       }
     }
   }

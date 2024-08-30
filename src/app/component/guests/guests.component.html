@@ -8,7 +8,8 @@
                 Ages 18 or above
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('adult', $event)" [initValue]="guests['adult'].nb"
+        <app-counter (sendCounter)="sendGuests('adult', $event)"
+            [initValue]="guests['adult'].minimum && guests['adult'].minimum > guests['adult'].nb ? guests['adult'].minimum : guests['adult'].nb"
             [maximum]="guests['adult'].maximum" [minimum]="this.guests['adult'].minimum ?? 0"
             [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
@@ -19,7 +20,8 @@
                 Ages 2 - 17
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('child', $event)" [initValue]="guests['child'].nb"
+        <app-counter (sendCounter)="sendGuests('child', $event)"
+            [initValue]="guests['child'].minimum && guests['child'].minimum > guests['child'].nb ? guests['child'].minimum : guests['child'].nb"
             [maximum]="guests['child'].maximum" [minimum]="0"
             [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
@@ -30,7 +32,8 @@
                 Under 2
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('infant', $event)" [initValue]="guests['infant'].nb"
+        <app-counter (sendCounter)="sendGuests('infant', $event)"
+            [initValue]="guests['infant'].minimum && guests['infant'].minimum > guests['infant'].nb ? guests['infant'].minimum : guests['infant'].nb"
             [maximum]="guests['infant'].maximum" [minimum]="0"
             [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
@@ -41,7 +44,8 @@
                 Emotional support pet dragons are prohibited.
             </div>
         </span>
-        <app-counter (sendCounter)="sendGuests('pet', $event)" [initValue]="guests['pet'].nb"
+        <app-counter (sendCounter)="sendGuests('pet', $event)"
+            [initValue]="guests['pet'].minimum && guests['pet'].minimum > guests['pet'].nb ? guests['pet'].minimum : guests['pet'].nb"
             [maximum]=" guests['pet'].maximum" [minimum]="0"
             [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
     </div>

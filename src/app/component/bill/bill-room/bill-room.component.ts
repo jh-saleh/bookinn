@@ -34,9 +34,9 @@ export class BillRoomComponent implements OnInit, OnChanges {
   maximumNbOfGuests: number = 1;
   private _initGuests: Guests = {
     adult: {
-      nb: 0,
+      nb: 1,
       maximum: MAX_NB_ADULTS,
-      minimum: 0,
+      minimum: 1,
     },
     child: {
       nb: 0,

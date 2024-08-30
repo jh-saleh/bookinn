@@ -481,7 +481,7 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
       queryParams: {
         startDate: this.calendarDateFormatPipe.transform(this.startingDate, "MM-dd-yyy"),
         endDate: this.calendarDateFormatPipe.transform(this.endingDate, "MM-dd-yyy"),
-        nbAdults: this.guests?.adult.nb === 0 ? undefined : this.guests?.adult.nb,
+        nbAdults: this.guests && this.guests.adult.nb > 0 ? this.guests.adult.nb : 1,
         nbChildren: this.guests?.child.nb === 0 ? undefined : this.guests?.child.nb,
         nbInfants: this.guests?.infant.nb === 0 ? undefined : this.guests?.infant.nb,
         nbPets: this.guests?.pet.nb === 0 ? undefined : this.guests?.pet.nb,
