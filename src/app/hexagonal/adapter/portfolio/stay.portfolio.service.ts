@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, mergeMap, of, toArray } from 'rxjs';
+import { Observable, filter, from, mergeMap, of, toArray } from 'rxjs';
 import { stays } from '../../../stub/stay.stub';
 import { CityName, world } from '../../domain/model/land/land.model';
 import { Coordinates } from '../../domain/model/stay/location.model';
@@ -52,14 +52,19 @@ export class StayPortfolioService implements StayPort {
 
   getStays(...ids: string[]): Observable<Stay[]> {
     return from(ids)
-      .pipe(mergeMap((id) => this.getStay(id)), toArray());
+      .pipe(mergeMap((id) => this.getStay(id)), filter((stay): stay is Stay => stay !== undefined), toArray());
   }
 
-  getStay(id: string): Observable<Stay> {
+  getStay(id: string | undefined): Observable<Stay | undefined> {
+    if (id === undefined) {
+      return of(undefined);
+    }
+
     const innIndex: number = stays.findIndex((inn) => inn.id === id);
     if (innIndex > -1) {
       return of(stays[innIndex]);
+    } else {
+      return of(undefined);
     }
-    throw Error("Stay not found.");
   }
 }

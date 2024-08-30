@@ -98,12 +98,14 @@ export class BillRoomComponent implements OnInit, OnChanges {
   updateBillPrices(nbOfNights: number | undefined, nbOfGuests: number) {
     if (nbOfNights && this.stayId) {
       this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests).subscribe((billing) => {
-        const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
-        this.pricePerNight = pricePerNight;
-        this.completeBillWithoutCharges = completeBillWithoutCharges;
-        this.bookInnFee = bookInnFee;
-        this.VAT = VAT;
-        this.completeBill = completeBill;
+        if (billing) {
+          const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
+          this.pricePerNight = pricePerNight;
+          this.completeBillWithoutCharges = completeBillWithoutCharges;
+          this.bookInnFee = bookInnFee;
+          this.VAT = VAT;
+          this.completeBill = completeBill;
+        }
       });
     }
   }

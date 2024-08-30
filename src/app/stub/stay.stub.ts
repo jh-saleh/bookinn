@@ -9,6 +9,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Ironcliff,
             kingdom: KingdomName.Orlond,
+            street: "Whispering Willow Way",
             coordinates: {
                 x: 170,
                 y: 800,
@@ -97,6 +98,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Frostgate,
             kingdom: KingdomName.Orlond,
+            street: "Emberstone Forge Alley",
             coordinates: {
                 x: 250,
                 y: 900,
@@ -163,6 +165,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Krynholm,
             kingdom: KingdomName.Orlond,
+            street: "Dragon's Rest Sanctuary Boulevard",
             coordinates: {
                 x: 470,
                 y: 800,
@@ -223,6 +226,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Brightwater,
             kingdom: KingdomName.Orlond,
+            street: "Moonshadow Hollow Lane",
             coordinates: {
                 x: 255,
                 y: 310,
@@ -285,6 +289,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Brightwater,
             kingdom: KingdomName.Orlond,
+            street: "Silverthorn Enclave Avenue",
             coordinates: {
                 x: 255,
                 y: 310,
@@ -346,6 +351,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Shadowfen,
             kingdom: KingdomName.Orlond,
+            street: "Ironkeep Watchtower Road",
             coordinates: {
                 x: 740,
                 y: 535,
@@ -421,6 +427,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Goldhaven,
             kingdom: KingdomName.Orlond,
+            street: "Twilight Hollow Cross",
             coordinates: {
                 x: 870,
                 y: 480,
@@ -497,6 +504,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Goldhaven,
             kingdom: KingdomName.Orlond,
+            street: "Crystalbrook Haven Passage",
             coordinates: {
                 x: 870,
                 y: 480,
@@ -573,6 +581,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Goldhaven,
             kingdom: KingdomName.Orlond,
+            street: "Starfall Vale Court",
             coordinates: {
                 x: 870,
                 y: 480,
@@ -649,6 +658,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Redleaf,
             kingdom: KingdomName.Orlond,
+            street: "Shadowmere Fortress Street",
             coordinates: {
                 x: 250,
                 y: 400,
@@ -718,6 +728,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Redleaf,
             kingdom: KingdomName.Orlond,
+            street: "Raven's Perch Crescent",
             coordinates: {
                 x: 250,
                 y: 400,
@@ -787,6 +798,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Moonshadow,
             kingdom: KingdomName.Orlond,
+            street: "Glimmerstone Cascade Path",
             coordinates: {
                 x: 500,
                 y: 610,
@@ -858,6 +870,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Moonshadow,
             kingdom: KingdomName.Orlond,
+            street: "Frostveil Sanctuary Walk",
             coordinates: {
                 x: 500,
                 y: 610,
@@ -929,6 +942,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Stormwatch,
             kingdom: KingdomName.Orlond,
+            street: "Ashenwood Hearth Road",
             coordinates: {
                 x: 870,
                 y: 710,
@@ -999,6 +1013,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Willowgrove,
             kingdom: KingdomName.Orlond,
+            street: "Sunspire Hold Avenue",
             coordinates: {
                 x: 450,
                 y: 420,
@@ -1070,6 +1085,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Willowgrove,
             kingdom: KingdomName.Orlond,
+            street: "Eldergrove Circle of Oaks",
             coordinates: {
                 x: 450,
                 y: 420,
@@ -1139,6 +1155,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Sunspire,
             kingdom: KingdomName.Orlond,
+            street: "Serpent's Gate Passage",
             coordinates: {
                 x: 920,
                 y: 300,
@@ -1208,6 +1225,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Sunspire,
             kingdom: KingdomName.Orlond,
+            street: "Thornridge Keep Way",
             coordinates: {
                 x: 920,
                 y: 300,
@@ -1277,6 +1295,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Sunspire,
             kingdom: KingdomName.Orlond,
+            street: "Celestial Crown Boulevard",
             coordinates: {
                 x: 920,
                 y: 300,
@@ -1346,6 +1365,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Ebonport,
             kingdom: KingdomName.Orlond,
+            street: "Stormwatch Bastion Lane",
             coordinates: {
                 x: 850,
                 y: 160,
@@ -1415,6 +1435,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Ebonport,
             kingdom: KingdomName.Orlond,
+            street: "Lunarveil Spire Path",
             coordinates: {
                 x: 850,
                 y: 160,
@@ -1484,6 +1505,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Glimmerfall,
             kingdom: KingdomName.Orlond,
+            street: "Mistybrook Whisper Lane",
             coordinates: {
                 x: 510,
                 y: 300,
@@ -1553,6 +1575,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Glimmerfall,
             kingdom: KingdomName.Orlond,
+            street: "Windward Glade Road",
             coordinates: {
                 x: 510,
                 y: 300,
@@ -1622,6 +1645,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Briarholm,
             kingdom: KingdomName.Orlond,
+            street: "Duskmire Ember Alley",
             coordinates: {
                 x: 120,
                 y: 230,
@@ -1691,6 +1715,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Briarholm,
             kingdom: KingdomName.Orlond,
+            street: "Highcliff Citadel Way",
             coordinates: {
                 x: 120,
                 y: 230,
@@ -1760,6 +1785,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Highreach,
             kingdom: KingdomName.Orlond,
+            street: "Stormwind Vale Passage",
             coordinates: {
                 x: 700,
                 y: 850,
@@ -1832,6 +1858,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Drakenshore,
             kingdom: KingdomName.Orlond,
+            street: "Evernight Hollow Boulevard",
             coordinates: {
                 x: 240,
                 y: 120,
@@ -1921,6 +1948,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Drakenshore,
             kingdom: KingdomName.Orlond,
+            street: "Fallenstar Grove Walk",
             coordinates: {
                 x: 240,
                 y: 120,
@@ -2007,6 +2035,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Drakenshore,
             kingdom: KingdomName.Orlond,
+            street: "Ironwood Bastion Avenue",
             coordinates: {
                 x: 240,
                 y: 120,
@@ -2094,6 +2123,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Drakenshore,
             kingdom: KingdomName.Orlond,
+            street: "Moonlit Quarry Cross",
             coordinates: {
                 x: 240,
                 y: 120,
@@ -2180,6 +2210,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Drakenshore,
             kingdom: KingdomName.Orlond,
+            street: "Shadowfen Marsh Road",
             coordinates: {
                 x: 240,
                 y: 120,
@@ -2267,6 +2298,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Mirros,
             kingdom: KingdomName.Orlond,
+            street: "Glimmerhollow Veil Way",
             coordinates: {
                 x: 210,
                 y: 580,
@@ -2354,6 +2386,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Mirros,
             kingdom: KingdomName.Orlond,
+            street: "Ironpeak Sentinel Path",
             coordinates: {
                 x: 210,
                 y: 580,
@@ -2441,6 +2474,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Mirros,
             kingdom: KingdomName.Orlond,
+            street: "Wildheart Thicket Lane",
             coordinates: {
                 x: 210,
                 y: 580,
@@ -2528,6 +2562,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Vorandal,
             kingdom: KingdomName.Orlond,
+            street: "Sunfire Bastion Boulevard",
             coordinates: {
                 x: 370,
                 y: 540,
@@ -2615,6 +2650,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Vorandal,
             kingdom: KingdomName.Orlond,
+            street: "Darkwater Beacon Street",
             coordinates: {
                 x: 400,
                 y: 550,
@@ -2702,6 +2738,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Vorandal,
             kingdom: KingdomName.Orlond,
+            street: "Whisperwind Sylvan Court",
             coordinates: {
                 x: 360,
                 y: 530,
@@ -2789,6 +2826,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Lurendale,
             kingdom: KingdomName.Orlond,
+            street: "Thunderstone Rift Avenue",
             coordinates: {
                 x: 760,
                 y: 470,
@@ -2876,6 +2914,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Lurendale,
             kingdom: KingdomName.Orlond,
+            street: "Brightforge Anvil Walk",
             coordinates: {
                 x: 760,
                 y: 470,
@@ -2963,6 +3002,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Lurendale,
             kingdom: KingdomName.Orlond,
+            street: "Frostthorn Hollow Passage",
             coordinates: {
                 x: 760,
                 y: 470,
@@ -3050,6 +3090,7 @@ export const stays: Stay[] = [
         location: {
             city: CityName.Thandor,
             kingdom: KingdomName.Orlond,
+            street: "Oakshade Hearth Road",
             coordinates: {
                 x: 450,
                 y: 220,

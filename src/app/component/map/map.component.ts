@@ -90,6 +90,7 @@ export class MapComponent {
       crs: lib.CRS.Simple, // crs : coordinate reference system
       minZoom: 0,
       maxZoom: 2,
+      attributionControl: false, // désactive le crédit
     });
     this.map.setMaxBounds(this.bounds);
     this.map.fitBounds(this.bounds);

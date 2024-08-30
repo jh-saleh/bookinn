@@ -1,0 +1,72 @@
+.trip-page-wrapper {
+    width: 100dvw;
+    min-height: 100dvh;
+    display: grid;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.trip-page {
+    width: 85dvw;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.trip-page>h1 {
+    font-size: xx-large;
+}
+
+.no-trips {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.no-trips>h2 {}
+
+.start-searching-button {
+    width: max-content;
+}
+
+.trip-item {
+    background-color: white;
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 200px;
+    width: 60%;
+    border-radius: var(--box-border-radius);
+    cursor: pointer;
+}
+
+.trip-data {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trip-data-header>h1 {
+    font-size: 35px;
+}
+
+.trips-booked {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.trip-address {
+    color: var(--black-400);
+}
+
+.trip-image {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-right-radius: var(--box-border-radius);
+    border-bottom-right-radius: var(--box-border-radius);
+}

@@ -21,7 +21,7 @@ export class StayService {
         throw Error("getStays to implement.");
     }
 
-    getStay(id: string): Observable<Stay> {
+    getStay(id: string | undefined): Observable<Stay> {
         throw Error("getStay to implement.");
     }
 }

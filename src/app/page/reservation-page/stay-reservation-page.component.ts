@@ -1,24 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BillReservationStayComponent } from '../../component/bill/bill-reservation-stay/bill-reservation-stay.component';
 import { FooterComponent } from "../../component/footer/footer.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { PaymentOptionsComponent } from "../../component/payment-options/payment-options.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
-import { billingServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
+import { billingServiceFactory, stayServiceFactory, tripServiceFactory } from '../../hexagonal/di-factories';
 import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
 import { Guests, getTotalNbOfGuests } from '../../hexagonal/domain/model/stay/guest.model';
 import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
 import { BillingPort } from '../../hexagonal/domain/port/billing.port';
 import { StayPort } from '../../hexagonal/domain/port/stay.port';
+import { TripPort } from '../../hexagonal/domain/port/trip.port';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 import { PastDateStrikeThroughPipe } from '../../pipe/past-date-strike-through.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
 
 export interface ReservationStartingStates {
-  productId: string;
+  productId: string | undefined;
   startingDate: CalendarDate | undefined;
   endingDate: CalendarDate | undefined;
   guests: Guests | undefined;
@@ -30,7 +31,8 @@ export interface ReservationStartingStates {
   standalone: true,
   imports: [NavbarComponent, FooterComponent, CalendarDateFormatPipe, PluralizePipe,
     FullViewModalComponent, CommonModule, PaymentOptionsComponent, BillReservationStayComponent, PastDateStrikeThroughPipe],
-  providers: [{ provide: StayPort, useFactory: stayServiceFactory }, { provide: BillingPort, useFactory: billingServiceFactory }],
+  providers: [{ provide: StayPort, useFactory: stayServiceFactory }, { provide: BillingPort, useFactory: billingServiceFactory },
+  { provide: TripPort, useFactory: tripServiceFactory }],
   templateUrl: './stay-reservation-page.component.html',
   styleUrl: './stay-reservation-page.component.css'
 })
@@ -45,7 +47,7 @@ export class StayReservationPageComponent implements OnInit {
   isCancellationPolicyModalOpen: boolean = false;
   completeBill!: number;
   constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StayPort,
-    private billingService: BillingPort) {
+    private billingService: BillingPort, private tripService: TripPort, private router: Router) {
 
   }
 
@@ -55,7 +57,7 @@ export class StayReservationPageComponent implements OnInit {
       this.queryParamStartDate = queryParams.get("startDate");
 
       this.startingState = {
-        productId: queryParams.get('productId') ?? "",
+        productId: queryParams.get('productId') ?? undefined,
         endingDate: this.queryParamEndDate ? this.calendarDatesService.convertStringToCalendarDate(this.queryParamEndDate, "-") : undefined,
         startingDate: this.queryParamStartDate ? this.calendarDatesService.convertStringToCalendarDate(this.queryParamStartDate, "-") : undefined,
         guests: {
@@ -79,11 +81,13 @@ export class StayReservationPageComponent implements OnInit {
       }
       this.nbOfGuests = getTotalNbOfGuests(this.startingState.guests);
       this.stayService.getStay(this.startingState.productId).subscribe((stay) => {
-        this.stay = stay;
-        if (this.startingState?.startingDate && this.startingState.startingDate) {
-          this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.fullRefund);
-          if (this.stay.guidebook.cancellationPolicy.partialRefund) {
-            this.partialRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.partialRefund);
+        if (stay) {
+          this.stay = stay;
+          if (this.startingState?.startingDate && this.startingState.startingDate) {
+            this.fullRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.fullRefund);
+            if (this.stay.guidebook.cancellationPolicy.partialRefund) {
+              this.partialRefundDate = this.calendarDatesService.substractDaysFromDate(this.startingState.startingDate, this.stay.guidebook.cancellationPolicy.partialRefund);
+            }
           }
         }
       });
@@ -104,9 +108,22 @@ export class StayReservationPageComponent implements OnInit {
   updateBillPrices(nbOfNights: number | undefined) {
     if (nbOfNights) {
       this.billingService.getBillingForStay(this.stay.id, nbOfNights, this.nbOfGuests).subscribe((billing) => {
-        const { completeBill } = billing;
-        this.completeBill = completeBill;
+        if (billing) {
+          const { completeBill } = billing;
+          this.completeBill = completeBill;
+        }
       });
+    }
+  }
+
+  confirmAndPayHandler() {
+    if (this.startingState) {
+      const { productId, startingDate, endingDate, guests } = this.startingState;
+      if (productId && startingDate && endingDate && guests) {
+        this.tripService.createTrip(productId, startingDate, endingDate, guests).subscribe(() => {
+          this.router.navigate(['/trips']);
+        });
+      }
     }
   }
 }

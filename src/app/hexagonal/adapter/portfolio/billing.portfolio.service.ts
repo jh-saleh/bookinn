@@ -15,30 +15,34 @@ export class BillingPortfolioService implements BillingPort {
 
     }
 
-    getBillingForStay(stayId: string, nbOfNights: number, nbOfGuests: number): Observable<Billing> {
+    getBillingForStay(stayId: string, nbOfNights: number, nbOfGuests: number): Observable<Billing | undefined> {
         let pricePerNight: number = 0;
         let completeBillWithoutCharges: number = 0;
         let bookInnFee: number = 0;
         let VAT: number = 0;
         let completeBill: number = 0;
         return this.stayService.getStay(stayId).pipe(map((stay) => {
-            const { maxNumberOfGuests, billing: { basePricePerNight, fees: { cleaningFee } } } = stay;
-            if (maxNumberOfGuests > 1) {
-                pricePerNight = Math.ceil(basePricePerNight * (1 + ((nbOfGuests - 1) / (maxNumberOfGuests - 1))));
-            } else {
-                pricePerNight = basePricePerNight;
-            }
-            completeBillWithoutCharges = Math.ceil(pricePerNight * nbOfNights + (cleaningFee ?? 0));
-            bookInnFee = Math.ceil(completeBillWithoutCharges * this.bookInnRate);
-            VAT = Math.ceil(this.VATRate * (completeBillWithoutCharges + bookInnFee));
-            completeBill = completeBillWithoutCharges + bookInnFee + VAT;
+            if (stay) {
+                const { maxNumberOfGuests, billing: { basePricePerNight, fees: { cleaningFee } } } = stay;
+                if (maxNumberOfGuests > 1) {
+                    pricePerNight = Math.ceil(basePricePerNight * (1 + ((nbOfGuests - 1) / (maxNumberOfGuests - 1))));
+                } else {
+                    pricePerNight = basePricePerNight;
+                }
+                completeBillWithoutCharges = Math.ceil(pricePerNight * nbOfNights + (cleaningFee ?? 0));
+                bookInnFee = Math.ceil(completeBillWithoutCharges * this.bookInnRate);
+                VAT = Math.ceil(this.VATRate * (completeBillWithoutCharges + bookInnFee));
+                completeBill = completeBillWithoutCharges + bookInnFee + VAT;
 
-            return {
-                pricePerNight,
-                completeBillWithoutCharges,
-                bookInnFee,
-                VAT,
-                completeBill,
+                return {
+                    pricePerNight,
+                    completeBillWithoutCharges,
+                    bookInnFee,
+                    VAT,
+                    completeBill,
+                }
+            } else {
+                return undefined;
             }
         }));
     }

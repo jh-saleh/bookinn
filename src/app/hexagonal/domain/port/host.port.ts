@@ -6,7 +6,7 @@ import { Host } from "../model/stay/host.model";
     providedIn: 'root'
 })
 export class HostPort {
-    getHost(id: string): Observable<Host> {
+    getHost(id: string): Observable<Host | undefined> {
         throw Error("getHost to implement.");
     }
 

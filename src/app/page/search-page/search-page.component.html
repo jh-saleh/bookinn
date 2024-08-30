@@ -17,6 +17,11 @@
                         [imgsUrls]="result.imgsUrls" [distanceToOrigin]="result.distanceToOrigin"></stay-card>
                 </a>
                 }
+                @if(staysSearchResults.length === 0){
+                <div class="nothing-found">
+                    Nothing was found.
+                </div>
+                }
             </div>
             <div class="pagination-wrapper">
                 <pagination [lastPage]="lastPage" (sendCurrentPage)="executeSearch($event)"></pagination>

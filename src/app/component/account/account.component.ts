@@ -1,6 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { authServiceFactory } from '../../hexagonal/di-factories';
@@ -16,7 +16,7 @@ import { ModalComponent } from '../windows/modal/modal.component';
 @Component({
   selector: 'account',
   standalone: true,
-  imports: [CommonModule, ModalComponent, RouterModule, InitialsPipe],
+  imports: [CommonModule, ModalComponent, InitialsPipe],
   providers: [{ provide: AuthPort, useFactory: authServiceFactory }],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
@@ -55,9 +55,24 @@ export class AccountComponent implements OnInit {
 
   logOutHandler(event: MouseEvent) {
     event.stopPropagation();
-    this.closeAccountModal();
     this.authService.logout();
     this.store.dispatch(UserActions.logout());
     this.router.navigate(['/home']);
+    this.closeAccountModal();
+  }
+
+  tripHandler() {
+    this.router.navigateByUrl('/trips');
+    this.closeAccountModal();
+  }
+
+  logInHandler() {
+    this.router.navigateByUrl('/login');
+    this.closeAccountModal();
+  }
+
+  signUpHandler() {
+    this.router.navigateByUrl('/signup');
+    this.closeAccountModal();
   }
 }

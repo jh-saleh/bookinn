@@ -6,6 +6,6 @@ export interface User {
     password?: string;
 }
 
-export interface UserApi extends User {
+export interface UserMockDatabase extends User {
 
 }

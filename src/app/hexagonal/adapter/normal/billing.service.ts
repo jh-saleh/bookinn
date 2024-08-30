@@ -6,7 +6,7 @@ import { Billing } from "../../domain/model/billing/billing.model";
     providedIn: 'root'
 })
 export class BillingService {
-    getBillingForStay(stayId: string, nbOfNights: number, nbOfGuests: number): Observable<Billing> {
+    getBillingForStay(stayId: string, nbOfNights: number, nbOfGuests: number): Observable<Billing | undefined> {
         throw Error("getBillingForStay to implement.");
     }
 }

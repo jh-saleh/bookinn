@@ -1,0 +1,47 @@
+<ng-template #tripBooked let-trip="trip">
+    <div class="trip-item">
+        <div class="trip-data">
+            <div class="trip-data-header">
+                <h1>Stay at {{trip.stay.location.city}}</h1>
+                <div>{{trip.startingDate | calendarDateFormat: 'MMM dd, yyyy'}} - {{trip.endingDate |
+                    calendarDateFormat:
+                    'MMM dd, yyyy'}}</div>
+            </div>
+            <div class="trip-data-body">
+                <div class="trip-host">
+                    <b>Your host:</b>
+                    {{trip.host.firstname}} {{trip.host.lastname}}
+                </div>
+                <div class="trip-address">{{trip.stay.location.street}}, {{trip.stay.location.city}},
+                    {{trip.stay.location.kingdom}}</div>
+            </div>
+        </div>
+        <img class="trip-image" [src]="trip.stay.imgsUrls.at(0)" />
+    </div>
+</ng-template>
+
+<section>
+    <app-navbar [hideSearchbar]="true"></app-navbar>
+    <div class="trip-page-wrapper page-padding-without-searchbar">
+        <div class="trip-page">
+            <h1>Trips</h1>
+            <div class="main-divider"></div>
+            <div class="trips-booked">
+                @if(trips.length === 0){
+                <div class="no-trips">
+                    <h3>No trips booked... yet!</h3>
+                    <div>Gather your gear and prepare for your next grand adventure</div>
+                    <button class="inverse-button start-searching-button" [routerLink]="'/home'">
+                        Start searching
+                    </button>
+                </div>
+                }
+                @for (trip of trips; track $index) {
+                <ng-content *ngTemplateOutlet="tripBooked; context:{trip: trip}">
+                </ng-content>
+                }
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</section>

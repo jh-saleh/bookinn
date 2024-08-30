@@ -28,3 +28,8 @@
     bottom: 0px;
     width: calc(100dvw - 45dvw);
 }
+
+.nothing-found {
+    color: white;
+    font-weight: bold;
+}

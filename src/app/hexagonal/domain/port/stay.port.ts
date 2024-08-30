@@ -21,7 +21,7 @@ export class StayPort {
         throw Error("getStays to implement.");
     }
 
-    getStay(id: string): Observable<Stay> {
+    getStay(id: string | undefined): Observable<Stay | undefined> {
         throw Error("getStay to implement.");
     }
 }

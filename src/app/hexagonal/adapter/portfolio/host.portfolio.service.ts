@@ -9,12 +9,12 @@ import { HostPort } from '../../domain/port/host.port';
 })
 export class HostPortfolioService implements HostPort {
 
-  getHost(id: string): Observable<Host> {
+  getHost(id: string): Observable<Host | undefined> {
     const hostIndex: number = hosts.findIndex((host) => host.id === id);
     if (hostIndex > -1) {
       return of(hosts[hostIndex]);
     }
-    throw Error("Host not found.");
+    return of(undefined);
   }
 
   getHosts(): Observable<Host[]> {

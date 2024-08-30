@@ -78,7 +78,8 @@
                         </span>
                     </div>
                     <div class="main-divider"></div>
-                    <button class="inverse-button confirmation-button">Confirm and pay</button>
+                    <button class="inverse-button confirmation-button" (click)="confirmAndPayHandler()">Confirm and
+                        pay</button>
                 </div>
                 <div class="reservation-secondary-summary">
                     <bill-reservation-stay [stayId]="stay.id" [startingDate]="startingState?.startingDate"

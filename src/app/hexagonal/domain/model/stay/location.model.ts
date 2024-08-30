@@ -8,5 +8,6 @@ export interface Coordinates {
 export interface Location {
     kingdom: KingdomName;
     city: CityName;
+    street: string;
     coordinates: Coordinates;
 };

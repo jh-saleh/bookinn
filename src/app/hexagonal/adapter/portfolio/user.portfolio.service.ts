@@ -1,41 +1,27 @@
 import { Injectable } from '@angular/core';
-import Dexie, { Table } from "dexie";
 import { Observable, from, of, switchMap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { User, UserApi } from '../../domain/model/stay/user.model';
+import { User } from '../../domain/model/stay/user.model';
 import { AuthPort } from '../../domain/port/auth.port';
 import { UserPort } from '../../domain/port/user.port';
+import { MockDatabasePortfolioService } from './mock-database.portfolio.service';
 
 @Injectable({
     providedIn: 'root',
 })
-export class UserPortfolioService extends Dexie implements UserPort {
-    user!: Table<UserApi, string>;
+export class UserPortfolioService implements UserPort {
 
-    constructor(private authService: AuthPort) {
-        super('BookInnDB');
-        this.version(1).stores({
-            user: 'id, userId, email, firstname, lastname',
-        });
+    constructor(private authService: AuthPort, private mockDatabase: MockDatabasePortfolioService) {
 
-        this.user = this.table('user');
-
-        this.user.add({
-            id: "f61d9a50-6a91-4f58-9cf4-974357d93581",
-            firstname: "guest",
-            lastname: "demo",
-            email: "guest-demo@demo.com",
-            password: "123"
-        });
     }
 
     createUser(user: { email: string, password: string, firstname: string, lastname: string }): Observable<User | undefined> {
-        return from(this.user.add({ id: uuidv4(), ...user })).pipe(switchMap(() => this.getUser()));
+        return from(this.mockDatabase.user.add({ id: uuidv4(), ...user })).pipe(switchMap(() => this.getUser()));
     }
 
     signin(email: string | null, password: string | null): Observable<User | undefined> {
         if (email && password) {
-            return from(this.user.where("email").equals(email).and(user => user.password === password).first());
+            return from(this.mockDatabase.user.where("email").equals(email).and(user => user.password === password).first());
         }
         return of(undefined);
     }
@@ -43,16 +29,16 @@ export class UserPortfolioService extends Dexie implements UserPort {
     getUser(): Observable<User | undefined> {
         const email = this.authService.loadUserFromStorage();
         if (email) {
-            return from(this.user.where("email").equals(email).first());
+            return from(this.mockDatabase.user.where("email").equals(email).first());
         }
         return of(undefined);
     }
 
     updateUser(id: string, updatedUser: Partial<User>): Observable<number> {
-        return from(this.user.update(id, updatedUser));
+        return from(this.mockDatabase.user.update(id, updatedUser));
     }
 
     deleteUser(id: string): Observable<void> {
-        return from(this.user.delete(id));
+        return from(this.mockDatabase.user.delete(id));
     }
 }

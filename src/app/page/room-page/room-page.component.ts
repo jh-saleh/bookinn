@@ -61,11 +61,17 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.paramRoomId = this.route.snapshot.paramMap.get('id');
 
-    this.stayService.getStay(this.paramRoomId ?? "").subscribe((stay) => {
-      this.store.dispatch(StayActions.setStay({ stay }));
-      this.stay = stay;
+    this.stayService.getStay(this.paramRoomId ?? undefined).subscribe((stay) => {
+      if (stay) {
+        this.store.dispatch(StayActions.setStay({ stay }));
+        this.stay = stay;
+      }
     });
-    this.hostService.getHost(this.stay.hostId).subscribe((host) => this.host = host);
+    this.hostService.getHost(this.stay.hostId).subscribe((host) => {
+      if (host) {
+        this.host = host
+      }
+    });
 
     this.amenities = extractAmenitiesData(this.stay?.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();

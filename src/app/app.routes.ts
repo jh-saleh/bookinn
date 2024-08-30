@@ -10,6 +10,7 @@ import { RoomPageComponent } from './page/room-page/room-page.component';
 import { RootPageComponent } from './page/root-page/root-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { SignUpPageComponent } from './page/sign-up-page/sign-up-page.component';
+import { TripPageComponent } from './page/trip-page/trip-page.component';
 
 export const routes: Routes = [
     { path: '', component: RootPageComponent, title: 'BookInn' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'host/:id', component: HostPageComponent, title: 'Host profile | BookInn' },
     { path: 's/:location/:type', component: SearchPageComponent, title: 'Search Page | BookInn' },
     { path: 'book/stays', component: StayReservationPageComponent, title: 'Confirm and pay | BookInn', canActivate: [userOnlyGuard] },
+    { path: 'trips', component: TripPageComponent, title: 'Trips | BookInn', canActivate: [userOnlyGuard] },
     { path: 'login', component: LoginPageComponent, title: 'Log In | BookInn', canActivate: [guestOnlyGuard] },
     { path: 'signup', component: SignUpPageComponent, title: 'Sign Up | BookInn', canActivate: [guestOnlyGuard] },
     { path: '**', component: NotFoundPageComponent, title: 'Not Found | BookInn' },

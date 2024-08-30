@@ -1,21 +1,27 @@
 import { environment } from "../../environments/environment";
+import { CalendarDateFormatPipe } from "../pipe/calendar-date-format.pipe";
+import { CalendarDatesService } from "../service/calendar-dates.service";
 import { AuthService } from "./adapter/normal/auth.service";
 import { BillingService } from "./adapter/normal/billing.service";
 import { HostService } from "./adapter/normal/host.service";
 import { LandService } from "./adapter/normal/land.service";
 import { StayService } from "./adapter/normal/stay.service";
+import { TripService } from "./adapter/normal/trip.service";
 import { UserService } from "./adapter/normal/user.service";
 import { AuthPortfolioService } from "./adapter/portfolio/auth.portfolio.service";
 import { BillingPortfolioService } from "./adapter/portfolio/billing.portfolio.service";
 import { HostPortfolioService } from "./adapter/portfolio/host.portfolio.service";
 import { LandPortfolioService } from "./adapter/portfolio/land.portfolio.service";
+import { MockDatabasePortfolioService } from "./adapter/portfolio/mock-database.portfolio.service";
 import { StayPortfolioService } from "./adapter/portfolio/stay.portfolio.service";
+import { TripPortfolioService } from "./adapter/portfolio/trip.portfolio.service";
 import { UserPortfolioService } from "./adapter/portfolio/user.portfolio.service";
 import { AuthPort } from "./domain/port/auth.port";
 import { BillingPort } from "./domain/port/billing.port";
 import { HostPort } from "./domain/port/host.port";
 import { LandPort } from "./domain/port/land.port";
 import { StayPort } from "./domain/port/stay.port";
+import { TripPort } from "./domain/port/trip.port";
 import { UserPort } from "./domain/port/user.port";
 
 export const hostServiceFactory = (): HostPort => {
@@ -50,7 +56,7 @@ export const userServiceFactory = (): UserPort => {
     if (environment.mode === "normal") {
         return new UserService();
     }
-    return new UserPortfolioService(new AuthPortfolioService());
+    return new UserPortfolioService(new AuthPortfolioService(), new MockDatabasePortfolioService());
 }
 
 export const billingServiceFactory = (): BillingPort => {
@@ -58,4 +64,12 @@ export const billingServiceFactory = (): BillingPort => {
         return new BillingService();
     }
     return new BillingPortfolioService(new StayPortfolioService());
+}
+
+export const tripServiceFactory = (): TripPort => {
+    if (environment.mode === "normal") {
+        return new TripService();
+    }
+    return new TripPortfolioService(new UserPortfolioService(new AuthPortfolioService(), new MockDatabasePortfolioService()), new MockDatabasePortfolioService(), new HostPortfolioService(),
+        new StayPortfolioService(), new CalendarDatesService(), new CalendarDateFormatPipe());
 }

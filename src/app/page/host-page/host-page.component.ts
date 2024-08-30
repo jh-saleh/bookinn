@@ -31,7 +31,11 @@ export class HostPageComponent implements OnInit {
 
   ngOnInit(): void {
     const hostId = this.route.snapshot.paramMap.get('id');
-    this.hostService.getHost(hostId ?? "").subscribe((host) => this.host = host);
+    this.hostService.getHost(hostId ?? "").subscribe((host) => {
+      if (host) {
+        this.host = host
+      }
+    });
     this.staysService.getStays(...this.host.listings).subscribe((stays) => this.listings = stays);
   }
 }

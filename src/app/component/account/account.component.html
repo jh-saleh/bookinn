@@ -16,11 +16,11 @@
         [classPosition]="buttonPosition">
         <div class="account-modal">
             @if(user){
-            <a [routerLink]="'/trips'">Trips</a>
-            <a (click)="logOutHandler($event)">Log out</a>
+            <a (mousedown)="tripHandler()">Trips</a>
+            <a (mousedown)="logOutHandler($event)">Log out</a>
             } @else {
-            <a [routerLink]="'/login'">Sign in</a>
-            <a [routerLink]="'/signup'">Sign up</a>
+            <a (mousedown)="logInHandler()">Sign in</a>
+            <a (mousedown)="signUpHandler()">Sign up</a>
             }
             <div class="divider-modal"></div>
             <a [href]="portfolioURL" target="_blank">Visit my portfolio !</a>
