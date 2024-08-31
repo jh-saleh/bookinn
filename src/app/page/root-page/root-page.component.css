@@ -93,7 +93,6 @@ section {
 
 .author>h1 {
     font-size: xx-large;
-    color: var(--bold-text-color);
 }
 
 .home-button,
@@ -118,34 +117,41 @@ section {
 
 .rain {
     position: fixed;
-    display: flex;
-    flex-direction: column;
     width: 100dvw;
     height: 100dvh;
-    place-items: center;
-    gap: 30px;
 }
 
-.rain>div {
-    display: flex;
-    gap: 10dvw;
-}
-
-.rain>div>span {
-    height: 100px;
+.rain>span {
+    height: 150px;
     width: 2px;
     content: '';
     background-color: white;
     display: inline-block;
-    transform: rotateZ(45deg);
 }
 
-#drops1,
-#drops2,
-#drops3,
-#drops4,
-#drops5,
-#drops6,
-#drops7 {
+#drop1,
+#drop2,
+#drop3,
+#drop4,
+#drop5,
+#drop6,
+#drop7,
+#drop8,
+#drop9,
+#drop10,
+#drop11,
+#drop12,
+#drop13,
+#drop14,
+#drop15,
+#drop16,
+#drop17,
+#drop18,
+#drop19,
+#drop20,
+#drop21,
+#drop22,
+#drop23,
+#drop24 {
     opacity: 0;
 }
