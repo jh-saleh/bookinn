@@ -1,12 +1,12 @@
 <section id="images-viewer">
-    <div [class.images-viewer-wrapper--for-5-images]="imgsUrls.length === 5"
-        [class.images-viewer-wrapper--for-3-images]="imgsUrls.length === 3"
-        [class.images-viewer-wrapper--for-2-images]="imgsUrls.length === 2"
-        [class.images-viewer-wrapper--for-1-image]="imgsUrls.length === 1">
+    <div [class.images-viewer-wrapper--for-5-images]="urls.length === 4"
+        [class.images-viewer-wrapper--for-3-images]="urls.length === 2"
+        [class.images-viewer-wrapper--for-2-images]="urls.length === 1"
+        [class.images-viewer-wrapper--for-1-image]="urls.length === 0">
         <img [src]="firstUrl">
-        <div [class.images-viewer--for-5-images]="imgsUrls.length === 5"
-            [class.images-viewer--for-3-images]="imgsUrls.length === 3"
-            [class.images-viewer--for-2-images]="imgsUrls.length === 2">
+        <div [class.images-viewer--for-5-images]="urls.length === 4"
+            [class.images-viewer--for-3-images]="urls.length === 2"
+            [class.images-viewer--for-2-images]="urls.length === 1">
             @for (url of urls; track $index) {
             <img [src]="url">
             }
