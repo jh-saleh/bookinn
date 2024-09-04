@@ -1,4 +1,17 @@
-.navbar-wrapper {
+@media (max-width: 900px) {
+    .desktop-navbar-wrapper {
+        display: none !important;
+    }
+}
+
+@media (min-width: 900px) {
+    .phone-navbar-wrapper {
+        display: none !important;
+    }
+}
+
+.desktop-navbar-wrapper,
+.phone-navbar-wrapper {
     position: fixed;
     align-items: start;
     top: 0px;
@@ -8,7 +21,7 @@
     display: grid;
 }
 
-.navbar {
+.desktop-navbar {
     padding: 10px 30px 10px 30px;
     display: flex;
     justify-content: space-between;
@@ -16,7 +29,13 @@
     background-color: var(--background);
 }
 
-.navbar-background {
+.phone-navbar {
+    padding: 10px 20px;
+    border-bottom: 1px white solid;
+    background-color: var(--background);
+}
+
+.desktop-navbar-background {
     height: 100%;
     width: 100dvw;
     background-color: var(--transparent-black);

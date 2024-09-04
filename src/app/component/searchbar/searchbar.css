@@ -1,0 +1,42 @@
+.services-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.services {
+    padding: 15px;
+    display: flex;
+    gap: 1px;
+    justify-items: center;
+}
+
+.services>button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: medium;
+    width: max-content;
+    padding: 5px 7px;
+}
+
+.services>button:hover {
+    background-color: var(--crimson-400);
+    border-radius: 20px;
+}
+
+#inns-service {
+    width: 55px;
+}
+
+#carriages-service {
+    min-width: 95px;
+}
+
+#monuments-service {
+    min-width: 115px;
+}
+
+.service-selected {
+    font-weight: bold;
+}

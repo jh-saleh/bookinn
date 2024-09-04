@@ -3,7 +3,8 @@
         @for (value of daysOfTheMonth; track $index) {
         @if(value.dayOfTheMonth > 0){
         @if(value.unavailable){
-        <span [ngClass]="[dayWrapper, disabledColorClass]" class="disabled-day">
+        <span [ngClass]="disabledColorClass" class="disabled-day" [class.day-mode-modal]="mode === 'modal'"
+            [class.day-mode-normal]="mode === 'normal'">
             {{value.dayOfTheMonth}}
         </span>
         }@else {
@@ -11,9 +12,10 @@
             daysSelected[1] === value.position && daysSelected[0] < daysSelected[1] ? endPathDayClass : '',
             daysSelected[0] < value.position && value.position < daysSelected[1] ? pathDayClass : '']">
             <span
-                [ngClass]="[dayWrapper, colorClass, daysSelected[0] !== value.position && daysSelected[1] !== value.position ? hoverBgClass : '']"
+                [ngClass]="[colorClass, daysSelected[0] !== value.position && daysSelected[1] !== value.position ? hoverBgClass : '']"
                 class="day"
                 [class.selected-day]="daysSelected[0] === value.position || daysSelected[1] === value.position"
+                [class.day-mode-modal]="mode === 'modal'" [class.day-mode-normal]="mode === 'normal'"
                 (click)="selectDateOnClickHandler(value.position)">
                 {{value.dayOfTheMonth}}
             </span>

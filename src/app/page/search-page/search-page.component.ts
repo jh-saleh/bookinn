@@ -6,7 +6,7 @@ import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
 import { NavbarComponent } from "../../component/navbar/navbar.component";
 import { PaginationComponent } from "../../component/pagination/pagination.component";
-import { SearchbarStartingStates } from '../../component/searchbar/searchbar.component';
+import { SearchbarStartingStates } from '../../component/searchbar/desktop/desktop-searchbar.component';
 import { stayServiceFactory } from '../../hexagonal/di-factories';
 import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
 import { getTotalNbOfGuests } from '../../hexagonal/domain/model/stay/guest.model';

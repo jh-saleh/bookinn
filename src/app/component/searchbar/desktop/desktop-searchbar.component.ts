@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { css } from '@emotion/css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
-import { Position } from '../../hexagonal/domain/model/position/position.model';
-import { Guests, getTotalNbOfGuests } from '../../hexagonal/domain/model/stay/guest.model';
-import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
-import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
-import { PluralizePipe } from '../../pipe/pluralize.pipe';
-import { CalendarDate } from '../../service/calendar-dates.service';
-import { AutocompletionComponent } from "../autocompletion/autocompletion.component";
-import { CalendarComponent } from "../calendar/calendar.component";
-import { GuestsComponent } from "../guests/guests.component";
-import { ModalComponent } from '../windows/modal/modal.component';
+import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../hexagonal/domain/model/const';
+import { Position } from '../../../hexagonal/domain/model/position/position.model';
+import { Guests, getTotalNbOfGuests } from '../../../hexagonal/domain/model/stay/guest.model';
+import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
+import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
+import { PluralizePipe } from '../../../pipe/pluralize.pipe';
+import { CalendarDate } from '../../../service/calendar-dates.service';
+import { AutocompletionComponent } from "../../autocompletion/autocompletion.component";
+import { CalendarComponent } from "../../calendar/calendar.component";
+import { GuestsComponent } from "../../guests/guests.component";
+import { ModalComponent } from '../../windows/modal/modal.component';
 
 export interface SearchbarStartingStates {
   startingDate: CalendarDate | undefined;
@@ -25,14 +25,14 @@ export interface SearchbarStartingStates {
 }
 
 @Component({
-  selector: 'searchbar',
+  selector: 'desktop-searchbar',
   standalone: true,
   imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe, AutocompletionComponent],
   providers: [CalendarDateFormatPipe],
-  templateUrl: './searchbar.component.html',
-  styleUrl: './searchbar.component.css'
+  templateUrl: './desktop-searchbar.component.html',
+  styleUrls: ['./desktop-searchbar.component.css', '../searchbar.css']
 })
-export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DesktopSearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly searchLabel = "Search";
   services: string[] = ["stays", "carriages", "monuments"];
   servicesId: string[] = this.services.map((service) => `${service.toLocaleLowerCase()}-service`);
@@ -294,7 +294,7 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
 
-      this.animations["search"] = gsap.fromTo(".search", {
+      this.animations["search-button"] = gsap.fromTo(".search-button", {
         scale: 1,
       },
         {
@@ -303,7 +303,7 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
           paused: true,
         }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
-      tl.fromTo(".search", {},
+      tl.fromTo(".search-button", {},
         {
           scrollTrigger: {
             scrub: true,
@@ -311,7 +311,7 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
             start: "top top",
             end: "max",
             onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["search"].play() : this.animations["search"].reverse();
+              0 < progress ? this.animations["search-button"].play() : this.animations["search-button"].reverse();
             }
           }
         });
@@ -367,10 +367,13 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.locationInputRef && this.searchBarRef) {
       const { width } = this.locationInputRef.nativeElement.getBoundingClientRect();
       const { top, height, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      const navbarHeight = 148;
       this.autocompletionPosition = { top: top + height + 10, left: left };
       this.autocompletionWrapperClass = css`
         width: ${width + 30}px;
+        max-height: ${window.innerHeight - navbarHeight - 20 - 12 * 2}px;
         padding: 12px;
+        overflow-y: auto;
       `;
     }
   }
@@ -383,12 +386,14 @@ export class SearchbarComponent implements OnInit, AfterViewInit, OnDestroy {
   updateCalendarModalPosition() {
     if (this.searchBarRef) {
       const { top, height, width, left } = this.searchBarRef.nativeElement.getBoundingClientRect();
+      const navbarHeight = 148;
       this.calendarPosition = { top: top + height + 10, left: left };
       this.calendarWrapperClass = css`
         width: ${width}px;
-        padding: 12px 0px;
+        max-height: ${window.innerHeight - navbarHeight - 20}px;
         display: grid;
         justify-items: center;
+        overflow-y: auto;
       `;
     }
   }

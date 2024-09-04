@@ -44,6 +44,12 @@ a {
     color: white;
 }
 
+@media (max-width: 1100px) {
+    .ookinn-logo {
+        display: none;
+    }
+}
+
 .bookinn-logo {
     display: grid;
     grid-template-columns: repeat(2, min-content);

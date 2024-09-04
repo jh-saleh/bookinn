@@ -54,9 +54,16 @@ a {
     --fullview-modal-width: 40dvw;
     --fullview-modal-padding: 20px;
     --box-padding: 20px;
-    --page-padding-with-searchbar: 160px;
-    --page-padding-with-no-searchbar: 120px;
-    --navbar-height: 71px;
+
+    @media screen and (max-width: 899px) {
+        --page-padding-with-searchbar: 100px;
+        --page-padding-with-no-searchbar: 100px;
+    }
+
+    @media screen and (min-width: 900px) {
+        --page-padding-with-searchbar: 160px;
+        --page-padding-with-no-searchbar: 120px;
+    }
 
     /*shadow*/
     --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);

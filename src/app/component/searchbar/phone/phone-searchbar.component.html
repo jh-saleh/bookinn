@@ -1,0 +1,109 @@
+<div class="searchbar-wrapper" (click)="openSearchbar()">
+    <div class="searchbar-icon">
+        <span class="material-symbols-outlined">
+            search
+        </span>
+    </div>
+    <div class="searchbar-text">
+        <div>
+            Where to ?
+        </div>
+        <div>Anywhere · Any week · Add guests</div>
+    </div>
+</div>
+
+@if(isSearchbarOpen){
+<div class="searchbar-modal-wrapper">
+    <div class="searchbar-modal-header-and-body">
+        <div class="searchbar-modal-header">
+            <button (click)="closeSearchBar()" class="close-button">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+            <div class="services">
+                @for (service of services; track $index) {
+                <button [id]="servicesId[$index]" [class.service-selected]="$index === selectedService"
+                    (click)="selectService($index)">
+                    {{service | camelToSentence}}
+                </button>
+                }
+            </div>
+        </div>
+        <div class="searchbar-modal-body">
+            <div class="search-box" (click)="openLocation()">
+                @if(isLocationOpen){
+                <div class="location" (click)="focusLocationInput(locationInputRef)">
+                    <h1>Where to ?</h1>
+                    <input #locationInputRef (input)="autocompletionOpenStatusHandler()" [(ngModel)]="locationInput"
+                        placeholder="Search destinations" />
+                </div>
+                <div (click)="stopProgationHandler($event)">
+                    <autocompletion [cityPart]="locationInput" (sendSuggestion)="getLocationSuggestion($event)">
+                    </autocompletion>
+                </div>
+                } @else {
+                <div class="search-item">
+                    <span>Where</span>
+                    <span>
+                        @if(locationInput && locationInput.length > 0){
+                        {{locationInput}}
+                        } @else {
+                        Add a location
+                        }
+                    </span>
+                </div>
+                }
+            </div>
+            <div class="search-box" (click)="openCalendar()">
+                @if(isCalendarOpen){
+                <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
+                    [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
+                </calendar>
+                } @else {
+                <div class="search-item">
+                    <span>When</span>
+                    <span>
+                        @if(startingDate && endingDate){
+                        {{startingDate | calendarDateFormat: "MMM dd"}} - {{endingDate | calendarDateFormat: "MMM dd"}}
+                        } @else {
+                        Add dates
+                        }
+                    </span>
+                </div>
+                }
+            </div>
+            <div class="search-box" (click)="openGuests()">
+                @if(isGuestsOpen){
+                <guests (getGuests)="getGuests($event)" [initGuests]="guests"></guests>
+                } @else {
+                <div class="search-item">
+                    <span>Who</span>
+                    <span>
+                        @if (totalNbOfGuests > 0) {
+                        {{totalNbOfGuests}}
+                        {{totalNbOfGuests | pluralize: 'guest'}}
+                        } @else {
+                        Add guests
+                        }
+                    </span>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="searchbar-modal-footer">
+        <button class="clear-all-button" (click)="clearAll()">
+            Clear all
+        </button>
+        <button class="search-button" (click)="searchHandler()">
+            <span class="material-symbols-outlined">
+                search
+            </span>
+            <span>
+                Search
+            </span>
+        </button>
+    </div>
+</div>
+}

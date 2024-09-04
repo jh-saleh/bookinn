@@ -10,6 +10,7 @@
 .guests-line {
     display: grid;
     grid-template-columns: repeat(2, max-content);
+    justify-content: space-between;
     gap: 15px;
 }
 

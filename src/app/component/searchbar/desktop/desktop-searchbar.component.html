@@ -51,13 +51,19 @@
                 }
             </div>
         </div>
-        <button class="search" (click)="searchHandler()">
+        <button class="search-button" (click)="searchHandler()">
             <span class="material-symbols-outlined">
                 search
             </span>
         </button>
     </div>
 </div>
+<modal [isModalOpen]="isAutocompletionOpen" [classPosition]="autocompletionPosition"
+    (closeModal)="closeAutocompletion()" (openModal)="focusLocationInput(locationInputRef)">
+    <div [ngClass]="autocompletionWrapperClass">
+        <autocompletion [cityPart]="locationInput" (sendSuggestion)="getLocationSuggestion($event)"></autocompletion>
+    </div>
+</modal>
 <modal [isModalOpen]="isCalendarOpen" [classPosition]="calendarPosition" (closeModal)="closeCalendar()"
     (openModal)="openCalendar()">
     <div [ngClass]="calendarWrapperClass">
@@ -70,11 +76,5 @@
     (openModal)="openGuests()">
     <div [ngClass]="guestsWrapperClass">
         <guests (getGuests)="getGuests($event)" [initGuests]="guests"></guests>
-    </div>
-</modal>
-<modal [isModalOpen]="isAutocompletionOpen" [classPosition]="autocompletionPosition"
-    (closeModal)="closeAutocompletion()" (openModal)="focusLocationInput(locationInputRef)">
-    <div [ngClass]="autocompletionWrapperClass">
-        <autocompletion [cityPart]="locationInput" (sendSuggestion)="getLocationSuggestion($event)"></autocompletion>
     </div>
 </modal>

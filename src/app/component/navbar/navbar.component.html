@@ -1,13 +1,20 @@
-<nav class="navbar-wrapper" [ngClass]="maximizedClass">
-    <div class="navbar">
+<nav class="desktop-navbar-wrapper" [ngClass]="maximizedClass">
+    <div class="desktop-navbar">
         <app-logo></app-logo>
         @if(!hideSearchbar){
-        <searchbar [startingModeState]="startingModeState" [startingState]="searchbarStartingState"
+        <desktop-searchbar [startingModeState]="startingModeState" [startingState]="searchbarStartingState"
             (sendSearchbarStatus)="getSearchbarStatus($event)" [searchbarStatus]="isSearchbarOpen"
-            [initGuests]="searchbarStartingState?.guests"></searchbar>
+            [initGuests]="searchbarStartingState?.guests"></desktop-searchbar>
         }
         <account></account>
     </div>
-    <div class="navbar-background" (click)="closeSearchBar()">
+    <div class="desktop-navbar-background" (click)="closeSearchBar()">
+    </div>
+</nav>
+
+<nav class="phone-navbar-wrapper">
+    <div class="phone-navbar">
+        <phone-searchbar [startingState]="searchbarStartingState" [initGuests]="searchbarStartingState?.guests">
+        </phone-searchbar>
     </div>
 </nav>
