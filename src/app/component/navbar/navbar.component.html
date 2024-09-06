@@ -12,9 +12,11 @@
     </div>
 </nav>
 
+@if(!hideSearchbar){
 <nav class="phone-navbar-wrapper">
     <div class="phone-navbar">
         <phone-searchbar [startingState]="searchbarStartingState" [initGuests]="searchbarStartingState?.guests">
         </phone-searchbar>
     </div>
 </nav>
+}

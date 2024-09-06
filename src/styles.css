@@ -57,7 +57,7 @@ a {
 
     @media screen and (max-width: 899px) {
         --page-padding-with-searchbar: 100px;
-        --page-padding-with-no-searchbar: 100px;
+        --page-padding-with-no-searchbar: 0px;
     }
 
     @media screen and (min-width: 900px) {
@@ -162,15 +162,29 @@ a {
 }
 
 .page-padding-without-searchbar {
-    padding-top: 120px;
+    padding-top: var(--page-padding-with-no-searchbar);
 }
 
 .page-padding-with-searchbar {
-    padding-top: 160px;
+    padding-top: var(--page-padding-with-searchbar);
 }
 
 .page-body {
     width: 60%;
+}
+
+@media (max-width: 1500px) {
+    .page-body {
+        width: 80%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .page-body {
+        width: 90%;
+        margin-top: 10px;
+    }
 }
 
 /* button */

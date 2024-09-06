@@ -70,3 +70,37 @@
     border-top-right-radius: var(--box-border-radius);
     border-bottom-right-radius: var(--box-border-radius);
 }
+
+@media (max-width: 1200px) {
+    .trip-item {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .trip-item {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .trip-data-header>h1 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 550px) {
+    .trip-item {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .trip-data-header>h1 {
+        font-size: 15px;
+    }
+
+    .trip-data-header>div {
+        font-size: 10px;
+    }
+
+    .trip-data-body {
+        font-size: 10px;
+    }
+}

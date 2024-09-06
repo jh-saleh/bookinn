@@ -19,3 +19,24 @@
 .host-card>h1 {
     font-size: x-large;
 }
+
+@media (max-width: 1700px) {
+    .host-card>h1 {
+        font-size: large;
+    }
+
+    .host-card>div {
+        font-size: small;
+    }
+}
+
+@media (max-width: 1100px) {
+    .host-card {
+        padding: 10px;
+    }
+
+    .host-card>img {
+        height: 70px;
+        width: 70px;
+    }
+}
