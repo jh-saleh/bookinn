@@ -5,8 +5,6 @@
 }
 
 .card-header {
-    min-height: 300px;
-    min-width: 300px;
     background-color: transparent;
     border-radius: var(--box-border-radius);
     position: relative;
@@ -86,4 +84,55 @@
 
 .ratings>div>span {
     scale: 0.7;
+}
+
+@media (min-width: 1501px) and (max-width: 2000px) and (orientation: landscape) {
+    .slider {
+        height: 15dvw;
+        width: 15dvw;
+    }
+
+    .slide {
+        height: 15dvw;
+        width: 15dvw;
+    }
+
+    .card-header {
+        min-height: 15dvw;
+        min-width: 15dvw;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1500px) and (orientation: landscape) {
+    .slider {
+        height: 250px;
+        width: 250px;
+    }
+
+    .slide {
+        height: 250px;
+        width: 250px;
+    }
+
+    .card-header {
+        min-height: 250px;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .slider {
+        height: 200px;
+        width: 200px;
+    }
+
+    .slide {
+        height: 200px;
+        width: 200px;
+    }
+
+    .card-header {
+        height: 200px;
+        width: 200px;
+    }
 }

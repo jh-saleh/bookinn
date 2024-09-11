@@ -1,15 +1,3 @@
-@media (max-width: 900px) {
-    .desktop-navbar-wrapper {
-        display: none !important;
-    }
-}
-
-@media (min-width: 900px) {
-    .phone-navbar-wrapper {
-        display: none !important;
-    }
-}
-
 .desktop-navbar-wrapper,
 .phone-navbar-wrapper {
     position: fixed;
@@ -30,7 +18,7 @@
 }
 
 .phone-navbar {
-    padding: 10px 20px;
+    padding: 10px 0px;
     border-bottom: 1px white solid;
     background-color: var(--background);
 }
@@ -39,4 +27,16 @@
     height: 100%;
     width: 100dvw;
     background-color: var(--transparent-black);
+}
+
+@media (max-width: 900px) {
+    .desktop-navbar-wrapper {
+        display: none !important;
+    }
+}
+
+@media (min-width: 900px) {
+    .phone-navbar-wrapper {
+        display: none !important;
+    }
 }

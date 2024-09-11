@@ -22,9 +22,8 @@ export class StayCardComponent implements OnInit {
   imageIndex: number = 0;
   minIndex: number = 0;
   maxIndex: number = 0;
-  imageWidth: number = 300;
   translateClass: string = css`
-  transform: translateX(calc(-${this.imageIndex} * ${this.imageWidth}px));
+  transform: translateX(calc(-${this.imageIndex} * 100%));
   `;
   canUsePreviousImageButton!: boolean;
   canUseNextImageButton!: boolean;
@@ -42,7 +41,7 @@ export class StayCardComponent implements OnInit {
 
   updateTranslateClass() {
     this.translateClass = css`
-      transform: translateX(calc(-${this.imageIndex} * ${this.imageWidth}px));
+      transform: translateX(calc(-${this.imageIndex} * 100%));
       transition: transform 0.3s ease-in-out;
   `;
   }

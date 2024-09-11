@@ -54,6 +54,8 @@ a {
     --fullview-modal-width: 40dvw;
     --fullview-modal-padding: 20px;
     --box-padding: 20px;
+    --navbar-height: 71px;
+    --pagination-height: 45px;
 
     @media screen and (max-width: 899px) {
         --page-padding-with-searchbar: 100px;

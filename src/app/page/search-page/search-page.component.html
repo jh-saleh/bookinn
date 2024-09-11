@@ -28,7 +28,9 @@
             </div>
         </div>
         <div class="map-wrapper">
-            <app-map [zoom]="2" [coordinates]="coordinates" [displayAllCities]="true"></app-map>
+            <div class="map-limit-box">
+                <app-map [zoom]="2" [coordinates]="coordinates" [displayAllCities]="true"></app-map>
+            </div>
         </div>
     </div>
     <app-footer></app-footer>

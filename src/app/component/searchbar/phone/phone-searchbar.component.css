@@ -18,7 +18,7 @@
 
 .searchbar-icon {
     padding: 20px;
-    transform: scale(1.7) translateY(2px);
+    transform: translateY(2px);
 }
 
 .searchbar-icon>span {
