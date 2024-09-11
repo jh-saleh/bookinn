@@ -4,12 +4,14 @@ body {
     height: 100dvh;
     width: 100dvw;
     background-color: var(--crimson-500);
+    touch-action: pan-x pan-y;
 }
 
 * {
     padding: 0px;
     margin: 0px;
     scrollbar-width: none;
+    touch-action: pan-x pan-y;
 }
 
 a {
