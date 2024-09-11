@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../../hexagonal/domain/model/const';
 import { Guests, getTotalNbOfGuests } from '../../../hexagonal/domain/model/stay/guest.model';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { CalendarDate } from '../../../service/calendar-dates.service';
+import { HTMLBodyActions } from '../../../state/htmlBody/htmlBody.actions';
 import { AutocompletionComponent } from "../../autocompletion/autocompletion.component";
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { GuestsComponent } from "../../guests/guests.component";
@@ -66,7 +68,7 @@ export class PhoneSearchbarComponent implements OnInit {
   isLocationOpen: boolean = false;
   @Input({ required: false }) startingState: SearchbarStartingStates | undefined;
 
-  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe) {
+  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe, private store: Store) {
 
   }
 
@@ -151,10 +153,12 @@ export class PhoneSearchbarComponent implements OnInit {
 
   openSearchbar() {
     this.isSearchbarOpen = true;
+    this.store.dispatch(HTMLBodyActions.lockHTMLBody());
   }
 
   closeSearchBar() {
     this.isSearchbarOpen = false;
+    this.store.dispatch(HTMLBodyActions.unlockHTMLBody());
   }
 
   searchHandler() {
