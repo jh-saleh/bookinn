@@ -19,6 +19,7 @@
 
 .phone-navbar {
     padding: 10px 0px;
+    padding-left: 5dvw;
     border-bottom: 1px white solid;
     background-color: var(--background);
 }

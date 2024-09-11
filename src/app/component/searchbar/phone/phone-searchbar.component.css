@@ -5,7 +5,7 @@
 }
 
 .searchbar-wrapper {
-    width: calc(100% - 20px);
+    width: calc(90dvw - 20px);
     display: none;
     grid-template-columns: min-content auto;
     border-radius: 50px;
@@ -43,8 +43,8 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    height: 100dvh;
-    width: calc(100% - 40px);
+    height: calc(100dvh - 20px);
+    width: calc(100dvw - 40px);
     padding: 10px 20px;
     overflow-y: auto;
     background-color: var(--background);
