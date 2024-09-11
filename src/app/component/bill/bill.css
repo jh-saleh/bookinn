@@ -2,9 +2,6 @@
     background-color: white;
     box-shadow: var(--box-shadow);
     border-radius: var(--box-border-radius);
-    width: inherit;
-    position: sticky;
-    top: 150px;
     padding: 30px;
     display: grid;
     gap: 10px;
@@ -39,4 +36,16 @@
 
 .price-detail>*:first-child {
     text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .bill {
+        width: 250px;
+    }
+}
+
+@media (max-width: 750px) {
+    .bill {
+        width: inherit;
+    }
 }

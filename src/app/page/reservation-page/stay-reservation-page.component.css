@@ -84,9 +84,43 @@
 }
 
 .reservation-cancellation-policy {
-    width: max-content;
+    width: auto;
+    word-break: break-word;
 }
 
 .reservation-secondary-summary {
     position: relative;
+}
+
+.bill-reservation-stay-wrapper {
+    position: sticky;
+    top: var(--page-padding-with-no-searchbar);
+}
+
+.bill-reservation-stay-phone-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .bill-reservation-stay-wrapper {
+        top: 10px;
+    }
+}
+
+@media (min-width: 751px) {
+    .bill-reservation-stay-phone-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .reservation-page {
+        grid-template-columns: auto;
+    }
+
+    .reservation-secondary-summary {
+        display: none;
+    }
 }

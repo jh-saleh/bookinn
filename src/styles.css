@@ -60,11 +60,16 @@ a {
     @media screen and (max-width: 899px) {
         --page-padding-with-searchbar: 100px;
         --page-padding-with-no-searchbar: 0px;
+        --fullview-modal-width: 80dvw;
+    }
+
+    @media screen and (min-width: 900px) and (max-width: 1300px) {
+        --fullview-modal-width: 60dvw;
     }
 
     @media screen and (min-width: 900px) {
         --page-padding-with-searchbar: 160px;
-        --page-padding-with-no-searchbar: 120px;
+        --page-padding-with-no-searchbar: 80px;
     }
 
     /*shadow*/

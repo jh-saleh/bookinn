@@ -38,6 +38,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="bill-reservation-stay-phone-wrapper">
+                        <div class="main-divider"></div>
+                        <bill-reservation-stay [stayId]="stay.id" [startingDate]="startingState?.startingDate"
+                            [endingDate]="startingState?.endingDate" [nbOfGuests]="nbOfGuests"></bill-reservation-stay>
+                    </div>
+
                     <div class="main-divider"></div>
                     <h2>Choose how to pay</h2>
                     <payment-options [initPrice]="completeBill"></payment-options>
@@ -82,8 +88,10 @@
                         pay</button>
                 </div>
                 <div class="reservation-secondary-summary">
-                    <bill-reservation-stay [stayId]="stay.id" [startingDate]="startingState?.startingDate"
-                        [endingDate]="startingState?.endingDate" [nbOfGuests]="nbOfGuests"></bill-reservation-stay>
+                    <div class="bill-reservation-stay-wrapper">
+                        <bill-reservation-stay [stayId]="stay.id" [startingDate]="startingState?.startingDate"
+                            [endingDate]="startingState?.endingDate" [nbOfGuests]="nbOfGuests"></bill-reservation-stay>
+                    </div>
                 </div>
             </div>
         </div>

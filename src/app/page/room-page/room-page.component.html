@@ -112,9 +112,11 @@
                     </div>
                 </section>
                 <section class="bill-on-rails">
-                    <bill-room [nbOfNights]="nbDays" [startingDate]="startingDate" [endingDate]="endingDate"
-                        (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
-                        [initGuests]="queryParamGuests"></bill-room>
+                    <div class="bill-room-wrapper">
+                        <bill-room [nbOfNights]="nbDays" [startingDate]="startingDate" [endingDate]="endingDate"
+                            (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
+                            [initGuests]="queryParamGuests"></bill-room>
+                    </div>
                 </section>
             </div>
             <div class="room-divider"></div>

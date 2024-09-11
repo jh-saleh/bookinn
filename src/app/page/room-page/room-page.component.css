@@ -109,3 +109,9 @@
     z-index: 0;
     position: relative;
 }
+
+.bill-room-wrapper {
+    position: sticky;
+    top: 150px;
+    height: min-content;
+}
