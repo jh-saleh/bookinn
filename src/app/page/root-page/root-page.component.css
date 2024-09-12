@@ -87,18 +87,6 @@ section {
     width: 50%;
 }
 
-@media (max-width: 900px) {
-    .pitch>h1 {
-        width: 50%;
-        font-size: large;
-    }
-
-    .pitch>p {
-        font-size: x-small;
-        width: 45%;
-    }
-}
-
 .author {
     padding: 20px;
 }
@@ -166,4 +154,16 @@ section {
 #drop23,
 #drop24 {
     opacity: 0;
+}
+
+@media (max-width: 900px) {
+    .pitch>h1 {
+        width: 50%;
+        font-size: large;
+    }
+
+    .pitch>p {
+        font-size: x-small;
+        width: 45%;
+    }
 }
