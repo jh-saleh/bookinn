@@ -13,7 +13,7 @@
 <section>
     <app-navbar></app-navbar>
     <div class="page-body-wrapper page-padding-with-searchbar">
-        <div class="page-body">
+        <div class="page-room-body">
             <section>
                 <h1 class="room-title">
                     {{stay.name}}
@@ -106,7 +106,7 @@
                             Add your travel dates for exact pricing
                             }
                         </h3>
-                        <calendar [mode]="'modal'" [theme]="'red'" [initStartingDate]="startingDate"
+                        <calendar [mode]="'normal'" [theme]="'red'" [initStartingDate]="startingDate"
                             [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event)"
                             (sendEndingDate)="getEndingDate($event)"></calendar>
                     </div>

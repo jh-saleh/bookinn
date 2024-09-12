@@ -95,8 +95,8 @@
 }
 
 .day-mode-normal {
-    height: 30px;
-    width: 30px;
+    height: 45px;
+    width: 45px;
 }
 
 .reset-selected-dates {
@@ -108,4 +108,29 @@
     cursor: pointer;
     width: max-content;
     background-color: transparent;
+}
+
+@media (max-width: 1300px) {
+    .day-mode-normal {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .day-mode-normal {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .month {
+        gap: 5px;
+    }
+
+    .day-mode-normal {
+        height: 33px;
+        width: 33px;
+    }
 }

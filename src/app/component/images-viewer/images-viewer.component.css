@@ -3,10 +3,9 @@
 }
 
 .images-viewer-wrapper--for-5-images {
-    height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 29.5dvw);
-    gap: 0.5dvw;
+    grid-template-columns: repeat(2, 49.5%);
+    gap: 1%;
 
     >img {
         width: 100%;
@@ -18,13 +17,12 @@
 }
 
 .images-viewer--for-5-images {
-    width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 14.75dvw);
-    gap: 0.5dvw;
+    grid-template-columns: repeat(2, 49.5%);
+    gap: 1%;
 
     img {
-        height: 14.5dvw;
+        height: 100%;
         width: 100%;
         object-fit: cover;
         object-position: center;
@@ -40,14 +38,13 @@
 }
 
 .images-viewer-wrapper--for-3-images {
-    height: 100%;
     display: grid;
-    grid-template-columns: 39dvw 20dvw;
-    gap: 1dvw;
+    grid-template-columns: 55% 44%;
+    gap: 1%;
 
     >img {
         height: 29dvw;
-        width: 39dvw;
+        width: 100%;
         border-top-left-radius: var(--box-border-radius);
         border-bottom-left-radius: var(--box-border-radius);
         object-fit: cover;
@@ -56,10 +53,9 @@
 }
 
 .images-viewer--for-3-images {
-    width: 100%;
     display: grid;
-    grid-template-rows: repeat(2, 14dvw);
-    gap: 1dvw;
+    grid-template-rows: repeat(2, 14.25dvw);
+    gap: 0.5dvw;
 
     img {
         width: 100%;
@@ -80,11 +76,12 @@
 .images-viewer-wrapper--for-2-images {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 29.5dvw);
-    gap: 1dvw;
+    grid-template-columns: repeat(2, 49.5%);
+    gap: 1%;
 
     >img {
         height: 29dvw;
+        width: 100%;
         border-top-left-radius: var(--box-border-radius);
         border-bottom-left-radius: var(--box-border-radius);
         object-fit: cover;
@@ -116,6 +113,7 @@
 
     img {
         height: 29dvw;
+        width: 100%;
         border-radius: var(--box-border-radius);
         object-fit: cover;
         object-position: center;
