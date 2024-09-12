@@ -38,7 +38,7 @@
 }
 
 .ookinn>span {
-    font-size: 140px;
+    font-size: 9dvw;
     line-height: 20px;
     color: var(--text-color);
 }
@@ -85,6 +85,18 @@ section {
 .pitch>p {
     font-size: x-small;
     width: 50%;
+}
+
+@media (max-width: 900px) {
+    .pitch>h1 {
+        width: 50%;
+        font-size: large;
+    }
+
+    .pitch>p {
+        font-size: x-small;
+        width: 45%;
+    }
 }
 
 .author {

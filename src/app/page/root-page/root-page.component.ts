@@ -110,9 +110,9 @@ export class RootPageComponent implements AfterViewInit {
         scale: 1,
       }, {
         scale: 10,
-        rotateZ: "90deg",
-        xPercent: 100,
-        yPercent: 650,
+        rotateZ: "180deg",
+        xPercent: 700,
+        yPercent: 1250,
         display: "none",
         scrollTrigger: {
           start: "150% top",

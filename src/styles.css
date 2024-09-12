@@ -63,6 +63,7 @@ a {
         --page-padding-with-searchbar: 100px;
         --page-padding-with-no-searchbar: 0px;
         --fullview-modal-width: 80dvw;
+        --b-bar-size: 120px;
     }
 
     @media screen and (min-width: 900px) and (max-width: 1300px) {
