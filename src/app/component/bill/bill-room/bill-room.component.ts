@@ -67,7 +67,7 @@ export class BillRoomComponent implements OnInit, OnDestroy {
 
         this.startingDate = billInformation?.startingDate;
         this.endingDate = billInformation?.endingDate;
-        this.guests = billInformation?.guests !== undefined ? billInformation?.guests : INIT_GUESTS;
+        this.guests = billInformation?.guests !== undefined ? billInformation?.guests : JSON.parse(JSON.stringify(INIT_GUESTS));
         this.nbOfGuests = getTotalNbOfGuests(this.guests);
         if (this.startingDate && this.endingDate) {
           this.nbOfNights = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);

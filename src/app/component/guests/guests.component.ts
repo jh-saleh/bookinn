@@ -31,7 +31,6 @@ export class GuestsComponent {
     }
   }
   @Input({ required: false }) set initGuests(value: Guests | undefined) {
-    console.log("guests component - initGuests", value);
     if (value) {
       this.guests = value;
       this.shouldBlockIncreaseGuestsAction();

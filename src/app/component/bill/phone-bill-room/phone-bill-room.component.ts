@@ -59,9 +59,7 @@ export class PhoneBillRoomComponent implements OnDestroy {
 
         this.startingDate = billInformation?.startingDate;
         this.endingDate = billInformation?.endingDate;
-        console.log("ngOnInit after assignment", this.guests);
-        this.guests = billInformation?.guests !== undefined ? billInformation?.guests : INIT_GUESTS;
-        console.log("ngOnInit before assignment", this.guests);
+        this.guests = billInformation?.guests !== undefined ? billInformation?.guests : JSON.parse(JSON.stringify(INIT_GUESTS));
         this.nbOfGuests = getTotalNbOfGuests(this.guests);
         if (this.startingDate && this.endingDate) {
           this.nbOfNights = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
@@ -97,7 +95,6 @@ export class PhoneBillRoomComponent implements OnDestroy {
 
   getGuests(guests: Guests | undefined) {
     this.guests = guests !== undefined ? { ...guests } : undefined;
-    console.log("getGuests", this.guests);
     this.nbOfGuests = getTotalNbOfGuests(guests);
     this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
     this.store.dispatch(BillInformationActions.updateGuests({ guests: this.guests }));
@@ -144,7 +141,6 @@ export class PhoneBillRoomComponent implements OnDestroy {
   }
 
   clearAll() {
-    console.log("clearAll")
     this.getGuests(undefined); // renvoyer la donnée en haut
     this.getStartingDate(undefined);
     this.getEndingDate(undefined);
