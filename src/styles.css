@@ -205,7 +205,7 @@ a {
     padding: 10px 20px;
     font-size: medium;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.3s;
 }
 
 .button {

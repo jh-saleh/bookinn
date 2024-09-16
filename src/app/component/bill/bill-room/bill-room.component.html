@@ -1,4 +1,4 @@
-<section class="bill">
+<section class="bill bill-for-desktop">
     <div class="bill-base-price">
         @if(startingDate && endingDate){
         @if(nbOfGuests > 0){
@@ -79,8 +79,8 @@
                 </div>
             </div>
             <div [hidden]="!isGuestsModalOpen" [ngClass]="guestsModalWrapper">
-                <guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getGuests($event)"
-                    [initGuests]="initGuests"></guests>
+                <guests [maximumNbOfGuests]="maximumNbOfGuests" (getGuests)="getGuests($event)" [initGuests]="guests">
+                </guests>
             </div>
         </div>
     </div>

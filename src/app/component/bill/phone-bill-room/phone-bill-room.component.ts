@@ -1,35 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { css } from '@emotion/css';
 import { Store } from '@ngrx/store';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { billingServiceFactory } from '../../../hexagonal/di-factories';
 import { INIT_GUESTS } from '../../../hexagonal/domain/model/const';
-import { Position } from '../../../hexagonal/domain/model/position/position.model';
 import { Guests, getTotalNbOfGuests } from '../../../hexagonal/domain/model/stay/guest.model';
 import { BillingPort } from '../../../hexagonal/domain/port/billing.port';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
-import { PluralizePipe } from '../../../pipe/pluralize.pipe';
+import { PluralizePipe } from "../../../pipe/pluralize.pipe";
 import { CalendarDate, CalendarDatesService } from '../../../service/calendar-dates.service';
 import { AppState } from '../../../state/app.state';
 import { BillInformationActions } from '../../../state/bill-information/bill-information.actions';
 import { selectBillInformation } from '../../../state/bill-information/bill-information.selectors';
 import { selectStay } from '../../../state/stay/stay.selectors';
 import { CalendarComponent } from "../../calendar/calendar.component";
-import { DateInputComponent } from "../../date-input/date-input.component";
 import { GuestsComponent } from "../../guests/guests.component";
-import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
-  selector: 'bill-room',
+  selector: 'phone-bill-room',
   standalone: true,
-  imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
+  imports: [CalendarDateFormatPipe, PluralizePipe, GuestsComponent, CalendarComponent, CommonModule],
   providers: [CalendarDateFormatPipe, { provide: BillingPort, useFactory: billingServiceFactory }],
-  templateUrl: './bill-room.component.html',
-  styleUrls: ['./bill-room.component.css', '../bill.css']
+  templateUrl: './phone-bill-room.component.html',
+  styleUrl: './phone-bill-room.component.css'
 })
-export class BillRoomComponent implements OnInit, OnDestroy {
+export class PhoneBillRoomComponent implements OnDestroy {
   stayId!: string;
   startingDate: CalendarDate | undefined;
   endingDate: CalendarDate | undefined;
@@ -43,13 +39,9 @@ export class BillRoomComponent implements OnInit, OnDestroy {
   bookInnFee: number = 0;
   VAT: number = 0;
   completeBill: number = 0;
-  @ViewChild("billGuestsSelection") billGuestsSelectionRef: ElementRef<HTMLDivElement> | undefined;
-  @ViewChild("calendarSelectionRef") calendarSelectionRef: ElementRef<HTMLDivElement> | undefined;
-  @ViewChild("reservationButtonRef") reservationButtonRef: ElementRef<HTMLButtonElement> | undefined;
-  isGuestsModalOpen: boolean = false;
-  guestsPosition: Position = { top: 0, left: 0 };
-  guestsModalWrapper: string = "";
-  isCalendarOpen: boolean = false;
+  isBillRoomForPhoneModeOpen: boolean = false;
+  isGuestModalOpen: boolean = false;
+  isCalendarModalOpen: boolean = false;
   private destroy$ = new Subject<void>();
   constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe,
     private billingService: BillingPort, private calendarDatesService: CalendarDatesService, private store: Store<AppState>) {
@@ -67,7 +59,9 @@ export class BillRoomComponent implements OnInit, OnDestroy {
 
         this.startingDate = billInformation?.startingDate;
         this.endingDate = billInformation?.endingDate;
+        console.log("ngOnInit after assignment", this.guests);
         this.guests = billInformation?.guests !== undefined ? billInformation?.guests : INIT_GUESTS;
+        console.log("ngOnInit before assignment", this.guests);
         this.nbOfGuests = getTotalNbOfGuests(this.guests);
         if (this.startingDate && this.endingDate) {
           this.nbOfNights = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
@@ -97,46 +91,21 @@ export class BillRoomComponent implements OnInit, OnDestroy {
   }
 
   openGuestsModal() {
-    if (this.billGuestsSelectionRef) {
-      const { height, width } = this.billGuestsSelectionRef.nativeElement.getBoundingClientRect();
-      const padding = 20;
-      this.guestsModalWrapper = css`
-        z-index: 1;
-        position: absolute;
-        top: ${height + 5}px;
-        left: 0px;
-        width: ${width - padding * 2}px;
-        box-shadow: var(--box-shadow);
-        padding: ${padding}px;
-        background-color: white;
-        border-radius: var(--box-border-radius);
-      `;
-      this.isGuestsModalOpen = true;
-    }
+    this.isCalendarModalOpen = false;
+    this.isGuestModalOpen = true;
   }
 
   getGuests(guests: Guests | undefined) {
     this.guests = guests !== undefined ? { ...guests } : undefined;
+    console.log("getGuests", this.guests);
     this.nbOfGuests = getTotalNbOfGuests(guests);
     this.updateBillPrices(this.nbOfNights, this.nbOfGuests);
     this.store.dispatch(BillInformationActions.updateGuests({ guests: this.guests }));
   }
 
-  @HostListener('document:click', ['$event.target']) onClick(target: Node | null) {
-    if (this.reservationButtonRef && this.reservationButtonRef.nativeElement.contains(target)) {
-      return;
-    }
-
-    if (this.billGuestsSelectionRef && !this.billGuestsSelectionRef.nativeElement.contains(target) && this.isGuestsModalOpen) {
-      this.isGuestsModalOpen = false;
-    }
-    if (this.calendarSelectionRef && !this.calendarSelectionRef.nativeElement.contains(target) && this.isCalendarOpen) {
-      this.isCalendarOpen = false;
-    }
-  }
-
   openCalendar() {
-    this.isCalendarOpen = true;
+    this.isCalendarModalOpen = true;
+    this.isGuestModalOpen = false;
   }
 
   getStartingDate(calendarDate: CalendarDate | undefined) {
@@ -172,5 +141,20 @@ export class BillRoomComponent implements OnInit, OnDestroy {
     if (this.nbOfGuests === 0) {
       this.openGuestsModal();
     }
+  }
+
+  clearAll() {
+    console.log("clearAll")
+    this.getGuests(undefined); // renvoyer la donnée en haut
+    this.getStartingDate(undefined);
+    this.getEndingDate(undefined);
+  }
+
+  openBillRoomForPhoneMode() {
+    this.isBillRoomForPhoneModeOpen = true;
+  }
+
+  closeBillRoomForPhoneMode() {
+    this.isBillRoomForPhoneModeOpen = false;
   }
 }

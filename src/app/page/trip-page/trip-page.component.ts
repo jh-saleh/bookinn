@@ -8,6 +8,7 @@ import { tripServiceFactory } from '../../hexagonal/di-factories';
 import { Trip } from '../../hexagonal/domain/model/trip/trip.model';
 import { TripPort } from '../../hexagonal/domain/port/trip.port';
 import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-trip-page',
@@ -20,7 +21,7 @@ import { CalendarDateFormatPipe } from '../../pipe/calendar-date-format.pipe';
 export class TripPageComponent implements OnInit {
   trips: Trip[] = [];
 
-  constructor(private store: Store, private tripService: TripPort) { }
+  constructor(private store: Store<AppState>, private tripService: TripPort) { }
 
   ngOnInit(): void {
 

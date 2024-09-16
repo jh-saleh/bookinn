@@ -107,15 +107,13 @@
                             }
                         </h3>
                         <calendar [mode]="'normal'" [theme]="'red'" [initStartingDate]="startingDate"
-                            [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event)"
-                            (sendEndingDate)="getEndingDate($event)"></calendar>
+                            [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event, true)"
+                            (sendEndingDate)="getEndingDate($event, true)"></calendar>
                     </div>
                 </section>
                 <section class="bill-on-rails">
                     <div class="bill-room-wrapper">
-                        <bill-room [nbOfNights]="nbDays" [startingDate]="startingDate" [endingDate]="endingDate"
-                            (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
-                            [initGuests]="queryParamGuests"></bill-room>
+                        <bill-room></bill-room>
                     </div>
                 </section>
             </div>
@@ -215,3 +213,5 @@
         }
     </div>
 </full-view-modal>
+
+<phone-bill-room></phone-bill-room>

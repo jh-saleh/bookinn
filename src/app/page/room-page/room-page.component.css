@@ -169,3 +169,13 @@
         margin-top: 10px;
     }
 }
+
+@media (max-width: 900px) {
+    .bill-on-rails {
+        display: none;
+    }
+
+    .room-information {
+        grid-template-columns: auto;
+    }
+}

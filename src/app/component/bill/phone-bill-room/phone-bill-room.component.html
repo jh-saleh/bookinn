@@ -1,0 +1,80 @@
+<div class="reservation-wrapper">
+    <div>
+        @if(startingDate){
+        {{startingDate | calendarDateFormat: "MMM dd, yyyy"}} -
+        }
+        @if(endingDate){
+        {{endingDate | calendarDateFormat:
+        "MMM dd, yyyy"}} -
+        }
+        {{nbOfGuests}} {{nbOfGuests | pluralize: 'guest'}}
+        @if(completeBill){
+        | {{completeBill}}$
+        }
+    </div>
+    <button class="button" (click)="openBillRoomForPhoneMode()">
+        Reserve
+    </button>
+</div>
+
+@if(isBillRoomForPhoneModeOpen){
+<div *ngIf="isBillRoomForPhoneModeOpen" class="reservation-modal-wrapper">
+    <div class="reservation-modal-header-and-body">
+        <div class="reservation-modal-header">
+            <button (click)="closeBillRoomForPhoneMode()" class="close-button">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        </div>
+        <div class="reservation-modal-body">
+            <div class="reservation-box" (click)="openCalendar()">
+                @if(isCalendarModalOpen){
+                <calendar (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
+                    [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
+                </calendar>
+                } @else {
+                <div class="reservation-item">
+                    <span>When</span>
+                    <span>
+                        @if(startingDate && endingDate){
+                        {{startingDate | calendarDateFormat: "MMM dd"}} - {{endingDate | calendarDateFormat: "MMM dd"}}
+                        } @else {
+                        Add dates
+                        }
+                    </span>
+                </div>
+                }
+            </div>
+            <div class="reservation-box" (click)="openGuestsModal()">
+                @if(isGuestModalOpen){
+                <guests (getGuests)="getGuests($event)" [initGuests]="guests" [maximumNbOfGuests]="maximumNbOfGuests">
+                </guests>
+                } @else {
+                <div class="reservation-item">
+                    <span>Who</span>
+                    <span>
+                        @if (nbOfGuests > 0) {
+                        {{nbOfGuests}}
+                        {{nbOfGuests | pluralize: 'guest'}}
+                        } @else {
+                        Add guests
+                        }
+                    </span>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="reservation-modal-footer">
+        <button class="clear-all-button" (click)="clearAll()">
+            Clear all
+        </button>
+        <button class="reservation-button" (click)="reserveButtonHandler()">
+            <span>
+                Reserve
+            </span>
+        </button>
+    </div>
+</div>
+}

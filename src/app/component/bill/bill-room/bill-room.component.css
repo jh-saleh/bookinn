@@ -100,3 +100,9 @@ p {
     width: 100%;
     text-align: center;
 }
+
+@media (max-width: 900px) {
+    .bill-for-desktop {
+        display: none !important;
+    }
+}

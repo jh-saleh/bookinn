@@ -4,6 +4,8 @@ import { InMemoryScrollingFeature, InMemoryScrollingOptions, provideRouter, with
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideState, provideStore } from '@ngrx/store';
 import { routes } from './app.routes';
+import { BillInformationReducer } from './state/bill-information/bill-information.reducer';
+import { BillInformationFeatureKey } from './state/bill-information/bill-information.selectors';
 import { HTMLBodyReducer } from './state/htmlBody/htmlBody.reducer';
 import { HTMLBodyFeatureKey } from './state/htmlBody/htmlBody.selectors';
 import { StayReducer } from './state/stay/stay.reducer';
@@ -21,9 +23,15 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, inMemoryScrollingFeature), provideClientHydration(),
-  provideStore(HTMLBodyReducer),
+  provideStore(HTMLBodyReducer, {
+    runtimeChecks: {
+      strictStateImmutability: false,
+      strictActionImmutability: false, // Les etats de ngrx obetnues par les selectors sont en read only, ce qui rend difficile leurs manipulations
+    }
+  }),
   provideState({ name: HTMLBodyFeatureKey, reducer: HTMLBodyReducer }),
   provideState({ name: UserFeatureKey, reducer: UserReducer }),
   provideState({ name: StayFeatureKey, reducer: StayReducer }),
+  provideState({ name: BillInformationFeatureKey, reducer: BillInformationReducer }),
   ]
 };

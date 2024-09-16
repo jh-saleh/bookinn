@@ -31,13 +31,41 @@ export class GuestsComponent {
     }
   }
   @Input({ required: false }) set initGuests(value: Guests | undefined) {
+    console.log("guests component - initGuests", value);
     if (value) {
       this.guests = value;
       this.shouldBlockIncreaseGuestsAction();
+    } else {
+      this.guests = {
+        adult: {
+          nb: 0,
+          maximum: MAX_NB_ADULTS,
+          minimum: 0,
+        },
+        child: {
+          nb: 0,
+          maximum: MAX_NB_CHILDREN,
+        },
+        infant: {
+          nb: 0,
+          maximum: MAX_NB_INFANTS
+        },
+        pet: {
+          nb: 0,
+          maximum: MAX_NB_PETS
+        }
+      };
     }
   }
   @Output() getGuests = new EventEmitter<Guests>();
-  @Input() maximumNbOfGuests: number | undefined = undefined;
+  _maximumNbOfGuests: number | undefined;
+  @Input() set maximumNbOfGuests(value: number | undefined) {
+    this._maximumNbOfGuests = value;
+    this.shouldBlockIncreaseGuestsAction();
+  };
+  get maximumNbOfGuests(): number | undefined {
+    return this._maximumNbOfGuests;
+  }
   blockIncreaseGuestsAction: boolean = false;
 
   getTotalNbOfGuests(): number {
@@ -45,11 +73,7 @@ export class GuestsComponent {
   }
 
   shouldBlockIncreaseGuestsAction() {
-    if (this.maximumNbOfGuests && this.maximumNbOfGuests === this.getTotalNbOfGuests()) {
-      this.blockIncreaseGuestsAction = true;
-    } else {
-      this.blockIncreaseGuestsAction = false;
-    }
+    this.blockIncreaseGuestsAction = this.maximumNbOfGuests !== undefined && this.maximumNbOfGuests === this.getTotalNbOfGuests();
   }
 
   sendGuests(guest: GuestType, counter: number) {

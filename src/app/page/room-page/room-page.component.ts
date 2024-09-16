@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
+import { PhoneBillRoomComponent } from "../../component/bill/phone-bill-room/phone-bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { GuidebookRoomComponent } from "../../component/guidebook/guidebook-room/guidebook-room.component";
@@ -25,6 +26,9 @@ import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { NegationPipe } from '../../pipe/negation.pipe';
 import { PluralizePipe } from '../../pipe/pluralize.pipe';
 import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates.service';
+import { AppState } from '../../state/app.state';
+import { BillInformationActions } from '../../state/bill-information/bill-information.actions';
+import { selectBillInformation } from '../../state/bill-information/bill-information.selectors';
 import { StayActions } from '../../state/stay/stay.actions';
 
 @Component({
@@ -33,7 +37,7 @@ import { StayActions } from '../../state/stay/stay.actions';
   imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
     PluralizePipe, CamelToSentencePipe, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
-    MapComponent],
+    MapComponent, PhoneBillRoomComponent],
   providers: [CalendarDatesService, { provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './room-page.component.html',
   styleUrl: './room-page.component.css'
@@ -51,10 +55,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   nbDays: number | undefined;
   isAmenitiesModalOpen: boolean = false;
   paramRoomId: string | null = null;
-  queryParamGuests!: Guests;
+  queryParamGuests: Guests | undefined;
 
   constructor(private route: ActivatedRoute, private stayService: StayPort, private hostService: HostPort,
-    private calendarDatesService: CalendarDatesService, private store: Store) {
+    private calendarDatesService: CalendarDatesService, private store: Store<AppState>) {
 
   }
 
@@ -108,9 +112,25 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         maximum: MAX_NB_PETS
       }
     }
+
+    this.store.dispatch(BillInformationActions.updateBillInformation({
+      billInformation: {
+        guests: this.queryParamGuests,
+        startingDate: this.startingDate,
+        endingDate: this.endingDate,
+        nbDays: this.nbDays
+      }
+    }));
+
+    this.store.select(selectBillInformation).subscribe(({ billInformation }) => {
+      this.getStartingDate(billInformation?.startingDate);
+      this.getEndingDate(billInformation?.endingDate);
+      this.queryParamGuests = billInformation?.guests !== undefined ? billInformation?.guests : undefined;
+    });
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch(BillInformationActions.resetBillInformation());
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -126,21 +146,27 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     return output;
   }
 
-  getStartingDate(date: CalendarDate | undefined) {
+  getStartingDate(date: CalendarDate | undefined, update: boolean = false) {
     this.startingDate = date;
     if (this.startingDate && this.endingDate) {
       this.nbDays = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
     } else {
       this.nbDays = undefined;
     }
+    if (update) {
+      this.store.dispatch(BillInformationActions.updateStartingDate({ startingDate: this.startingDate }));
+    }
   }
 
-  getEndingDate(date: CalendarDate | undefined) {
+  getEndingDate(date: CalendarDate | undefined, update: boolean = false) {
     this.endingDate = date;
     if (this.startingDate && this.endingDate) {
       this.nbDays = this.calendarDatesService.getNbOfDaysBetweenDates(this.startingDate, this.endingDate);
     } else {
       this.nbDays = undefined;
+    }
+    if (update) {
+      this.store.dispatch(BillInformationActions.updateEndingDate({ endingDate: this.endingDate }));
     }
   }
 

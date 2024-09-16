@@ -1,0 +1,120 @@
+.reservation-wrapper {
+    background-color: white;
+    justify-content: space-between;
+    padding: 5px 10px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: calc(100dvw - 20px);
+    z-index: 1;
+    align-items: center;
+    display: flex !important;
+    visibility: hidden;
+}
+
+.reservation-wrapper>button {
+    width: min-content;
+}
+
+.reservation-modal-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: calc(100dvh - 20px);
+    width: calc(100dvw - 40px);
+    padding: 10px 20px;
+    overflow-y: auto;
+    background-color: var(--background);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    visibility: initial;
+    z-index: 9999;
+}
+
+.reservation-modal-header-and-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reservation-modal-header {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+}
+
+.reservation-modal-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.reservation-box {
+    color: black;
+    padding: 20px;
+    background-color: white;
+    border-radius: var(--box-border-radius);
+    cursor: pointer;
+}
+
+.reservation-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reservation-modal-footer {
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reservation-button,
+.clear-all-button {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 15px;
+}
+
+.close-button {
+    cursor: pointer;
+    user-select: none;
+    border: 1px white solid;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: white;
+    display: grid;
+    place-items: center;
+    background-color: var(--background);
+}
+
+.reservation-button {
+    background-color: white;
+    color: var(--background);
+    width: 100px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.clear-all-button {
+    background-color: var(--background);
+    color: white;
+    text-decoration: underline;
+    width: 60px;
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .reservation-wrapper {
+        visibility: initial;
+    }
+}

@@ -9,6 +9,7 @@ import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe'
 import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
 import { CalendarDate } from '../../../service/calendar-dates.service';
+import { AppState } from '../../../state/app.state';
 import { HTMLBodyActions } from '../../../state/htmlBody/htmlBody.actions';
 import { AutocompletionComponent } from "../../autocompletion/autocompletion.component";
 import { CalendarComponent } from "../../calendar/calendar.component";
@@ -68,7 +69,7 @@ export class PhoneSearchbarComponent implements OnInit {
   isLocationOpen: boolean = false;
   @Input({ required: false }) startingState: SearchbarStartingStates | undefined;
 
-  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe, private store: Store) {
+  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe, private store: Store<AppState>) {
 
   }
 
