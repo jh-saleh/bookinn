@@ -18,8 +18,8 @@
 
 .images-viewer--for-5-images {
     display: grid;
-    grid-template-columns: repeat(2, 49.5%);
-    gap: 1%;
+    grid-template-columns: repeat(2, auto);
+    gap: 0.5dvw;
 
     img {
         height: 100%;
