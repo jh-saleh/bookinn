@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 //https://stackoverflow.com/questions/78538054/angular-17-ssr-and-leaflet-ngx-leaflet-ngx-leaflet-draw
 @Injectable({
@@ -7,7 +8,7 @@ export class LeafletLoadingService {
     public L: any = null;
 
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-        if (this.platformId === 'browser') {
+        if (isPlatformBrowser(this.platformId)) {
             this.L = import('leaflet');
         }
     }
