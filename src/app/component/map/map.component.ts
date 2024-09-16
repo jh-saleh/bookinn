@@ -49,6 +49,8 @@ export class MapComponent {
   }
 
   initMap(lib: any): void {
+    console.log("lib");
+    console.log(lib);
     const getCityIcon = (city: string) => {
       const icon: string = `
         <div class="map-icon-label">${city}</div>
