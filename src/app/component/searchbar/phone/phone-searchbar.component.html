@@ -31,8 +31,8 @@
             </div>
         </div>
         <div class="searchbar-modal-body">
-            <div class="search-box" (click)="openLocation()">
-                @if(isLocationOpen){
+            @if(isLocationOpen){
+            <div class="search-box-opened">
                 <div class="location" (click)="focusLocationInput(locationInputRef)">
                     <h1>Where to ?</h1>
                     <input #locationInputRef (input)="autocompletionOpenStatusHandler()" [(ngModel)]="locationInput"
@@ -42,7 +42,9 @@
                     <autocompletion [cityPart]="locationInput" (sendSuggestion)="getLocationSuggestion($event)">
                     </autocompletion>
                 </div>
-                } @else {
+            </div>
+            } @else {
+            <div class="search-box-closed" (click)="openLocation()">
                 <div class="search-item">
                     <span>Where</span>
                     <span>
@@ -53,14 +55,25 @@
                         }
                     </span>
                 </div>
-                }
             </div>
-            <div class="search-box" (click)="openCalendar()">
-                @if(isCalendarOpen){
-                <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
-                    [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
-                </calendar>
-                } @else {
+            }
+            @if(isCalendarOpen){
+            <div class="search-box-opened">
+                <div class="calendar-double">
+                    <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
+                        [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'"
+                        [theme]="'white'">
+                    </calendar>
+                </div>
+                <div class="calendar-single">
+                    <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
+                        [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'"
+                        [mode]="'single'" [theme]="'white'">
+                    </calendar>
+                </div>
+            </div>
+            } @else {
+            <div class="search-box-closed" (click)="openCalendar()">
                 <div class="search-item">
                     <span>When</span>
                     <span>
@@ -71,12 +84,14 @@
                         }
                     </span>
                 </div>
-                }
             </div>
-            <div class="search-box" (click)="openGuests()">
-                @if(isGuestsOpen){
+            }
+            @if(isGuestsOpen){
+            <div class="search-box-opened">
                 <guests (getGuests)="getGuests($event)" [initGuests]="guests"></guests>
-                } @else {
+            </div>
+            } @else {
+            <div class="search-box-closed" (click)="openGuests()">
                 <div class="search-item">
                     <span>Who</span>
                     <span>
@@ -88,8 +103,8 @@
                         }
                     </span>
                 </div>
-                }
             </div>
+            }
         </div>
     </div>
     <div class="searchbar-modal-footer">

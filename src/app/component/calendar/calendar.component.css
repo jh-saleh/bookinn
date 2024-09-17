@@ -7,7 +7,13 @@
     gap: 20px;
 }
 
-.month {
+.unique-month {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.double-month {
     display: grid;
     grid-template-columns: auto auto;
     gap: 20px;
@@ -26,6 +32,12 @@
 
 .second-month-header {
     grid-template-columns: auto min-content;
+}
+
+.unique-month-header {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    place-items: center;
 }
 
 .month-body {

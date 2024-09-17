@@ -106,7 +106,7 @@
                             Add your travel dates for exact pricing
                             }
                         </h3>
-                        <calendar [mode]="'normal'" [theme]="'red'" [initStartingDate]="startingDate"
+                        <calendar [type]="'normal'" [mode]="'single'" [theme]="'red'" [initStartingDate]="startingDate"
                             [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event, true)"
                             (sendEndingDate)="getEndingDate($event, true)"></calendar>
                     </div>

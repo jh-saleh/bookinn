@@ -3,8 +3,8 @@
         @for (value of daysOfTheMonth; track $index) {
         @if(value.dayOfTheMonth > 0){
         @if(value.unavailable){
-        <span [ngClass]="disabledColorClass" class="disabled-day" [class.day-mode-modal]="mode === 'modal'"
-            [class.day-mode-normal]="mode === 'normal'">
+        <span [ngClass]="disabledColorClass" class="disabled-day" [class.day-mode-modal]="type === 'modal'"
+            [class.day-mode-normal]="type === 'normal'">
             {{value.dayOfTheMonth}}
         </span>
         }@else {
@@ -15,7 +15,7 @@
                 [ngClass]="[colorClass, daysSelected[0] !== value.position && daysSelected[1] !== value.position ? hoverBgClass : '']"
                 class="day"
                 [class.selected-day]="daysSelected[0] === value.position || daysSelected[1] === value.position"
-                [class.day-mode-modal]="mode === 'modal'" [class.day-mode-normal]="mode === 'normal'"
+                [class.day-mode-modal]="type === 'modal'" [class.day-mode-normal]="type === 'normal'"
                 (click)="selectDateOnClickHandler(value.position)">
                 {{value.dayOfTheMonth}}
             </span>
@@ -40,8 +40,8 @@
 
 
 <section class="calendar" [ngClass]="bgColorClass">
-    <div class="month">
-        <div class="first-month-header">
+    <div [class.double-month]="mode === 'double'" [class.unique-month]="mode === 'single'">
+        <div [class.first-month-header]="mode === 'double'" [class.unique-month-header]="'single'">
             <button [disabled]="disablePreviousMonthButton" class="previous-month"
                 [ngClass]="[bgColorClass, colorClass, hoverBgClass]" (click)="previousMonth()">
                 <span class="material-symbols-outlined">
@@ -51,7 +51,16 @@
             <div class="month-label" [ngClass]="colorClass">
                 {{firstMonth}} {{firstYear}}
             </div>
+            @if(mode === "single"){
+            <button [disabled]="disableNextMonthButton" class="next-month"
+                [ngClass]="[bgColorClass, colorClass, hoverBgClass]" (click)="nextMonth()">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+            }
         </div>
+        @if(mode === "double"){
         <div class="second-month-header">
             <div class="month-label" [ngClass]="colorClass">
                 {{secondMonth}} {{secondYear}}
@@ -63,16 +72,19 @@
                 </span>
             </button>
         </div>
+        }
         <div class="month-body">
             <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
             <ng-container
                 *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheFirstMonth}"></ng-container>
         </div>
+        @if(mode === "double"){
         <div class="month-body">
             <ng-container *ngTemplateOutlet="weekTemplate"></ng-container>
             <ng-container
                 *ngTemplateOutlet="daysOfTheMonthTemplate; context: {daysOfTheMonth: daysOfTheSecondMonth}"></ng-container>
         </div>
+        }
     </div>
     <button class="reset-selected-dates" [ngClass]="resetSelectedDatesButtonColor"
         [disabled]="!daysSelected[0] && !daysSelected[1]" (click)="resetSelectedDates()">

@@ -224,3 +224,25 @@ a {
 .inverse-button:active {
     transform: scale(0.95);
 }
+
+/* calendar */
+
+.calendar-single {
+    display: none;
+    justify-items: center;
+}
+
+.calendar-double {
+    display: grid;
+    justify-items: center;
+}
+
+@media (max-width: 727px) {
+    .calendar-double {
+        display: none;
+    }
+
+    .calendar-single {
+        display: grid;
+    }
+}

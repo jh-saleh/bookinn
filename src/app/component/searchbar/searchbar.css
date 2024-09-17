@@ -25,7 +25,7 @@
     border-radius: 20px;
 }
 
-#inns-service {
+#stays-service {
     width: 55px;
 }
 
@@ -39,4 +39,14 @@
 
 .service-selected {
     font-weight: bold;
+}
+
+@media (max-width: 400px) {
+    .services {
+        padding: 15px 0px 15px 15px;
+    }
+
+    .services>button {
+        padding: 5px 2px;
+    }
 }

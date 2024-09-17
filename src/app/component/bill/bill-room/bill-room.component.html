@@ -61,7 +61,7 @@
                             [minDate]="startingDate" (sendDate)="getEndingDate($event)"></date-input>
                     </div>
                 </div>
-                <calendar [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'"
+                <calendar [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'"
                     (sendEndingDate)="getEndingDate($event)" (sendStartingDate)="getStartingDate($event)"
                     [theme]="'white'"></calendar>
             </div>

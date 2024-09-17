@@ -21,8 +21,8 @@
     top: 0px;
     left: 0px;
     height: calc(100dvh - 20px);
-    width: calc(100dvw - 40px);
-    padding: 10px 20px;
+    width: calc(100dvw - 20px);
+    padding: 10px;
     overflow-y: auto;
     background-color: var(--background);
     color: white;
@@ -51,12 +51,20 @@
     gap: 10px;
 }
 
-.reservation-box {
+.reservation-box-closed,
+.reservation-box-opened {
     color: black;
-    padding: 20px;
     background-color: white;
     border-radius: var(--box-border-radius);
     cursor: pointer;
+}
+
+.reservation-box-closed {
+    padding: 20px;
+}
+
+.reservation-box-opened {
+    padding: 10px;
 }
 
 .reservation-item {

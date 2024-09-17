@@ -68,7 +68,7 @@
     (openModal)="openCalendar()">
     <div [ngClass]="calendarWrapperClass">
         <calendar (sendStartingDate)="setStartingDate($event)" (sendEndingDate)="setEndingDate($event)"
-            [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
+            [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'" [theme]="'white'">
         </calendar>
     </div>
 </modal>

@@ -28,12 +28,23 @@
             </button>
         </div>
         <div class="reservation-modal-body">
-            <div class="reservation-box" (click)="openCalendar()">
-                @if(isCalendarModalOpen){
-                <calendar (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
-                    [initStartingDate]="startingDate" [initEndingDate]="endingDate" [mode]="'modal'" [theme]="'white'">
-                </calendar>
-                } @else {
+            @if(isCalendarModalOpen){
+            <div class="reservation-box-opened">
+                <div class="calendar-double">
+                    <calendar (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
+                        [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'"
+                        [theme]="'white'">
+                    </calendar>
+                </div>
+                <div class="calendar-single">
+                    <calendar (sendStartingDate)="getStartingDate($event)" (sendEndingDate)="getEndingDate($event)"
+                        [initStartingDate]="startingDate" [initEndingDate]="endingDate" [type]="'modal'"
+                        [mode]="'single'" [theme]="'white'">
+                    </calendar>
+                </div>
+            </div>
+            } @else {
+            <div class="reservation-box-closed" (click)="openCalendar()">
                 <div class="reservation-item">
                     <span>When</span>
                     <span>
@@ -44,13 +55,16 @@
                         }
                     </span>
                 </div>
-                }
             </div>
-            <div class="reservation-box" (click)="openGuestsModal()">
-                @if(isGuestModalOpen){
+            }
+            @if(isGuestModalOpen){
+            <div class="reservation-box-opened">
                 <guests (getGuests)="getGuests($event)" [initGuests]="guests" [maximumNbOfGuests]="maximumNbOfGuests">
                 </guests>
-                } @else {
+            </div>
+
+            } @else {
+            <div class="reservation-box-closed" (click)="openGuestsModal()">
                 <div class="reservation-item">
                     <span>Who</span>
                     <span>
@@ -62,8 +76,8 @@
                         }
                     </span>
                 </div>
-                }
             </div>
+            }
         </div>
     </div>
     <div class="reservation-modal-footer">

@@ -31,7 +31,8 @@ export class CalendarComponent implements OnInit {
   readonly week: string[] = Object.values(DaysShortHand);
   @Output() sendStartingDate = new EventEmitter<CalendarDate | undefined>();
   @Output() sendEndingDate = new EventEmitter<CalendarDate | undefined>();
-  @Input({ required: true }) mode: 'normal' | 'modal' = "modal";
+  @Input({ required: true }) type: 'normal' | 'modal' = "modal";
+  @Input() mode: 'single' | 'double' = "double";
   bgColorClass: string = "";
   colorClass: string = "";
   disabledColorClass: string = "";
