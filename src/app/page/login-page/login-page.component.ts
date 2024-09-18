@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from "../../component/credentials/login/login.component";
 import { FooterComponent } from "../../component/footer/footer.component";
-import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [LoginComponent, NavbarComponent, FooterComponent],
+  imports: [LoginComponent, DesktopNavbarComponent, FooterComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })

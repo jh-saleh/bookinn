@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FooterComponent } from "../../component/footer/footer.component";
-import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
+import { PhoneNavbarComponent } from "../../component/navbar/phone/phone-navbar.component";
 import { tripServiceFactory } from '../../hexagonal/di-factories';
 import { Trip } from '../../hexagonal/domain/model/trip/trip.model';
 import { TripPort } from '../../hexagonal/domain/port/trip.port';
@@ -13,7 +14,7 @@ import { AppState } from '../../state/app.state';
 @Component({
   selector: 'app-trip-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, RouterModule, CommonModule, CalendarDateFormatPipe],
+  imports: [DesktopNavbarComponent, FooterComponent, RouterModule, CommonModule, CalendarDateFormatPipe, PhoneNavbarComponent],
   providers: [{ provide: TripPort, useFactory: tripServiceFactory }],
   templateUrl: './trip-page.component.html',
   styleUrl: './trip-page.component.css'

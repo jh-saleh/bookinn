@@ -3,7 +3,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HostCardComponent } from "../../component/card/host-card/host-card.component";
 import { StayCardComponent } from "../../component/card/stay-card/stay-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
-import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
+import { PhoneNavbarComponent } from "../../component/navbar/phone/phone-navbar.component";
 import { hostServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
 import { Host } from '../../hexagonal/domain/model/stay/host.model';
 import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
@@ -16,8 +17,8 @@ import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/h
 @Component({
   selector: 'host-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, HostCardComponent, StayCardComponent, RouterModule,
-    CamelToSentencePipe, HostInformationIconPipe, ArrayToStringPipe],
+  imports: [DesktopNavbarComponent, FooterComponent, HostCardComponent, StayCardComponent, RouterModule,
+    CamelToSentencePipe, HostInformationIconPipe, ArrayToStringPipe, PhoneNavbarComponent],
   providers: [{ provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.css'

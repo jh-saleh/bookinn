@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { css } from '@emotion/css';
-import { AccountComponent } from "../account/account.component";
-import { LogoComponent } from "../logo/logo.component";
-import { DesktopSearchbarComponent, SearchbarStartingStates } from "../searchbar/desktop/desktop-searchbar.component";
-import { PhoneSearchbarComponent } from "../searchbar/phone/phone-searchbar.component";
+import { AccountComponent } from "../../account/account.component";
+import { LogoComponent } from "../../logo/logo.component";
+import { DesktopSearchbarComponent, SearchbarStartingStates } from "../../searchbar/desktop/desktop-searchbar.component";
+import { PhoneSearchbarComponent } from "../../searchbar/phone/phone-searchbar.component";
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'desktop-navbar',
   standalone: true,
   imports: [CommonModule, DesktopSearchbarComponent, LogoComponent, AccountComponent, PhoneSearchbarComponent],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: './desktop-navbar.component.html',
+  styleUrl: './desktop-navbar.component.css'
 })
-export class NavbarComponent {
+export class DesktopNavbarComponent {
   @Input({ required: false }) hideSearchbar: boolean = false
   @Input({ required: false }) startingModeState: 'minimized' | 'normal' = 'normal';
   @Input({ required: false }) searchbarStartingState: SearchbarStartingStates | undefined;

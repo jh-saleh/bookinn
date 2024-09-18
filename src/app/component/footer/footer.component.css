@@ -4,7 +4,8 @@
     display: flex;
     gap: 15px;
     color: white;
-    width: calc(100dvw - 20px);
+    width: calc(100dvw - 10px);
+    align-items: center;
 }
 
 .footer>a {
@@ -14,4 +15,16 @@
 
 .footer>a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .footer {
+        padding: 20px 5px;
+        gap: 7px;
+    }
+
+    .footer>a {
+        font-size: small;
+        width: max-content;
+    }
 }

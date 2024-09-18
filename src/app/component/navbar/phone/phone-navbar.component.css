@@ -1,0 +1,47 @@
+.phone-navbar-wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: calc(100dvw - 40px);
+    background-color: white;
+    padding: 10px 20px;
+    display: none;
+    z-index: 9998;
+    user-select: none;
+    justify-content: center;
+}
+
+.phone-navbar {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    align-items: center;
+}
+
+.phone-navbar>button {
+    border: none;
+    background-color: inherit;
+    font-weight: bold;
+}
+
+.phone-navbar-item {
+    display: grid;
+    grid-template-columns: max-content;
+    color: var(--crimson-500);
+    cursor: pointer;
+    justify-items: center;
+}
+
+.phone-navbar-item>div:last-child {
+    font-size: small;
+    font-weight: bold;
+}
+
+.phone-navbar-item-selected {
+    color: white;
+}
+
+@media (max-width: 900px) {
+    .phone-navbar-wrapper {
+        display: flex;
+    }
+}

@@ -11,7 +11,7 @@ import { GuidebookRoomComponent } from "../../component/guidebook/guidebook-room
 import { HostRoomComponent } from "../../component/host/host-room.component";
 import { ImagesViewerComponent } from "../../component/images-viewer/images-viewer.component";
 import { MapComponent } from '../../component/map/map.component';
-import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
 import { hostServiceFactory, stayServiceFactory } from '../../hexagonal/di-factories';
 import { MAX_NB_ADULTS, MAX_NB_CHILDREN, MAX_NB_INFANTS, MAX_NB_PETS } from '../../hexagonal/domain/model/const';
@@ -34,7 +34,7 @@ import { StayActions } from '../../state/stay/stay.actions';
 @Component({
   selector: 'room-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, CalendarComponent, FooterComponent,
+  imports: [CommonModule, DesktopNavbarComponent, CalendarComponent, FooterComponent,
     ImagesViewerComponent, FullViewModalComponent, BillRoomComponent, GuidebookRoomComponent,
     PluralizePipe, CamelToSentencePipe, CalendarDateFormatPipe, HostRoomComponent, NegationPipe,
     MapComponent, PhoneBillRoomComponent],

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BillReservationStayComponent } from '../../component/bill/bill-reservation-stay/bill-reservation-stay.component';
 import { FooterComponent } from "../../component/footer/footer.component";
-import { NavbarComponent } from "../../component/navbar/navbar.component";
+import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
 import { PaymentOptionsComponent } from "../../component/payment-options/payment-options.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
 import { billingServiceFactory, stayServiceFactory, tripServiceFactory } from '../../hexagonal/di-factories';
@@ -29,7 +29,7 @@ export interface ReservationStartingStates {
 @Component({
   selector: 'stay-reservation-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, CalendarDateFormatPipe, PluralizePipe,
+  imports: [DesktopNavbarComponent, FooterComponent, CalendarDateFormatPipe, PluralizePipe,
     FullViewModalComponent, CommonModule, PaymentOptionsComponent, BillReservationStayComponent, PastDateStrikeThroughPipe],
   providers: [{ provide: StayPort, useFactory: stayServiceFactory }, { provide: BillingPort, useFactory: billingServiceFactory },
   { provide: TripPort, useFactory: tripServiceFactory }],

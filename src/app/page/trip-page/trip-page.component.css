@@ -88,6 +88,10 @@
 }
 
 @media (max-width: 550px) {
+    .trip-page {
+        width: 95dvw;
+    }
+
     .trip-item {
         grid-template-columns: 2fr 1fr;
     }

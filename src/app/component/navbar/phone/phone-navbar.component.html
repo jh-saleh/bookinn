@@ -1,0 +1,58 @@
+<div class="phone-navbar-wrapper">
+    <div class="phone-navbar">
+        <a [routerLink]="'/home'" class="phone-navbar-item" [class.phone-navbar-item-selected]="selected === 'explore'">
+            <div>
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </div>
+            <div>
+                Explore
+            </div>
+        </a>
+        @if(user){
+        <a [routerLink]="'/trips'" class="phone-navbar-item" [class.phone-navbar-item-selected]="selected === 'trips'">
+            <div>
+                <span class="material-symbols-outlined">
+                    trip
+                </span>
+            </div>
+            <div>
+                Trips
+            </div>
+        </a>
+        <button class="phone-navbar-item" [class.phone-navbar-item-selected]="selected === 'trips'"
+            (click)="logOutHandler()">
+            <div>
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
+            </div>
+            <div>
+                Logout
+            </div>
+        </button>
+        } @else {
+        <a [routerLink]="'/login'" class="phone-navbar-item" [class.phone-navbar-item-selected]="selected === 'trips'">
+            <div>
+                <span class="material-symbols-outlined">
+                    login
+                </span>
+            </div>
+            <div>
+                Log In
+            </div>
+        </a>
+        <a [routerLink]="'/signup'" class="phone-navbar-item" [class.phone-navbar-item-selected]="selected === 'trips'">
+            <div>
+                <span class="material-symbols-outlined">
+                    input
+                </span>
+            </div>
+            <div>
+                Sign Up
+            </div>
+        </a>
+        }
+    </div>
+</div>

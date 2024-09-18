@@ -1,6 +1,7 @@
 <section class="home">
-    <app-navbar>
-    </app-navbar>
+    <desktop-navbar>
+    </desktop-navbar>
+    <phone-navbar></phone-navbar>
     <div class="home-body">
         @for (stay of stays; track $index) {
         <a [routerLink]="['/room', stay.id]">
