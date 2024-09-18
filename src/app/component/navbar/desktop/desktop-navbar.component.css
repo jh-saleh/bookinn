@@ -1,5 +1,5 @@
 .desktop-navbar-wrapper,
-.phone-navbar-wrapper {
+.phone-searchbar-wrapper {
     position: fixed;
     align-items: start;
     top: 0px;
@@ -17,7 +17,7 @@
     background-color: var(--background);
 }
 
-.phone-navbar {
+.phone-searchbar {
     padding: 10px 0px;
     padding-left: 5dvw;
     border-bottom: 1px white solid;
@@ -37,7 +37,7 @@
 }
 
 @media (min-width: 900px) {
-    .phone-navbar-wrapper {
+    .phone-searchbar-wrapper {
         display: none !important;
     }
 }
