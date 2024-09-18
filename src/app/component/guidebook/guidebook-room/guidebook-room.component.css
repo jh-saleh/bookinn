@@ -89,3 +89,31 @@
 .guidebook-cancellation-policy {
     width: max-content;
 }
+
+.guidebook-divider {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .guidebook-title {
+        display: none;
+    }
+
+    .guidebook-sub-title {
+        font-size: x-large;
+    }
+
+    .guidebook-divider {
+        display: grid;
+    }
+
+    .room-guidebook {
+        padding-bottom: 30px;
+    }
+
+    .things-to-know {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}

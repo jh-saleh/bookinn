@@ -52,7 +52,7 @@
 
 .room-amenity {
     display: grid;
-    grid-template-columns: min-content max-content;
+    grid-template-columns: min-content auto;
     gap: 10px;
     align-items: center;
 }
@@ -171,11 +171,23 @@
 }
 
 @media (max-width: 900px) {
+    .page-room-body {
+        margin-top: 0px;
+    }
+
     .bill-on-rails {
         display: none;
     }
 
+    .room-title {
+        padding-bottom: 10px;
+    }
+
     .room-information {
         grid-template-columns: auto;
+    }
+
+    .room-divider {
+        margin: 15px 0px;
     }
 }

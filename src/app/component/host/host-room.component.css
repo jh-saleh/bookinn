@@ -1,13 +1,12 @@
 .host-section {
     color: white;
     display: grid;
-    gap: 20px;
 }
 
 .host-body {
     display: grid;
     grid-template-columns: auto 70%;
-    gap: 60px;
+    gap: 40px;
 }
 
 .host-detail-wrapper {
@@ -25,4 +24,23 @@
     display: grid;
     grid-template-columns: max-content auto;
     gap: 10px;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .host-section {
+        gap: 10px;
+    }
+
+    .host-body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .host-detail-wrapper {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
 }

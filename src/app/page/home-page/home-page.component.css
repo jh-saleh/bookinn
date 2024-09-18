@@ -13,3 +13,9 @@
     padding-bottom: 20px;
     background-color: var(--background);
 }
+
+@media (max-width: 900px) {
+    .home-body {
+        gap: 15px;
+    }
+}

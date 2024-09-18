@@ -10,13 +10,11 @@
             <div class="host-detail">
                 <h3>Host details</h3>
                 <div>Response rate: {{host.efficiency.rate}}%</div>
-                @if(isEfficiencyWithinHours){
-                @if(host.efficiency.time.amount < 5){<div>Responds within a few hours.
+                @if(isEfficiencyWithinHours && host.efficiency.time.amount < 5){ <div>Responds within a few hours.
             </div>
-            } @else {
+            } @else if(isEfficiencyWithinHours && host.efficiency.time.amount >= 5) {
             <div>Responds within {{host.efficiency.time.amount}} hours.</div>
-            }
-            }@else {
+            } @else {
             <div>Responds within a {{host.efficiency.time.amount}} day period.</div>
             }
         </div>

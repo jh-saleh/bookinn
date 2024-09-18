@@ -197,6 +197,13 @@ a {
     }
 }
 
+@media (max-width: 900px) {
+    .page-body {
+        width: 95%;
+        margin-top: 10px;
+    }
+}
+
 /* button */
 
 .button,

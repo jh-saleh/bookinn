@@ -106,9 +106,18 @@
                             Add your travel dates for exact pricing
                             }
                         </h3>
-                        <calendar [type]="'normal'" [mode]="'single'" [theme]="'red'" [initStartingDate]="startingDate"
-                            [initEndingDate]="endingDate" (sendStartingDate)="getStartingDate($event, true)"
-                            (sendEndingDate)="getEndingDate($event, true)"></calendar>
+                        <div class="calendar-double">
+                            <calendar [type]="'normal'" [mode]="'double'" [theme]="'red'"
+                                [initStartingDate]="startingDate" [initEndingDate]="endingDate"
+                                (sendStartingDate)="getStartingDate($event, true)"
+                                (sendEndingDate)="getEndingDate($event, true)"></calendar>
+                        </div>
+                        <div class="calendar-single">
+                            <calendar [type]="'modal'" [mode]="'single'" [theme]="'red'"
+                                [initStartingDate]="startingDate" [initEndingDate]="endingDate"
+                                (sendStartingDate)="getStartingDate($event, true)"
+                                (sendEndingDate)="getEndingDate($event, true)"></calendar>
+                        </div>
                     </div>
                 </section>
                 <section class="bill-on-rails">
