@@ -107,7 +107,7 @@
 .images-viewer-wrapper--for-1-image {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 29dvw);
+    grid-template-columns: 1fr;
     gap: 1dvw;
 
     img {
@@ -116,5 +116,43 @@
         border-radius: var(--box-border-radius);
         object-fit: cover;
         object-position: center;
+    }
+}
+
+.images-viewer-wrapper--for-phone {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1dvw;
+
+    img {
+        height: 29dvw;
+        width: 100%;
+        border-radius: var(--box-border-radius);
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .images-viewer-wrapper--for-5-images,
+    .images-viewer-wrapper--for-3-images,
+    .images-viewer-wrapper--for-2-images {
+        grid-template-columns: 1fr;
+        gap: 0px;
+
+        >img {
+            height: 95dvw;
+            width: 100%;
+            border-radius: var(--box-border-radius);
+        }
+    }
+
+    .images-viewer--for-5-images,
+    .images-viewer--for-3-images,
+    .images-viewer--for-2-images,
+    .images-viewer--for-2-images {
+        display: none;
     }
 }
