@@ -1,16 +1,21 @@
 <div class="reservation-wrapper">
-    <div>
-        @if(startingDate){
-        {{startingDate | calendarDateFormat: "MMM dd, yyyy"}} -
-        }
-        @if(endingDate){
-        {{endingDate | calendarDateFormat:
-        "MMM dd, yyyy"}} -
-        }
-        {{nbOfGuests}} {{nbOfGuests | pluralize: 'guest'}}
-        @if(completeBill){
-        | {{completeBill}}$
-        }
+    <div class="reservation-informations">
+        <div>
+            @if(completeBill){
+            ${{completeBill}} per night
+            } @else {
+            Add dates for prices
+            }
+        </div>
+        <div>
+            @if(startingDate){
+            {{startingDate | calendarDateFormat: "MMM dd, yyyy"}} -
+            }
+            @if(endingDate){
+            {{endingDate | calendarDateFormat:
+            "MMM dd, yyyy"}}
+            }
+        </div>
     </div>
     <button class="button" (click)="openBillRoomForPhoneMode()">
         Reserve

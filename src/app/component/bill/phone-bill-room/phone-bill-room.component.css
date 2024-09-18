@@ -121,6 +121,10 @@
     font-weight: bold;
 }
 
+.reservation-informations>div:last-child {
+    font-size: small;
+}
+
 @media (max-width: 900px) {
     .reservation-wrapper {
         visibility: initial;
