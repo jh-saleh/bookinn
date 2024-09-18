@@ -55,7 +55,7 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit {
           refreshPriority: 0,
           scrub: true,
           trigger: ".phone-navbar-wrapper",
-          start: "top top",
+          start: "bottom bottom",
           end: "max",
           onUpdate: ({ direction }) => {
             if (direction < 0) {
