@@ -50,11 +50,11 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit {
         duration: 0.3,
       }).progress(0);
 
-      tl.fromTo(".phone-navbar-wrapper", {}, {
+      tl.fromTo(".services-wrapper", {}, {
         scrollTrigger: {
           refreshPriority: 0,
           scrub: true,
-          trigger: ".phone-navbar-wrapper",
+          trigger: ".services-wrapper",
           start: "top top",
           end: "max",
           onUpdate: ({ direction }) => {
