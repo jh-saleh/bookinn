@@ -58,7 +58,7 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit {
           start: "top top",
           end: "max",
           onUpdate: ({ direction }) => {
-            if (direction < 0) {
+            if (direction <= 0) {
               this.animations["phone-navbar-wrapper"].reverse();
             } else {
               this.animations["phone-navbar-wrapper"].play();
