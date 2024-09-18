@@ -9,6 +9,7 @@ import { Host } from '../../hexagonal/domain/model/stay/host.model';
 import { Stay } from '../../hexagonal/domain/model/stay/stay.model';
 import { HostPort } from '../../hexagonal/domain/port/host.port';
 import { StayPort } from '../../hexagonal/domain/port/stay.port';
+import { ArrayToStringPipe } from "../../pipe/array-to-string.pipe";
 import { CamelToSentencePipe } from '../../pipe/cameltosentence.pipe';
 import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/host-information-icon.pipe';
 
@@ -16,7 +17,7 @@ import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/h
   selector: 'host-page',
   standalone: true,
   imports: [NavbarComponent, FooterComponent, HostCardComponent, StayCardComponent, RouterModule,
-    CamelToSentencePipe, HostInformationIconPipe],
+    CamelToSentencePipe, HostInformationIconPipe, ArrayToStringPipe],
   providers: [{ provide: HostPort, useFactory: hostServiceFactory }, { provide: StayPort, useFactory: stayServiceFactory }],
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.css'
