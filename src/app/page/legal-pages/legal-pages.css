@@ -1,0 +1,96 @@
+.legal-wrapper-layout {
+    height: 100dvh;
+    overflow-y: auto;
+}
+
+.legal-layout {
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    color: white;
+    padding-bottom: 50px;
+}
+
+.legal-title-layout {
+    font-size: 45px;
+    font-weight: 800;
+    padding: 20px 0 0 0;
+    width: 60%;
+}
+
+@media (max-width: 767px) {
+    .legal-title-layout {
+        width: 80%;
+        font-size: 30px;
+    }
+}
+
+.legal-section-layout {
+    color: white;
+    width: 60%;
+}
+
+@media (max-width: 767px) {
+    .legal-section-layout {
+        width: 80%;
+    }
+}
+
+.legal-section-layout h3 {
+    font-weight: bolder;
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .legal-section-layout h3 {
+        font-size: x-large;
+    }
+}
+
+.legal-section-layout p {
+    text-align: justify;
+    margin-bottom: 5px;
+}
+
+.legal-section-layout p a {
+    margin-left: 5px;
+    color: var(--main-300);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.legal-section-layout table {
+    border-collapse: collapse;
+    border: 2px solid white;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.legal-section-layout table caption {
+    font-size: x-large;
+}
+
+@media (max-width: 767px) {
+    .legal-section-layout table caption {
+        font-size: large;
+    }
+}
+
+.legal-section-layout table th,
+.legal-section-layout table td {
+    border: 2px solid white;
+    padding: 8px 10px;
+}
+
+@media (max-width: 767px) {
+
+    .legal-section-layout table th,
+    .legal-section-layout table td {
+        font-size: small;
+    }
+}

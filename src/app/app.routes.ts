@@ -3,6 +3,8 @@ import { guestOnlyGuard } from './guard/guest-only.guard';
 import { userOnlyGuard } from './guard/user-only.guard';
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { HostPageComponent } from './page/host-page/host-page.component';
+import { PrivacyPolicyPageComponent } from './page/legal-pages/privacy-policy-page/privacy-policy-page.component';
+import { TermsOfServicePageComponent } from './page/legal-pages/terms-of-service-page/terms-of-service-page.component';
 import { LoginPageComponent } from './page/login-page/login-page.component';
 import { NotFoundPageComponent } from './page/not-found-page/not-found-page.component';
 import { StayReservationPageComponent } from './page/reservation-page/stay-reservation-page.component';
@@ -22,5 +24,7 @@ export const routes: Routes = [
     { path: 'trips', component: TripPageComponent, title: 'Trips | BookInn', canActivate: [userOnlyGuard] },
     { path: 'login', component: LoginPageComponent, title: 'Log In | BookInn', canActivate: [guestOnlyGuard] },
     { path: 'signup', component: SignUpPageComponent, title: 'Sign Up | BookInn', canActivate: [guestOnlyGuard] },
+    { path: 'terms-of-service', component: TermsOfServicePageComponent, title: 'Terms of Service | BookInn' },
+    { path: 'privacy-policy', component: PrivacyPolicyPageComponent, title: 'Privacy Policy | BookInn' },
     { path: '**', component: NotFoundPageComponent, title: 'Not Found | BookInn' },
 ];
