@@ -1,17 +1,17 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { css } from '@emotion/css';
+import * as L from "leaflet";
 import { environment } from '../../../environments/environment';
 import { CityName } from '../../hexagonal/domain/model/land/land.model';
 import { Coordinates } from '../../hexagonal/domain/model/stay/location.model';
-import { LeafletLoadingService } from '../../service/leaflet-loading.service';
 
 @Component({
   selector: 'app-map',
   standalone: true,
   templateUrl: './map.component.html',
   imports: [CommonModule],
-  providers: [LeafletLoadingService],
+  providers: [],
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
@@ -35,59 +35,52 @@ export class MapComponent {
   }
   @Input({ required: false }) displayAllCities?: boolean;
 
-  constructor(
-    private leafletLoadingService: LeafletLoadingService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     // check if app is running in browser and then lazyload leaflet because of SSR
-    if (isPlatformBrowser(this.platformId)) {
-      this.leafletLoadingService.loadLeaflet().then((leafletLib) => {
-        this.initMap(leafletLib);
-      });
-    }
+    this.initMap();
   }
 
-  initMap(lib: any): void {
+  initMap(): void {
     const getCityIcon = (city: string) => {
       const icon: string = `
         <div class="map-icon-label">${city}</div>
       `;
-      return lib.divIcon({ className: "", html: icon });
+      return L.divIcon({ className: "", html: icon });
     }
 
     const getLocationMarker = (coordinate: Coordinates) => {
       const icon: string = `
         <span class="material-symbols-outlined map-icon">cottage</span>
       `;
-      return lib.marker([coordinate.y, coordinate.x], { icon: lib.divIcon({ className: "", html: icon }) });
+      return L.marker([coordinate.y, coordinate.x], { icon: L.divIcon({ className: "", html: icon }) });
     }
 
-    const cities = lib.layerGroup([
-      lib.marker([310, 255], { icon: getCityIcon(CityName.Brightwater) }),
-      lib.marker([230, 120], { icon: getCityIcon(CityName.Briarholm) }),
-      lib.marker([120, 240], { icon: getCityIcon(CityName.Drakenshore) }),
-      lib.marker([220, 450], { icon: getCityIcon(CityName.Thandor) }),
-      lib.marker([300, 510], { icon: getCityIcon(CityName.Glimmerfall) }),
-      lib.marker([160, 850], { icon: getCityIcon(CityName.Ebonport) }),
-      lib.marker([300, 920], { icon: getCityIcon(CityName.Sunspire) }),
-      lib.marker([400, 250], { icon: getCityIcon(CityName.Redleaf) }),
-      lib.marker([420, 450], { icon: getCityIcon(CityName.Willowgrove) }),
-      lib.marker([470, 760], { icon: getCityIcon(CityName.Lurendale) }),
-      lib.marker([535, 740], { icon: getCityIcon(CityName.Shadowfen) }),
-      lib.marker([480, 870], { icon: getCityIcon(CityName.Goldhaven) }),
-      lib.marker([540, 370], { icon: getCityIcon(CityName.Vorandal) }),
-      lib.marker([580, 210], { icon: getCityIcon(CityName.Mirros) }),
-      lib.marker([610, 500], { icon: getCityIcon(CityName.Moonshadow) }),
-      lib.marker([710, 870], { icon: getCityIcon(CityName.Stormwatch) }),
-      lib.marker([800, 170], { icon: getCityIcon(CityName.Ironcliff) }),
-      lib.marker([900, 250], { icon: getCityIcon(CityName.Frostgate) }),
-      lib.marker([800, 470], { icon: getCityIcon(CityName.Krynholm) }),
-      lib.marker([850, 700], { icon: getCityIcon(CityName.Highreach) }),
+    const cities = L.layerGroup([
+      L.marker([310, 255], { icon: getCityIcon(CityName.Brightwater) }),
+      L.marker([230, 120], { icon: getCityIcon(CityName.Briarholm) }),
+      L.marker([120, 240], { icon: getCityIcon(CityName.Drakenshore) }),
+      L.marker([220, 450], { icon: getCityIcon(CityName.Thandor) }),
+      L.marker([300, 510], { icon: getCityIcon(CityName.Glimmerfall) }),
+      L.marker([160, 850], { icon: getCityIcon(CityName.Ebonport) }),
+      L.marker([300, 920], { icon: getCityIcon(CityName.Sunspire) }),
+      L.marker([400, 250], { icon: getCityIcon(CityName.Redleaf) }),
+      L.marker([420, 450], { icon: getCityIcon(CityName.Willowgrove) }),
+      L.marker([470, 760], { icon: getCityIcon(CityName.Lurendale) }),
+      L.marker([535, 740], { icon: getCityIcon(CityName.Shadowfen) }),
+      L.marker([480, 870], { icon: getCityIcon(CityName.Goldhaven) }),
+      L.marker([540, 370], { icon: getCityIcon(CityName.Vorandal) }),
+      L.marker([580, 210], { icon: getCityIcon(CityName.Mirros) }),
+      L.marker([610, 500], { icon: getCityIcon(CityName.Moonshadow) }),
+      L.marker([710, 870], { icon: getCityIcon(CityName.Stormwatch) }),
+      L.marker([800, 170], { icon: getCityIcon(CityName.Ironcliff) }),
+      L.marker([900, 250], { icon: getCityIcon(CityName.Frostgate) }),
+      L.marker([800, 470], { icon: getCityIcon(CityName.Krynholm) }),
+      L.marker([850, 700], { icon: getCityIcon(CityName.Highreach) }),
     ]);
-    this.map = lib.map('map', {
-      crs: lib.CRS.Simple, // crs : coordinate reference system
+    this.map = L.map('map', {
+      crs: L.CRS.Simple, // crs : coordinate reference system
       minZoom: 0,
       maxZoom: 2,
       attributionControl: false, // désactive le crédit
@@ -101,10 +94,10 @@ export class MapComponent {
     if (this.displayAllCities) {
       cities.addTo(this.map);
     }
-    const layerControl = lib.control.layers({}, {
+    const layerControl = L.control.layers({}, {
 
     }).addTo(this.map);
     layerControl.addOverlay(cities, "Cities");
-    this.image = lib.imageOverlay(environment.images.worldmap, this.bounds).addTo(this.map);
+    this.image = L.imageOverlay(environment.images.worldmap, this.bounds as L.LatLngBoundsExpression).addTo(this.map);
   }
 }
