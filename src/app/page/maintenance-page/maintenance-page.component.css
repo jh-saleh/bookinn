@@ -1,0 +1,11 @@
+.maintenance-wrapper {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+}
+
+.maintenance-wrapper>div {
+    text-align: center;
+    color: white;
+    font-size: x-large;
+}

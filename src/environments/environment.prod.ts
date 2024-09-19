@@ -5,5 +5,6 @@ export const environment = {
         worldmap: "https://i.postimg.cc/KvZhCHXs/Orlond.png",
     },
     mode: "portfolio",
-    baseURL: "https://bookinn-jhsaleh.vercel.app/"
+    baseURL: "https://bookinn-jhsaleh.vercel.app/",
+    isMaintained: false,
 }
