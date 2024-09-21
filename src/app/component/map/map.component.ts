@@ -15,9 +15,9 @@ import { Coordinates } from '../../hexagonal/domain/model/stay/location.model';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
-  map: any;
+  map!: L.Map;
   image: any;
-  bounds = [[0, 0], [998, 1024]]; // ordre [height, width]
+  bounds: L.LatLngBoundsExpression = [[0, 0], [998, 1024]]; // ordre [[center_y, center_x], [height, width]]
   mapWrapper: string = css`
   height: 100%;
   width: 100%;
@@ -38,7 +38,6 @@ export class MapComponent {
   constructor() { }
 
   ngOnInit() {
-    // check if app is running in browser and then lazyload leaflet because of SSR
     this.initMap();
   }
 
@@ -83,10 +82,11 @@ export class MapComponent {
       crs: L.CRS.Simple, // crs : coordinate reference system
       minZoom: 0,
       maxZoom: 2,
-      attributionControl: false, // désactive le crédit
+      maxBoundsViscosity: 1.0,
     });
-    this.map.setMaxBounds(this.bounds);
     this.map.fitBounds(this.bounds);
+    this.map.setMaxBounds(this.bounds);
+    console.log(this.map.getBounds());
     if (this.coordinates) {
       getLocationMarker(this.coordinates).addTo(this.map);
       this.map.setView([this.coordinates.y, this.coordinates.x], this.zoom);
@@ -98,6 +98,6 @@ export class MapComponent {
 
     }).addTo(this.map);
     layerControl.addOverlay(cities, "Cities");
-    this.image = L.imageOverlay(environment.images.worldmap, this.bounds as L.LatLngBoundsExpression).addTo(this.map);
+    this.image = L.imageOverlay(environment.images.worldmap, this.bounds).addTo(this.map);
   }
 }
