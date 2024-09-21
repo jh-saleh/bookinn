@@ -21,6 +21,7 @@
     .footer {
         padding: 20px 5px;
         gap: 7px;
+        width: calc(100dvw - 10px);
     }
 
     .footer>a {

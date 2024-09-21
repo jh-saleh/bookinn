@@ -1,5 +1,5 @@
 <ng-template #tripBooked let-trip="trip">
-    <div class="trip-item">
+    <a [routerLink]="['/trip-details', trip.id]" class="trip-item">
         <div class="trip-data">
             <div class="trip-data-header">
                 <h1>Stay at {{trip.stay.location.city}}</h1>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <img class="trip-image" [src]="trip.stay.imgsUrls.at(0)" />
-    </div>
+    </a>
 </ng-template>
 
 <section>

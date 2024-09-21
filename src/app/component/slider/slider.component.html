@@ -1,0 +1,21 @@
+<div class="slider-wrapper">
+    @if(canUsePreviousImageButton){
+    <button class="previous-image" (click)="goToPreviousImage($event)">
+        <span class="material-symbols-outlined">
+            chevron_left
+        </span>
+    </button>
+    }
+    <div class="slider">
+        @for(url of imgsUrls; track $index){
+        <img class="slide" [ngClass]="translateClass" [src]="url" alt="a bedroom picture" />
+        }
+    </div>
+    @if(canUseNextImageButton){
+    <button class="next-image" (click)="goToNextImage($event)">
+        <span class="material-symbols-outlined">
+            chevron_right
+        </span>
+    </button>
+    }
+</div>

@@ -1,0 +1,253 @@
+<ng-template #information let-information="information" let-icon="icon" let-included="included"
+    let-validationLabel="validationLabel">
+    <div class="trip-details-modal-item">
+        <span class="material-symbols-outlined">
+            {{icon}}
+        </span>
+        <div>
+            {{information | negation:included:validationLabel | camelToSentence }}
+        </div>
+    </div>
+    <div class="modal-divider"></div>
+</ng-template>
+
+<div>
+    <desktop-navbar [hideSearchbar]="true"></desktop-navbar>
+    <div class="trip-details-page-wrapper page-padding-without-searchbar">
+        <section class="trip-details">
+            <div class="trip-details-informations">
+                <h2>
+                    Your trip to {{trip?.stay?.name}}
+                </h2>
+                <div class="trip-details-image-wrapper">
+                    <slider [imgsUrls]="trip?.stay?.imgsUrls"></slider>
+                </div>
+                <div class="trip-details-date">
+                    <div>
+                        <span>Check-in</span>
+                        <span>{{trip?.startingDate | calendarDateFormat: 'MMM dd, yyyy'}}</span>
+                        @if(this.isTimeCheck){
+                        <span>{{trip?.stay?.guidebook?.houserules?.time?.interval?.checkIn |
+                            hourBoundaryToString:'beginning'}}</span>
+                        }
+                    </div>
+                    <div>
+                        <span>Checkout</span>
+                        <span>{{trip?.endingDate | calendarDateFormat: 'MMM dd, yyyy'}}</span>
+                        @if(this.isTimeCheck){
+                        <span>{{trip?.stay?.guidebook?.houserules?.time?.interval?.checkOut |
+                            hourBoundaryToString:'beginning'}}</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="main-divider"></div>
+            <div class="more-trip-details-informations">
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        location_on
+                    </span>
+                    <span>
+                        <h3>How to get there</h3>
+                        <div>Address : {{trip?.stay?.location?.street}}, {{trip?.stay?.location?.city}},
+                            {{trip?.stay?.location?.kingdom}}</div>
+                    </span>
+                </div>
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        menu_book
+                    </span>
+                    <button class="trip-details-button" (click)="openHouseRulesModal()">
+                        <h2>Things to know</h2>
+                        <div>Houses rules</div>
+                    </button>
+                </div>
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        chat_bubble
+                    </span>
+                    <span>
+                        <h3>Message the host</h3>
+                        <div>{{trip?.host?.firstname}} {{trip?.host?.lastname}}</div>
+                    </span>
+                </div>
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        help
+                    </span>
+                    <span>
+                        <h3>Ask for help</h3>
+                        <div>Contact BookInn support.</div>
+                    </span>
+                </div>
+            </div>
+            <div class="main-divider"></div>
+            <div class="trip-details-guests">
+                <h3>Who's going on a adventure ?</h3>
+                @if(trip?.guests?.adult?.nb){
+                <div>
+                    &#9210; {{trip?.guests?.adult?.nb}} {{trip?.guests?.adult?.nb | pluralize:'adult'}}
+                </div>
+                }
+                @if(trip?.guests?.child?.nb){
+                <div>
+                    &#9210; {{trip?.guests?.child?.nb}} {{trip?.guests?.child?.nb | pluralize:'child':'ren'}}
+                </div>
+                }
+                @if(trip?.guests?.infant?.nb){
+                <div>
+                    &#9210; {{trip?.guests?.infant?.nb}} {{trip?.guests?.infant?.nb | pluralize:'infant'}}
+                </div>
+                }
+                @if(trip?.guests?.pet?.nb){
+                <div>
+                    &#9210; {{trip?.guests?.pet?.nb}} {{trip?.guests?.pet?.nb | pluralize:'pet'}}
+                </div>
+                }
+            </div>
+            <div class="main-divider"></div>
+            <div class="trip-details-cancellation-policy">
+                <h3>Cancellation Policy</h3>
+                <div>
+                    Free cancellation before {{fullRefundDate | calendarDateFormat: 'MMM dd, yyyy'}}.
+                </div>
+                @if(trip?.stay?.guidebook?.cancellationPolicy?.partialRefund){
+                <div>
+                    Cancel before {{partialRefundDate | calendarDateFormat: 'MMM dd, yyyy'}} for a partial refund.
+                </div>
+                }
+            </div>
+            <div class="main-divider"></div>
+            <div class="trip-details-actions">
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                    <div>
+                        Edit reservation
+                    </div>
+                </div>
+                <div class="trip-details-item">
+                    <span class="material-symbols-outlined">
+                        block
+                    </span>
+                    <button class="trip-details-button" (click)="openCancelReservationModal()">
+                        <div>
+                            Cancel reservation
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="main-divider"></div>
+            <div class="trip-details-host">
+                <h3>The host's name is {{trip?.host?.firstname}} {{trip?.host?.lastname}}</h3>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                    class="trip-details-item host-phone-call">
+                    <span class="material-symbols-outlined">
+                        phone
+                    </span>
+                    <div>
+                        Call the host
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="map-wrapper">
+            <div class="map-limit-box">
+                <app-map [zoom]="2" [coordinates]="trip?.stay?.location?.coordinates" [showMarker]="true"></app-map>
+            </div>
+        </section>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<full-view-modal [isModalOpen]="isHouseRulesModalOpen" (openModal)="openHouseRulesModal()"
+    (closeModal)="closeHouseRulesModal()">
+    <div class="full-view-modal-body">
+        <section>
+            <h1>
+                House rules
+            </h1>
+            <p>
+                You'll be staying in someone's home, so please treat it with care and respect.
+            </p>
+        </section>
+        <h2>
+            Checking in and out
+        </h2>
+        @if (isTimeCheck) {
+        @if(trip?.stay?.guidebook?.houserules?.time?.interval?.checkIn){
+        <div class="trip-details-modal-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Check-in {{trip?.stay?.guidebook?.houserules?.time?.interval?.checkIn | hourBoundaryToString}}
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        @if(trip?.stay?.guidebook?.houserules?.time?.interval?.checkOut){
+        <div class="trip-details-modal-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Checkout {{trip?.stay?.guidebook?.houserules?.time?.interval?.checkOut | hourBoundaryToString}}
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        } @else {
+        <div class="trip-details-modal-item">
+            <span class="material-symbols-outlined">
+                schedule
+            </span>
+            <span>
+                Flexible check-in
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        }
+        <h2>
+            During your stay
+        </h2>
+        <div class="trip-details-modal-item">
+            <span class="material-symbols-outlined">
+                groups
+            </span>
+            <span>
+                {{trip?.stay?.maxNumberOfGuests}} {{trip?.stay?.maxNumberOfGuests | pluralize: 'guest'}} maximum
+            </span>
+        </div>
+        <div class="modal-divider"></div>
+        @for (stayRule of stayRules; track $index) {
+        <ng-container
+            *ngTemplateOutlet="information; context:{information: stayRule.enum , icon: stayRule.icon, included: stayRule.included, validationLabel: 'allowed'}"></ng-container>
+        }
+        <h2>
+            Before you leave
+        </h2>
+        @for (leaveRule of leaveRules; track $index) {
+        <ng-container
+            *ngTemplateOutlet="information; context:{information: leaveRule.enum , icon: leaveRule.icon}"></ng-container>
+        }
+    </div>
+</full-view-modal>
+<full-view-modal [isModalOpen]="isCancelReservationModalOpen" (openModal)="openCancelReservationModal()"
+    (closeModal)="closeCancelReservationModal()">
+    <div class="cancel-reservation-modal-wrapper">
+        <h2>Cancel reservation</h2>
+        <div>
+            If you cancel now, you will get {{refundStatus}}
+        </div>
+        <div>
+            <span>
+                Confirm cancelling trip to {{trip?.stay?.name}} ?
+            </span>
+            <button class="button" (click)="cancelTripHandler()">
+                Confirm
+            </button>
+        </div>
+    </div>
+</full-view-modal>

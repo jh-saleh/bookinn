@@ -44,19 +44,18 @@
                 House rules
             </h2>
             @if (isTimeCheck) {
-            @if(checkInHours){
+            @if(_guidebook.houserules.time.interval?.checkIn){
             <div>
-                Check-in {{checkInHours}}
+                Check-in {{_guidebook.houserules.time.interval?.checkIn | hourBoundaryToString}}
             </div>
             }
-            @if(checkOutHours){
+            @if(_guidebook.houserules.time.interval?.checkOut){
             <div>
-                Checkout {{checkOutHours}}
+                Checkout {{_guidebook.houserules.time.interval?.checkOut | hourBoundaryToString}}
             </div>
             }
             } @else {
             <div>
-
                 Flexible check-in
             </div>
             }
@@ -118,24 +117,24 @@
             Checking in and out
         </h2>
         @if (isTimeCheck) {
-        @if(checkInHours){
+        @if(_guidebook.houserules.time.interval?.checkIn){
         <div class="guidebook-item">
             <span class="material-symbols-outlined">
                 schedule
             </span>
             <span>
-                Check-in {{checkInHours}}
+                Check-in {{_guidebook.houserules.time.interval?.checkIn | hourBoundaryToString}}
             </span>
         </div>
         <div class="modal-divider"></div>
         }
-        @if(checkOutHours){
+        @if(_guidebook.houserules.time.interval?.checkOut){
         <div class="guidebook-item">
             <span class="material-symbols-outlined">
                 schedule
             </span>
             <span>
-                Checkout {{checkOutHours}}
+                Checkout {{_guidebook.houserules.time.interval?.checkOut | hourBoundaryToString}}
             </span>
         </div>
         <div class="modal-divider"></div>

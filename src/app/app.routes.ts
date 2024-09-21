@@ -14,6 +14,7 @@ import { RoomPageComponent } from './page/room-page/room-page.component';
 import { RootPageComponent } from './page/root-page/root-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { SignUpPageComponent } from './page/sign-up-page/sign-up-page.component';
+import { TripDetailsPageComponent } from './page/trip-details-page/trip-details-page.component';
 import { TripPageComponent } from './page/trip-page/trip-page.component';
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 's/:location/:type', component: SearchPageComponent, title: 'Search Page | BookInn', canActivate: [maintenanceGuard] },
     { path: 'book/stays', component: StayReservationPageComponent, title: 'Confirm and pay | BookInn', canActivate: [maintenanceGuard, userOnlyGuard] },
     { path: 'trips', component: TripPageComponent, title: 'Trips | BookInn', canActivate: [maintenanceGuard, userOnlyGuard] },
+    { path: 'trip-details/:id', component: TripDetailsPageComponent, title: 'Trips Detail | BookInn', canActivate: [maintenanceGuard, userOnlyGuard] },
     { path: 'login', component: LoginPageComponent, title: 'Log In | BookInn', canActivate: [maintenanceGuard, guestOnlyGuard] },
     { path: 'signup', component: SignUpPageComponent, title: 'Sign Up | BookInn', canActivate: [maintenanceGuard, guestOnlyGuard] },
     { path: 'terms-of-service', component: TermsOfServicePageComponent, title: 'Terms of Service | BookInn', canActivate: [maintenanceGuard] },

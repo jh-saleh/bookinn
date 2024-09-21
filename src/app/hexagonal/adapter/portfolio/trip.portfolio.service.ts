@@ -25,6 +25,46 @@ export class TripPortfolioService implements TripPort {
 
     }
 
+    getTrip(tripId: string): Observable<Trip | undefined> {
+        return this.userService.getUser()
+            .pipe(
+                filter((user): user is User => !!user),
+                switchMap((user) => from(this.mockDatabase.trip.where('userId').equals(user.id).and((trip) => trip.id === tripId).first()).pipe(
+                    filter((tripDB): tripDB is TripMockDatabase => !!tripDB),
+                    switchMap((tripDB) => this.stayService.getStay(tripDB.stayId).pipe(
+                        filter((stay): stay is Stay => !!stay),
+                        switchMap((stay) => this.hostService.getHost(stay.hostId).pipe(
+                            filter((host): host is Host => !!host),
+                            map((host) => ({
+                                id: tripDB.id,
+                                host,
+                                stay,
+                                startingDate: this.calendarDateService.convertStringToCalendarDate(tripDB.startingDate, "-"),
+                                endingDate: this.calendarDateService.convertStringToCalendarDate(tripDB.endingDate, "-"),
+                                guests: {
+                                    adult: {
+                                        nb: tripDB.nbAdults,
+                                        maximum: MAX_NB_ADULTS,
+                                    },
+                                    child: {
+                                        nb: tripDB.nbChildren,
+                                        maximum: MAX_NB_CHILDREN,
+                                    },
+                                    infant: {
+                                        nb: tripDB.nbInfants,
+                                        maximum: MAX_NB_INFANTS,
+                                    },
+                                    pet: {
+                                        nb: tripDB.nbPets,
+                                        maximum: MAX_NB_PETS
+                                    },
+                                }
+                            })),
+                        )))),
+                ))
+            );
+    }
+
     getTrips(): Observable<Trip[]> {
         return this.userService.getUser()
             .pipe(
@@ -101,5 +141,16 @@ export class TripPortfolioService implements TripPort {
                     )),
                 )),
             )
+    }
+
+    deleteTrip(tripId: string): Observable<void> {
+        return this.userService.getUser()
+            .pipe(
+                filter((user): user is User => !!user),
+                switchMap((user) => from(this.mockDatabase.trip.where('userId').equals(user.id).and((trip) => trip.id === tripId).first()).pipe(
+                    filter((tripDB): tripDB is TripMockDatabase => !!tripDB),
+                    switchMap((tripDB) => this.mockDatabase.trip.delete(tripDB.id)),
+                ))
+            );
     }
 }

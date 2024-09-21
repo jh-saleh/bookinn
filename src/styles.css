@@ -72,7 +72,7 @@ a {
 
     @media screen and (min-width: 900px) {
         --page-padding-with-searchbar: 160px;
-        --page-padding-with-no-searchbar: 80px;
+        --page-padding-with-no-searchbar: 71px;
     }
 
     /*shadow*/

@@ -5,62 +5,6 @@
     gap: 5px;
 }
 
-.card-header {
-    background-color: transparent;
-    border-radius: var(--box-border-radius);
-    position: relative;
-}
-
-.slider {
-    border-radius: var(--box-border-radius);
-    position: relative;
-    height: 300px;
-    width: 300px;
-    display: flex;
-    overflow-x: hidden;
-    border: 3px white solid;
-}
-
-.slide {
-    height: 300px;
-    width: 300px;
-}
-
-.card-header:hover>.previous-image,
-.card-header:hover>.next-image {
-    opacity: 0.80;
-}
-
-.previous-image,
-.next-image {
-    cursor: pointer;
-    border: none;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-    height: 30px;
-    width: 30px;
-    display: grid;
-    place-items: center;
-    opacity: 0;
-    transition: 0.3s opacity;
-}
-
-.previous-image {
-    left: 10px;
-}
-
-.next-image {
-    right: 10px;
-}
-
-.previous-image:hover,
-.next-image:hover {
-    scale: 1.05;
-}
-
 .card-body-wrapper {
     display: flex;
     justify-content: space-between;
@@ -88,50 +32,20 @@
 }
 
 @media (min-width: 1501px) and (max-width: 2000px) and (orientation: landscape) {
-    .slider {
-        height: 15dvw;
-        width: 15dvw;
-    }
-
-    .slide {
-        height: 15dvw;
-        width: 15dvw;
-    }
-
     .card-header {
-        min-height: 15dvw;
-        min-width: 15dvw;
+        height: 15dvw;
+        width: 15dvw;
     }
 }
 
 @media (min-width: 901px) and (max-width: 1500px) and (orientation: landscape) {
-    .slider {
-        height: 250px;
-        width: 250px;
-    }
-
-    .slide {
-        height: 250px;
-        width: 250px;
-    }
-
     .card-header {
-        min-height: 250px;
-        min-width: 250px;
+        height: 250px;
+        width: 250px;
     }
 }
 
 @media (max-width: 900px) {
-    .slider {
-        height: 45dvw;
-        width: 45dvw;
-    }
-
-    .slide {
-        height: 45dvw;
-        width: 45dvw;
-    }
-
     .card-header {
         height: 45dvw;
         width: 45dvw;
@@ -139,16 +53,6 @@
 }
 
 @media (max-width: 400px) {
-    .slider {
-        height: 80dvw;
-        width: 80dvw;
-    }
-
-    .slide {
-        height: 80dvw;
-        width: 80dvw;
-    }
-
     .card-header {
         height: 80dvw;
         width: 80dvw;

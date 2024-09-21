@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -23,18 +23,16 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document, private userService: UserPort) { }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isHTMLBodyLocked$ = this.store.select(selectIsHTMLBodyLocked);
-      this.isHTMLBodyLocked$.subscribe((state) => {
-        if (state) {
-          this.document.body.style.overflow = 'hidden';
-        } else {
-          this.document.body.style.overflow = 'auto';
-        }
-      });
-      this.userService.getUser().subscribe((user) => {
-        this.store.dispatch(UserActions.setUser({ user }));
-      });
-    }
+    this.isHTMLBodyLocked$ = this.store.select(selectIsHTMLBodyLocked);
+    this.isHTMLBodyLocked$.subscribe((state) => {
+      if (state) {
+        this.document.body.style.overflow = 'hidden';
+      } else {
+        this.document.body.style.overflow = 'auto';
+      }
+    });
+    this.userService.getUser().subscribe((user) => {
+      this.store.dispatch(UserActions.setUser({ user }));
+    });
   }
 }

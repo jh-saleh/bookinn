@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { CheckType, GuideBook, GuidebookInformation, HourBoundary, LeaveRule, SafetyDevice, StayRule, leaveRulesTable, safetyDeviceTable, stayRulesTable } from '../../../hexagonal/domain/model/stay/guidebook.model';
+import { CheckType, GuideBook, GuidebookInformation, LeaveRule, SafetyDevice, StayRule, leaveRulesTable, safetyDeviceTable, stayRulesTable } from '../../../hexagonal/domain/model/stay/guidebook.model';
 import { CalendarDateFormatPipe } from '../../../pipe/calendar-date-format.pipe';
 import { CamelToSentencePipe } from '../../../pipe/cameltosentence.pipe';
+import { HourBoundaryToStringPipe } from "../../../pipe/hour-boundary-to-string.pipe";
 import { NegationPipe } from '../../../pipe/negation.pipe';
 import { PastDateStrikeThroughPipe } from '../../../pipe/past-date-strike-through.pipe';
 import { PluralizePipe } from '../../../pipe/pluralize.pipe';
@@ -12,7 +13,8 @@ import { FullViewModalComponent } from '../../windows/full-view-classic-modal/fu
 @Component({
   selector: 'guidebook-room',
   standalone: true,
-  imports: [CommonModule, FullViewModalComponent, PluralizePipe, CamelToSentencePipe, NegationPipe, FullViewModalComponent, CalendarDateFormatPipe, PastDateStrikeThroughPipe],
+  imports: [CommonModule, FullViewModalComponent, PluralizePipe, CamelToSentencePipe, NegationPipe,
+    FullViewModalComponent, CalendarDateFormatPipe, PastDateStrikeThroughPipe, HourBoundaryToStringPipe],
   providers: [CalendarDatesService],
   templateUrl: './guidebook-room.component.html',
   styleUrl: './guidebook-room.component.css'
@@ -22,14 +24,6 @@ export class GuidebookRoomComponent {
   @Input({ required: true }) set guidebook(value: GuideBook) {
     this._guidebook = value;
     this.isTimeCheck = this._guidebook.houserules.time.type === CheckType.StandardCheck;
-    if (this.isTimeCheck) {
-      if (this._guidebook.houserules.time.interval?.checkIn) {
-        this.checkInHours = this.getHours(this._guidebook.houserules.time.interval.checkIn);
-      }
-      if (this._guidebook.houserules.time.interval?.checkOut) {
-        this.checkOutHours = this.getHours(this._guidebook.houserules.time.interval?.checkOut);
-      }
-    }
     this.stayRules = Object.entries(this._guidebook.houserules.stay).map((entry) => ({ enum: entry[0], icon: stayRulesTable[entry[0] as StayRule], included: entry[1] }));
     if (this._guidebook.houserules.leave) {
       this.leaveRules = this._guidebook.houserules.leave.map((entry) => ({ enum: entry, icon: leaveRulesTable[entry as LeaveRule] }));
@@ -40,8 +34,6 @@ export class GuidebookRoomComponent {
     return this._guidebook;
   }
   isTimeCheck!: boolean;
-  checkInHours?: string;
-  checkOutHours?: string;
   stayRules: GuidebookInformation[] = [];
   leaveRules: GuidebookInformation[] = [];
   safetyRules: GuidebookInformation[] = [];
@@ -99,16 +91,5 @@ export class GuidebookRoomComponent {
       return;
     }
     this.isCancellationPolicyModalOpen = false;
-  }
-
-  getHours(hourBoundary: HourBoundary): string {
-    const { lowerBoundary, upperBoundary } = hourBoundary;
-    if (lowerBoundary && upperBoundary) {
-      return `: ${lowerBoundary} - ${upperBoundary}`;
-    } else if (lowerBoundary) {
-      return `before ${lowerBoundary}`;
-    } else {
-      return `after ${upperBoundary}`;
-    }
   }
 }

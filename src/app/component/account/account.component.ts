@@ -1,4 +1,4 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -30,11 +30,9 @@ export class AccountComponent implements OnInit {
   constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, private authService: AuthPort, private router: Router) { }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.store.select(selectUser).subscribe((state) => {
-        this.user = state?.user;
-      });
-    }
+    this.store.select(selectUser).subscribe((state) => {
+      this.user = state?.user;
+    });
   }
 
   closeAccountModal(): void {

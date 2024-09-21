@@ -8,11 +8,19 @@ import { Trip } from "../model/trip/trip.model";
     providedIn: 'root'
 })
 export class TripPort {
+    getTrip(tripId: string): Observable<Trip | undefined> {
+        throw Error("getTrip to implement.");
+    }
+
     getTrips(): Observable<Trip[]> {
         throw Error("getTrips to implement.");
     }
 
     createTrip(stayId: string, startingDate: CalendarDate, endingDate: CalendarDate, guest: Guests): Observable<Trip | undefined> {
         throw Error("createTrip to implement.");
+    }
+
+    deleteTrip(tripId: string): Observable<void> {
+        throw Error("deleteTrip to implement.");
     }
 }

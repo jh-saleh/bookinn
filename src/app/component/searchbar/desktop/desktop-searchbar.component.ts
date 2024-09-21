@@ -1,4 +1,4 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -107,215 +107,211 @@ export class DesktopSearchbarComponent implements OnInit, AfterViewInit, OnDestr
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
-    // comme tous les clients composants, ils sont runs au moins une fois côté serveur (pour fetch notamment)
-    // permet calcul client side 
-    if (isPlatformBrowser(this.platformId)) {
-      let tl = gsap.timeline();
+    let tl = gsap.timeline();
 
-      this.animations["services-wrapper"] = gsap.fromTo('.services-wrapper', {
-        y: "0px",
-      }, {
-        y: "-100px",
-        height: "0px",
-        paused: true,
-        duration: 0.3,
-        onComplete: () => {
-          this.statusOfSearchBar = false;
-        },
-        onReverseComplete: () => {
-          this.statusOfSearchBar = true;
-        }
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".services-wrapper", {}, {
-        scrollTrigger: {
-          refreshPriority: 0,
-          scrub: true,
-          trigger: ".services-wrapper",
-          start: "top top",
-          end: "max",
-          onUpdate: ({ progress }) => {
-            this.isNavbarStuckToStart = progress === 0;
-            this.sendSearchbarStatus.emit(false);
-            if (progress === 0) {
-              this.animations["services-wrapper"].reverse();
-            } else {
-              this.isCalendarOpen = false;
-              this.isGuestsOpen = false;
-              this.isAutocompletionOpen = false;
-              this.animations["services-wrapper"].play();
-            }
-          }
-        }
-      });
-
-      this.animations["searchbar"] = gsap.fromTo('.searchbar', {
-        padding: "10px 10px 10px 30px",
-      }, {
-        padding: "0px 0px 0px 20px",
-        paused: true,
-        duration: 0.3,
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".searchbar", {
-      }, {
-        scrollTrigger: {
-          refreshPriority: 0,
-          scrub: true,
-          trigger: ".services-wrapper",
-          start: "top top",
-          end: "max",
-          onUpdate: ({ progress }) => {
-            0 < progress ? this.animations["searchbar"].play() : this.animations["searchbar"].reverse();
-          }
-        }
-      });
-
-      this.animations["location>input"] = gsap.fromTo('.location>input', {
-        opacity: 1,
-        height: "20px",
-      }, {
-        opacity: 0,
-        width: "0px",
-        height: "0px",
-        paused: true,
-        duration: 0.3,
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".location>input",
-        {},
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["location>input"].play() : this.animations["location>input"].reverse();
-            }
-          }
-        });
-
-      this.animations["checkin-date"] = gsap.fromTo('.checkin-date', {
-        opacity: 1,
-      }, {
-        opacity: 0,
-        width: "0px",
-        height: "0px",
-        visibility: "hidden",
-        paused: true,
-        duration: 0.3,
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".checkin-date",
-        {},
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["checkin-date"].play() : this.animations["checkin-date"].reverse();
-            }
-          },
-        });
-
-      this.animations["checkout-date"] = gsap.fromTo('.checkout-date', {
-        opacity: 1,
-      }, {
-        opacity: 0,
-        width: "0px",
-        height: "0px",
-        visibility: "hidden",
-        paused: true,
-        duration: 0.3,
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".checkout-date",
-        {
-        },
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["checkout-date"].play() : this.animations["checkout-date"].reverse();
-            }
-          }
-        });
-
-      this.animations["nb-of-guests"] = gsap.fromTo('.nb-of-guests', {
-        opacity: 1,
-        minWidth: "5.5rem",
-      }, {
-        opacity: 0,
-        minWidth: "0px",
-        width: "0px",
-        height: "0px",
-        visibility: "hidden",
-        paused: true,
-        duration: 0.3,
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".nb-of-guests", {},
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["nb-of-guests"].play() : this.animations["nb-of-guests"].reverse();
-            }
-          }
-        });
-
-      this.animations["divider"] = gsap.fromTo(".divider", {
-        height: "calc(100% - 5px)",
-      }, {
-        height: "calc(70% - 5px)",
-        paused: true,
-        duration: 0.3
-      }).progress(this.startingModeState === 'normal' ? 0 : 1);
-
-      tl.fromTo(".divider", {},
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["divider"].play() : this.animations["divider"].reverse();
-            }
-          }
-        });
-
-      this.animations["search-button"] = gsap.fromTo(".search-button", {
-        scale: 1,
+    this.animations["services-wrapper"] = gsap.fromTo('.services-wrapper', {
+      y: "0px",
+    }, {
+      y: "-100px",
+      height: "0px",
+      paused: true,
+      duration: 0.3,
+      onComplete: () => {
+        this.statusOfSearchBar = false;
       },
-        {
-          scale: 0.8,
-          duration: 0.3,
-          paused: true,
-        }).progress(this.startingModeState === 'normal' ? 0 : 1);
+      onReverseComplete: () => {
+        this.statusOfSearchBar = true;
+      }
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
 
-      tl.fromTo(".search-button", {},
-        {
-          scrollTrigger: {
-            scrub: true,
-            trigger: ".services-wrapper",
-            start: "top top",
-            end: "max",
-            onUpdate: ({ progress }) => {
-              0 < progress ? this.animations["search-button"].play() : this.animations["search-button"].reverse();
-            }
+    tl.fromTo(".services-wrapper", {}, {
+      scrollTrigger: {
+        refreshPriority: 0,
+        scrub: true,
+        trigger: ".services-wrapper",
+        start: "top top",
+        end: "max",
+        onUpdate: ({ progress }) => {
+          this.isNavbarStuckToStart = progress === 0;
+          this.sendSearchbarStatus.emit(false);
+          if (progress === 0) {
+            this.animations["services-wrapper"].reverse();
+          } else {
+            this.isCalendarOpen = false;
+            this.isGuestsOpen = false;
+            this.isAutocompletionOpen = false;
+            this.animations["services-wrapper"].play();
           }
-        });
-    }
+        }
+      }
+    });
+
+    this.animations["searchbar"] = gsap.fromTo('.searchbar', {
+      padding: "10px 10px 10px 30px",
+    }, {
+      padding: "0px 0px 0px 20px",
+      paused: true,
+      duration: 0.3,
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".searchbar", {
+    }, {
+      scrollTrigger: {
+        refreshPriority: 0,
+        scrub: true,
+        trigger: ".services-wrapper",
+        start: "top top",
+        end: "max",
+        onUpdate: ({ progress }) => {
+          0 < progress ? this.animations["searchbar"].play() : this.animations["searchbar"].reverse();
+        }
+      }
+    });
+
+    this.animations["location>input"] = gsap.fromTo('.location>input', {
+      opacity: 1,
+      height: "20px",
+    }, {
+      opacity: 0,
+      width: "0px",
+      height: "0px",
+      paused: true,
+      duration: 0.3,
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".location>input",
+      {},
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["location>input"].play() : this.animations["location>input"].reverse();
+          }
+        }
+      });
+
+    this.animations["checkin-date"] = gsap.fromTo('.checkin-date', {
+      opacity: 1,
+    }, {
+      opacity: 0,
+      width: "0px",
+      height: "0px",
+      visibility: "hidden",
+      paused: true,
+      duration: 0.3,
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".checkin-date",
+      {},
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["checkin-date"].play() : this.animations["checkin-date"].reverse();
+          }
+        },
+      });
+
+    this.animations["checkout-date"] = gsap.fromTo('.checkout-date', {
+      opacity: 1,
+    }, {
+      opacity: 0,
+      width: "0px",
+      height: "0px",
+      visibility: "hidden",
+      paused: true,
+      duration: 0.3,
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".checkout-date",
+      {
+      },
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["checkout-date"].play() : this.animations["checkout-date"].reverse();
+          }
+        }
+      });
+
+    this.animations["nb-of-guests"] = gsap.fromTo('.nb-of-guests', {
+      opacity: 1,
+      minWidth: "5.5rem",
+    }, {
+      opacity: 0,
+      minWidth: "0px",
+      width: "0px",
+      height: "0px",
+      visibility: "hidden",
+      paused: true,
+      duration: 0.3,
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".nb-of-guests", {},
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["nb-of-guests"].play() : this.animations["nb-of-guests"].reverse();
+          }
+        }
+      });
+
+    this.animations["divider"] = gsap.fromTo(".divider", {
+      height: "calc(100% - 5px)",
+    }, {
+      height: "calc(70% - 5px)",
+      paused: true,
+      duration: 0.3
+    }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".divider", {},
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["divider"].play() : this.animations["divider"].reverse();
+          }
+        }
+      });
+
+    this.animations["search-button"] = gsap.fromTo(".search-button", {
+      scale: 1,
+    },
+      {
+        scale: 0.8,
+        duration: 0.3,
+        paused: true,
+      }).progress(this.startingModeState === 'normal' ? 0 : 1);
+
+    tl.fromTo(".search-button", {},
+      {
+        scrollTrigger: {
+          scrub: true,
+          trigger: ".services-wrapper",
+          start: "top top",
+          end: "max",
+          onUpdate: ({ progress }) => {
+            0 < progress ? this.animations["search-button"].play() : this.animations["search-button"].reverse();
+          }
+        }
+      });
   }
 
   ngOnDestroy(): void {

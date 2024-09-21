@@ -1,4 +1,3 @@
-import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -30,46 +29,42 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.store.select(selectUser).subscribe((state) => {
-        this.user = state?.user;
-      });
-    }
+    this.store.select(selectUser).subscribe((state) => {
+      this.user = state?.user;
+    });
   }
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
-    if (isPlatformBrowser(this.platformId)) {
-      let tl = gsap.timeline();
+    let tl = gsap.timeline();
 
-      this.animations["phone-navbar-wrapper"] = gsap.fromTo('.phone-navbar-wrapper', {
-        y: "0px",
-      }, {
-        y: "100px",
-        paused: true,
-        duration: 0.3,
-      }).progress(0);
+    this.animations["phone-navbar-wrapper"] = gsap.fromTo('.phone-navbar-wrapper', {
+      y: "0px",
+    }, {
+      y: "100px",
+      paused: true,
+      duration: 0.3,
+    }).progress(0);
 
-      tl.fromTo(".services-wrapper", {}, {
-        scrollTrigger: {
-          refreshPriority: 0,
-          scrub: true,
-          trigger: ".services-wrapper",
-          start: "top top",
-          end: "max",
-          onUpdate: ({ direction }) => {
-            if (!this.animations["phone-navbar-wrapper"].isActive()) {
-              if (direction <= 0) {
-                this.animations["phone-navbar-wrapper"].reverse();
-              }
-              else {
-                this.animations["phone-navbar-wrapper"].play();
-              }
+    tl.fromTo(".services-wrapper", {}, {
+      scrollTrigger: {
+        refreshPriority: 0,
+        scrub: true,
+        trigger: ".services-wrapper",
+        start: "top top",
+        end: "max",
+        onUpdate: ({ direction }) => {
+          if (!this.animations["phone-navbar-wrapper"].isActive()) {
+            if (direction <= 0) {
+              this.animations["phone-navbar-wrapper"].reverse();
+            }
+            else {
+              this.animations["phone-navbar-wrapper"].play();
             }
           }
         }
-      });
-    }
+      }
+    });
   }
 
   ngOnDestroy(): void {

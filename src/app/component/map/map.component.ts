@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { css } from '@emotion/css';
 import * as L from "leaflet";
 import { environment } from '../../../environments/environment';
@@ -14,7 +14,7 @@ import { Coordinates } from '../../hexagonal/domain/model/stay/location.model';
   providers: [],
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnDestroy {
   map!: L.Map;
   image: any;
   bounds: L.LatLngBoundsExpression = [[0, 0], [998, 1024]]; // ordre [[center_y, center_x], [height, width]]
@@ -23,11 +23,12 @@ export class MapComponent {
   width: 100%;
   `;
   @Input({ required: true }) zoom: number = -1;
+  @Input({ required: true }) showMarker: boolean = false;
   _coordinates?: Coordinates;
   @Input({ required: true }) set coordinates(value: Coordinates | undefined) {
     this._coordinates = value;
     if (value && this.map) {
-      this.map.setView([value.y, value.x], this.zoom);
+      this.setLocationMarker(value);
     }
   };
   get coordinates(): Coordinates | undefined {
@@ -41,19 +42,23 @@ export class MapComponent {
     this.initMap();
   }
 
-  initMap(): void {
+  ngOnDestroy(): void {
+    this.map.remove();
+  }
+
+  private getLocationMarkerIcon(coordinate: Coordinates): L.Marker {
+    const icon: string = `
+        <span class="material-symbols-outlined map-icon">cottage</span>
+      `;
+    return L.marker([coordinate.y, coordinate.x], { icon: L.divIcon({ className: "", html: icon }) });
+  }
+
+  private initMap(): void {
     const getCityIcon = (city: string) => {
       const icon: string = `
         <div class="map-icon-label">${city}</div>
       `;
       return L.divIcon({ className: "", html: icon });
-    }
-
-    const getLocationMarker = (coordinate: Coordinates) => {
-      const icon: string = `
-        <span class="material-symbols-outlined map-icon">cottage</span>
-      `;
-      return L.marker([coordinate.y, coordinate.x], { icon: L.divIcon({ className: "", html: icon }) });
     }
 
     const cities = L.layerGroup([
@@ -86,10 +91,8 @@ export class MapComponent {
     });
     this.map.fitBounds(this.bounds);
     this.map.setMaxBounds(this.bounds);
-    console.log(this.map.getBounds());
     if (this.coordinates) {
-      getLocationMarker(this.coordinates).addTo(this.map);
-      this.map.setView([this.coordinates.y, this.coordinates.x], this.zoom);
+      this.setLocationMarker(this.coordinates);
     }
     if (this.displayAllCities) {
       cities.addTo(this.map);
@@ -99,5 +102,12 @@ export class MapComponent {
     }).addTo(this.map);
     layerControl.addOverlay(cities, "Cities");
     this.image = L.imageOverlay(environment.images.worldmap, this.bounds).addTo(this.map);
+  }
+
+  setLocationMarker(coordinates: Coordinates) {
+    if (this.showMarker) {
+      this.getLocationMarkerIcon(coordinates).addTo(this.map);
+    }
+    this.map.setView([coordinates.y, coordinates.x], this.zoom);
   }
 }
