@@ -86,22 +86,38 @@
                 <h3>Who's going on a adventure ?</h3>
                 @if(trip?.guests?.adult?.nb){
                 <div>
-                    &#9210; {{trip?.guests?.adult?.nb}} {{trip?.guests?.adult?.nb | pluralize:'adult'}}
+                    <div class="bullet-dot"></div>
+                    <div>
+                        {{trip?.guests?.adult?.nb}} {{trip?.guests?.adult?.nb |
+                        pluralize:'adult'}}
+                    </div>
                 </div>
                 }
                 @if(trip?.guests?.child?.nb){
                 <div>
-                    &#9210; {{trip?.guests?.child?.nb}} {{trip?.guests?.child?.nb | pluralize:'child':'ren'}}
+                    <div class="bullet-dot"></div>
+                    <div>
+                        {{trip?.guests?.child?.nb}} {{trip?.guests?.child?.nb |
+                        pluralize:'child':'ren'}}
+                    </div>
                 </div>
                 }
                 @if(trip?.guests?.infant?.nb){
                 <div>
-                    &#9210; {{trip?.guests?.infant?.nb}} {{trip?.guests?.infant?.nb | pluralize:'infant'}}
+                    <div class="bullet-dot"></div>
+                    <div>
+                        {{trip?.guests?.infant?.nb}} {{trip?.guests?.infant?.nb |
+                        pluralize:'infant'}}
+                    </div>
                 </div>
                 }
                 @if(trip?.guests?.pet?.nb){
                 <div>
-                    &#9210; {{trip?.guests?.pet?.nb}} {{trip?.guests?.pet?.nb | pluralize:'pet'}}
+                    <div class="bullet-dot"></div>
+                    <div>
+                        {{trip?.guests?.pet?.nb}} {{trip?.guests?.pet?.nb |
+                        pluralize:'pet'}}
+                    </div>
                 </div>
                 }
             </div>

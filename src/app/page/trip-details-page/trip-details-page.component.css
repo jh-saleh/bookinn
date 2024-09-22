@@ -123,6 +123,13 @@
     height: min-content;
 }
 
+.trip-details-guests>div {
+    display: grid;
+    grid-template-columns: min-content max-content;
+    align-items: center;
+    gap: 5px;
+}
+
 .map-wrapper {
     height: 100%;
     width: 100%;
