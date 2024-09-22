@@ -31,10 +31,12 @@
 
 #carriages-service {
     min-width: 95px;
+    cursor: not-allowed;
 }
 
 #monuments-service {
     min-width: 115px;
+    cursor: not-allowed;
 }
 
 .service-selected {

@@ -37,7 +37,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     max-height: 200px;
-    width: 60%;
     border-radius: var(--box-border-radius);
     cursor: pointer;
 }
