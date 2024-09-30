@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
 import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
+import { PhoneNavbarComponent } from "../../component/navbar/phone/phone-navbar.component";
 import { SliderComponent } from "../../component/slider/slider.component";
 import { FullViewModalComponent } from "../../component/windows/full-view-classic-modal/full-view-modal.component";
 import { tripServiceFactory } from '../../hexagonal/di-factories';
@@ -24,7 +25,7 @@ import { AppState } from '../../state/app.state';
   standalone: true,
   imports: [CommonModule, DesktopNavbarComponent, FooterComponent, MapComponent, CalendarDateFormatPipe,
     HourBoundaryToStringPipe, SliderComponent, PluralizePipe, FullViewModalComponent,
-    CamelToSentencePipe, NegationPipe],
+    CamelToSentencePipe, NegationPipe, PhoneNavbarComponent],
   providers: [{ provide: TripPort, useFactory: tripServiceFactory }, CalendarDatesService],
   templateUrl: './trip-details-page.component.html',
   styleUrl: './trip-details-page.component.css'

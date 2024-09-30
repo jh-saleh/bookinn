@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { gsap } from "gsap";
@@ -18,7 +18,7 @@ import { selectUser } from '../../../state/user/user.selectors';
   templateUrl: './phone-navbar.component.html',
   styleUrl: './phone-navbar.component.css'
 })
-export class PhoneNavbarComponent implements OnInit, AfterViewInit {
+export class PhoneNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   options: string[] = ['home', 'host', 'trips'];
   selected: string = "'home";
   user?: User;
