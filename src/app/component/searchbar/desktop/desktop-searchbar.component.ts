@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { css } from '@emotion/css';
@@ -89,7 +89,7 @@ export class DesktopSearchbarComponent implements OnInit, AfterViewInit, OnDestr
     }
   }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe) {
+  constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe) {
 
   }
 

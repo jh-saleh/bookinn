@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,9 +14,6 @@ import { environment } from '../../../environments/environment';
 export class RootPageComponent implements AfterViewInit {
   readonly portfolioURL: string = environment.portfolioURL;
   readonly droplets: number = 50;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-  }
 
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);

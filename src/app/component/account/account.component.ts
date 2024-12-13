@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
@@ -27,7 +27,7 @@ export class AccountComponent implements OnInit {
   @ViewChild("accountRef") accountRef: ElementRef<HTMLSpanElement> | undefined;
   readonly portfolioURL: string = environment.portfolioURL;
   user?: User;
-  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, private authService: AuthPort, private router: Router) { }
+  constructor(private store: Store<AppState>, private authService: AuthPort, private router: Router) { }
 
   ngOnInit(): void {
     this.store.select(selectUser).subscribe((state) => {

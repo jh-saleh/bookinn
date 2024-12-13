@@ -10,7 +10,7 @@
         </span>
         <app-counter (sendCounter)="sendGuests('adult', $event)"
             [initValue]="guests['adult'].minimum && guests['adult'].minimum > guests['adult'].nb ? guests['adult'].minimum : guests['adult'].nb"
-            [maximum]="guests['adult'].maximum" [minimum]="this.guests['adult'].minimum ?? 0"
+            [maximum]="guests['adult'].maximum" [minimum]="guests['adult'].minimum ?? 0"
             [blockIncreaseAction]="blockIncreaseGuestsAction"></app-counter>
         <span class="guests-labels">
             <h1>

@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ import { UserActions } from './state/user/user.actions';
 export class AppComponent implements OnInit {
   isHTMLBodyLocked$!: Observable<boolean>;
 
-  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document, private userService: UserPort) { }
+  constructor(private store: Store<AppState>, @Inject(DOCUMENT) private document: Document, private userService: UserPort) { }
 
   ngOnInit(): void {
     this.isHTMLBodyLocked$ = this.store.select(selectIsHTMLBodyLocked);

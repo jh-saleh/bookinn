@@ -13,7 +13,17 @@ export class CounterComponent {
     this.counter = value;
   };
   @Input({ required: true }) maximum: number = 16;
-  @Input({ required: true }) minimum: number = 0;
+  private _minimum: number = 0;
+  @Input({ required: true }) set minimum(value: number) {
+    this._minimum = value;
+    if (this.minimum > this.counter) {
+      this.counter = this.minimum;
+      this.sendCounter.emit(this.counter);
+    }
+  };
+  get minimum(): number {
+    return this._minimum;
+  }
   @Input() blockIncreaseAction: boolean = false;
   @Output() sendCounter = new EventEmitter<number>();
 

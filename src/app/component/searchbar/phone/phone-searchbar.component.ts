@@ -14,8 +14,6 @@ import { HTMLBodyActions } from '../../../state/htmlBody/htmlBody.actions';
 import { AutocompletionComponent } from "../../autocompletion/autocompletion.component";
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { GuestsComponent } from "../../guests/guests.component";
-import { FullViewModalComponent } from "../../windows/full-view-classic-modal/full-view-modal.component";
-import { ModalComponent } from '../../windows/modal/modal.component';
 
 export interface SearchbarStartingStates {
   startingDate: CalendarDate | undefined;
@@ -27,7 +25,7 @@ export interface SearchbarStartingStates {
 @Component({
   selector: 'phone-searchbar',
   standalone: true,
-  imports: [CalendarComponent, ModalComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe, AutocompletionComponent, FullViewModalComponent],
+  imports: [CalendarComponent, CommonModule, GuestsComponent, PluralizePipe, CalendarDateFormatPipe, FormsModule, CamelToSentencePipe, AutocompletionComponent],
   providers: [CalendarDateFormatPipe],
   templateUrl: './phone-searchbar.component.html',
   styleUrls: ['./phone-searchbar.component.css', '../searchbar.css']

@@ -77,7 +77,7 @@ export class GuestsComponent {
 
   sendGuests(guest: GuestType, counter: number) {
     this.guests[guest].nb = counter;
-    if (this.guests["adult"].nb === 0 && (this.guests["child"].nb > 0 || this.guests["infant"].nb > 0 || this.guests["pet"].nb > 0)) {
+    if (this.guests["adult"].nb === 0) {
       this.guests['adult'].nb = 1;
       this.guests['adult'].minimum = 1;
     }

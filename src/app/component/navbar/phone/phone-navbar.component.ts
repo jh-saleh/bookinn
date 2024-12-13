@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { gsap } from "gsap";
@@ -24,7 +24,7 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   user?: User;
   animations: Record<string, gsap.core.Tween> = {};
 
-  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: Object, private authService: AuthPort, private router: Router) {
+  constructor(private store: Store<AppState>, private authService: AuthPort, private router: Router) {
 
   }
 
