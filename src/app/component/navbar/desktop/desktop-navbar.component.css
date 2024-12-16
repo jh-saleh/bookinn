@@ -36,7 +36,7 @@
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 901px) {
     .phone-searchbar-wrapper {
         display: none !important;
     }
