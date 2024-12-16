@@ -38,7 +38,7 @@
     }
 }
 
-@media (min-width: 901px) and (max-width: 1500px) and (orientation: landscape) {
+@media (min-width: 901px) and (max-width: 1500px) {
     .card-header {
         height: 250px;
         width: 250px;
