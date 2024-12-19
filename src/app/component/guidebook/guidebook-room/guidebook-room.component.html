@@ -164,11 +164,13 @@
         <div class="modal-divider"></div>
         @for (stayRule of stayRules; track $index) {
         <ng-container
-            *ngTemplateOutlet="information; context:{information: stayRule.enum , icon: stayRule.icon, included: stayRule.included, validationLabel: 'allowed'}"></ng-container>
+            *ngTemplateOutlet="information; context:{information: stayRule.enum, icon: stayRule.icon, included: stayRule.included, validationLabel: 'allowed'}"></ng-container>
         }
+        @if(leaveRules.length>0){
         <h2>
             Before you leave
         </h2>
+        }
         @for (leaveRule of leaveRules; track $index) {
         <ng-container
             *ngTemplateOutlet="information; context:{information: leaveRule.enum , icon: leaveRule.icon}"></ng-container>
