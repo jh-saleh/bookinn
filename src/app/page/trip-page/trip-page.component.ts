@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { FooterComponent } from "../../component/footer/footer.component";
 import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
 import { PhoneNavbarComponent } from "../../component/navbar/phone/phone-navbar.component";
@@ -19,15 +20,21 @@ import { AppState } from '../../state/app.state';
   templateUrl: './trip-page.component.html',
   styleUrl: './trip-page.component.css'
 })
-export class TripPageComponent implements OnInit {
+export class TripPageComponent implements OnInit, OnDestroy {
   trips: Trip[] = [];
-
+  private destroy$ = new Subject<void>();
   constructor(private store: Store<AppState>, private tripService: TripPort) { }
 
   ngOnInit(): void {
+    this.tripService.getTrips()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((trips) => {
+        this.trips = trips;
+      });
+  }
 
-    this.tripService.getTrips().subscribe((trips) => {
-      this.trips = trips;
-    });
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

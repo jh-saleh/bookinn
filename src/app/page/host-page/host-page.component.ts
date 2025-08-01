@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { HostCardComponent } from "../../component/card/host-card/host-card.component";
 import { StayCardComponent } from "../../component/card/stay-card/stay-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
@@ -23,9 +24,10 @@ import { HostInformationIconPipe } from '../../pipe/icon/host-information-icon/h
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.css'
 })
-export class HostPageComponent implements OnInit {
+export class HostPageComponent implements OnInit, OnDestroy {
   host!: Host;
   listings!: Stay[];
+  private destroy$ = new Subject<void>();
 
   constructor(private route: ActivatedRoute, private hostService: HostPort, private staysService: StayPort) {
 
@@ -33,11 +35,20 @@ export class HostPageComponent implements OnInit {
 
   ngOnInit(): void {
     const hostId = this.route.snapshot.paramMap.get('id');
-    this.hostService.getHost(hostId ?? "").subscribe((host) => {
-      if (host) {
-        this.host = host
-      }
-    });
-    this.staysService.getStays(...this.host.listings).subscribe((stays) => this.listings = stays);
+    this.hostService.getHost(hostId ?? "")
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((host) => {
+        if (host) {
+          this.host = host
+        }
+      });
+    this.staysService.getStays(...this.host.listings)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((stays) => this.listings = stays);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

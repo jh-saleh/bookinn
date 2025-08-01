@@ -19,12 +19,11 @@ import { selectStay } from '../../../state/stay/stay.selectors';
 import { CalendarComponent } from "../../calendar/calendar.component";
 import { DateInputComponent } from "../../date-input/date-input.component";
 import { GuestsComponent } from "../../guests/guests.component";
-import { ModalComponent } from "../../windows/modal/modal.component";
 
 @Component({
   selector: 'bill-room',
   standalone: true,
-  imports: [CommonModule, ModalComponent, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
+  imports: [CommonModule, GuestsComponent, PluralizePipe, CalendarComponent, CalendarDateFormatPipe, DateInputComponent],
   providers: [CalendarDateFormatPipe, { provide: BillingPort, useFactory: billingServiceFactory }],
   templateUrl: './bill-room.component.html',
   styleUrls: ['./bill-room.component.css', '../bill.css']
@@ -52,9 +51,7 @@ export class BillRoomComponent implements OnInit, OnDestroy {
   isCalendarOpen: boolean = false;
   private destroy$ = new Subject<void>();
   constructor(private router: Router, private calendarDateFormatPipe: CalendarDateFormatPipe,
-    private billingService: BillingPort, private calendarDatesService: CalendarDatesService, private store: Store<AppState>) {
-
-  }
+    private billingService: BillingPort, private calendarDatesService: CalendarDatesService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
     combineLatest([this.store.select(selectStay), this.store.select(selectBillInformation)])
@@ -83,16 +80,18 @@ export class BillRoomComponent implements OnInit, OnDestroy {
 
   updateBillPrices(nbOfNights: number | undefined, nbOfGuests: number) {
     if (nbOfNights && this.stayId) {
-      this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests).subscribe((billing) => {
-        if (billing) {
-          const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
-          this.pricePerNight = pricePerNight;
-          this.completeBillWithoutCharges = completeBillWithoutCharges;
-          this.bookInnFee = bookInnFee;
-          this.VAT = VAT;
-          this.completeBill = completeBill;
-        }
-      });
+      this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((billing) => {
+          if (billing) {
+            const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
+            this.pricePerNight = pricePerNight;
+            this.completeBillWithoutCharges = completeBillWithoutCharges;
+            this.bookInnFee = bookInnFee;
+            this.VAT = VAT;
+            this.completeBill = completeBill;
+          }
+        });
     }
   }
 

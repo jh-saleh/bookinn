@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Subject, takeUntil } from 'rxjs';
 import { authServiceFactory } from '../../../hexagonal/di-factories';
 import { User } from '../../../hexagonal/domain/model/stay/user.model';
 import { AuthPort } from '../../../hexagonal/domain/port/auth.port';
@@ -23,15 +24,17 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   selected: string = "'home";
   user?: User;
   animations: Record<string, gsap.core.Tween> = {};
-
+  private destroy$ = new Subject<void>();
   constructor(private store: Store<AppState>, private authService: AuthPort, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.store.select(selectUser).subscribe((state) => {
-      this.user = state?.user;
-    });
+    this.store.select(selectUser)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => {
+        this.user = state?.user;
+      });
   }
 
   ngAfterViewInit(): void {
@@ -74,6 +77,8 @@ export class PhoneNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         trigger.kill();
       })
     }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   logOutHandler() {

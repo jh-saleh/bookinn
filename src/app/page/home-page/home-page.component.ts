@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { StayCardComponent } from "../../component/card/stay-card/stay-card.component";
 import { FooterComponent } from "../../component/footer/footer.component";
 import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
@@ -16,12 +17,20 @@ import { StayPort } from '../../hexagonal/domain/port/stay.port';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
   stays!: Stay[];
+  private destroy$ = new Subject<void>();
 
   constructor(private stayService: StayPort) { }
 
   ngOnInit(): void {
-    this.stayService.getHomePageStays().subscribe((stays) => this.stays = stays);
+    this.stayService.getHomePageStays()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((stays) => this.stays = stays);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

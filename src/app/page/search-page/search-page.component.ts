@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { combineLatest, map } from 'rxjs';
+import { Subject, combineLatest, map, takeUntil } from 'rxjs';
 import { StayCardComponent } from '../../component/card/stay-card/stay-card.component';
 import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
@@ -23,7 +23,7 @@ import { CalendarDate, CalendarDatesService } from '../../service/calendar-dates
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.css'
 })
-export class SearchPageComponent implements OnInit {
+export class SearchPageComponent implements OnInit, OnDestroy {
   coordinates: Coordinates | undefined;
   queryParamStartDate: string | null = null;
   queryParamEndDate: string | null = null;
@@ -38,6 +38,7 @@ export class SearchPageComponent implements OnInit {
   staysSearchResults: StayWithDistanceToOrigin[] = [];
   searchbarStartingState: SearchbarStartingStates | undefined;
   lastPage: number = 1;
+  private destroy$ = new Subject<void>();
 
   constructor(private route: ActivatedRoute, private calendarDatesService: CalendarDatesService, private stayService: StayPort) {
 
@@ -46,52 +47,60 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
     //Subscribing to paramMap and queryParamMap allows for updates when doing new requests on that page without having the need to reload the page
     combineLatest([this.route.paramMap, this.route.queryParamMap])
-      .pipe(map(([params, queryParams]) => {
-        this.paramLocation = params.get('location');
-        this.paramType = params.get('type');
-        this.queryParamEndDate = queryParams.get("endDate");
-        if (this.queryParamEndDate) {
-          this.endDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamEndDate, "-");
-        }
-        this.queryParamStartDate = queryParams.get("startDate");
-        if (this.queryParamStartDate) {
-          this.startDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamStartDate, "-");
-        }
-        this.queryParamNbAdults = queryParams.get("nbAdults") !== null ? Number(queryParams.get("nbAdults")) : null;
-        this.queryParamNbChildren = queryParams.get("nbChildren") !== null ? Number(queryParams.get("nbChildren")) : null;
-        this.queryParamNbInfants = queryParams.get("nbInfants") !== null ? Number(queryParams.get("nbInfants")) : null;
-        this.queryParamNbPets = queryParams.get("nbPets") !== null ? Number(queryParams.get("nbPets")) : null;
+      .pipe(
+        takeUntil(this.destroy$),
+        map(([params, queryParams]) => {
+          this.paramLocation = params.get('location');
+          this.paramType = params.get('type');
+          this.queryParamEndDate = queryParams.get("endDate");
+          if (this.queryParamEndDate) {
+            this.endDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamEndDate, "-");
+          }
+          this.queryParamStartDate = queryParams.get("startDate");
+          if (this.queryParamStartDate) {
+            this.startDate = this.calendarDatesService.convertStringToCalendarDate(this.queryParamStartDate, "-");
+          }
+          this.queryParamNbAdults = queryParams.get("nbAdults") !== null ? Number(queryParams.get("nbAdults")) : null;
+          this.queryParamNbChildren = queryParams.get("nbChildren") !== null ? Number(queryParams.get("nbChildren")) : null;
+          this.queryParamNbInfants = queryParams.get("nbInfants") !== null ? Number(queryParams.get("nbInfants")) : null;
+          this.queryParamNbPets = queryParams.get("nbPets") !== null ? Number(queryParams.get("nbPets")) : null;
 
-      })).subscribe(() => {
-        this.searchbarStartingState = {
-          startingDate: this.startDate ?? undefined,
-          endingDate: this.endDate ?? undefined,
-          locationInput: this.paramLocation ?? "",
-          guests: {
-            adult: {
-              nb: this.queryParamNbAdults ?? 0,
-              maximum: MAX_NB_ADULTS,
-            },
-            child: {
-              nb: this.queryParamNbChildren ?? 0,
-              maximum: MAX_NB_CHILDREN,
-            },
-            infant: {
-              nb: this.queryParamNbInfants ?? 0,
-              maximum: MAX_NB_INFANTS,
-            },
-            pet: {
-              nb: this.queryParamNbPets ?? 0,
-              maximum: MAX_NB_PETS,
+        })).subscribe(() => {
+          this.searchbarStartingState = {
+            startingDate: this.startDate ?? undefined,
+            endingDate: this.endDate ?? undefined,
+            locationInput: this.paramLocation ?? "",
+            guests: {
+              adult: {
+                nb: this.queryParamNbAdults ?? 0,
+                maximum: MAX_NB_ADULTS,
+              },
+              child: {
+                nb: this.queryParamNbChildren ?? 0,
+                maximum: MAX_NB_CHILDREN,
+              },
+              infant: {
+                nb: this.queryParamNbInfants ?? 0,
+                maximum: MAX_NB_INFANTS,
+              },
+              pet: {
+                nb: this.queryParamNbPets ?? 0,
+                maximum: MAX_NB_PETS,
+              }
             }
           }
-        }
-        this.executeSearch();
-      });
+          this.executeSearch();
+        });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   executeSearch(page: number = 1) {
     this.stayService.searchStays(this.paramLocation, getTotalNbOfGuests(this.searchbarStartingState?.guests), page)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((stays) => {
         this.lastPage = stays.lastPage;
         this.staysSearchResults = stays.stays

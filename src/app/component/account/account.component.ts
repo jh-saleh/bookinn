@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { authServiceFactory } from '../../hexagonal/di-factories';
 import { Position } from '../../hexagonal/domain/model/position/position.model';
@@ -21,18 +22,26 @@ import { ModalComponent } from '../windows/modal/modal.component';
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
   isAccountModalOpen: boolean = false;
   buttonPosition: Position = { top: 0, left: 0 };
   @ViewChild("accountRef") accountRef: ElementRef<HTMLSpanElement> | undefined;
   readonly portfolioURL: string = environment.portfolioURL;
   user?: User;
+  private destroy$ = new Subject<void>();
   constructor(private store: Store<AppState>, private authService: AuthPort, private router: Router) { }
 
   ngOnInit(): void {
-    this.store.select(selectUser).subscribe((state) => {
-      this.user = state?.user;
-    });
+    this.store.select(selectUser)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => {
+        this.user = state?.user;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   closeAccountModal(): void {

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { FooterComponent } from "../../component/footer/footer.component";
 import { MapComponent } from "../../component/map/map.component";
 import { DesktopNavbarComponent } from "../../component/navbar/desktop/desktop-navbar.component";
@@ -30,7 +31,7 @@ import { AppState } from '../../state/app.state';
   templateUrl: './trip-details-page.component.html',
   styleUrl: './trip-details-page.component.css'
 })
-export class TripDetailsPageComponent implements OnInit {
+export class TripDetailsPageComponent implements OnInit, OnDestroy {
   isTimeCheck!: boolean;
   trip: Trip | undefined;
   partialRefundDate: CalendarDate | undefined;
@@ -40,18 +41,26 @@ export class TripDetailsPageComponent implements OnInit {
   stayRules: GuidebookInformation[] = [];
   leaveRules: GuidebookInformation[] = [];
   refundStatus!: string;
+  private destroy$ = new Subject<void>();
   constructor(private store: Store<AppState>, private route: ActivatedRoute, private tripService: TripPort,
     private calendarDatesService: CalendarDatesService, private router: Router) { }
 
   ngOnInit(): void {
     const queryTripId: string = this.route.snapshot.paramMap.get('id') ?? "";
-    this.tripService.getTrip(queryTripId).subscribe((trip) => {
-      this.trip = trip;
-      this.isTimeCheck = this.trip?.stay.guidebook.houserules.time.type === CheckType.StandardCheck;
-      this.updateRefundDates();
-      this.updateHouseRules();
-      this.updateRefundStatus();
-    });
+    this.tripService.getTrip(queryTripId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((trip) => {
+        this.trip = trip;
+        this.isTimeCheck = this.trip?.stay.guidebook.houserules.time.type === CheckType.StandardCheck;
+        this.updateRefundDates();
+        this.updateHouseRules();
+        this.updateRefundStatus();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   updateRefundDates() {
@@ -102,9 +111,11 @@ export class TripDetailsPageComponent implements OnInit {
   cancelTripHandler() {
     if (this.trip) {
       this.closeCancelReservationModal();
-      this.tripService.deleteTrip(this.trip.id).subscribe(() => {
-        this.router.navigate(['/trips'], { replaceUrl: true });
-      })
+      this.tripService.deleteTrip(this.trip.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          this.router.navigate(['/trips'], { replaceUrl: true });
+        })
     }
   }
 }

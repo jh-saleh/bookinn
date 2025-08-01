@@ -1,6 +1,8 @@
 # Bookinn
+Created and designed by Jean-Hanna SALEH
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+## What is Bookinn
+BookInn is web app that allows you to explore the mystical land of Orlond, rent an inn's room and enjoy the view !
 
 ## Development server
 

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { BillRoomComponent } from "../../component/bill/bill-room/bill-room.component";
 import { PhoneBillRoomComponent } from "../../component/bill/phone-bill-room/phone-bill-room.component";
 import { CalendarComponent } from "../../component/calendar/calendar.component";
@@ -65,17 +65,21 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.paramRoomId = this.route.snapshot.paramMap.get('id');
 
-    this.stayService.getStay(this.paramRoomId ?? undefined).subscribe((stay) => {
-      if (stay) {
-        this.store.dispatch(StayActions.setStay({ stay }));
-        this.stay = stay;
-      }
-    });
-    this.hostService.getHost(this.stay.hostId).subscribe((host) => {
-      if (host) {
-        this.host = host
-      }
-    });
+    this.stayService.getStay(this.paramRoomId ?? undefined)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((stay) => {
+        if (stay) {
+          this.store.dispatch(StayActions.setStay({ stay }));
+          this.stay = stay;
+        }
+      });
+    this.hostService.getHost(this.stay.hostId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((host) => {
+        if (host) {
+          this.host = host
+        }
+      });
 
     this.amenities = extractAmenitiesData(this.stay?.amenities ?? {});
     this.amenitiesSummary = this.extractAmenitiesSummary();
@@ -122,11 +126,13 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       }
     }));
 
-    this.store.select(selectBillInformation).subscribe(({ billInformation }) => {
-      this.getStartingDate(billInformation?.startingDate);
-      this.getEndingDate(billInformation?.endingDate);
-      this.queryParamGuests = billInformation?.guests !== undefined ? billInformation?.guests : undefined;
-    });
+    this.store.select(selectBillInformation)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(({ billInformation }) => {
+        this.getStartingDate(billInformation?.startingDate);
+        this.getEndingDate(billInformation?.endingDate);
+        this.queryParamGuests = billInformation?.guests !== undefined ? billInformation?.guests : undefined;
+      });
   }
 
   ngOnDestroy(): void {

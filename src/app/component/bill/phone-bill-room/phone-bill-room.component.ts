@@ -75,16 +75,18 @@ export class PhoneBillRoomComponent implements OnDestroy {
 
   updateBillPrices(nbOfNights: number | undefined, nbOfGuests: number) {
     if (nbOfNights && this.stayId) {
-      this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests).subscribe((billing) => {
-        if (billing) {
-          const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
-          this.pricePerNight = pricePerNight;
-          this.completeBillWithoutCharges = completeBillWithoutCharges;
-          this.bookInnFee = bookInnFee;
-          this.VAT = VAT;
-          this.completeBill = completeBill;
-        }
-      });
+      this.billingService.getBillingForStay(this.stayId, nbOfNights, nbOfGuests)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((billing) => {
+          if (billing) {
+            const { VAT, bookInnFee, completeBill, completeBillWithoutCharges, pricePerNight } = billing;
+            this.pricePerNight = pricePerNight;
+            this.completeBillWithoutCharges = completeBillWithoutCharges;
+            this.bookInnFee = bookInnFee;
+            this.VAT = VAT;
+            this.completeBill = completeBill;
+          }
+        });
     }
   }
 
