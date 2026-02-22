@@ -41,7 +41,7 @@ Amongst the available features, you can :
  * Dexie.js : For an easy to use Indexed DB wrapper (State persistence)
  * Leaflet : For interactive map usage
  * Zone.js : For easy to use date managment
- * Emotion.js : For the js-in-css library 
+ * Emotion.js : For the js-in-css library
 
 ## Architecture
 Usually hexagonal architecture is applied onto backend applications, but they can be applied for frontend web applications as well.
@@ -55,22 +55,6 @@ All I would need would be to fill the (currently empty) "normal" adapters.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
